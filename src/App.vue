@@ -1,6 +1,4 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Perfil from './components/Perfil.vue'
@@ -12,7 +10,7 @@ import Welcome from './components/Welcome.vue'
   <div class="header">
     <h2>Hola</h2>
     <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
-  </div>-
+  </div>
   <nav class="navbar">
     <router-link to="/m">Main</router-link>
     <router-link to="/">Perfil</router-link>
@@ -22,8 +20,6 @@ import Welcome from './components/Welcome.vue'
 
   <router-view></router-view>
   
- 
-
   </template>
 
 
