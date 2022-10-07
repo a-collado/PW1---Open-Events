@@ -90,7 +90,8 @@ body {
 
 #app {
   display: grid;
-  width: 100%;
+  /*width: 100%;*/
+  margin: 0px;
 }
 
 nav {
@@ -142,7 +143,7 @@ router-link:hover {
 
 #app {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0px;
   padding: 2rem auto;
   text-align: center;
 }
