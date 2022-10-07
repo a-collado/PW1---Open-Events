@@ -17,10 +17,11 @@ import Welcome from './components/Welcome.vue'
     <router-link to="/m">Main</router-link>
     <router-link to="/">Perfil</router-link>
     <router-link to="/w">Welcome</router-link>
+    <router-link to="/s">Sign in</router-link>
   </nav>
 
   <router-view></router-view>
-  <Perfil></Perfil>
+  
  
 
   </template>
