@@ -3,6 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import Perfil from './components/Perfil.vue'
 import Main from './components/Main.vue'
+import Welcome from './components/Welcome.vue'
 </script>
 
 <template>
@@ -13,22 +14,11 @@ import Main from './components/Main.vue'
   <div class="navbar">
     <router-link to="/m">Main</router-link>
     <router-link to="/">Perfil</router-link>
+    <router-link to="/w">Welcome</router-link>
   </div>
   <router-view></router-view>
 
   <Perfil msg="Vite + Vue" />
-</template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+
+
