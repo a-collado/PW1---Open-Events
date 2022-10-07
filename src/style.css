@@ -103,7 +103,7 @@ router-link:hover {
 }
 
 #PageTitle{
-      display: flex;
+    display: flex;
     align-content: center;
     justify-content: center;
     align-items: center;
