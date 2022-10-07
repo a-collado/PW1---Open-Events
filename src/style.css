@@ -43,8 +43,77 @@ body{
     background-size: cover;
 }*/
 
+body {
+  display: flex;
+  justify-content: start;
+  margin-left: 0rem;
+  margin-right: 0rem;
+}
+
+.navbar{
+  margin-top: 15px;
+  border-style: solid;
+  border-color: #888888;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+}
+
+.header {
+  display:grid;
+  padding: 15px;
+  text-align: center;
+  background: linear-gradient(#00adbdf6, #00adbd38);
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  justify-items: start;
+}
+
+.header h2{
+  color: black;
+  font-size: 50px;
+  grid-row-start: 1;
+  grid-column-start: 3;
+}
+
+.searchbar{
+  width: 260px;
+  height: 5px;
+  padding: 20px 40px 20px 20px;
+  border: 3px solid #ccc;
+  background-color: white;
+  border-radius: 20px;
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
+
+
+#app {
+  display: grid;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: start;
+}
+
+router-link{
+  border-style: solid;
+    border-color: #888888;
+    border-width: 0.1rem;
+    border-radius: 0.2rem;
+    background: aliceblue;
+    margin: 5px
+
+}
+
+router-link:hover {
+  background: azure;
+}
+
 #PageTitle{
-    display: flex;
+      display: flex;
     align-content: center;
     justify-content: center;
     align-items: center;
@@ -52,17 +121,30 @@ body{
     flex-direction: column;
 }
 
+.profile_header{
+  height: 220px;
+}
+
+.landscape{
+  max-width:100%;
+  max-height:100%;
+  border-radius: 10px;
+}
+
 @font-face {
     font-family: inter;
     src: url("src/assets/fonts/inter/Inter-Medium.ttf");
 }
 
-h1{
-    font-family: inter;
+.card {
+  padding: 2em;
 }
 
-#WelcomeTo{
-    font-size: 24px;
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem auto;
+  text-align: center;
 }
 
 #OpenEvents{
