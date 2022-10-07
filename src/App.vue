@@ -1,19 +1,22 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import Perfil from './components/Perfil.vue'
+import Main from './components/Main.vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="header">
+    <h2>Hola</h2>
+    <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <div class="navbar">
+    <router-link to="/m">Main</router-link>
+    <router-link to="/">Perfil</router-link>
+  </div>
+  <router-view></router-view>
+
+  <Perfil msg="Vite + Vue" />
 </template>
 
 <style scoped>
