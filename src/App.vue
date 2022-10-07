@@ -11,14 +11,14 @@ import Welcome from './components/Welcome.vue'
     <h2>Hola</h2>
     <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
   </div>
-  <div class="navbar">
+  <nav class="navbar">
     <router-link to="/m">Main</router-link>
     <router-link to="/">Perfil</router-link>
     <router-link to="/w">Welcome</router-link>
-  </div>
+  </nav>
   <router-view></router-view>
+  <Perfil></Perfil>
 
-  <Perfil msg="Vite + Vue" />
-
+  </template>
 
 

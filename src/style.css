@@ -19,8 +19,8 @@
 body {
   display: flex;
   justify-content: start;
-  margin-left: 2em;
-  margin-right: 2rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
 }
 
 .navbar{
