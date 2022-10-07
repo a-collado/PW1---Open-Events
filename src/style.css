@@ -16,8 +16,28 @@
 
 }
 
-.PageTitle{
+#PageTitle{
     display: flex;
     align-content: center;
     justify-content: center;
+    align-items: center;
+    margin-top: -15vh;
+    flex-direction: column;
+}
+
+@font-face {
+    font-family: inter;
+    src: url("src/assets/fonts/inter/Inter-Medium.ttf");
+}
+
+h1{
+    font-family: inter;
+}
+
+#WelcomeTo{
+    font-size: 24px;
+}
+
+#OpenEvents{
+    font-size: 64px;
 }
