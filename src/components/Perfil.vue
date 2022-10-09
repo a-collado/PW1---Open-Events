@@ -22,8 +22,23 @@
     <div class="basic_event">
       <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
       
-      <div class="footer_basic_event"> 
+      <div class="footer_basicEvent"> 
         <h2 class="tittle_basicEvent">Fiesta de los 80</h2>
+
+        <div class="info_basicEvent"> 
+
+            <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+            <p>09/11/2021<br>20:00</p>
+            
+            <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+            <p>Barcelona</p>
+
+        </div>
+
+      
+
+      
+
       </div>
     </div>
 
