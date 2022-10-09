@@ -23,7 +23,7 @@
       <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
       
       <div class="footer_basic_event"> 
-        <P>bla</P>
+        <h2 class="tittle_basicEvent">Fiesta de los 80</h2>
       </div>
     </div>
 
