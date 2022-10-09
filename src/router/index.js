@@ -24,7 +24,7 @@ const routes = [
         name: 'Sign in',
         component: SignIn
     }
-
+ 
 ]
 
 const router = createRouter({

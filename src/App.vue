@@ -8,15 +8,17 @@ import Welcome from './components/Welcome.vue'
 
 <template>
   <div class="header">
-    <h2>Hola</h2>
+    <p id="logo_title">Hola</p>
     <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
-  </div>
-  <nav class="navbar">
-    <router-link to="/m">Main</router-link>
-    <router-link to="/">Perfil</router-link>
-    <router-link to="/w">Welcome</router-link>
-    <router-link to="/s">Sign in</router-link>
-  </nav>
+  
+    <nav class="navbar">
+      <router-link to="/m">Main</router-link>
+      <router-link to="/">Perfil</router-link>
+      <router-link to="/w">Welcome</router-link>
+      <router-link to="/s">Sign in</router-link>
+    </nav>
+
+</div>
 
   <router-view></router-view>
   
