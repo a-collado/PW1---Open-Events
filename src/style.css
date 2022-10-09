@@ -35,13 +35,28 @@ body {
   margin: 0px;
 }
 
-.navbar{
-  margin-top: 15px;
-  border-style: solid;
-  border-color: #888888;
-  padding: 10px;
-  position: absolute;
-  top: 0;
+#app {
+  display: grid;
+  /*width: 100%;*/
+  margin: 0px;
+}
+
+nav {
+  display: flex;
+  justify-content: start;
+}
+
+
+/*STYLE FOR ELEMENTS---------------------------------------------------------------------------------------------------*/
+
+.profile_header{
+  height: 134px;
+  width: 100%;
+}
+
+.basic_event{
+  width: 100px;
+  height: 50px;
 }
 
 .header {
@@ -62,77 +77,37 @@ body {
   grid-column-start: 3;
 }
 
-.searchbar{
-  width: 260px;
-  height: 5px;
-  padding: 20px 40px 20px 20px;
-  border: 3px solid #ccc;
-  background-color: white;
-  border-radius: 20px;
-  grid-column-start: 3;
-  grid-row-start: 4;
-}
-
-.sign_in_box{
-  display: grid;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-.sign_in_input{
-  width: 260px;
-  height: 5px;
-  margin:5px;
-  padding: 20px 40px 20px 20px;
-  border: 3px solid #ccc;
-  background-color: white;
-  border-radius: 20px;
-  grid-column-start: 3;
-  grid-row-start: 4;
-}
-
-
 #app {
-  display: grid;
-  /*width: 100%;*/
+  max-width: 1280px;
   margin: 0px;
+  padding: 2rem auto;
+  text-align: center;
 }
 
-nav {
-  display: flex;
-  justify-content: start;
+#OpenEvents{
+    font-size: 64px;
 }
 
-
-
-router-link{
+.navbar{
+  margin-top: 15px;
   border-style: solid;
-    border-color: #888888;
-    border-width: 0.1rem;
-    border-radius: 0.2rem;
-    background: aliceblue;
-    margin: 10px
-
+  border-color: #888888;
+  padding: 10px;
+  position: absolute;
+  top: 0;
 }
 
-router-link:hover {
-  background: azure;
-}
 
 #PageTitle{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: -15vh;
-    flex-direction: column;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: -15vh;
+  flex-direction: column;
 }
 
-.profile_header{
-  height: 134px;
-  width: 100%;
-}
-
+/*STYLE FOR IMAGES-----------------------------------------------------------------------------------------------------*/
 .profilePic{
   width: 122px;
   height: 122px;
@@ -154,6 +129,15 @@ router-link:hover {
   object-fit: cover;
   border-radius: 20px;
 }
+
+.event_img{
+  border-radius: 20px;
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+/*STYLE FOR BUTTONS-----------------------------------------------------------------------------------------------------*/
 
 @font-face {
     font-family: inter;
@@ -194,13 +178,50 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0px;
-  padding: 2rem auto;
-  text-align: center;
+/*Router links-----------------------------*/
+router-link{
+  border-style: solid;
+    border-color: #888888;
+    border-width: 0.1rem;
+    border-radius: 0.2rem;
+    background: aliceblue;
+    margin: 10px
+
 }
 
-#OpenEvents{
-    font-size: 64px;
+router-link:hover {
+  background: azure;
 }
+
+/*STYLE FOR INPUTS----------------------------------------------------------------------------------------------------------*/
+/* !! search bar i sing_in_output són iguals, només hauria d'haver 1*/
+.searchbar{
+  width: 260px;
+  height: 5px;
+  padding: 20px 40px 20px 20px;
+  border: 3px solid #ccc;
+  background-color: white;
+  border-radius: 20px;
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
+
+.sign_in_box{
+  display: grid;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.sign_in_input{
+  width: 260px;
+  height: 5px;
+  margin:5px;
+  padding: 20px 40px 20px 20px;
+  border: 3px solid #ccc;
+  background-color: white;
+  border-radius: 20px;
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
+
+/*STYLE FOR TEXT-------------------------------------------------------------------------------------------------------------*/
