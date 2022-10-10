@@ -190,11 +190,11 @@ div .user_rating{
 
 .profile_info div{
   display: flex;
-  margin-left: -10px;
-  flex-direction: row;
-  flex-wrap: wrap;
+  margin-left: 7px;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
  }
 
 .events_statistics_profile{
