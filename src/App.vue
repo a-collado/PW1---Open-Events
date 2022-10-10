@@ -16,13 +16,12 @@ import Welcome from './components/Welcome.vue'
       <router-link to="/">Perfil</router-link>
       <router-link to="/w">Welcome</router-link>
       <router-link to="/s">Sign in</router-link>
-      
     </nav>
 
 </div>
 
   <router-view></router-view>
   
-  </template>
+</template>
 
 

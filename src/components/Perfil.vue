@@ -43,6 +43,15 @@
     <!-- -->
       <div class="events_statistics_profile">
 
+        <div>
+          <button>Todos</button>
+          <button>Creados</button>
+          <button>Inscrito</button>
+          <button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter">
+          </button-icon>
+        </div>
+
+        <div class="event_group">
         <div class="basic_event">
           <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
           
@@ -116,7 +125,7 @@
         </div> <!--Tanquem div del event-->
 
       </div> <!--Tanquem div gran dels events i estadístiques SENSE botons-->
-     <!--Tanquem div gran dels events i estadístiques AMB botons-->
+    </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
 
   <!---->
 

@@ -37,12 +37,7 @@ body {
   margin-left: 0rem;
   margin-right: 0rem;
   margin: 0px;
-}
-
-#app {
-  display: grid;
-  width: 100%;
-  margin: 0px;
+  width: 100vw;
 }
 
 nav {
@@ -61,7 +56,6 @@ nav {
 
 .header {
   display:grid;
-  padding: 15px;
   text-align: center;
   background: linear-gradient(#00adbdf6, #00adbd38);
   grid-template-columns: auto;
@@ -122,14 +116,18 @@ nav {
 
 /*Events and statistics_________________________________________________*/
 .events_statistics_profile{
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px;
+  margin: 25px;
   padding: 10px;
   border-radius: 10px;
+  width: 88vw;
   background: linear-gradient(#00ADBD, #D9D9D9);
-
 }
+
+.event_group{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /*Event elements_____________________*/
 .basic_event{
   width: 415px;
@@ -157,45 +155,10 @@ nav {
 
 }
 
-@media only screen and (max-width: 768px) {
-
-.events_statistics_profile{
+.events_statistics_profile div{
   display: flex;
-  flex-wrap: wrap;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  width: 88vw;
-  background: linear-gradient(#00ADBD, #D9D9D9);
-}
-
-/*Event elements_____________________*/
-.basic_event{
-  width: 100vw;
-  height: 140px;
-  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
-  margin: 5px;
-  margin-bottom: 15px;
-}
-
-.footer_basicEvent{
-  width: 100%;
-  height: 40%;
-  top: 5%;
-  border-radius: 0px 0px 8px 8px;
-  background-color: white;
-  position: absolute;
-  top: 90px;
-}
-
-.info_basicEvent{
-  position: relative;
-  left: 67%;
-  top: 10%;
-  display:flex;
-  flex-direction: column;
-
-}
+  margin-bottom: 1%;
+  margin-top: 1%
 }
 
 .profile_info div{
@@ -213,6 +176,64 @@ div .user_rating{
   justify-content: flex-start;
   align-items: flex-end;
   margin:5px;
+}
+
+.events_statistics_profile div{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+
+.events_statistics_profile{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 88vw;
+  background: linear-gradient(#00ADBD, #D9D9D9);
+}
+
+.event_group{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*Event elements_____________________*/
+.basic_event{
+  width: 100vw;
+  height: 140px;
+  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
+  margin: 5px;
+  margin-bottom: 12px;
+}
+
+.footer_basicEvent{
+  width: 100%;
+  height: 40%;
+  top: 5%;
+  border-radius: 0px 0px 8px 8px;
+  background-color: white;
+  position: absolute;
+  top: 90px;
+}
+
+.info_basicEvent{
+  position: relative;
+  left: 25%;
+  top: 10%;
+  display:flex;
+  flex-direction: column;
+
+}
+
+.events_statistics_profile div{
+  display: flex;
+  margin-bottom: 6%;
+  margin-top: 5%
+}
+
 }
 
 /*STYLE FOR IMAGES-----------------------------------------------------------------------------------------------------*/
@@ -273,7 +294,11 @@ div .user_rating{
     filter: saturate(75%);
   }
 
-  
+   .events_statistics_profile icon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
 }
 
 /*STYLE FOR BUTTONS-----------------------------------------------------------------------------------------------------*/
@@ -281,10 +306,11 @@ div .user_rating{
 .profileButtons{
   display: flex;
   justify-content: safe;
+  flex-wrap: wrap;
   gap: 10px;
-  position: relative;
-  left: 45%;
-  top: -105%;
+  position: absolute;
+  left: 180px;
+  top: 280px;
   font-family: inter;
   font-size: 14px;
 }
@@ -339,6 +365,52 @@ button-icon{
   filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
 }
 
+.events_statistics_profile button-icon{
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 3%;
+  background:#C772BA;
+}
+
+.events_statistics_profile button{
+  font-family: inter;
+  font-size: 15px;
+  padding: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 5px;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  background: #F9E4CE;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .events_statistics_profile button{
+    font-family: inter;
+    font-size: 15px;
+    padding: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 2%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    background: #F9E4CE;
+  }
+}
+
+  .events_statistics_profile button:hover {
+    background: #C5A17C;
+  }
+  
+  .events_statistics_profile button:focus,
+  .events_statistics_profile button:focus-visible {
+    background: #C5A17C;
+    color: white;
+  }
+
+
+
 /*Router links-----------------------------*/
 router-link{
   border-style: solid;
@@ -363,8 +435,8 @@ router-link:hover {
   border: 3px solid #ccc;
   background-color: white;
   border-radius: 20px;
-  grid-column-start: 3;
-  grid-row-start: 4;
+  grid-column-start: 1;
+  grid-row-start: 1;
 }
 
 .sign_in_box{
@@ -458,7 +530,7 @@ p#logo_title{
 
 .profile_info p {
   font-family: inter;
-  margin-top: 0px;
+  margin-top: 6px;
   color: #575757c4;
 }
 
@@ -492,7 +564,7 @@ hr {
     font-size: 11px;
     color: #233466;
     position: absolute;
-    top: -12px;
+    top: -15px;
     left: 30px;
     font-weight: bold;
   }
@@ -502,7 +574,7 @@ hr {
     font-size: 13px;
     position: absolute;
     color: #233466;
-    top: 17px;
+    top: 12px;
     left: 25px;
     font-weight: bold;
   }
