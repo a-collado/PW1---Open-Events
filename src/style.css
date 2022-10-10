@@ -163,9 +163,19 @@ nav {
 
 .profile_info div{
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
   margin-left: -10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+div .user_rating{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin:5px;
 }
 
 /*STYLE FOR IMAGES-----------------------------------------------------------------------------------------------------*/
@@ -177,7 +187,7 @@ nav {
   border-radius: 50%;
   border-style: solid;
   border-color: white;
-  border-width: 0.75px;
+  border-width: 1.5px;
   object-fit: cover;
   object-position: 100% 0;
   position: relative;
@@ -208,6 +218,12 @@ nav {
   object-fit: cover;
   filter: saturate(75%);
   
+}
+
+.user_rating img{
+  width: 13px;
+  margin: 1px;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3))
 }
 
 /*STYLE FOR BUTTONS-----------------------------------------------------------------------------------------------------*/
@@ -386,12 +402,13 @@ p#logo_title{
   font-size: 16px;
   margin-top: -25px;
   margin-left: 5px;
+  margin-bottom: 0px;
   color: #C772BA;
 }
 
 .profile_info p {
   font-family: inter;
-  margin-top: -11px;
+  margin-top: 0px;
   color: #575757c4;
 }
 
@@ -399,4 +416,13 @@ hr {
   margin-top: 30px;
   margin-bottom: 10px;
   color:#88888857;
+}
+
+.user_rating h5{
+  margin: 0px;
+  margin-left: 3px;
+  font-family: inter;
+  font-size: 10px;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3));
+  color:#024e55;
 }

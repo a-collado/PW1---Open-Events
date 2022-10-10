@@ -22,6 +22,14 @@
         <h4>@nombre2</h4>
         </article>
         <h4>Barcelona, España</h4>
+        <div class="user_rating">
+          <img src="../assets/images/icons/star_b.png" alt="1 estrella">
+          <img src="../assets/images/icons/star_b.png" alt="2 estrellas">
+          <img src="../assets/images/icons/star_b.png" alt="3 estrellas">
+          <img src="../assets/images/icons/star_b.png" alt="4 estrellas">
+          <img src="../assets/images/icons/star_b.png" alt="5 estrellas">
+          <h5>5</h5>
+        </div>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
         <div>
           <button>Editar perfil</button>
