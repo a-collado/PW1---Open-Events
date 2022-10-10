@@ -16,8 +16,11 @@
     <!-- User info-->
 
 
-    <div> 
+    <div class="profile_info"> 
+        <article>
         <h1>Nombre</h1>
+        <h4>@nombre2</h4>
+        </article>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
     </div>
     <!-- -->
