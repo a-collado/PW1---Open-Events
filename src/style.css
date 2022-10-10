@@ -116,10 +116,11 @@ nav {
 
 /*Events and statistics_________________________________________________*/
 .events_statistics_profile{
-  margin: 25px;
-  padding: 10px;
+  border: 25px;
   border-radius: 10px;
-  width: 88vw;
+  width: 95vw;
+  position: absolute;
+  left: 2%;
   background: linear-gradient(#00ADBD, #D9D9D9);
 }
 
@@ -163,11 +164,11 @@ nav {
 
 .profile_info div{
   display: flex;
-  margin-left: -10px;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 div .user_rating{
@@ -186,6 +187,15 @@ div .user_rating{
 }
 
 @media only screen and (max-width: 768px) {
+
+.profile_info div{
+  display: flex;
+  margin-left: -10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+ }
 
 .events_statistics_profile{
   margin: 10px;
@@ -344,9 +354,8 @@ button:focus-visible {
 
 .profile_info div button{
   background: #C772BA;
-  padding: 3%;
-  padding-right: 15%;
-  padding-left: 5%;
+  padding-right: 15px;
+  padding-left: 8px;
   font-family: inter;
   color: white;
 }
@@ -396,6 +405,15 @@ button-icon{
     margin-top: 0%;
     margin-bottom: 0%;
     background: #F9E4CE;
+  }
+
+  .profile_info div button{
+    background: #C772BA;
+    padding: 3%;
+    padding-right: 15%;
+    padding-left: 5%;
+    font-family: inter;
+    color: white;
   }
 }
 
