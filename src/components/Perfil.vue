@@ -21,7 +21,16 @@
         <h1>Nombre</h1>
         <h4>@nombre2</h4>
         </article>
+        <h4>Barcelona, España</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
+        <div>
+          <button>Editar perfil</button>
+          <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
+          </button-icon>
+          <button-icon><img class="icon" src="../assets/images/icons/dots_h.png" alt="more options">
+          </button-icon>
+        </div>
+        <hr>
     </div>
     <!-- -->
     <div>
