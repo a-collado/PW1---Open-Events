@@ -41,7 +41,6 @@
         <hr>
     </div>
     <!-- -->
-    <div>
       <div class="events_statistics_profile">
 
         <div class="basic_event">
@@ -117,7 +116,7 @@
         </div> <!--Tanquem div del event-->
 
       </div> <!--Tanquem div gran dels events i estadístiques SENSE botons-->
-    </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
+     <!--Tanquem div gran dels events i estadístiques AMB botons-->
 
   <!---->
 
