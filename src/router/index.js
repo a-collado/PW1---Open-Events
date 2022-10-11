@@ -3,6 +3,7 @@ import Perfil from '../components/Perfil.vue'
 import Main from '../components/Main.vue'
 import Welcome from '../components/Welcome.vue'
 import SignIn from '../components/SignIn.vue'
+import Register from '../components/Register.vue'
 const routes = [
     {
         path: '/',
@@ -23,6 +24,11 @@ const routes = [
         path: '/s',
         name: 'Sign in',
         component: SignIn
+    },
+    {
+        path: '/r',
+        name: 'Register',
+        component: Register
     }
  
 ]

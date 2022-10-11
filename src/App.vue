@@ -16,6 +16,7 @@ import Welcome from './components/Welcome.vue'
       <router-link to="/">Perfil</router-link>
       <router-link to="/w">Welcome</router-link>
       <router-link to="/s">Sign in</router-link>
+      <router-link to="/r">Register</router-link>
     </nav>
 
 </div>
