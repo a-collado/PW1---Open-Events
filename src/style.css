@@ -12,8 +12,8 @@
     height: 100vh;
     width: 100vw;
     padding: 0px;
-    background-position-x: left;
-    background-position-y: top;
+    background-position-x: 0;
+    background-position-y: 0;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -95,6 +95,8 @@ nav {
 #app {
   max-width: 1920px;
   margin: 0px;
+  font-family: inter;
+  font-weight: medium;
 }
 
 #OpenEvents{
@@ -114,10 +116,10 @@ nav {
 #PageTitle{
   display: flex;
   align-content: center;
-  justify-content: center;
+  justify-content:top;
   align-items: center;
-  margin-top: -15vh;
   flex-direction: column;
+  margin-top: 15vh;
 }
 
 /*Events and statistics_________________________________________________*/
@@ -689,28 +691,82 @@ router-link:hover {
   grid-row-start: 1;
 }
 
-.sign_in_box{
-  display: grid;
+.Sign_in_box{
+  display: flex;
   align-items: center;
-  align-content: center;
-  justify-content: center;
+  flex-flow: column;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.Sign_in_box h1{
+  margin: 50px;
 }
 .sign_in_input{
   width: 260px;
   height: 5px;
   margin:5px;
   padding: 20px 40px 20px 20px;
-  border: 3px solid #ccc;
+  border: 0px;
   background-color: white;
   border-radius: 20px;
-  grid-column-start: 3;
-  grid-row-start: 4;
 }
 
+.sign_in_input:focus{
+  outline:1px;
+  outline-style: solid;
+}
+
+.sign_in_button{
+  margin: 30px;
+  width: 100px;
+  height: 45px;
+  background: linear-gradient(180deg, #E481DB 0%, rgba(228, 129, 219, 0.38) 100%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sign_in_button p{
+  margin: 0px;
+  color: white;
+  font-family:inter;
+  font-weight:bold;
+}
+
+.register_here{
+  display:flex;
+  flex-direction: row;
+}
+.register_here button{
+  color: #E763DB;
+  text-decoration: underline;
+  background: #00000000;
+  filter:none;
+  outline: none;
+}
+
+.register_here button:active{
+  color: #2c2590;
+}
+.register_here *{
+  font-size: 12px;
+}
 /*STYLE FOR TEXT-------------------------------------------------------------------------------------------------------------*/
+
+@font-face {
+  font-family: inter;
+  src: url("src/assets/fonts/inter/Inter-ExtraLight-BETA.ttf");
+  font-weight: light;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("src/assets/fonts/inter/Inter-Regular.ttf");
+}
+
+
 @font-face {
   font-family: inter;
   src: url("src/assets/fonts/inter/Inter-Medium.ttf");
+  font-weight: medium;
 }
 
 @font-face {
