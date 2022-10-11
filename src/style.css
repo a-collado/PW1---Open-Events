@@ -129,6 +129,7 @@ nav {
   border-radius: 10px;
   width: 65vw;
   position: absolute;
+  margin-top: 30px;
   left: 5%;
   background: linear-gradient(#00ADBD, #D9D9D9);
 }
@@ -136,15 +137,17 @@ nav {
 .event_group{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .events_statistics_buttons{
-  width: 215px;
+  width: 190px;
   display: flex;
   justify-content: space-between;  
-  left: 5%;
-  position: relative;
-  top: 12px;
+  left: -3px;
+  top: -30px;
+  position: absolute;
   z-index: -1;
 }
 
@@ -175,12 +178,6 @@ nav {
 
 }
 
-.events_statistics_background div{
-  display: flex;
-  margin-bottom: 1%;
-  margin-top: 1%
-}
-
 div .button_flex {
   display: flex;
   margin-left: 7px;
@@ -207,8 +204,10 @@ div .button_flex {
   margin:5px;
 }
 
-.events_statistics_background div{
+.filter_events{
   display: flex;
+  margin-bottom: 1%;
+  margin-top: 1%;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
@@ -294,6 +293,7 @@ div .button_flex {
 
 .events_statistics_background{
   margin: 10px;
+  margin-top: 30px;
   padding: 10px;
   border-radius: 10px;
   width: 88vw;
@@ -301,10 +301,21 @@ div .button_flex {
   background: linear-gradient(#00ADBD, #D9D9D9);
 }
 
+.events_statistics_buttons{
+  width: 190px;
+  display: flex;
+  justify-content: space-between;  
+  left: -3px;
+  top: -30px;
+  position: absolute;
+  z-index: 0;
+}
+
 .event_group{
   display: flex;
   flex-wrap: wrap;
 }
+
 
 /*Event elements_____________________*/
 .basic_event{
@@ -326,15 +337,16 @@ div .button_flex {
 }
 
 .info_basicEvent{
-  position: relative;
-  left: 25%;
+  position: absolute;
+  right: 25%;
+  left: initial;
   top: 10%;
-  display:flex;
+  display: flex;
   flex-direction: column;
 
 }
 
-.events_statistics_background div{
+.filter_events{
   display: flex;
   margin-bottom: 6%;
   margin-top: 5%
@@ -391,9 +403,14 @@ div .button_flex {
   height: 20px;
 }
 
-button-icon img{
-  width: 60px;
-  height: 60px;
+button-icon .icon{
+  width: 40px;
+  height: 40px;
+}
+
+.filter_events button-icon .icon{
+  width: 20px;
+  height: 20px;
 }
 
 /*Event images_______________________*/
@@ -586,7 +603,7 @@ button.eventStatistics_Nselected{
 
 @media only screen and (max-width: 768px) {
 
-  .events_statistics_background button{
+  .filter_events button{
     font-family: inter;
     font-size: 15px;
     padding: 7px;
