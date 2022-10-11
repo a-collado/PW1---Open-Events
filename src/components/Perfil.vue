@@ -87,14 +87,14 @@
     </div>
     <!-- -->
 
-      <div class = "events_statistics_buttons">
-          <button class="eventStatistics"> Eventos </button>
-          <button class="eventStatistics_Nselected"> Estadísticas </button>
-      </div>
+      
 
       <div class="events_statistics_background">
-
-        <div>
+        <div class = "events_statistics_buttons">
+          <button class="eventStatistics"> Eventos </button>
+          <button class="eventStatistics_Nselected"> Estadísticas </button>
+        </div>
+        <div class="filter_events">
           <button>Todos</button>
           <button>Creados</button>
           <button>Inscrito</button>
