@@ -80,7 +80,7 @@ nav {
 
 .profile_info {
   margin: 40px;
-  margin-left: 135px;
+  margin-left: 80px;
   margin-top: 110px;
   margin-bottom: 0px;
   width: 60vw;
@@ -347,8 +347,11 @@ div .button_flex {
 
 .filter_events{
   display: flex;
-  margin-bottom: 6%;
-  margin-top: 5%
+  margin-bottom: 4%;
+  margin-top: 2%;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: nowrap;
 }
 
 .profile_info .button_flex{
@@ -588,6 +591,7 @@ button.eventStatistics{
   cursor: pointer;
   color: white;
   filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.0));
+  outline: none;
 }
 
 button.eventStatistics_Nselected{
@@ -598,6 +602,7 @@ button.eventStatistics_Nselected{
   cursor: pointer;
   color: white;
   filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.4));
+  outline: none;
 }
 
 @media only screen and (max-width: 768px) {
