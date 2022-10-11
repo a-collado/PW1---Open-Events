@@ -48,8 +48,15 @@ nav {
 
 /*STYLE FOR ELEMENTS---------------------------------------------------------------------------------------------------*/
 
+.vl {
+  border-left: 2px solid rgb(201, 201, 201);
+  height: 100%;
+  position: absolute;
+  right: 25%;
+}
+
 .profile_header{
-  height: 134px;
+  height: 330px;
   width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
 }
 
@@ -73,22 +80,21 @@ nav {
 
 .profile_info {
   margin: 40px;
-  margin-left: 30px;
-  margin-top: 30px;
+  margin-left: 135px;
+  margin-top: 110px;
   margin-bottom: 0px;
-  width: 80vw;
+  width: 60vw;
 }
 
 .profile_info article {
   display: flex;
   justify-content: start;
+  flex-direction: column;
 }
 
 #app {
-  max-width: 1280px;
+  max-width: 1920px;
   margin: 0px;
-  padding: 2rem auto;
-  /*text-align: center;*/
 }
 
 #OpenEvents{
@@ -118,9 +124,9 @@ nav {
 .events_statistics_profile{
   border: 25px;
   border-radius: 10px;
-  width: 95vw;
+  width: 65vw;
   position: absolute;
-  left: 2%;
+  left: 5%;
   background: linear-gradient(#00ADBD, #D9D9D9);
 }
 
@@ -162,16 +168,25 @@ nav {
   margin-top: 1%
 }
 
-.profile_info div{
+div .button_flex {
+  display: flex;
+  margin-left: 7px;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+ }
+
+ .profile_info div{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-start;
   justify-content: flex-start;
-  align-items: center;
+  align-items: baseline;
 }
 
-div .user_rating{
+.profile_info div .user_rating{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -186,22 +201,90 @@ div .user_rating{
   justify-content: center;
 }
 
-@media only screen and (max-width: 768px) {
-
-.profile_info div{
+.profile_info .button_flex{
   display: flex;
-  margin-left: 7px;
+  flex-direction: row;
   align-content: center;
   justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: row;
+  align-items: stretch;
+  position: absolute;
+  top: 480px;
+  right: 26%;
+  
  }
+
+ .profile_friends{
+  display: flex;
+  width: 25vw;
+  flex-direction: column;
+  /*background: red;*/
+  position: absolute;
+  right: 0px;
+  top: 490px;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: flex-start;
+ }
+
+ .profile_friends div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: stretch;
+  position: relative;
+ }
+
+ .profile_friends div div{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    left: auto;
+ }
+
+@media only screen and (max-width: 768px) {
+  
+  .vl {
+    display: none;
+    border-left: 6px solid green;
+    height: 500px;
+  }
+
+
+  .profile_header{
+    height: 134px;
+    width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
+  }
+
+  .profile_info div .user_rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin:5px;
+  }
+
+  .profile_info {
+    margin: 40px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    width: 80vw;
+  }
 
 .events_statistics_profile{
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
   width: 88vw;
+  left: 1%;
   background: linear-gradient(#00ADBD, #D9D9D9);
 }
 
@@ -244,23 +327,40 @@ div .user_rating{
   margin-top: 5%
 }
 
+.profile_info .button_flex{
+  display: flex;
+  flex-direction: row;
+  margin-left: 7px;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
+  position: initial;
+  top: initial;
+  right: initial;
+ }
+
+ .profile_friends{
+  display: none;
+ }
 }
 
 /*STYLE FOR IMAGES-----------------------------------------------------------------------------------------------------*/
 
 /*Profile images_____________________*/
 .profilePic{
-  width: 140px;
-  height: 140px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   border-style: solid;
   border-color: white;
-  border-width: 1.5px;
+  border-width: 3.5px;
   object-fit: cover;
   object-position: 100% 0;
   position: relative;
   left: 5%;
-  top: -80%;
+  top: -60%;
   filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.7))
 }
 .landscape{
@@ -276,6 +376,11 @@ div .user_rating{
   height: 20px;
   object-fit: cover;
   margin: 2px;
+}
+
+button-icon img{
+  width: 60px;
+  height: 60px;
 }
 
 /*Event images_______________________*/
@@ -294,7 +399,32 @@ div .user_rating{
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3))
 }
 
+.profile_friends img{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 100% 0;
+  position: relative;
+  left: 0%;
+}
+
 @media only screen and (max-width: 768px) {
+
+  .profilePic{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: white;
+    border-width: 1.5px;
+    object-fit: cover;
+    object-position: 100% 0;
+    position: relative;
+    left: 5%;
+    top: -80%;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.7))
+  }
 
   .event_img{
     border-radius: 8px;
@@ -304,11 +434,27 @@ div .user_rating{
     filter: saturate(75%);
   }
 
+  button-icon img{
+    width: 20px;
+    height: 20px;
+  }
+
    .events_statistics_profile icon{
     width: 20px;
     height: 20px;
     object-fit: cover;
   }
+
+  .profile_info div{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: baseline;
+  }
+
+  
 }
 
 /*STYLE FOR BUTTONS-----------------------------------------------------------------------------------------------------*/
@@ -353,11 +499,21 @@ button:focus-visible {
 }
 
 .profile_info div button{
+  padding-right: 50px;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-right: 20px;
   background: #C772BA;
-  padding-right: 15px;
-  padding-left: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
   font-family: inter;
   color: white;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
 }
 
 button-icon{
@@ -365,6 +521,7 @@ button-icon{
   border: 0px solid transparent;
   padding: 0.20em 0.5em;
   padding-top: 10px;
+  margin-right: 20px;
   font-size: 1.1em;
   font-weight: 1000;
   font-family: inherit;
@@ -414,6 +571,38 @@ button-icon{
     padding-left: 5%;
     font-family: inter;
     color: white;
+  }
+
+  button-icon{
+  border-radius: 10px;
+  border: 0px solid transparent;
+  padding: 0.20em 0.5em;
+  padding-top: 10px;
+  margin-right: 10px;
+  font-size: 1.1em;
+  font-weight: 1000;
+  font-family: inherit;
+  background: #CCCCCC;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
+  }
+
+  .profile_info div button{
+    margin-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 30px;
+    background: #C772BA;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-family: inter;
+    color: white;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 36px;
   }
 }
 
@@ -487,7 +676,6 @@ router-link:hover {
   font-weight: bold;
 }
 
-
 h2.tittle_basicEvent{
   font-family: inter;
   position: absolute;
@@ -522,24 +710,51 @@ p#logo_title{
   margin: 10px;
 }
 
+.profile_friends h1{
+  font-family: inter;
+  font-weight: bold;
+  font-size: 35px;
+  align-self: center;
+}
+
+.profile_friends h3{
+  font-family: inter;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.profile_friends h5{
+  font-family: inter;
+  font-size: 18px;
+  font-weight: 100;
+  margin: 0px;
+  margin-left: 13px;
+  color: #575757c7;
+}
+
 .profile_info h1{
   font-family: inter;
-  font-size: 25px;
+  font-size: 48px;
+  margin-top: 20px;
+  margin-bottom:0px;
 }
 
 .profile_info article h4{
   font-family: inter;
   font-weight: 100;
-  font-size: 16px;
-  margin: 28px;
-  margin-left: 15px;
+  font-size: 20px;
+  margin: 2px;
+  margin-top: -8px;
+  margin-left: 10px;
   color: #575757c7;
 }
 
 .profile_info h4{
   font-family: inter;
   font-weight: 100;
-  font-size: 16px;
+  font-size: 22px;
   margin-top: -25px;
   margin-left: 5px;
   margin-bottom: 0px;
@@ -548,14 +763,24 @@ p#logo_title{
 
 .profile_info p {
   font-family: inter;
+  font-size: 20px;
   margin-top: 6px;
   color: #575757c4;
 }
 
 hr {
+  display: none;
   margin-top: 15px;
   margin-bottom: 10px;
   color:#88888857;
+}
+
+.profile_friends hr {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  width: 80%;
+  background-color: #024e55;
 }
 
 .user_rating h5{
@@ -568,6 +793,31 @@ hr {
 }
 
 @media only screen and (max-width: 768px) {
+  
+  hr {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color:#88888857;
+  }  
+  
+  .profile_info h1{
+    font-family: inter;
+    font-size: 25px;
+    margin-bottom: 0px;
+  }
+  
+  .profile_info article h4{
+    font-family: inter;
+    font-weight: 100;
+    font-size: 16px;
+    margin: 28px;
+    margin-top: 0px;
+    margin-left: 5px;
+    color: #575757c7;
+  }
+  
+  
   h2.tittle_basicEvent{
     font-family: inter;
     position: absolute;
@@ -576,6 +826,23 @@ hr {
     top: -0px;
     left: 15px;
   }
+
+  .profile_info h4{
+    font-family: inter;
+    font-weight: 100;
+    font-size: 16px;
+    margin-top: -25px;
+    margin-left: 5px;
+    margin-bottom: 0px;
+    color: #C772BA;
+  }
+
+  .profile_info p {
+  font-family: inter;
+  margin-top: 6px;
+  font-size: initial;
+  color: #575757c4;
+}
 
   p.datetime_basicEvent{
     font-family: inter;
