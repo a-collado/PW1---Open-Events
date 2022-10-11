@@ -372,10 +372,10 @@ div .button_flex {
 
 /*Icon_______________________________*/
 .icon{
-  width: 20px;
-  height: 20px;
   object-fit: cover;
   margin: 2px;
+  width: 20px;
+  height: 20px;
 }
 
 button-icon img{
@@ -432,6 +432,13 @@ button-icon img{
     height: 100%;
     object-fit: cover;
     filter: saturate(75%);
+  }
+
+  .icon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    margin: 2px;
   }
 
   button-icon img{
