@@ -402,9 +402,14 @@ div .button_flex {
   height: 20px;
 }
 
-button-icon img{
-  width: 60px;
-  height: 60px;
+button-icon .icon{
+  width: 40px;
+  height: 40px;
+}
+
+.filter_events button-icon .icon{
+  width: 20px;
+  height: 20px;
 }
 
 /*Event images_______________________*/
