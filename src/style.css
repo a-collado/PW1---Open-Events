@@ -123,7 +123,7 @@ nav {
 }
 
 /*Events and statistics_________________________________________________*/
-.events_statistics_profile{
+.events_statistics_background{
   border: 25px;
   border-radius: 10px;
   width: 65vw;
@@ -135,6 +135,16 @@ nav {
 .event_group{
   display: flex;
   flex-wrap: wrap;
+}
+
+.events_statistics_buttons{
+  width: 215px;
+  display: flex;
+  justify-content: space-between;  
+  left: 5%;
+  position: relative;
+  top: 12px;
+  z-index: -1;
 }
 
 /*Event elements_____________________*/
@@ -164,7 +174,7 @@ nav {
 
 }
 
-.events_statistics_profile div{
+.events_statistics_background div{
   display: flex;
   margin-bottom: 1%;
   margin-top: 1%
@@ -196,7 +206,7 @@ div .button_flex {
   margin:5px;
 }
 
-.events_statistics_profile div{
+.events_statistics_background div{
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -281,7 +291,7 @@ div .button_flex {
     width: 80vw;
   }
 
-.events_statistics_profile{
+.events_statistics_background{
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
@@ -323,7 +333,7 @@ div .button_flex {
 
 }
 
-.events_statistics_profile div{
+.events_statistics_background div{
   display: flex;
   margin-bottom: 6%;
   margin-top: 5%
@@ -376,6 +386,8 @@ div .button_flex {
 .icon{
   object-fit: cover;
   margin: 2px;
+  width: 20px;
+  height: 20px;
 }
 
 button-icon img{
@@ -444,12 +456,6 @@ button-icon img{
   button-icon img{
     width: 20px;
     height: 20px;
-  }
-
-   .events_statistics_profile icon{
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
   }
 
   .profile_info div{
@@ -538,14 +544,14 @@ button-icon{
   filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
 }
 
-.events_statistics_profile button-icon{
+.events_statistics_background button-icon{
   padding-left: 12px;
   padding-right: 12px;
   margin-left: 3%;
   background:#C772BA;
 }
 
-.events_statistics_profile button{
+.events_statistics_background button{
   font-family: inter;
   font-size: 15px;
   padding: 2px;
@@ -557,9 +563,29 @@ button-icon{
   background: #F9E4CE;
 }
 
+button.eventStatistics{
+  border-radius: 10px 10px 0px 0px;
+  padding: 0.25em 0.5em 1em;
+  font-family: inter;
+  background: linear-gradient(#2F7177, #00ADBD);
+  cursor: pointer;
+  color: white;
+  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.0));
+}
+
+button.eventStatistics_Nselected{
+  border-radius: 10px 10px 0px 0px;
+  padding: 0.25em 0.5em 1em;
+  font-family: inter;
+  background: linear-gradient(#25585D, #06AEBE);
+  cursor: pointer;
+  color: white;
+  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.4));
+}
+
 @media only screen and (max-width: 768px) {
 
-  .events_statistics_profile button{
+  .events_statistics_background button{
     font-family: inter;
     font-size: 15px;
     padding: 7px;
@@ -613,12 +639,12 @@ button-icon{
   }
 }
 
-  .events_statistics_profile button:hover {
+  .events_statistics_background button:hover {
     background: #C5A17C;
   }
   
-  .events_statistics_profile button:focus,
-  .events_statistics_profile button:focus-visible {
+  .events_statistics_background button:focus,
+  .events_statistics_background button:focus-visible {
     background: #C5A17C;
     color: white;
   }

@@ -86,7 +86,13 @@
         <hr>
     </div>
     <!-- -->
-      <div class="events_statistics_profile">
+
+      <div class = "events_statistics_buttons">
+          <button class="eventStatistics"> Eventos </button>
+          <button class="eventStatistics_Nselected"> Estadísticas </button>
+      </div>
+
+      <div class="events_statistics_background">
 
         <div>
           <button>Todos</button>
@@ -169,7 +175,7 @@
           </div>
         </div> <!--Tanquem div del event-->
 
-      </div> <!--Tanquem div gran dels events i estadístiques SENSE botons-->
+      </div> <!--Event group-->
     </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
 
   <!---->
