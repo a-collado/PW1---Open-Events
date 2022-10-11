@@ -25,10 +25,11 @@
     padding: 0px;
     border: 0px;
     margin: 0px;
-
+    text-decoration: none;
+    color: black;
 }
 #WelcomePage:active{
-    background-color: darkblue;
+  filter:saturate(200%)
 }
 
 
@@ -745,7 +746,10 @@ router-link:hover {
   display:flex;
   flex-direction: row;
 }
-.register_here button{
+.register_here p{
+  margin: 0px;
+}
+.register_here #button{
   color: #E763DB;
   text-decoration: underline;
   background: #00000000;

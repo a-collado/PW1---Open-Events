@@ -9,7 +9,7 @@
             </button>
             <div class="register_here">
                 <p>Not Registered?</p>
-                <router-link to="/">Register here</router-link>
+                <router-link to="/" id="button">Register here</router-link>
             </div>
         </div>
     </div>
