@@ -196,21 +196,21 @@ nav {
   top: 70px;
 }
 
-.esfera_timeline{
-  content: '';
-  width: 15px;
-  height: 15px;
-  border: 6px solid #235F65;
-  background-color: #C772BA;
-  border-radius: 50%;
-  position: relative;
-  left: 7px;
-  bottom: 8px;
-}
-
 #Abril2021{
   position: absolute;
   left:15%;
+  top: 95px;
+}
+
+#Noviembre2021{
+  position: absolute;
+  left:30%;
+  top: 95px;
+}
+
+#Marzo2023{
+  position: absolute;
+  left:75%;
   top: 95px;
 }
 
@@ -838,15 +838,31 @@ router-link:hover {
   height: 50px;
 
   position: relative;
-  top: 10px;
+  top: 37px;
   left: -10px;
 }
 
 .button_timeline::before{
   content:'';
   width:3px;
-  height: 10px;
+  height: 30px;
   background-color: #F9E4CE;
+  position: absolute;
+  left: 22px;
+  bottom:50px;
+  z-index: -1;
+}
+
+.button_timeline::after{
+  content: '';
+  width: 15px;
+  height: 15px;
+  border: 6px solid #235F65;
+  background-color: #C772BA;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  bottom: 70px;
 }
 /*_________________________*/
 /*STYLE FOR TEXT-------------------------------------------------------------------------------------------------------------*/
@@ -1074,4 +1090,24 @@ hr {
     left: 25px;
     font-weight: bold;
   }
+
+  /*TIMELINE_MOVIL_________________________________*/
+  #Abril2021{
+    position: absolute;
+    left:15%;
+    top: 105px;
+  }
+  
+  #Noviembre2021{
+    position: absolute;
+    left:30%;
+    top: 105px;
+  }
+  
+  #Marzo2023{
+    position: absolute;
+    left:75%;
+    top: 105px;
+  }
+  /*____________________________________________________*/
 }
