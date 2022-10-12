@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Perfil from './components/Perfil.vue'
 import Main from './components/Main.vue'
 import Welcome from './components/Welcome.vue'
+import CreateEvent from './components/CreateEvent.vue'
 </script>
 
 <template>
@@ -17,6 +18,7 @@ import Welcome from './components/Welcome.vue'
       <router-link to="/w">Welcome</router-link>
       <router-link to="/s">Sign in</router-link>
       <router-link to="/r">Register</router-link>
+      <router-link to="/c">CreateEvent</router-link>
     </nav>
 
 </div>
