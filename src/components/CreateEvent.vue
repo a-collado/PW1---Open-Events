@@ -7,7 +7,7 @@
     <div class="event_image_box">
         <h1>Imagen del Evento</h1>
         <img class="icon" src="../assets/images/icons/rectangle.png" alt="EventImage">
-        <button-icon><img class="icon" src="../assets/images/icons/editar.png" alt="EditImage"></button-icon>
+        <button-icon><img class="icon" src="../assets/images/icons/editar.png" alt="edit image"></button-icon>
     </div>
 
     <div class="event_descrip_box">
@@ -18,7 +18,7 @@
     <div class="event_date_box">
         <h1>Fecha del Evento</h1>
         <!--calendar-->
-        <button-icon><img class="icon" src="../assets/images/icons/schedule.png" alt="icon"></button-icon>
+        <button-icon><img class="icon" src="../assets/images/icons/schedule.png" alt="open calendar"></button-icon>
     </div>
 
     <div class="event_price_box">
@@ -31,7 +31,7 @@
         <h1>Ubicación del Evento</h1>
         <!--acceder maps-->
         <img class="eventPic" src="../assets/images/createEvents/gglMaps.png" alt="EventMaps">
-        <button-icon><img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="EditMaps"></button-icon>
+        <button-icon><img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="open google maps"></button-icon>
     </div>
 
     <button>Crear Evento</button>
