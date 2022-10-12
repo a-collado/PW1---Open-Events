@@ -89,12 +89,19 @@
 
       
 
-      <div class="events_statistics_background">
+    <div class="events_statistics_background">
         <div class = "events_statistics_buttons">
           <button class="eventStatistics"> Eventos </button>
           <button class="eventStatistics_Nselected"> Estadísticas </button>
         </div>
         
+        <div class="centered">
+            <div id="timeline">
+                <div class="timeline_header"> 
+                    <h2 class="tittle_basicEvent"> Timeline</h2>
+                </div>
+            </div>
+        </div>
     </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
 
   <!---->
