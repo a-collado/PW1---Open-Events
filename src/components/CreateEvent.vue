@@ -6,8 +6,8 @@
 
     <div class="event_image_box">
         <h1>Imagen del Evento</h1>
-        <img class="eventPic" src="../assets/images/createEvents/rectangle.png" alt="EventImage">
-        <button-picker><img class="editPic" src="../assets/images/createEvents/editButton.png" alt="EditImage"></button-picker>
+        <img class="icon" src="../assets/images/icons/rectangle.png" alt="EventImage">
+        <button-icon><img class="icon" src="../assets/images/icons/editar.png" alt="EditImage"></button-icon>
     </div>
 
     <div class="event_descrip_box">
@@ -18,7 +18,7 @@
     <div class="event_date_box">
         <h1>Fecha del Evento</h1>
         <!--calendar-->
-        <button-picker><img class="icon" src="../assets/images/icons/schedule.png" alt="icon"></button-picker>
+        <button-icon><img class="icon" src="../assets/images/icons/schedule.png" alt="icon"></button-icon>
     </div>
 
     <div class="event_price_box">
@@ -31,7 +31,7 @@
         <h1>Ubicación del Evento</h1>
         <!--acceder maps-->
         <img class="eventPic" src="../assets/images/createEvents/gglMaps.png" alt="EventMaps">
-        <button-picker><img class="editPic" src="../assets/images/createEvents/gglMapsButton.png" alt="EditMaps"></button-picker>
+        <button-icon><img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="EditMaps"></button-icon>
     </div>
 
     <button>Crear Evento</button>
