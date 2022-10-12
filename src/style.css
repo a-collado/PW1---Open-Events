@@ -60,6 +60,11 @@ nav {
   justify-content: center;
 }
 
+.column{
+  display: flex;
+  justify-content: center;
+}
+
 /*_____________________________________________*/
 .vl {
   border-left: 2px solid rgb(201, 201, 201);
@@ -189,6 +194,24 @@ nav {
   background-color: #235F65;
   position: relative;
   top: 70px;
+}
+
+.esfera_timeline{
+  content: '';
+  width: 15px;
+  height: 15px;
+  border: 6px solid #235F65;
+  background-color: #C772BA;
+  border-radius: 50%;
+  position: relative;
+  left: 7px;
+  bottom: 8px;
+}
+
+#Abril2021{
+  position: absolute;
+  left:15%;
+  top: 95px;
 }
 
 /*Event elements_____________________*/
@@ -808,6 +831,24 @@ router-link:hover {
 .register_here *{
   font-size: 12px;
 }
+
+/*Timeline button__________*/
+.button_timeline{
+  width:50px;
+  height: 50px;
+
+  position: relative;
+  top: 10px;
+  left: -10px;
+}
+
+.button_timeline::before{
+  content:'';
+  width:3px;
+  height: 10px;
+  background-color: #F9E4CE;
+}
+/*_________________________*/
 /*STYLE FOR TEXT-------------------------------------------------------------------------------------------------------------*/
 
 @font-face {
@@ -834,6 +875,16 @@ router-link:hover {
   font-weight: bold;
 }
 
+/*Generic text______________________*/
+p.darkblue_normal_bold{
+  color: #233466;
+  font-family: inter;
+  font-weight: bold;
+}
+
+
+/*____________________________________
+Aquest també utilitzat per títol del timeline*/
 h2.tittle_basicEvent{
   font-family: inter;
   position: absolute;

@@ -101,9 +101,17 @@
                     <h2 class="tittle_basicEvent"> Timeline</h2>
                 </div>
 
-                <div class="centered_vertical">
-                    <div id="line"></div>
+                <div id="line"></div>
+
+                <div class="column" >
+                    <div id="Abril2021"> 
+                        <p class="darkblue_normal_bold">Abril<br>2021</p>
+                        <div class="esfera_timeline"></div>
+                        <button class="button_timeline">1</button>
+                    </div>
                 </div>
+
+
             </div> <!--Tanquem div timeline-->
 
         </div> <!--Tanquem div centered_horitzontal-->
