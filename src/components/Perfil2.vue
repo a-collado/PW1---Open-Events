@@ -95,13 +95,18 @@
           <button class="eventStatistics_Nselected"> Estadísticas </button>
         </div>
         
-        <div class="centered">
+        <div class="centered_horitzontal">
             <div id="timeline">
                 <div class="timeline_header"> 
                     <h2 class="tittle_basicEvent"> Timeline</h2>
                 </div>
-            </div>
-        </div>
+
+                <div class="centered_vertical">
+                    <div id="line"></div>
+                </div>
+            </div> <!--Tanquem div timeline-->
+
+        </div> <!--Tanquem div centered_horitzontal-->
     </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
 
   <!---->
