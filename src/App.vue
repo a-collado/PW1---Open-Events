@@ -10,7 +10,7 @@ import CreateEvent from './components/CreateEvent.vue'
 
 <template>
   <div class="header">
-    <p id="logo_title">Hola</p>
+    <img src="src\assets\images\icons\logo.png" style="width:200px;">
     <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
   
     <nav class="navbar">
