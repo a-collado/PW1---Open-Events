@@ -9,7 +9,7 @@
                 <input class="sign_in_input" type="text" placeholder="Email">
                 <input class="sign_in_input" type="password" placeholder="Password">
                 <input class="sign_in_input" type="password" placeholder="Confirm password">
-                <router-link to="/" class="sign_in_button"><p>Register</p></router-link>
+                <router-link to="/p" class="sign_in_button"><p>Register</p></router-link>
             
         </div>
     </div>
