@@ -67,17 +67,15 @@ nav {
 
 /*_____________________________________________*/
 .vl {
-  border-left: 2px solid rgb(201, 201, 201);
-  height: 100%;
-  position: absolute;
-  right: 25%;
+  display: none;
+  border-left: 6px solid green;
+  height: 500px;
 }
 
 .profile_header{
-  height: 330px;
+  height: 134px;
   width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
 }
-
 
 .header {
   display:grid;
@@ -98,10 +96,10 @@ nav {
 
 .profile_info {
   margin: 40px;
-  margin-left: 80px;
-  margin-top: 110px;
+  margin-left: 30px;
+  margin-top: 30px;
   margin-bottom: 0px;
-  width: 60vw;
+  width: 80vw;
 }
 
 .profile_info article {
@@ -142,21 +140,21 @@ nav {
 
 /*Events and statistics_________________________________________________*/
 .events_statistics_background{
-  border: 25px;
+  margin: 10px;
+  margin-top: 50px;
+  padding: 10px;
   border-radius: 10px;
-  width: 65vw;
+  width: 88vw;
+  left: 1%;
   position: absolute;
-  margin-top: 30px;
-  left: 5%;
   background: linear-gradient(#00ADBD, #D9D9D9);
 }
 
 .event_group{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: row;
 }
+
 
 .events_statistics_buttons{
   width: 190px;
@@ -165,7 +163,7 @@ nav {
   left: -3px;
   top: -30px;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
 }
 
 /*Timeline elements__________________*/
@@ -199,187 +197,20 @@ nav {
 #Abril2021{
   position: absolute;
   left:15%;
-  top: 95px;
+  top: 105px;
 }
 
 #Noviembre2021{
   position: absolute;
   left:30%;
-  top: 95px;
+  top: 105px;
 }
 
 #Marzo2023{
   position: absolute;
   left:75%;
-  top: 95px;
+  top: 105px;
 }
-
-/*Event elements_____________________*/
-.basic_event{
-  width: 415px;
-  height: 200px;
-  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
-  margin: 5px;
-  
-}
-
-.footer_basicEvent{
-  width: 100%;
-  height: 30%;
-  border-radius: 0px 0px 8px 8px;
-  background-color: white;
-  position: absolute;
-  top: 140px;
-}
-
-.info_basicEvent{
-  position: absolute;
-  left:310px;
-  top: 7px;
-  display:flex;
-  flex-direction: column;
-
-}
-
-div .button_flex {
-  display: flex;
-  margin-left: 7px;
-  align-content: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  flex-direction: row;
- }
-
- .profile_info div{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: flex-start;
-  align-items: baseline;
-}
-
-.profile_info div .user_rating{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin:5px;
-}
-
-.filter_events{
-  display: flex;
-  margin-bottom: 2%;
-  margin-top: 3%;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-}
-
-.profile_info .button_flex{
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: stretch;
-  position: absolute;
-  top: 480px;
-  right: 26%;
-  
- }
-
- .profile_friends{
-  display: flex;
-  width: 25vw;
-  flex-direction: column;
-  /*background: red;*/
-  position: absolute;
-  right: 0px;
-  top: 490px;
-  flex-wrap: wrap;
-  align-content: space-around;
-  align-items: flex-start;
- }
-
- .profile_friends div{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: space-evenly;
-  align-items: stretch;
-  position: relative;
- }
-
- .profile_friends div div{
-  display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
-    left: auto;
- }
-
-@media only screen and (max-width: 768px) {
-  
-  .vl {
-    display: none;
-    border-left: 6px solid green;
-    height: 500px;
-  }
-
-
-  .profile_header{
-    height: 134px;
-    width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
-  }
-
-  .profile_info div .user_rating {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin:5px;
-  }
-
-  .profile_info {
-    margin: 40px;
-    margin-left: 30px;
-    margin-top: 30px;
-    margin-bottom: 0px;
-    width: 80vw;
-  }
-
-.events_statistics_background{
-  margin: 10px;
-  margin-top: 30px;
-  padding: 10px;
-  border-radius: 10px;
-  width: 88vw;
-  left: 1%;
-  background: linear-gradient(#00ADBD, #D9D9D9);
-}
-
-.events_statistics_buttons{
-  width: 190px;
-  display: flex;
-  justify-content: space-between;  
-  left: -3px;
-  top: -30px;
-  position: absolute;
-  z-index: 0;
-}
-
-.event_group{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
 /*Event elements_____________________*/
 .basic_event{
   width: 100vw;
@@ -408,6 +239,31 @@ div .button_flex {
   flex-direction: column;
 
 }
+div .button_flex {
+  display: flex;
+  margin-left: 7px;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+ }
+
+ .profile_info div{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.profile_info div .user_rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin:5px;
+}
 
 .filter_events{
   display: flex;
@@ -432,28 +288,182 @@ div .button_flex {
   right: initial;
  }
 
+
  .profile_friends{
   display: none;
  }
+
+ .profile_friends div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: stretch;
+  position: relative;
+ }
+
+ .profile_friends div div{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    left: auto;
+ }
+
+@media (min-width: 768px) {
+  
+  .vl {
+    display: block;
+    border-left: 2px solid rgb(201, 201, 201);
+    height: 100vw;
+    position: absolute;
+    right: 25%;
+  }
+
+
+  .profile_header{
+    height: 330px;
+    width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
+  }
+
+  .profile_info div .user_rating{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin:5px;
+  }
+
+  .profile_info {
+    margin: 40px;
+    margin-left: 80px;
+    margin-top: 110px;
+    margin-bottom: 0px;
+    width: 60vw;
+  }
+
+.events_statistics_background{
+  border: 25px;
+  border-radius: 10px;
+  width: 65vw;
+  position: absolute;
+  margin-top: 30px;
+  left: 5%;
+  background: linear-gradient(#00ADBD, #D9D9D9);
+}
+
+.events_statistics_buttons{
+  width: 190px;
+  display: flex;
+  justify-content: space-between;  
+  left: -3px;
+  top: -30px;
+  position: absolute;
+  z-index: -1;
+}
+
+.event_group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+}
+
+
+/*Event elements_____________________*/
+.basic_event{
+  width: 415px;
+  height: 200px;
+  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
+  margin: 5px;
+  
+}
+
+
+.footer_basicEvent{
+  width: 100%;
+  height: 30%;
+  border-radius: 0px 0px 8px 8px;
+  background-color: white;
+  position: absolute;
+  top: 140px;
+}
+
+.info_basicEvent{
+  position: absolute;
+  left:310px;
+  top: 7px;
+  display:flex;
+  flex-direction: column;
+
+}
+
+.filter_events{
+  display: flex;
+  margin-bottom: 2%;
+  margin-top: 3%;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+
+ .profile_info .button_flex{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
+  position: absolute;
+  top: 530px;
+  right: 26%;
+  
+ }
+
+ .profile_friends{
+  display: flex;
+  width: 25vw;
+  flex-direction: column;
+  /*background: red;*/
+  position: absolute;
+  right: 0px;
+  top: 550px;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: flex-start;
+ }
+}
+
+@media (max-width: 1083px) {
+  .profile_info .button_flex{
+  position:unset;
+}
 }
 
 /*STYLE FOR IMAGES-----------------------------------------------------------------------------------------------------*/
 
 /*Profile images_____________________*/
 .profilePic{
-  width: 300px;
-  height: 300px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border-style: solid;
   border-color: white;
-  border-width: 3.5px;
+  border-width: 1.5px;
   object-fit: cover;
   object-position: 100% 0;
   position: relative;
   left: 5%;
-  top: -60%;
+  top: -80%;
   filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.7))
 }
+
 .landscape{
   width: 100%;
   height: 100%;
@@ -463,15 +473,20 @@ div .button_flex {
 
 /*Icon_______________________________*/
 .icon{
+  width: 20px;
+  height: 20px;
   object-fit: cover;
   margin: 2px;
+}
+
+button-icon img{
   width: 20px;
   height: 20px;
 }
 
 button-icon .icon{
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 }
 
 .filter_events button-icon .icon{
@@ -486,7 +501,6 @@ button-icon .icon{
   height: 100%;
   object-fit: cover;
   filter: saturate(75%);
-  
 }
 
 .user_rating img{
@@ -505,20 +519,21 @@ button-icon .icon{
   left: 0%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 768px) {
 
+  
   .profilePic{
-    width: 140px;
-    height: 140px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     border-style: solid;
     border-color: white;
-    border-width: 1.5px;
+    border-width: 3.5px;
     object-fit: cover;
     object-position: 100% 0;
     position: relative;
     left: 5%;
-    top: -80%;
+    top: -60%;
     filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.7))
   }
 
@@ -528,28 +543,24 @@ button-icon .icon{
     height: 100%;
     object-fit: cover;
     filter: saturate(75%);
+    
   }
 
   .icon{
-    width: 20px;
-    height: 20px;
     object-fit: cover;
     margin: 2px;
-  }
-
-  button-icon img{
     width: 20px;
     height: 20px;
   }
 
   button-icon .icon{
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
   }
 
   .profile_info div{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
@@ -601,11 +612,19 @@ button:focus-visible {
 }
 
 .profile_info div button{
-  padding-right: 50px;
-  padding-left: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-right: 20px;
+  background: #C772BA;
+  padding: 3%;
+  padding-right: 15%;
+  padding-left: 5%;
+  font-family: inter;
+  color: white;
+}
+
+.profile_info div button{
+  margin-right: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-right: 30px;
   background: #C772BA;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -614,7 +633,7 @@ button:focus-visible {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 15px;
   line-height: 36px;
 }
 
@@ -623,7 +642,7 @@ button-icon{
   border: 0px solid transparent;
   padding: 0.20em 0.5em;
   padding-top: 10px;
-  margin-right: 20px;
+  margin-right: 10px;
   font-size: 1.1em;
   font-weight: 1000;
   font-family: inherit;
@@ -631,7 +650,7 @@ button-icon{
   cursor: pointer;
   transition: border-color 0.25s;
   filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
-}
+  }
 
 .events_statistics_background button-icon{
   padding-left: 12px;
@@ -674,49 +693,27 @@ button.eventStatistics_Nselected{
   outline: none;
 }
 
-@media only screen and (max-width: 768px) {
+.filter_events button{
+  font-family: inter;
+  font-size: 15px;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin: 2%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  background: #F9E4CE;
+}
 
-  .filter_events button{
-    font-family: inter;
-    font-size: 15px;
-    padding: 7px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin: 2%;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    background: #F9E4CE;
-  }
+@media only screen and (min-width: 768px) {
 
-  .profile_info div button{
-    background: #C772BA;
-    padding: 3%;
-    padding-right: 15%;
-    padding-left: 5%;
-    font-family: inter;
-    color: white;
-  }
-
-  button-icon{
-  border-radius: 10px;
-  border: 0px solid transparent;
-  padding: 0.20em 0.5em;
-  padding-top: 10px;
-  margin-right: 10px;
-  font-size: 1.1em;
-  font-weight: 1000;
-  font-family: inherit;
-  background: #CCCCCC;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
-  }
 
   .profile_info div button{
-    margin-right: 10px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-right: 30px;
+    padding-right: 50px;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 20px;
     background: #C772BA;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -725,9 +722,47 @@ button.eventStatistics_Nselected{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 30px;
     line-height: 36px;
   }
+ 
+  button-icon{
+  border-radius: 10px;
+  border: 0px solid transparent;
+  padding: 0.20em 0.5em;
+  padding-top: 10px;
+  margin-right: 20px;
+  font-size: 1.1em;
+  font-weight: 1000;
+  font-family: inherit;
+  background: #CCCCCC;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
+}
+
+button.eventStatistics{
+  border-radius: 10px 10px 0px 0px;
+  padding: 0.25em 0.5em 1em;
+  font-family: inter;
+  background: linear-gradient(#2F7177, #00ADBD);
+  cursor: pointer;
+  color: white;
+  filter: none;
+  outline: none;
+}
+
+button.eventStatistics_Nselected{
+  border-radius: 10px 10px 0px 0px;
+  padding: 0.25em 0.5em 1em;
+  font-family: inter;
+  background: linear-gradient(#25585D, #06AEBE);
+  cursor: pointer;
+  color: white;
+  filter: none;
+  outline: none;
+}
+
 }
 
   .events_statistics_background button:hover {
@@ -908,28 +943,29 @@ Aquest també utilitzat per títol del timeline*/
 h2.tittle_basicEvent{
   font-family: inter;
   position: absolute;
-  font-size: 28px;
+  font-size: 20px;
   color: #233466;
-  top: -12px;
+  top: -0px;
   left: 15px;
 }
 
 p.datetime_basicEvent{
   font-family: inter;
-  font-size: 12px;
+  font-size: 11px;
   color: #233466;
   position: absolute;
   top: -15px;
-  left: 25px;
+  left: 30px;
   font-weight: bold;
 }
 
+
 p.localization_basicEvent{
   font-family: inter;
-  font-size: 15px;
+  font-size: 13px;
   position: absolute;
   color: #233466;
-  top: 15px;
+  top: 12px;
   left: 25px;
   font-weight: bold;
 }
@@ -965,25 +1001,24 @@ p#logo_title{
 
 .profile_info h1{
   font-family: inter;
-  font-size: 48px;
-  margin-top: 20px;
-  margin-bottom:0px;
+  font-size: 25px;
+  margin-bottom: 0px;
 }
 
 .profile_info article h4{
   font-family: inter;
   font-weight: 100;
-  font-size: 20px;
-  margin: 2px;
-  margin-top: -8px;
-  margin-left: 10px;
+  font-size: 16px;
+  margin: 28px;
+  margin-top: 0px;
+  margin-left: 5px;
   color: #575757c7;
 }
 
 .profile_info h4{
   font-family: inter;
   font-weight: 100;
-  font-size: 22px;
+  font-size: 16px;
   margin-top: -25px;
   margin-left: 5px;
   margin-bottom: 0px;
@@ -992,8 +1027,10 @@ p#logo_title{
 
 .profile_info p {
   font-family: inter;
-  font-size: 20px;
   margin-top: 6px;
+  margin-bottom: 10px;
+
+  font-size: initial;
   color: #575757c4;
 }
 
@@ -1021,8 +1058,9 @@ hr {
   color:#024e55;
 }
 
-@media (max-width: 768px) {
-  
+@media (min-width: 768px) {
+
+
   hr {
     display: block;
     margin-top: 15px;
@@ -1032,34 +1070,35 @@ hr {
   
   .profile_info h1{
     font-family: inter;
-    font-size: 25px;
-    margin-bottom: 0px;
+    font-size: 48px;
+    margin-top: 20px;
+    margin-bottom:0px;
   }
   
   .profile_info article h4{
     font-family: inter;
     font-weight: 100;
-    font-size: 16px;
-    margin: 28px;
-    margin-top: 0px;
-    margin-left: 5px;
+    font-size: 20px;
+    margin: 2px;
+    margin-top: -8px;
+    margin-left: 10px;
     color: #575757c7;
   }
   
-  
+
   h2.tittle_basicEvent{
     font-family: inter;
     position: absolute;
-    font-size: 20px;
+    font-size: 28px;
     color: #233466;
-    top: -0px;
+    top: -12px;
     left: 15px;
   }
 
   .profile_info h4{
     font-family: inter;
     font-weight: 100;
-    font-size: 16px;
+    font-size: 22px;
     margin-top: -25px;
     margin-left: 5px;
     margin-bottom: 0px;
@@ -1067,51 +1106,51 @@ hr {
   }
 
   .profile_info p {
-  font-family: inter;
-  margin-top: 6px;
-  margin-bottom: 10px;
-
-  font-size: initial;
-  color: #575757c4;
-}
+    font-family: inter;
+    font-size: 20px;
+    margin-top: 6px;
+    color: #575757c4;
+  }
 
   p.datetime_basicEvent{
     font-family: inter;
-    font-size: 11px;
+    font-size: 12px;
     color: #233466;
     position: absolute;
     top: -15px;
-    left: 30px;
+    left: 25px;
     font-weight: bold;
   }
   
   p.localization_basicEvent{
     font-family: inter;
-    font-size: 13px;
+    font-size: 15px;
     position: absolute;
     color: #233466;
-    top: 12px;
+    top: 15px;
     left: 25px;
     font-weight: bold;
   }
 
   /*TIMELINE_MOVIL_________________________________*/
+
   #Abril2021{
     position: absolute;
     left:15%;
-    top: 105px;
+    top: 95px;
   }
   
   #Noviembre2021{
     position: absolute;
     left:30%;
-    top: 105px;
+    top: 95px;
   }
   
   #Marzo2023{
     position: absolute;
     left:75%;
-    top: 105px;
+    top: 95px;
   }
+  
   /*____________________________________________________*/
 }
