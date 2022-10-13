@@ -769,7 +769,11 @@ router-link:hover {
   grid-column-start: 1;
   grid-row-start: 1;
 }
-
+.register_box{
+  display: flex;
+  flex-direction: column;
+  
+}
 .Sign_in_box{
   display: flex;
   align-items: center;
