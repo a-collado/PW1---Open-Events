@@ -1021,7 +1021,7 @@ hr {
   color:#024e55;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   
   hr {
     display: block;
