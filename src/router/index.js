@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Perfil from '../components/Perfil.vue'
-import Main from '../components/Main.vue'
 import Welcome from '../components/Welcome.vue'
 import SignIn from '../components/SignIn.vue'
 import Register from '../components/Register.vue'
@@ -10,6 +9,11 @@ import Perfil2 from '../components/Perfil2.vue'
 const routes = [
     {
         path: '/',
+        name: 'Welcome',
+        component: Welcome
+    },
+    {
+        path: '/p',
         name: 'Perfil',
         component: Perfil
     },
@@ -17,16 +21,6 @@ const routes = [
         path: '/p2',
         name: 'Perfil2',
         component: Perfil2
-    },
-    {
-        path: '/m',
-        name: 'Main',
-        component: Main
-    },
-    {
-        path: '/w',
-        name: 'Welcome',
-        component: Welcome
     },
     {
         path: '/s',
