@@ -10,47 +10,46 @@
       </div>
     </div>
 
-    <div class="vl"></div>
-
     <div class="profile_friends">
+      
       <h1>Amigos (5)</h1>
       <div>
         <img src="../assets/images/profilepic.webp" alt="profile pic">
           <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
+            <h2>Amigo1</h2>
+            <p class="grey_normal">@amigo1</p>
         </div>  
       </div>
       <hr>
       <div>
         <img src="../assets/images/profilepic.webp" alt="profile pic">
           <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
+            <h2>Amigo1</h2>
+            <p class="grey_normal">@amigo1</p>
         </div>  
       </div>
       <hr>
       <div>
         <img src="../assets/images/profilepic.webp" alt="profile pic">
           <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
+            <h2>Amigo1</h2>
+            <p class="grey_normal">@amigo1</p>
         </div>  
       </div>
       <hr>
       <div>
         <img src="../assets/images/profilepic.webp" alt="profile pic">
           <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
+            <h2>Amigo1</h2>
+            <p class="grey_normal">@amigo1</p>
         </div>  
       </div>
       <hr>
       <div>
         <img src="../assets/images/profilepic.webp" alt="profile pic">
           <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
+            <h2>Amigo1</h2>
+            <p class="grey_normal">@amigo1</p>
         </div>  
       </div>
       <hr>
@@ -60,30 +59,33 @@
     <!-- User info-->
 
     <div class="profile_info"> 
-        <article>
+      <article>
         <h1>Nombre</h1>
-        <h4>@nombre2</h4>
-        </article>
-        <div>
-        <h4>Barcelona, España</h4>
-          <div class="user_rating">
-            <img src="../assets/images/icons/star_b.png" alt="1 estrella">
-            <img src="../assets/images/icons/star_b.png" alt="2 estrellas">
-            <img src="../assets/images/icons/star_b.png" alt="3 estrellas">
-            <img src="../assets/images/icons/star_b.png" alt="4 estrellas">
-            <img src="../assets/images/icons/star_b.png" alt="5 estrellas">
-            <h5>5</h5>
-          </div>
+        <!--<h4>@nombre2</h4>-->
+        <p class="grey_normal">@nombre</p> 
+      </article>
+      <div class="flex_row_wrap">
+        <p class="pink_normal">Barcelona, España</p>
+        <div class="punctuation">
+          <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
+          <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
+          <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
+          <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
+          <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+          <h5>5</h5>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
-        <div class="button_flex">
-          <button>Editar perfil</button>
-          <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
-          </button-icon>
-          <button-icon><img class="icon" src="../assets/images/icons/dots_h.png" alt="more options">
-          </button-icon>
-        </div>
-        <hr>
+      </div>
+
+      <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
+      <div class="button_flex">
+        <button>Editar perfil</button>
+        <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
+        </button-icon>
+        <button-icon><img class="icon" src="../assets/images/icons/dots_h.png" alt="more options">
+        </button-icon>
+      </div>
+      <hr>
+
     </div>
     <!-- -->
 

@@ -57,14 +57,20 @@ nav {
 
 .centered_vertical{
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
 .column{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
+.flex_row_wrap{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
 /*_____________________________________________*/
 .vl {
   display: none;
@@ -94,18 +100,27 @@ nav {
   grid-column-start: 3;
 }
 
+/*Profile elements_________________*/
 .profile_info {
   margin: 40px;
   margin-left: 30px;
-  margin-top: 30px;
+  margin-top: 60px;
   margin-bottom: 0px;
   width: 80vw;
 }
 
-.profile_info article {
+.profile_info > :not(hr), .profile_info > * > *  {
+  margin:5px;
+}
+
+.punctuation, .punctuation h5 {
   display: flex;
-  justify-content: start;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:3px;
+  font-size: 12px;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3));
+  color:#024e55;
 }
 
 #app {
@@ -118,16 +133,6 @@ nav {
 #OpenEvents{
     font-size: 64px;
 }
-
-/*.navbar{
-  margin-top: 15px;
-  border-style: solid;
-  border-color: #888888;
-  padding: 10px;
-  position: absolute;
-  top: 0;
-}*/
-
 
 #PageTitle{
   display: flex;
@@ -248,23 +253,6 @@ div .button_flex {
   flex-direction: row;
  }
 
- .profile_info div{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: flex-start;
-  align-items: baseline;
-}
-
-.profile_info div .user_rating {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin:5px;
-}
-
 .filter_events{
   display: flex;
   margin-bottom: 2%;
@@ -288,11 +276,6 @@ div .button_flex {
   right: initial;
  }
 
-
- .profile_friends{
-  display: none;
- }
-
  .profile_friends div{
   display: flex;
   flex-direction: row;
@@ -314,36 +297,20 @@ div .button_flex {
     left: auto;
  }
 
+
 @media (min-width: 768px) {
   
-  .vl {
-    display: block;
-    border-left: 2px solid rgb(201, 201, 201);
-    height: 100vw;
-    position: absolute;
-    right: 25%;
-  }
-
-
   .profile_header{
     height: 330px;
     width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
   }
 
-  .profile_info div .user_rating{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin:5px;
-  }
-
   .profile_info {
     margin: 40px;
-    margin-left: 80px;
-    margin-top: 110px;
-    margin-bottom: 0px;
-    width: 60vw;
+    margin-left: 100px;
+    margin-top: 140px;
+    margin-bottom: 30px;
+    width: 65vw;
   }
 
 .events_statistics_background{
@@ -433,17 +400,36 @@ div .button_flex {
   /*background: red;*/
   position: absolute;
   right: 0px;
-  top: 550px;
+  top: 520px;
   flex-wrap: wrap;
   align-content: space-around;
   align-items: flex-start;
  }
 }
 
+ .profile_friends::before{
+  content:'';
+  width:2px;
+  height: 95%;
+  background-color: rgb(201, 201, 201);
+  position:absolute;
+  top:30px;
+  left: 10px;
+
+
+    
+ }
+
 @media (max-width: 1083px) {
   .profile_info .button_flex{
   position:unset;
 }
+}
+
+@media (max-width: 1083px) {
+  .profile_friends{
+    display: none;
+    }
 }
 
 /*STYLE FOR IMAGES-----------------------------------------------------------------------------------------------------*/
@@ -503,9 +489,11 @@ button-icon .icon{
   filter: saturate(75%);
 }
 
-.user_rating img{
-  width: 13px;
+img.stars{
+  width: 15px;
+  height: 15px;
   margin: 1px;
+  
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3))
 }
 
@@ -557,16 +545,6 @@ button-icon .icon{
     width: 40px;
     height: 40px;
   }
-
-  .profile_info div{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: flex-start;
-    align-items: baseline;
-  }
-
   
 }
 
@@ -611,18 +589,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.profile_info div button{
+/*.profile_info div button{
   background: #C772BA;
-  padding: 3%;
+  
   padding-right: 15%;
   padding-left: 5%;
   font-family: inter;
   color: white;
-}
+}*/
 
 .profile_info div button{
   margin-right: 10px;
   padding-top: 1px;
+  padding-left: 10px;
   padding-bottom: 1px;
   padding-right: 30px;
   background: #C772BA;
@@ -937,6 +916,21 @@ p.darkblue_normal_bold{
   font-weight: bold;
 }
 
+p.grey_normal{
+  color: #575757c4;
+  font-size: 20px;
+}
+
+p.pink_normal{
+  color: #C772BA;
+  font-size: 20px;
+}
+
+h1{
+  font-size: 40px;
+  color: black;
+}
+
 
 /*____________________________________
 Aquest també utilitzat per títol del timeline*/
@@ -975,36 +969,6 @@ p#logo_title{
   margin: 10px;
 }
 
-.profile_friends h1{
-  font-family: inter;
-  font-weight: bold;
-  font-size: 35px;
-  align-self: center;
-}
-
-.profile_friends h3{
-  font-family: inter;
-  font-weight: bold;
-  font-size: 25px;
-  margin: 0px;
-  margin-left: 10px;
-}
-
-.profile_friends h5{
-  font-family: inter;
-  font-size: 18px;
-  font-weight: 100;
-  margin: 0px;
-  margin-left: 13px;
-  color: #575757c7;
-}
-
-.profile_info h1{
-  font-family: inter;
-  font-size: 25px;
-  margin-bottom: 0px;
-}
-
 .profile_info article h4{
   font-family: inter;
   font-weight: 100;
@@ -1025,37 +989,12 @@ p#logo_title{
   color: #C772BA;
 }
 
-.profile_info p {
-  font-family: inter;
-  margin-top: 6px;
-  margin-bottom: 10px;
-
-  font-size: initial;
-  color: #575757c4;
-}
-
-hr {
-  display: none;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  color:#88888857;
-}
-
 .profile_friends hr {
   display: block;
   margin-top: 15px;
   margin-bottom: 10px;
   width: 80%;
   background-color: #024e55;
-}
-
-.user_rating h5{
-  margin: 0px;
-  margin-left: 3px;
-  font-family: inter;
-  font-size: 10px;
-  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3));
-  color:#024e55;
 }
 
 @media (min-width: 768px) {
@@ -1068,23 +1007,6 @@ hr {
     color:#88888857;
   }  
   
-  .profile_info h1{
-    font-family: inter;
-    font-size: 48px;
-    margin-top: 20px;
-    margin-bottom:0px;
-  }
-  
-  .profile_info article h4{
-    font-family: inter;
-    font-weight: 100;
-    font-size: 20px;
-    margin: 2px;
-    margin-top: -8px;
-    margin-left: 10px;
-    color: #575757c7;
-  }
-  
 
   h2.tittle_basicEvent{
     font-family: inter;
@@ -1093,23 +1015,6 @@ hr {
     color: #233466;
     top: -12px;
     left: 15px;
-  }
-
-  .profile_info h4{
-    font-family: inter;
-    font-weight: 100;
-    font-size: 22px;
-    margin-top: -25px;
-    margin-left: 5px;
-    margin-bottom: 0px;
-    color: #C772BA;
-  }
-
-  .profile_info p {
-    font-family: inter;
-    font-size: 20px;
-    margin-top: 6px;
-    color: #575757c4;
   }
 
   p.datetime_basicEvent{

@@ -8,6 +8,7 @@
         <button>10 Amigos</button>
         <button>2 Eventos</button>
       </div>
+      
     </div>
 
     <div class="vl"></div>
