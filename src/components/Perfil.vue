@@ -11,7 +11,6 @@
     </div>
 
     <div class="profile_friends">
-      
       <h1>Amigos (5)</h1>
       <div>
         <img src="../assets/images/profilepic.webp" alt="profile pic">
