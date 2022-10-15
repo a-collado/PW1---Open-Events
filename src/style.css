@@ -286,7 +286,7 @@ div .button_flex {
   position: relative;
  }
 
- .profile_friends div div{
+ .profile_friends div div, .profile_friends div div> *{
   display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -295,6 +295,7 @@ div .button_flex {
     align-items: flex-start;
     position: relative;
     left: auto;
+    margin:2px;
  }
 
 
