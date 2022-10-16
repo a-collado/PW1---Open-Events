@@ -12,41 +12,41 @@
 
   <div class="profile_friends">
     <h1>Amigos (5)</h1>
-    <div>
+    <div class="flex_row_wrap">
       <img src="../assets/images/profilepic.webp" alt="profile pic">
-        <div>
+        <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
       </div>  
     </div>
     <hr>
-    <div>
+    <div class="flex_row_wrap">
       <img src="../assets/images/profilepic.webp" alt="profile pic">
-        <div>
+        <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
       </div>  
     </div>
     <hr>
-    <div>
+    <div class="flex_row_wrap">
       <img src="../assets/images/profilepic.webp" alt="profile pic">
-        <div>
+        <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
       </div>  
     </div>
     <hr>
-    <div>
+    <div class="flex_row_wrap">
       <img src="../assets/images/profilepic.webp" alt="profile pic">
-        <div>
+        <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
       </div>  
     </div>
     <hr>
-    <div>
+    <div class="flex_row_wrap">
       <img src="../assets/images/profilepic.webp" alt="profile pic">
-        <div>
+        <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
       </div>  

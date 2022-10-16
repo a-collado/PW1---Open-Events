@@ -11,49 +11,49 @@
     </div>
 
     <div class="profile_friends">
-      <h1>Amigos (5)</h1>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h2>Amigo1</h2>
-            <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h2>Amigo1</h2>
-            <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h2>Amigo1</h2>
-            <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h2>Amigo1</h2>
-            <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h2>Amigo1</h2>
-            <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-      <hr>
-      
+    <h1>Amigos (5)</h1>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
     </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    
+  </div>
 
     <!-- User info-->
 
