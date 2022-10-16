@@ -222,7 +222,7 @@
         font-family: 'Inter';
         font-style: normal;
         font-weight: 700;
-        font-size: 12px;
+        font-size: 15px;
         line-height: 15px;
         margin: 0px;
         margin-left: 10px;
@@ -243,7 +243,7 @@
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 15px;
         color: rgba(0, 0, 0, 0.33);
         margin: 0px;
@@ -254,8 +254,6 @@
 
     p.writing{
         font-weight: 600;
-        font-size: 12px;
-        line-height: 15px;
         color: #E26ABA;
     }
 
