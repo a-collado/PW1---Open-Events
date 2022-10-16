@@ -6,6 +6,7 @@ import Register from '../components/Register.vue'
 import CreateEvent from '../components/CreateEvent.vue'
 import Perfil2 from '../components/Perfil2.vue'
 import Messages from '../components/Messages.vue'
+import Chat from '../components/Chat.vue'
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         path: '/m',
         name: 'Messages',
         component: Messages
+    },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: Chat
     }
  
 ]
