@@ -98,7 +98,7 @@
         <div class="centered_horitzontal">
             <div id="timeline">
                 <div class="timeline_header"> 
-                    <h2 class="tittle_basicEvent"> Timeline</h2>
+                    <h2 class="blue_big"> Timeline</h2>
                 </div>
 
                 <div id="line"></div>
