@@ -5,6 +5,7 @@ import SignIn from '../components/SignIn.vue'
 import Register from '../components/Register.vue'
 import CreateEvent from '../components/CreateEvent.vue'
 import Perfil2 from '../components/Perfil2.vue'
+import Messages from '../components/Messages.vue'
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path: '/c',
         name: 'Create Event',
         component: CreateEvent
+    },
+    {
+        path: '/m',
+        name: 'Messages',
+        component: Messages
     }
  
 ]

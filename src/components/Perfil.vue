@@ -56,36 +56,37 @@
   </div>
 
     <!-- User info-->
-
-    <div class="profile_info"> 
-      <article>
-        <h1>Nombre</h1>
-        <!--<h4>@nombre2</h4>-->
-        <p class="grey_normal">@nombre</p> 
-      </article>
-      <div class="flex_row_wrap">
-        <p class="pink_normal">Barcelona, España</p>
-        <div class="punctuation">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
-          <h5>5</h5>
+    <main>
+      <div class="profile_info"> 
+        <article>
+          <h1>Nombre</h1>
+          <!--<h4>@nombre2</h4>-->
+          <p class="grey_normal">@nombre</p> 
+        </article>
+        <div class="flex_row_wrap">
+          <p class="pink_normal">Barcelona, España</p>
+          <div class="punctuation">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+            <h5>5</h5>
+          </div>
         </div>
-      </div>
 
-      <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
-      <div class="button_flex">
-        <button>Editar perfil</button>
-        <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
-        </button-icon>
-        <button-icon><img class="icon" src="../assets/images/icons/dots_h.png" alt="more options">
-        </button-icon>
-      </div>
-      <hr>
+        <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
+        <div class="button_flex">
+          <button>Editar perfil</button>
+          <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
+          </button-icon>
+          <button-icon><img class="icon" src="../assets/images/icons/dots_h.png" alt="more options">
+          </button-icon>
+        </div>
+        <hr>
 
-    </div>
+      </div>
+    </main>
     <!-- -->
 
       
