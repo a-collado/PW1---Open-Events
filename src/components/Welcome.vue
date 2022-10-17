@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/s" id="WelcomePage">
+    <router-link to="/sign_in" id="WelcomePage">
         <div class="background">
             <div id="PageTitle">
                 <h1 id="WelcomeTo">Welcome to</h1>
@@ -10,5 +10,9 @@
 </template>
 
 
-
+<style>
+.header{
+  background-color: #00adbdf6
+}
+</style>
 
