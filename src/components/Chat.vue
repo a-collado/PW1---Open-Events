@@ -95,7 +95,7 @@ footer .searchbar{
     display: flex;
     flex-direction: column;
     margin: 25px;
-    height: 65vw;
+    height: 62vw;
     overflow: auto;
 }
 
