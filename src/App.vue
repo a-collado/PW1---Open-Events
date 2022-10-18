@@ -13,6 +13,8 @@
       <router-link to="/messages">Messages</router-link>
       <router-link to="/chat">Chat</router-link>
       <router-link to="/register_profile_picture">Register Picture</router-link>
+      <router-link to="/">Home</router-link>
+
     </nav>
 
 </div>
@@ -20,5 +22,13 @@
   <router-view></router-view>
   
 </template>
+
+<style scoped>
+.navbar{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+</style>
 
 

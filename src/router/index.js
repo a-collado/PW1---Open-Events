@@ -8,7 +8,7 @@ import Perfil2 from '../components/Perfil2.vue'
 import Messages from '../components/Messages.vue'
 import Chat from '../components/Chat.vue'
 import RegisterProfilePicture from '../components/RegisterProfilePicture.vue'
-
+import Home from '../components/Home.vue'
 const routes = [
     {
         path: '/welcome',
@@ -54,7 +54,12 @@ const routes = [
         path: '/register_profile_picture',
         name: 'Register Profile Picture',
         component: RegisterProfilePicture
-    }
+    },
+    {
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
  
 ]
 
