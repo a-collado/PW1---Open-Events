@@ -9,6 +9,8 @@ import Messages from '../components/Messages.vue'
 import Chat from '../components/Chat.vue'
 import RegisterProfilePicture from '../components/RegisterProfilePicture.vue'
 import Home from '../components/Home.vue'
+import Friends from '../components/Friends.vue'
+
 const routes = [
     {
         path: '/welcome',
@@ -60,6 +62,11 @@ const routes = [
         name: 'Home',
         component: Home
     },
+    {
+        path: '/friends',
+        name: 'Friends',
+        component: Friends
+    }
  
 ]
 

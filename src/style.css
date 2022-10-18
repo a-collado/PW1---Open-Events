@@ -554,8 +554,8 @@ img.stars{
   flex-wrap: wrap;
   gap: 10px;
   position: absolute;
-  left: 180px;
-  top: 280px;
+  left: 165px;
+  top: 345px;
   font-family: inter;
   font-size: 14px;
 }
