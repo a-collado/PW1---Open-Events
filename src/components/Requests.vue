@@ -1,15 +1,21 @@
 <template>
 
-    <article class="centered_vertical">
-    <div class="flex_row_wrap">
-        <h2>Amigos(24)</h2>
-        <div class="centered_horitzontal">
-            <h2>Solicitudes</h2>
-            <ellipse>1</ellipse>
-        </div>
+<article class="centered_vertical">
+<div class="flex_row_wrap">
+    <h2>Amigos(24)</h2>
+    <div class="centered_horitzontal">
+        <h2>Solicitudes</h2>
+        <ellipse>1</ellipse>
     </div>
-    <hr>
-    <input class="searchbar" type="text" placeholder="Buscar">
+</div>
+<hr>
+
+<div class="flex_row_wrap sub">
+    <h3>Recibidas</h3>
+    <h3>Pendientes</h3>
+</div>
+<hr>
+
 </article>
 
 <main>
@@ -23,15 +29,9 @@
                 <h4>John Turturro</h4>
                 <h5>@john_turturro</h5>
             </div>
-        </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
+            <div class="centered_horitzontal">
+                <button>Confirmar</button>
+                <button class="delete">Eliminar</button>
             </div>
         </article>
         <hr>
@@ -43,9 +43,12 @@
                 <h4>John Turturro</h4>
                 <h5>@john_turturro</h5>
             </div>
+            <div class="centered_horitzontal">
+                <button>Confirmar</button>
+                <button class="delete">Eliminar</button>
+            </div>
         </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
+        <hr><article class="flex_row_wrap">     <!-- Persona --> 
             <div class="profile_pic_message">
                 <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
             </div>
@@ -53,15 +56,48 @@
                 <h4>John Turturro</h4>
                 <h5>@john_turturro</h5>
             </div>
+            <div class="centered_horitzontal">
+                <button>Confirmar</button>
+                <button class="delete">Eliminar</button>
+            </div>
         </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
+        <hr><article class="flex_row_wrap">     <!-- Persona --> 
             <div class="profile_pic_message">
                 <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
             </div>
             <div class="centered_vertical">
                 <h4>John Turturro</h4>
                 <h5>@john_turturro</h5>
+            </div>
+            <div class="centered_horitzontal">
+                <button>Confirmar</button>
+                <button class="delete">Eliminar</button>
+            </div>
+        </article>
+        <hr><article class="flex_row_wrap">     <!-- Persona --> 
+            <div class="profile_pic_message">
+                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+            </div>
+            <div class="centered_vertical">
+                <h4>John Turturro</h4>
+                <h5>@john_turturro</h5>
+            </div>
+            <div class="centered_horitzontal">
+                <button>Confirmar</button>
+                <button class="delete">Eliminar</button>
+            </div>
+        </article>
+        <hr><article class="flex_row_wrap">     <!-- Persona --> 
+            <div class="profile_pic_message">
+                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+            </div>
+            <div class="centered_vertical">
+                <h4>John Turturro</h4>
+                <h5>@john_turturro</h5>
+            </div>
+            <div class="centered_horitzontal">
+                <button>Confirmar</button>
+                <button class="delete">Eliminar</button>
             </div>
         </article>
         <hr>
@@ -78,7 +114,11 @@
         width: 90%;
         flex-wrap: nowrap;
         justify-content: space-between;
-        margin-top: 20px;
+        margin-top: 10px;
+    }
+
+    .flex_row_wrap.sub{
+        width: 75%;
     }
 
     .centered_vertical{
@@ -89,6 +129,7 @@
 
     .centered_horitzontal{
         align-items:center;
+        margin-left: 10px;
     }
 
     .column{
@@ -102,6 +143,7 @@
         align-items: stretch;
         justify-content: left;
     }
+
     .searchbar{
         background: rgba(0, 0, 0, 0.07);
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -133,7 +175,6 @@
         background-color: rgba(0, 0, 0, 0.25);
         border: none;
         height: 1px;
-       /* border: 0.1px solid rgba(0, 0, 0, 0.25);*/
     }
 
     ellipse{
@@ -153,11 +194,41 @@
         color: #FFFFFF;
     }
 
+    button{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        margin: 2px;
+        color: #FFFFFF;
+        background: #C772BA;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+    }
+
+    button.delete{
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        color: #000000;
+        box-shadow: none;
+    }
+
     h2 {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
+        line-height: 29px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    h3{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
         line-height: 29px;
         margin-top: 0px;
         margin-bottom: 0px;
