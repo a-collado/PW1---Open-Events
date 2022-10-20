@@ -9,8 +9,14 @@
                 <input class="sign_in_input" type="text" placeholder="Email">
                 <input class="sign_in_input" type="password" placeholder="Password">
                 <input class="sign_in_input" type="password" placeholder="Confirm password">
-                <router-link to="/p" class="sign_in_button"><p>Register</p></router-link>
+                <router-link to="/register_profile_picture" class="sign_in_button"><p>Register</p></router-link>
             
         </div>
     </div>
 </template>
+
+<style>
+.header{
+  background-color: #00adbdf6
+}
+</style>

@@ -10,72 +10,72 @@
       </div>
     </div>
 
-    <div class="vl"></div>
-
     <div class="profile_friends">
-      <h1>Amigos (5)</h1>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
-        </div>  
-      </div>
-      <hr>
-      <div>
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
-          <div>
-            <h3>Amigo1</h3>
-            <h5>@amigo1</h5>
-        </div>  
-      </div>
-      <hr>
-      
+    <h1>Amigos (5)</h1>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
     </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    <div class="flex_row_wrap">
+      <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <div class="column">
+          <h2>Amigo1</h2>
+          <p class="grey_normal">@amigo1</p>
+      </div>  
+    </div>
+    <hr>
+    
+  </div>
 
     <!-- User info-->
-
-    <div class="profile_info"> 
+    <main>
+      <div class="profile_info"> 
         <article>
-        <h1>Nombre</h1>
-        <h4>@nombre2</h4>
+          <h1>Nombre</h1>
+          <!--<h4>@nombre2</h4>-->
+          <p class="grey_normal">@nombre</p> 
         </article>
-        <div>
-        <h4>Barcelona, España</h4>
-          <div class="user_rating">
-            <img src="../assets/images/icons/star_b.png" alt="1 estrella">
-            <img src="../assets/images/icons/star_b.png" alt="2 estrellas">
-            <img src="../assets/images/icons/star_b.png" alt="3 estrellas">
-            <img src="../assets/images/icons/star_b.png" alt="4 estrellas">
-            <img src="../assets/images/icons/star_b.png" alt="5 estrellas">
+        <div class="flex_row_wrap">
+          <p class="pink_normal">Barcelona, España</p>
+          <div class="punctuation">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
+            <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
             <h5>5</h5>
           </div>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
+
+        <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
         <div class="button_flex">
           <button>Editar perfil</button>
           <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
@@ -84,11 +84,12 @@
           </button-icon>
         </div>
         <hr>
-    </div>
+
+      </div>
+    </main>
     <!-- -->
 
       
-
       <div class="events_statistics_background">
         <div class = "events_statistics_buttons">
           <button class="eventStatistics"> Eventos </button>
@@ -103,77 +104,89 @@
         </div>
 
         <div class="event_group">
-        <div class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-          
-          <div class="footer_basicEvent"> 
-            <h2 class="tittle_basicEvent">Fiesta de los 80</h2>
+          <div class="basic_event">
+            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+            
+            <div class="footer_basicEvent"> 
+              <h2 class="blue_big">Fiesta de los 80</h2>
 
-            <div class="info_basicEvent"> 
+              <div class="column"> 
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
+                </div>
 
-              <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-              <p class="datetime_basicEvent">09/11/2021<br>20:00</p>
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                  <p class="blue_small_bold">Barcelona</p>
+                </div>
+              </div>
 
-              <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-              <p class="localization_basicEvent">Barcelona</p>
+            </div><!--Footer del event-->
+          </div> <!--Tanquem div del event-->
 
-            </div>
-          </div>
-        </div> <!--Tanquem div del event-->
+          <div class="basic_event">
+            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+            
+            <div class="footer_basicEvent"> 
+              <h2 class="blue_big">Fiesta de los 80</h2>
 
-        <div class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-          
-          <div class="footer_basicEvent"> 
-            <h2 class="tittle_basicEvent">Fiesta de los 80</h2>
+              <div class="column"> 
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
+                </div>
 
-            <div class="info_basicEvent"> 
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                  <p class="blue_small_bold">Barcelona</p>
+                </div>
+              </div>
 
-              <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-              <p class="datetime_basicEvent">09/11/2021<br>20:00</p>
+            </div><!--Footer del event-->
+          </div> <!--Tanquem div del event-->
 
-              <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-              <p class="localization_basicEvent">Barcelona</p>
+          <div class="basic_event">
+            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+            
+            <div class="footer_basicEvent"> 
+              <h2 class="blue_big">Fiesta de los 80</h2>
 
-            </div>
-          </div>
-        </div> <!--Tanquem div del event-->
+              <div class="column"> 
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
+                </div>
 
-        <div class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-          
-          <div class="footer_basicEvent"> 
-            <h2 class="tittle_basicEvent">Fiesta de los 80</h2>
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                  <p class="blue_small_bold">Barcelona</p>
+                </div>
+              </div>
 
-            <div class="info_basicEvent"> 
+            </div><!--Footer del event-->
+          </div> <!--Tanquem div del event-->
 
-              <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-              <p class="datetime_basicEvent">09/11/2021<br>20:00</p>
+          <div class="basic_event">
+            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+            
+            <div class="footer_basicEvent"> 
+              <h2 class="blue_big">Fiesta de los 80</h2>
 
-              <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-              <p class="localization_basicEvent">Barcelona</p>
+              <div class="column"> 
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
+                </div>
 
-            </div>
-          </div>
-        </div> <!--Tanquem div del event-->
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                  <p class="blue_small_bold">Barcelona</p>
+                </div>
+              </div>
 
-        <div class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-          
-          <div class="footer_basicEvent"> 
-            <h2 class="tittle_basicEvent">Fiesta de los 80</h2>
-
-            <div class="info_basicEvent"> 
-
-              <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-              <p class="datetime_basicEvent">09/11/2021<br>20:00</p>
-
-              <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-              <p class="localization_basicEvent">Barcelona</p>
-
-            </div>
-          </div>
-        </div> <!--Tanquem div del event-->
+            </div><!--Footer del event-->
+          </div> <!--Tanquem div del event-->
 
       </div> <!--Event group-->
     </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
@@ -190,3 +203,4 @@
 
 
 </template>
+
