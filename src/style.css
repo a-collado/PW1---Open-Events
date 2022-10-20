@@ -99,9 +99,10 @@ nav {
   width: 80vw;
 }
 
-.profile_info > :not(hr), .profile_info > * > *  {
-  margin:3px;
+.profile_info > * > *  {
+  margin:2px;
 }
+
 
 .punctuation, .punctuation h5 {
   display: flex;
@@ -397,7 +398,7 @@ div .button_flex {
   flex-direction: row;
   align-items: stretch;
   position: absolute;
-  top: 530px;
+  top: 460px;
   right: 26%;
  }
 
@@ -408,7 +409,7 @@ div .button_flex {
   /*background: red;*/
   position: absolute;
   right: 0px;
-  top: 520px;
+  top: 470px;
   flex-wrap: wrap;
   align-content: space-around;
   align-items: flex-start;
@@ -418,10 +419,10 @@ div .button_flex {
  .profile_friends::before{
   content:'';
   width:2px;
-  height: 95%;
+  height: 100%;
   background-color: rgb(201, 201, 201);
   position:absolute;
-  top:30px;
+  top:20px;
   left: 10px;
  }
 
@@ -924,7 +925,7 @@ p.blue_small_bold{
 
 p.grey_normal{
   color: #575757c4;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 p.pink_normal{
@@ -959,6 +960,10 @@ h1{
     margin-bottom: 10px;
     color:#88888857;
   }  
+
+  p.grey_normal{
+    font-size: 20px;
+  }
   
   /*TIMELINE_MOVIL_________________________________*/
 
