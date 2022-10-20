@@ -10,6 +10,7 @@
       <router-link to="/sign_in">Sign in</router-link>
       <router-link to="/register">Register</router-link>
       <router-link to="/create_event">CreateEvent</router-link>
+      <router-link to="/event">Event</router-link>
       <router-link to="/messages">Messages</router-link>
       <router-link to="/chat">Chat</router-link>
       <router-link to="/register_profile_picture">Register Picture</router-link>

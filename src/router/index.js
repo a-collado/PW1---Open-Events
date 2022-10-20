@@ -4,6 +4,7 @@ import Welcome from '../components/Welcome.vue'
 import SignIn from '../components/SignIn.vue'
 import Register from '../components/Register.vue'
 import CreateEvent from '../components/CreateEvent.vue'
+import Event from '../components/Event.vue'
 import Perfil2 from '../components/Perfil2.vue'
 import Messages from '../components/Messages.vue'
 import Chat from '../components/Chat.vue'
@@ -43,6 +44,11 @@ const routes = [
         path: '/create_event',
         name: 'Create Event',
         component: CreateEvent
+    },
+    {
+        path: '/event',
+        name: 'Event',
+        component: Event
     },
     {
         path: '/messages',
