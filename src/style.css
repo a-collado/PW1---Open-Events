@@ -586,7 +586,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.profile_info div button{
+.profile_info div button {
   margin-right: 10px;
   padding-top: 1px;
   padding-left: 10px;
