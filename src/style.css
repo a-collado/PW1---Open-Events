@@ -99,9 +99,10 @@ nav {
   width: 80vw;
 }
 
-.profile_info > :not(hr), .profile_info > * > *  {
-  margin:5px;
+.profile_info > * > *  {
+  margin:2px;
 }
+
 
 .punctuation, .punctuation h5 {
   display: flex;
@@ -158,7 +159,7 @@ nav {
 
 /*Timeline elements__________________*/
 #timeline{
-  width: 90%;
+  width: 98%;
   height: 250px;
   background-color: rgba(255,255,255,0.5);
   border-radius: 8px 8px 8px 8px;
@@ -235,7 +236,7 @@ nav {
 
 /*Timeline elements_____________________*/
 div.background_white_opac{
-  width: 90%;
+  width: 98%;
   background-color: rgba(255,255,255,0.5);
   border-radius: 8px 8px 8px 8px;
   margin-top: 20px;
@@ -249,7 +250,7 @@ div.background_white_opac{
   margin: 5px;
   margin-bottom: 12px;
   display: flex;
-  margin:15px;
+  margin:10px;
 }
 
 .footer_timelineEvent{
@@ -269,7 +270,14 @@ div.background_white_opac{
   margin: 10px;
 }
 .footer_timelineEvent > div > *, .footer_timelineEvent > div > div > p{
-  margin: 3px;
+  margin: 1px;
+}
+
+.footer_timelineEvent > div > div > img{ display:none;}
+
+@media (min-width: 437px) {
+
+  .footer_timelineEvent > div > div > img{ display:block;}
 }
 
 
@@ -356,7 +364,7 @@ div .button_flex {
 
 /*Event elements_____________________*/
 .basic_event{
-  width: 415px;
+  width: 400px;
   height: 200px;
 }
 
@@ -390,7 +398,7 @@ div .button_flex {
   flex-direction: row;
   align-items: stretch;
   position: absolute;
-  top: 530px;
+  top: 460px;
   right: 26%;
  }
 
@@ -401,7 +409,7 @@ div .button_flex {
   /*background: red;*/
   position: absolute;
   right: 0px;
-  top: 520px;
+  top: 470px;
   flex-wrap: wrap;
   align-content: space-around;
   align-items: flex-start;
@@ -411,10 +419,10 @@ div .button_flex {
  .profile_friends::before{
   content:'';
   width:2px;
-  height: 95%;
+  height: 100%;
   background-color: rgb(201, 201, 201);
   position:absolute;
-  top:30px;
+  top:20px;
   left: 10px;
  }
 
@@ -900,6 +908,7 @@ router-link:hover {
 /*Generic text______________________*/
 h2.blue_big{
   color: #233466;
+  font-size: 20px;
 }
 
 p.darkblue_normal_bold{
@@ -916,7 +925,7 @@ p.blue_small_bold{
 
 p.grey_normal{
   color: #575757c4;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 p.pink_normal{
@@ -951,6 +960,10 @@ h1{
     margin-bottom: 10px;
     color:#88888857;
   }  
+
+  p.grey_normal{
+    font-size: 20px;
+  }
   
   /*TIMELINE_MOVIL_________________________________*/
 
