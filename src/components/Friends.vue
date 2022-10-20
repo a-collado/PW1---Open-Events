@@ -185,6 +185,39 @@
 
     }
 
+    
+@media (min-width: 768px) {
 
+    .flex_row_wrap{
+        width: 50%;
+    }
+
+    .column .flex_row_wrap{
+        width: 70%;
+        /*justify-content: center;*/
+    }
+    .searchbar{    
+        width: 30%;  
+    }
+    hr{
+        width: 60vw;
+    }
+
+    .column hr{
+        width: 75vw;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h4{
+        font-size: 18px;
+    }
+
+    h5{
+        font-size: 15px;
+    }
+}
 
 </style>
