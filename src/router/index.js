@@ -4,11 +4,16 @@ import Welcome from '../components/Welcome.vue'
 import SignIn from '../components/SignIn.vue'
 import Register from '../components/Register.vue'
 import CreateEvent from '../components/CreateEvent.vue'
+import Event from '../components/Event.vue'
 import Perfil2 from '../components/Perfil2.vue'
 import Messages from '../components/Messages.vue'
 import Chat from '../components/Chat.vue'
 import RegisterProfilePicture from '../components/RegisterProfilePicture.vue'
 import Home from '../components/Home.vue'
+import Friends from '../components/Friends.vue'
+import Requests from '../components/Requests.vue'
+import Pendant from '../components/Pendant.vue'
+
 const routes = [
     {
         path: '/welcome',
@@ -41,6 +46,11 @@ const routes = [
         component: CreateEvent
     },
     {
+        path: '/event',
+        name: 'Event',
+        component: Event
+    },
+    {
         path: '/messages',
         name: 'Messages',
         component: Messages
@@ -60,6 +70,21 @@ const routes = [
         name: 'Home',
         component: Home
     },
+    {
+        path: '/friends',
+        name: 'Friends',
+        component: Friends
+    },
+    {
+        path: '/requests',
+        name: 'Requests',
+        component: Requests
+    },
+    {
+        path: '/pendant',
+        name: 'Pendant',
+        component: Pendant
+    }
  
 ]
 

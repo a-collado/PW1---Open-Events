@@ -131,14 +131,6 @@
         align-items: center;
     }
 
-    .message_status{
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        align-content: flex-start;
-        align-items: flex-start;
-    }
-
     .profile_pic_message{
         margin-right: -20px;
     }
