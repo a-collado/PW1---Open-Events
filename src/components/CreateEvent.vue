@@ -30,8 +30,10 @@
     <div class="create_event_ubi_box">
         <h1>Ubicación del Evento</h1>
         <!--acceder maps-->
-        <img class="eventPic" src="../assets/images/events/gglMaps.png" alt="EventMaps">
-        <button-icon><img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="open google maps"></button-icon>
+        <div class="create_event_ubi_box">
+            <img class="eventPic" src="../assets/images/events/gglMaps.png" alt="EventMaps">
+            <button-icon><img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="open google maps"></button-icon>
+        </div>
     </div>
 
     <button>Crear Evento</button>

@@ -1,6 +1,7 @@
 <template>
     <div class="event_image_box">
         <h1>Nombre del Evento</h1>
+        <p>hola</p>
         <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
     </div>
 
@@ -90,3 +91,23 @@
     </div>
     
 </template>
+
+<style scoped>
+
+.event_image_box{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.event_image_box > img{
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+
+}
+
+
+</style>
