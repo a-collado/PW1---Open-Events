@@ -19,8 +19,8 @@
             </div>
             <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
             <div class="event_buttons_box">
-                <div class="button_pink"><div class="titulo"><h3>Participar</h3></div></div>
-                <div class="button_purple"><div class="titulo"><h3>Compartir</h3></div></div>
+                <div class="button_pink"><div class="titulo"><h3 class="white">Participar</h3></div></div>
+                <div class="button_purple"><div class="titulo"><h3 class="white">Compartir</h3></div></div>
             </div>
         </div>
 
@@ -31,8 +31,8 @@
                     <div class="texto"><h5>25 Diciembre 2022 (20h00 - 24h00)</h5></div>
                 </div>
                 <div class="event_location_box">
-                    <div class="texto"><h5>Calle 4 Camins 256, 08019, Barcelona</h5></div>
                     <img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="icon">
+                    <div class="texto"><h5>Calle 4 Camins 256, 08019, Barcelona</h5></div>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="rectangle_gradient">
             <div class="event_participantes_box">
                 <div class="titulo"><h2>3.019</h2></div>
-                <div class="titulo"><h3>Participantes</h3></div>
+                <div class="titulo"><h3 class="pink">Participantes</h3></div>
             </div>
         </div>
 
@@ -87,18 +87,26 @@
             </div>
         </div>
 
-        <div class="button_pink"><div class="titulo"><h3>Crear Comentario</h3></div></div>
+        <div class="crear_evento"><div class="button_pink"><div class="titulo"><h3 class="white">Crear Comentario</h3></div></div></div>
     </div>
 </template>
 
 <style scoped>
 
 /* General*/
+
+h3.white{
+    color: #ffffff;
+}
+
+h3.pink{
+    color: #C772BA;
+}
 .titulo > *{
     margin: 0px;
 }
 
-.texto > h5{
+.texto > *{
     margin: 0px;
     text-align: justify;
     text-justify: inter-word;
@@ -307,6 +315,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+/* Crear Evento */
+.crear_evento {
+    display: flex;
+    justify-content: center;
 }
 
 </style>
