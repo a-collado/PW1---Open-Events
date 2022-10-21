@@ -6,7 +6,7 @@
         </div>
 
         <div class="event_descrip_box">
-            <div class="event_descrip_star_box">
+            <div class="event_descrip">
                 <div class="titulo"><h2>Descripción</h2></div>
                 <div class="star">
                     <h5>5</h5>
@@ -18,42 +18,47 @@
                 </div>
             </div>
             <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
-            <div class="event_buttons_box">
+            <div class="event_buttons">
                 <div class="button_pink"><div class="titulo"><h3 class="white">Participar</h3></div></div>
                 <div class="button_purple"><div class="titulo"><h3 class="white">Compartir</h3></div></div>
             </div>
         </div>
 
-        <div class="rectangle_gray">
-            <div class="event_info_box">
-                <div class="event_date_box">
-                    <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                    <div class="texto"><h5>25 Diciembre 2022 (20h00 - 24h00)</h5></div>
+        <hr>
+        <div class="helper_box">
+            <div class="rectangle_gray">
+                <div class="helper_box">
+                    <div class="event_info">
+                        <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                        <div class="texto"><h5>25 Diciembre 2022 (20h00 - 24h00)</h5></div>
+                    </div>
+                    <div class="event_info">
+                        <img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="icon">
+                        <div class="texto"><h5>Calle 4 Camins 256, 08019, Barcelona</h5></div>
+                    </div>
                 </div>
-                <div class="event_location_box">
-                    <img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="icon">
-                    <div class="texto"><h5>Calle 4 Camins 256, 08019, Barcelona</h5></div>
+            </div>
+
+            <div class="rectangle_gradient">
+                <div class="event_info">
+                    <div class="titulo"><h2>3.019</h2></div>
+                    <div class="titulo"><h3 class="pink">Participantes</h3></div>
                 </div>
             </div>
         </div>
 
-        <div class="rectangle_gradient">
-            <div class="event_participantes_box">
-                <div class="titulo"><h2>3.019</h2></div>
-                <div class="titulo"><h3 class="pink">Participantes</h3></div>
-            </div>
-        </div>
+        <hr>
 
-        <div class="event_resenas_box">
-            <div class="event_resenas_header_box">
+        <div class="helper_box">
+            <div class="event_resenas_header">
                 <div class="titulo"><h2>Reseñas del Evento</h2></div>
                 <button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter"></button-icon>
             </div>
-            <div class="resenas_box">
-                <div class="resena_box">
-                    <div class="resena_persona_box">
+            <div class="helper_box">
+                <div class="resena">
+                    <div class="resena_persona">
                         <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                        <div class="resena_info_box">
+                        <div class="resena_info">
                             <div class="texto"><h5>Nombre Apellido</h5></div>
                             <div class="punctuation">
                                 <h5>5</h5>
@@ -67,10 +72,10 @@
                     </div>
                     <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
                 </div>
-                <div class="resena_box">
-                    <div class="resena_persona_box">
+                <div class="resena">
+                    <div class="resena_persona">
                         <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                        <div class="resena_info_box">
+                        <div class="resena_info">
                             <div class="texto"><h5>Nombre Apellido</h5></div>
                             <div class="punctuation">
                                 <h5>5</h5>
@@ -102,6 +107,7 @@ h3.white{
 h3.pink{
     color: #C772BA;
 }
+
 .titulo > *{
     margin: 0px;
 }
@@ -154,7 +160,7 @@ h3.pink{
 .rectangle_gradient {
     width: 100%;
     height: 90px;
-    margin-top: 5px;
+    margin-top: 10px;
     border-radius: 10px;
     background: linear-gradient(#00ADBD, #ffffff);
     display: flex;
@@ -167,6 +173,15 @@ h3.pink{
     object-fit: cover;
     object-position: 100% 0;
     border-radius: 50%;
+}
+
+.helper_box {
+    width:100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 /*Evento Pagina*/
@@ -194,14 +209,14 @@ h3.pink{
 /* Descripcion */
 .event_descrip_box {
     width:100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.event_descrip_star_box {
+.event_descrip {
     width:100%;
     margin-bottom: 10px;
     display: flex;
@@ -209,7 +224,8 @@ h3.pink{
     justify-content: space-between;
     flex-direction: row;
 }
-.event_descrip_star_box > {
+.event_descrip > {
+    margin-top: 5px;
     margin-bottom: 0px;
 }
 .star {
@@ -221,80 +237,35 @@ h3.pink{
 .star > h5 {
     margin: 3px;
 }
-.event_buttons_box {
+.event_buttons {
     width:100%;
-    margin-top: 10px;
+    margin-top: 15px;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
 }
 
 /* Info Event */
-.event_info_box {
-    width:100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.event_date_box {
+.event_info {
     width:100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-}
-
-.event_location_box {
-    width:100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: row;
-}
-
-/* Participantes */
-
-.event_participantes_box{
-    width:100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
 }
 
 /* Reseñas */
-.event_resenas_box{
+
+.event_resenas_header{
     width:100%;
     margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.event_resenas_header_box{
-    width:100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
 }
 
-.resenas_box {
-    width:100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.resena_box {
+.resena {
     width:100%;
     margin-bottom: 20px;
     display: flex;
@@ -302,7 +273,7 @@ h3.pink{
     justify-content: space-around;
 }
 
-.resena_persona_box {
+.resena_persona {
     width:100%;
     margin-bottom: 10px;
     display: flex;
@@ -310,7 +281,7 @@ h3.pink{
     justify-content: flex-start;
     flex-direction: row;
 }
-.resena_info_box {
+.resena_info {
     margin-left: 20px;
     display: flex;
     flex-direction: column;
@@ -323,4 +294,13 @@ h3.pink{
     justify-content: center;
 }
 
+@media (min-width: 437px) {
+    .helper_box.rectangle_gradient, .helper_box.rectangle_gray{
+        width:100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
+}
 </style>
