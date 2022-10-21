@@ -1,14 +1,14 @@
 <template>
     <div class="event_box">
-        <div class="event_image_box">
-            <div class="titulo"><h1>Nombre del Evento</h1></div>
+        <div class="header_event_box">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+            <div class="footer_basicEvent"><div class="titulo"><h2>Nombre del Evento</h2></div></div>
         </div>
 
         <div class="event_descrip_box">
-            <div class="event_descrip_puntuat_box">
-                <div class="titulo"><h1>Descripción</h1></div>
-                <div class="puntuation">
+            <div class="event_descrip_star_box">
+                <div class="titulo"><h2>Descripción</h2></div>
+                <div class="star">
                     <h5>5</h5>
                     <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
                     <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
@@ -17,7 +17,7 @@
                     <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
                 </div>
             </div>
-            <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5>
+            <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
             <div class="event_buttons_box">
                 <button>Participar</button>
                 <button>Compartir</button>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="event_participantes_box">
-            <h1>Paticipantes</h1>
+            <h2>Paticipantes</h2>
             <!--retangulo azul-->
             <!--<img class="icon" src="../assets/images/icons/schedule.png" alt="open calendar">-->
         </div>
@@ -82,8 +82,14 @@
 </template>
 
 <style scoped>
-.titulo > h1{
-    margin-bottom: 10px;
+.titulo > h2{
+    margin: 0px;
+}
+
+.texto > h5{
+    margin: 0px;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .event_box {
@@ -92,35 +98,32 @@
     margin-top: 0px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 }
 
 /* Nombre Evento */
-.event_image_box {
+.header_event_box {
     width:100%;
+    height: 140px;
+    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
+    margin-top: 10px;
+    margin-bottom: 12px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    
-}
-
-.event_image_box > img {
-    /*width: 100%;*/
-    height: 250px;
-    /*object-fit: cover;*/
 }
 
 /* Descripcion */
-
 .event_descrip_box {
     width:100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    
 }
 
-.event_descrip_puntuat_box {
+.event_descrip_star_box {
     width:100%;
     margin-bottom: 10px;
     display: flex;
@@ -128,23 +131,25 @@
     justify-content: space-between;
     flex-direction: row;
 }
-.event_descrip_puntuat_box >{
+.event_descrip_star_box > {
     margin-bottom: 0px;
 }
-.puntuation {
+.star {
     margin-bottom: 0px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.puntuation > h5 {
+.star > h5 {
     margin: 3px;
 }
-
-.event_image_box > img {
-    /*width: 100%;*/
-    height: 250px;
-    /*object-fit: cover;*/
+.event_buttons_box {
+    width:100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
 }
+
 
 </style>
