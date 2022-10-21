@@ -65,8 +65,9 @@
                             </div>
                         </div>
                     </div>
-                    <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
-                </div><div class="resena_box">
+                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
+                </div>
+                <div class="resena_box">
                     <div class="resena_persona_box">
                         <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                         <div class="resena_info_box">
@@ -81,11 +82,12 @@
                             </div>
                         </div>
                     </div>
-                    <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
+                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
                 </div>
             </div>
-            <button>Añadir Comentario</button>
         </div>
+
+        <div class="button_pink"><div class="titulo"><h3>Crear Comentario</h3></div></div>
     </div>
 </template>
 
@@ -284,15 +286,24 @@
     justify-content: space-around;
 }
 
+.resena_box {
+    width:100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .resena_persona_box {
     width:100%;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: row;
 }
 .resena_info_box {
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
