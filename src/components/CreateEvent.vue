@@ -34,7 +34,7 @@
                     <button-icon><img class="icon" src="../assets/images/icons/schedule.png" alt="open calendar"></button-icon>
                 </div>
             </div>
-            
+
             <div class="create_event_box">
                 <div class="titulo"><h2>Ubicación del Evento</h2></div>
                 <div class="flex_row_center">
@@ -169,6 +169,16 @@ h3.white{
     border: 1px solid #00adbdf6;
     background-color: rgb(237, 237, 237);
     border-radius: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .create_event_box{
+        width:768px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 </style>
