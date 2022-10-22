@@ -119,6 +119,9 @@ nav {
   margin: 0px;
   font-family: inter;
   font-weight: medium;
+  /*display: flex;
+  flex-direction: column;
+  align-items: center;*//*necesario para centrar todas las paginas, utilizar general_page_box, no lo cmabio aun pork os lo destrozzo*/
 }
 
 #PageTitle{
@@ -622,7 +625,6 @@ button-icon{
   border: 0px solid transparent;
   padding: 0.20em 0.5em;
   padding-top: 10px;
-  margin-right: 10px;
   font-size: 1.1em;
   font-weight: 1000;
   font-family: inherit;
