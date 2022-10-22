@@ -154,8 +154,8 @@ h3.pink{
     margin-top: 5px;
     border-radius: 10px;
     background-color: rgb(237, 237, 237);
+    border: 1px solid rgb(210, 210, 210);
     display: flex;
-    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1))
 }
 
 .rectangle_gradient {
@@ -164,8 +164,8 @@ h3.pink{
     margin-top: 10px;
     border-radius: 10px;
     background: linear-gradient(#00ADBD, #ffffff);
+    border: 1px solid #00ADBD;
     display: flex;
-    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1))
 }
 
 .profile_pic_message{
@@ -288,13 +288,14 @@ h3.pink{
     justify-content: space-around;
 }
 
-@media (min-width: 437px) {
-    .helper_box.rectangle_gradient, .helper_box.rectangle_gray{
-        width:100%;
+
+@media  screen and (min-width: 768px) {
+    helper_box.rectangle_gradient{
+        width:768px;
         display: flex;
-        align-items: center;
-        justify-content: space-evenly;
         flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 </style>
