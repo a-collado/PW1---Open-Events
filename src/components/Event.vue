@@ -1,5 +1,5 @@
 <template>
-    <div class="event_box">
+    <div class="general_page_box">
         <div class="header_event_box">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
             <div class="footer_basicEvent"><div class="titulo"><h2>Nombre del Evento</h2></div></div>
@@ -19,8 +19,8 @@
             </div>
             <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
             <div class="event_buttons">
-                <div class="button_pink"><div class="titulo"><h3 class="white">Participar</h3></div></div>
-                <div class="button_purple"><div class="titulo"><h3 class="white">Compartir</h3></div></div>
+                <div class="boton_rosa"><div class="titulo"><h3 class="white">Participar</h3></div></div>
+                <div class="boton_lila"><div class="titulo"><h3 class="white">Compartir</h3></div></div>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <div class="crear_evento"><div class="button_pink"><div class="titulo"><h3 class="white">Crear Comentario</h3></div></div></div>
+        <div class="centered_horitzontal"><div class="boton_rosa"><div class="titulo"><h3 class="white">Crear Comentario</h3></div></div></div>
     </div>
 </template>
 
@@ -117,7 +117,8 @@ h3.pink{
     text-align: justify;
     text-justify: inter-word;
 }
-.button_purple{
+
+.boton_lila{
     border-radius: 10px;
     border: 0px solid transparent;
     padding: 0.25em 0.5em;
@@ -132,7 +133,7 @@ h3.pink{
     filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4))
 }
 
-.button_pink{
+.boton_rosa{
     border-radius: 10px;
     border: 0px solid transparent;
     padding: 0.25em 0.5em;
@@ -185,9 +186,8 @@ h3.pink{
 }
 
 /*Evento Pagina*/
-.event_box {
+.general_page_box {
     width: 85%;
-    margin: 20px;
     margin-top: 0px;
     display: flex;
     flex-direction: column;
@@ -203,7 +203,7 @@ h3.pink{
     margin-bottom: 12px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 /* Descripcion */
@@ -213,7 +213,7 @@ h3.pink{
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .event_descrip {
@@ -286,12 +286,6 @@ h3.pink{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-}
-
-/* Crear Evento */
-.crear_evento {
-    display: flex;
-    justify-content: center;
 }
 
 @media (min-width: 437px) {
