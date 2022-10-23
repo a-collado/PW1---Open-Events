@@ -13,6 +13,7 @@ import Home from '../components/Home.vue'
 import Friends from '../components/Friends.vue'
 import Requests from '../components/Requests.vue'
 import Pendant from '../components/Pendant.vue'
+import EditarPerfil from '../components/EditarPerfil.vue'
 
 const routes = [
     {
@@ -84,6 +85,12 @@ const routes = [
         path: '/pendant',
         name: 'Pendant',
         component: Pendant
+    },
+    {
+
+        path: '/editarPerfil',
+        name: 'EditarPerfil',
+        component: EditarPerfil
     }
  
 ]
