@@ -1,64 +1,43 @@
 <template>
-    <div class="wrapper">
-        <hr>
-        <div class="event">
-            <img class="event_img" src="src\assets\images\events\sala_3_place-full 1.png">
-            <div class="event_footer">
-                <h1>Festival anual de Barcelona</h1>
-                <p class="date">14 de Octubre a las 18:00h</p>
-                <p class="location">Sala Tango, calle Ruiseñor, Barcelona</p>
+    <div class="basic_event">
+        <img class="event_image" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+        
+        <div class="footer_event"> 
+        <h2 class="blue_big">Fiesta de los 80</h2>
+
+        <div class="column"> 
+            <div class="flex_row_wrap">
+            <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+            <p class="blue_small_bold">09/11/2021<br>20:00</p>
+            </div>
+
+            <div class="flex_row_wrap">
+            <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+            <p class="blue_small_bold">Barcelona</p>
             </div>
         </div>
-    </div>
 
+        </div><!--Footer del event-->
+  </div> <!--Tanquem div del event-->
 </template>
 
-
-
 <style scoped>
-hr{
-    border-style:solid;
-    border-width: 0.5px;
-    background-color: black;
-}
 
-.event_img{
-    filter:blur(1px);
-    object-fit: cover;
-}
-
-.event_footer{
+.event_image{
+    border-radius: 30px;
     width: 100%;
-    max-width: 500px;
-    border-radius: 15px;
-    height: 15%;
-    background: rgba(0, 0, 0, 0.42);
-    position: absolute;
-    padding: 5px;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(75%);
 }
-.event{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: end;
-    max-width: 500px;   
+.footer_event{
+  width: 100%;
+  height: 40%;
+  border-radius: 20px;
+  background-color: rgba(23, 22, 22, 0.4);
+  position: relative;
+
 }
 
-.event_footer h1{
-    color: white;
-    font-size: 16px;
-    margin: 5px;
-}
 
-.event_footer .date{
-    margin: 5px;
-    color: rgb(250, 6, 234);
-    font-size: 14px;
-}
-
-.event_footer .location{
-    margin: 5px;
-    color: white;
-    font-size: 12px;
-}
 </style>
