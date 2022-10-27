@@ -42,8 +42,8 @@
                     <button-icon><img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="open google maps"></button-icon>
                 </div>
             </div>
-
-            <div class="centered_horitzontal"><div class="boton_rosa"><div class="titulo"><h3 class="white">Crear Evento</h3></div></div></div>
+            
+            <router-link to="/" id="button"><div class="centered_horitzontal"><div class="boton_rosa"><div class="titulo"><h3 class="white">Crear Evento</h3></div></div></div></router-link>
         </div>
     
 </template>

@@ -6,6 +6,8 @@ import Register from '../components/Register.vue'
 import CreateEvent from '../components/CreateEvent.vue'
 import Event from '../components/Event.vue'
 import Perfil2 from '../components/Perfil2.vue'
+import PerfilR2 from '../components/PerfilR2.vue'
+import PerfilR from '../components/PerfilR.vue'
 import Messages from '../components/Messages.vue'
 import Chat from '../components/Chat.vue'
 import RegisterProfilePicture from '../components/RegisterProfilePicture.vue'
@@ -30,6 +32,16 @@ const routes = [
         path: '/perfil_statistics',
         name: 'Perfil2',
         component: Perfil2
+    },
+    {
+        path: '/perfilR',
+        name: 'PerfilR',
+        component: PerfilR
+    },
+    {
+        path: '/perfilR_statistics',
+        name: 'PerfilR2',
+        component: PerfilR2
     },
     {
         path: '/sign_in',
