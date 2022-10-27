@@ -29,12 +29,12 @@
         <div class="generic_inputLabel">
             <label><p class="darkblue_normal_bold">Imagen de fondo</p></label>
             <div id="backgroundPic_button"> 
-                <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
+                <button><img class="icon" src="../assets/images/icons/editar.png"></button> 
             </div>
             
         </div>
 
-        <button>Guardar</button>
+        <router-link to="/perfil" id="button"><button>Guardar</button></router-link>
 
 
     </div>
