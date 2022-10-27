@@ -2,8 +2,9 @@
     
     <div class="centered_column_width">
 
-        <img class="profilePic" src="../assets/images/profilepic.webp" alt="Avatar"> 
-
+        <div id="profilePic_button">
+            <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
+        </div>
 
         <div class="generic_inputLabel">
             <label><p class="darkblue_normal_bold">Nombre</p></label>
@@ -27,10 +28,13 @@
 
         <div class="generic_inputLabel">
             <label><p class="darkblue_normal_bold">Imagen de fondo</p></label>
-            <img src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile background photo">
+            <div id="backgroundPic_button"> 
+                <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
+            </div>
+            
         </div>
 
-
+        <button>Guardar</button>
 
 
     </div>
@@ -56,7 +60,7 @@
         width:100%;
         border: 1px solid #00adbdf6;
         border-radius: 30px;
-        padding: 15px;
+        padding: 10px;
     }
 
     .generic_inputLabel > label >p{
@@ -69,6 +73,28 @@
         width:108%;
         height: 150px;
         object-fit: cover;
+    }
+
+    #profilePic_button{
+        background-image: url("../assets/images/profilepic.jpg");
+        background-size: cover;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;   
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;     
+    }
+
+    #backgroundPic_button{
+        background-image: url("https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info");
+        background-size: cover;
+        border-radius: 10%;
+        width:108%;
+        height: 150px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;     
     }
 
     @media screen and (min-width: 768px) {
