@@ -150,6 +150,13 @@ h3.white{
     background-color: rgb(237, 237, 237);
     
 }
+/* Cuerpo Pagina */
+.general_page_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Apartados Evento */
 .create_event_box {
     width:100%;

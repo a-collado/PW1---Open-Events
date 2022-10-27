@@ -185,6 +185,13 @@ h3.pink{
     justify-content: space-around;
 }
 
+/* Cuerpo Pagina */
+.general_page_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /*Evento Pagina*/
 .general_page_box {
     width: 85%;
