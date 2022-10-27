@@ -583,14 +583,19 @@ img.stars{
 button {
   border-radius: 10px;
   border: 0px solid transparent;
-  padding: 0.25em 0.5em;
+  /*padding: 0.25em 0.5em;
   font-size: 1.1em;
   font-weight: 1000;
   font-family: inherit;
   background: linear-gradient(#00adbdf6, #00adbd44);
   cursor: pointer;
-  transition: border-color 0.25s;
-  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4))
+  transition: border-color 0.25s;*/
+  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 button:hover {
@@ -602,7 +607,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.profile_info div button {
+/*Generic buttons_______________________________________________*/
+
+button.button_pink_normal{
+  background: #C772BA;
+  color: white;
+  width: 170px;
+  height: 45px;
+  font-size: 18px; 
+}
+
+/*_______________________________________________*/
+/*.profile_info div button {
   margin-right: 10px;
   padding-top: 1px;
   padding-left: 10px;
@@ -618,7 +634,7 @@ button:focus-visible {
   font-weight: 700;
   font-size: 15px;
   line-height: 36px;
-}
+}*/
 
 button-icon{
   border-radius: 10px;
@@ -689,7 +705,7 @@ button.eventStatistics_Nselected{
 
 @media only screen and (min-width: 768px) {
 
-  .profile_info div button{
+  /*.profile_info div button{
     padding-right: 50px;
     padding-left: 20px;
     padding-top: 15px;
@@ -705,6 +721,10 @@ button.eventStatistics_Nselected{
     font-weight: 700;
     font-size: 30px;
     line-height: 36px;
+  }*/
+
+  .profileButtons{
+    display: none;
   }
  
   button-icon{
@@ -744,6 +764,17 @@ button.eventStatistics_Nselected{
   outline: none;
 }
 
+/*Generic buttons_______________________________________________*/
+
+button.button_pink_normal{
+  width: 250px;
+  height: 60px;
+  font-size: 25px; 
+}
+
+/*_____________________________________________________________*/
+
+
 }
 
   .events_statistics_background button:hover {
@@ -763,8 +794,10 @@ router-link{
     border-width: 0.1rem;
     border-radius: 0.2rem;
     background: aliceblue;
-    margin: 10px
+    margin: 10px;
 }
+
+a{ text-decoration: none;}
 
 router-link:hover {
   background: azure;

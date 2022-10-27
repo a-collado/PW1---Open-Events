@@ -31,7 +31,6 @@
             <div id="backgroundPic_button"> 
                 <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
             </div>
-            
         </div>
 
         <button>Guardar</button>
