@@ -22,7 +22,7 @@
   </div>
   <div class="filter-row">
     <p style="margin:0px">Populares</p>
-    <img src="src\assets\images\icons\options 1.png" width="30px" height="30px">
+      <img src="src\assets\images\icons\options 1.png" width="30px" height="30px">
   </div>
   <div class="events">
     <div class="event_group">
