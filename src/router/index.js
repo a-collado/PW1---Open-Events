@@ -16,7 +16,7 @@ import Friends from '../components/Friends.vue'
 import Requests from '../components/Requests.vue'
 import Pendant from '../components/Pendant.vue'
 import EditarPerfil from '../components/EditarPerfil.vue'
-
+import Filter from '../components/Filter.vue'
 const routes = [
     {
         path: '/welcome',
@@ -103,8 +103,14 @@ const routes = [
         path: '/editarPerfil',
         name: 'EditarPerfil',
         component: EditarPerfil
+    },
+    {
+
+        path: '/filter',
+        name: 'Filter',
+        component: Filter
     }
- 
+    
 ]
 
 const router = createRouter({

@@ -250,4 +250,36 @@
     }
 
 
+    @media (min-width: 768px) {
+        .column{
+            width: 60vw;
+            margin-left: 20vw;
+        }
+
+        .flex_row_wrap{
+            width: 50vw;
+            
+        }
+
+        .centered_vertical{
+            margin-top: 10px;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .message_icon{
+            margin-top: 5px;
+        }
+
+        .profile_pic_message{
+            margin-right: -5vw;
+        }
+
+        p {
+            margin-top: 5px;
+            width: 100%;
+        }
+    }
+
+
 </style>

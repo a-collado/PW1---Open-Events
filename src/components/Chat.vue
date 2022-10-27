@@ -219,4 +219,30 @@ h5.red{
     color: #FF265A;
 }
 
+@media (min-width: 768px) {
+    .flex_row_wrap{
+        justify-content: flex-start;
+    }
+    
+    .profile_pic_message{
+        margin-left: 10vw;
+    }
+
+    .message.received{
+        margin-left: 10vw;
+    }
+
+    .message.send{
+        margin-right: 10vw;
+    }
+
+    footer .searchbar{
+        width: 60vw;
+    }
+
+    p{
+        width:auto;
+    }
+}
+
 </style>

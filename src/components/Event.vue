@@ -1,5 +1,5 @@
 <template>
-    <div class="general_page_box">
+    <div class="general_box">
         <div class="header_event_box">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
             <div class="footer_basicEvent"><div class="titulo"><h2>Nombre del Evento</h2></div></div>
@@ -25,7 +25,7 @@
         </div>
 
         <hr>
-        <div class="helper_box">
+        <div class="helper_box_pant">
             <div class="rectangle_gray">
                 <div class="helper_box">
                     <div class="event_info">
@@ -151,7 +151,6 @@ h3.pink{
 .rectangle_gray {
     width: 100%;
     height: 90px;
-    margin-top: 5px;
     border-radius: 10px;
     background-color: rgb(237, 237, 237);
     border: 1px solid rgb(210, 210, 210);
@@ -161,7 +160,6 @@ h3.pink{
 .rectangle_gradient {
     width: 100%;
     height: 90px;
-    margin-top: 10px;
     border-radius: 10px;
     background: linear-gradient(#00ADBD, #ffffff);
     border: 1px solid #00ADBD;
@@ -183,6 +181,27 @@ h3.pink{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.helper_box_pant {
+    width:100%;
+    height: 210px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Cuerpo Pagina */
+.general_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
 }
 
 /*Evento Pagina*/
@@ -290,8 +309,30 @@ h3.pink{
 
 
 @media  screen and (min-width: 768px) {
-    helper_box.rectangle_gradient{
-        width:768px;
+
+    .rectangle_gray{
+        width: 100%;
+        height: 90px;
+        margin-right: 10px;
+        border-radius: 10px;
+        background-color: rgb(237, 237, 237);
+        border: 1px solid rgb(210, 210, 210);
+        display: flex;
+    }
+
+    .rectangle_gradient{
+        width: 100%;
+        height: 90px;
+        margin-left: 10px;
+        border-radius: 10px;
+        background: linear-gradient(#00ADBD, #ffffff);
+        border: 1px solid #00ADBD;
+        display: flex;
+    }
+
+    .helper_box_pant{
+        width:100%;
+        height: 90px;
         display: flex;
         flex-direction: row;
         align-items: center;
