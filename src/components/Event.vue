@@ -1,5 +1,5 @@
 <template>
-    <div class="general_page_box">
+    <div class="general_box">
         <div class="header_event_box">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
             <div class="footer_basicEvent"><div class="titulo"><h2>Nombre del Evento</h2></div></div>
@@ -183,6 +183,17 @@ h3.pink{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+/* Cuerpo Pagina */
+.general_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
 }
 
 /*Evento Pagina*/
