@@ -1,6 +1,6 @@
 <template>
     
-        <div class="general_page_box">
+        <div class="general_box">
             
             <div class="create_event_box">
                 <div class="titulo"><h2>Imagen del Evento</h2></div>
@@ -150,6 +150,18 @@ h3.white{
     background-color: rgb(237, 237, 237);
     
 }
+
+/* Cuerpo Pagina */
+.general_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
 /* Apartados Evento */
 .create_event_box {
     width:100%;
