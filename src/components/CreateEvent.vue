@@ -43,7 +43,7 @@
                 </div>
             </div>
             
-            <router-link to="/" id="button"><div class="centered_horitzontal"><div class="boton_rosa"><div class="titulo"><h3 class="white">Crear Evento</h3></div></div></div></router-link>
+            <router-link to="/"><button class="button_pink_normal">Crear Evento</button></router-link>
         </div>
     
 </template>
@@ -52,9 +52,9 @@
 
 /* General*/
 
-h3.white{
+/*h3.white{
     color: #ffffff;
-}
+}*/
 
 .titulo > *{
     margin: 0px;
@@ -96,7 +96,7 @@ h3.white{
   border-radius: 20px;
 }
 
-.boton_rosa{
+/*.boton_rosa{
     border-radius: 10px;
     border: 0px solid transparent;
     padding: 0.25em 0.5em;
@@ -109,7 +109,7 @@ h3.white{
     background-color: #C772BA;
     transition: border-color 0.25s;
     filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4))
-}
+}*/
 
 .flex_row_center{
   display: flex;

@@ -617,6 +617,22 @@ button.button_pink_normal{
   font-size: 18px; 
 }
 
+button.button_pink_small{
+  background: #C772BA;
+  color: white;
+  width: 130px;
+  height: 40px;
+  font-size: 16px; 
+}
+
+button.button_purple_small{
+  background: #7280C7;
+  color: white;
+  width: 130px;
+  height: 40px;
+  font-size: 16px; 
+}
+
 /*_______________________________________________*/
 /*.profile_info div button {
   margin-right: 10px;
@@ -770,6 +786,18 @@ button.button_pink_normal{
   width: 250px;
   height: 60px;
   font-size: 25px; 
+}
+
+button.button_pink_small{
+  width: 150px;
+  height: 45px;
+  font-size: 18px; 
+}
+
+button.button_purple_small{
+  width: 150px;
+  height: 45px;
+  font-size: 18px; 
 }
 
 /*_____________________________________________________________*/

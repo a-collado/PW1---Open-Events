@@ -32,8 +32,8 @@
                 <button><img class="icon" src="../assets/images/icons/editar.png"></button> 
             </div>
         </div>
-
-        <router-link to="/perfil" id="button"><button>Guardar</button></router-link>
+        <br>
+        <router-link to="/perfil"><button class="button_pink_normal">Guardar</button></router-link>
 
 
     </div>

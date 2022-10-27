@@ -19,8 +19,8 @@
             </div>
             <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
             <div class="event_buttons">
-                <div class="boton_rosa"><div class="titulo"><h3 class="white">Participar</h3></div></div>
-                <div class="boton_lila"><div class="titulo"><h3 class="white">Compartir</h3></div></div>
+                <button class="button_pink_small">Participar</button>
+                <button class="button_purple_small">Compartir</button>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <div class="centered_horitzontal"><div class="boton_rosa"><div class="titulo"><h3 class="white">Crear Comentario</h3></div></div></div>
+        <button class="button_pink_small">Crear comentario</button>
     </div>
 </template>
 
@@ -100,9 +100,9 @@
 
 /* General*/
 
-h3.white{
+/*h3.white{
     color: #ffffff;
-}
+}*/
 
 h3.pink{
     color: #C772BA;
@@ -118,7 +118,7 @@ h3.pink{
     text-justify: inter-word;
 }
 
-.boton_lila{
+/*.boton_lila{
     border-radius: 10px;
     border: 0px solid transparent;
     padding: 0.25em 0.5em;
@@ -147,7 +147,7 @@ h3.pink{
     transition: border-color 0.25s;
     filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4))
     
-}
+}*/
 .rectangle_gray {
     width: 100%;
     height: 90px;
