@@ -1,5 +1,6 @@
 <template>
 
+<div class="home-wrapper">
   <hr>
   <div class="recomended_event">
     <div class="recomended_event_img">
@@ -111,12 +112,20 @@
 
       </div> <!--Event group-->
   </div>
-
+</div>
 
 </template>
 
 <style scoped>
 
+.home-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin:0px;
+  
+}
 .recomended_event{
   display: flex;
   flex-wrap: wrap;
@@ -141,8 +150,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   width:100vw;
-  max-width: 1200px;
+  max-width: 800px;
   height:40vw;
+  max-height: 320px;
   border-radius: 20px;
   filter: saturate(75%);
   display: flex;
@@ -181,12 +191,14 @@
   justify-content: center;
   margin: 10px;
   margin-bottom: 30px;
+  max-width: 800px;
   
 }
 
 .create_event hr{
   width: 100vw;
   border-top: 2px solid black;
+  max-width: 800px;
 
 }
 
@@ -213,6 +225,7 @@
   justify-content: center;
   align-items: center;
   margin: 20px;
+  max-width: 800px;
 }
 
 .categories *{
@@ -238,6 +251,8 @@
   font-size: 26px;
   font-weight: bold;
   margin: 20px 20px 0px 20px;
+  width:100vw;
+  max-width: 800px;
 }
 
 .basic_event{
