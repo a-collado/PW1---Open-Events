@@ -104,7 +104,7 @@ const routes = [
         name: 'EditarPerfil',
         component: EditarPerfil
     }
- 
+    
 ]
 
 const router = createRouter({
