@@ -77,7 +77,7 @@
 
         <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
         <div class="button_flex">
-          <button>Editar perfil</button>
+          <router-link to="/editarPerfil" id="button"><button>Editar perfil</button></router-link>
           <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
           </button-icon>
           <button-icon><img class="icon" src="../assets/images/icons/dots_h.png" alt="more options">
@@ -93,7 +93,7 @@
       <div class="events_statistics_background">
         <div class = "events_statistics_buttons">
           <button class="eventStatistics"> Eventos </button>
-          <button class="eventStatistics_Nselected"> Estadísticas </button>
+          <router-link to="/perfil_statistics" id="button"><button class="eventStatistics_Nselected"> Estadísticas </button></router-link>
         </div>
         <div class="filter_events">
           <button>Todos</button>

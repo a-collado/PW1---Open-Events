@@ -56,7 +56,7 @@
             </div>
             <div class="helper_box">
                 <div class="resena">
-                    <div class="resena_persona">
+                    <router-link to="/perfil" id="button"><div class="resena_persona">
                         <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                         <div class="resena_info">
                             <div class="texto"><h5>Nombre Apellido</h5></div>
@@ -69,11 +69,11 @@
                                 <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
                             </div>
                         </div>
-                    </div>
+                    </div></router-link>
                     <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
                 </div>
                 <div class="resena">
-                    <div class="resena_persona">
+                    <router-link to="/perfil" id="button"><div class="resena_persona">
                         <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                         <div class="resena_info">
                             <div class="texto"><h5>Nombre Apellido</h5></div>
@@ -86,7 +86,7 @@
                                 <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
                             </div>
                         </div>
-                    </div>
+                    </div></router-link>
                     <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
                 </div>
             </div>

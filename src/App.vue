@@ -6,6 +6,8 @@
     <nav class="navbar">
       <router-link to="/perfil">Perfil-</router-link>
       <router-link to="/perfil_statistics">Perfil2-</router-link>
+      <router-link to="/perfilR">PerfilR-</router-link>
+      <router-link to="/perfilR_statistics">PerfilR2-</router-link>
       <router-link to="/welcome">Welcome-</router-link>
       <router-link to="/sign_in">Sign in-</router-link>
       <router-link to="/register">Register-</router-link>
