@@ -213,6 +213,46 @@
 
     }
 
+    @media (min-width: 768px) {
 
+    .flex_row_wrap{
+        width: 50%;
+    }
+
+    .flex_row_wrap.sub{
+        width: 45vw;
+    }
+
+    .column .flex_row_wrap{
+        width: 70%;
+        /*justify-content: center;*/
+    }
+    .searchbar{    
+        width: 30%;  
+    }
+    hr{
+        width: 70vw;
+    }
+
+    .column hr{
+        width: 75vw;
+    }
+
+    .column .flex_row_wrap .centered_horitzontal{
+        margin-left: 45vw;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h4{
+        font-size: 18px;
+    }
+
+    h5{
+        font-size: 15px;
+    }
+}
 
 </style>

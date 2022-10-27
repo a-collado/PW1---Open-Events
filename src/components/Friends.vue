@@ -187,13 +187,14 @@
 
     
 @media (min-width: 768px) {
+    
 
     .flex_row_wrap{
         width: 50%;
     }
 
     .column .flex_row_wrap{
-        width: 70%;
+        width: 50vw;
         /*justify-content: center;*/
     }
     .searchbar{    
@@ -204,7 +205,7 @@
     }
 
     .column hr{
-        width: 75vw;
+        width: 55vw;
     }
 
     h2 {

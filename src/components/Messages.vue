@@ -272,7 +272,7 @@
         }
 
         .profile_pic_message{
-            margin-right: -50px;
+            margin-right: -5vw;
         }
 
         p {
