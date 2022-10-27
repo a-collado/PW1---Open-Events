@@ -5,8 +5,8 @@
       <img class="profilePic" src="../assets/images/profilepic.webp" alt="Avatar">
       
       <div class="profileButtons">
-        <button>10 Amigos</button>
-        <button>2 Eventos</button>
+        <button class="button_blues_small">10 Amigos</button>
+        <button class="button_blues_small">2 Eventos</button>
       </div>
     </div>
 
