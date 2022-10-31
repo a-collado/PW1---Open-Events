@@ -265,6 +265,7 @@
 .event_group{
   margin-left:20px;
   margin-right:20px;
+  max-width: 1000px;
 }
 
 

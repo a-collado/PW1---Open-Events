@@ -98,30 +98,24 @@
         <div class="centered_horitzontal">
           <div id="timeline">
               <div class="timeline_header"> 
-                  <h2 class="blue_big"> Timeline</h2>
+                <h2 class="blue_big"> Timeline</h2>
               </div>
 
               <div id="line"></div>
 
-              <div class="column" >
-                  <div id="Abril2021"> 
-                      <p class="darkblue_normal_bold">Abril<br>2021</p>
-                      <button class="button_timeline">1</button>
-                  </div>
+              <div id="Abril2021"> 
+                <p class="darkblue_normal_bold">Abril<br>2021</p>
+                <button class="button_timeline">1</button>
               </div>
 
-              <div class="column" >
-                  <div id="Noviembre2021"> 
-                      <p class="darkblue_normal_bold">Noviembre<br>2021</p>
-                      <button class="button_timeline">1</button>
-                  </div>
+              <div id="Noviembre2021"> 
+                <p class="darkblue_normal_bold">Noviembre<br>2021</p>
+                <button class="button_timeline">1</button>
               </div>
 
-              <div class="column" >
-                  <div id="Marzo2023"> 
-                      <p class="darkblue_normal_bold">Marzo<br>2023</p>
-                      <button class="button_timeline">2</button>
-                  </div>
+              <div id="Marzo2023"> 
+                <p class="darkblue_normal_bold">Marzo<br>2023</p>
+                <button class="button_timeline">2</button>
               </div>
 
 

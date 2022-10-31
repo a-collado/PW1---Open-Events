@@ -88,8 +88,8 @@
     #backgroundPic_button{
         background-image: url("https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info");
         background-size: cover;
-        border-radius: 10%;
-        width:108%;
+        border-radius: 20px;
+        width: 103%;
         height: 150px;
         display: flex;
         align-items: flex-end;
