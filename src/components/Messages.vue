@@ -10,35 +10,41 @@
 
 <main>
     <div class="column">
+
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <router-link to="/chat"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
                 <ellipse class="green"></ellipse>
             </div>
             <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <div>
-                    <img class = "message_icon" src="../assets/images/icons/read_g.png" align="left" />
-                    <p>Lorem ipsum dolor sit amet, 
-                    consectetur adipiscing elit. Nullam su.</p>
-                </div>
+                <router-link to="/chat">
+                    <h4>John Turturro</h4>
+                    <div>
+                        <img class = "message_icon" src="../assets/images/icons/read_g.png" align="left" />
+                        <p>Lorem ipsum dolor sit amet, 
+                        consectetur adipiscing elit. Nullam su.</p>
+                    </div>
+                </router-link>
             </div>
             <div>
                 <h6>15:25</h6>
             </div>
         </article>
 
+
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <router-link to="/chat"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
                 <ellipse class="yellow"></ellipse>
             </div>
             <div class="centered_vertical">
-                <h4>Kaladin Stormblessed</h4>
-                <div>
-                    <p>Ut ex turpis, cursus sit amet odio 
-                    elementum.</p>
-                </div>
+                <router-link to="/chat">
+                    <h4>Kaladin Stormblessed</h4>
+                    <div>
+                        <p>Ut ex turpis, cursus sit amet odio 
+                        elementum.</p>
+                    </div>
+                </router-link>
             </div>
             <div>
                 <h6>15:25</h6>
@@ -48,14 +54,16 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <router-link to="/chat"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
                 <ellipse class="green"></ellipse>
             </div>
             <div class="centered_vertical">
-                <h4>Kiriona</h4>
-                <div>
-                    <p class="writing">Escribiendo...</p>
-                </div>
+                <router-link to="/chat">
+                    <h4>Kiriona</h4>
+                    <div>
+                        <p class="writing">Escribiendo...</p>
+                    </div>
+                </router-link>
             </div>
             <div>
             </div>
@@ -63,15 +71,17 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <router-link to="/chat"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
                 <ellipse class="red"></ellipse>
             </div>
             <div class="centered_vertical">
-                <h4>Nona</h4>
-                <div>
-                    <img class = "message_icon" src="../assets/images/icons/check_g.png" align="left" />
-                    <p>Maecenas tincidunt laoreet leo.</p>
-                </div>
+                <router-link to="/chat">
+                    <h4>Nona</h4>
+                    <div>
+                        <img class = "message_icon" src="../assets/images/icons/check_g.png" align="left" />
+                        <p>Maecenas tincidunt laoreet leo.</p>
+                    </div>
+                </router-link>
             </div>
             <div>
                 <h6>ayer</h6>
@@ -80,15 +90,17 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <router-link to="/chat"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
                 <ellipse></ellipse>
             </div>
             <div class="centered_vertical">
-                <h4>Maya Hawke</h4>
-                <div>
-                    <p>Nam in tincidunt dolor. Fusce non 
-                    rhoncus ligula. Proin gravida ex a nisi...</p>
-                </div>
+                <router-link to="/chat">
+                    <h4>Maya Hawke</h4>
+                    <div>
+                        <p>Nam in tincidunt dolor. Fusce non 
+                        rhoncus ligula. Proin gravida ex a nisi...</p>
+                    </div>
+                </router-link>
             </div>
             <div>
                 <h6>+48h</h6>

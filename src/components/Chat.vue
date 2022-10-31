@@ -1,7 +1,7 @@
 <template>
 
 <div class="centered_horitzontal">
-        <img class="icon" src="../assets/images/icons/return.png" alt="Pagina anterior">
+        <router-link to="messages"><img class="icon" src="../assets/images/icons/return.png" alt="Pagina anterior"></router-link>
         <img class="icon" src="../assets/images/icons/dots.png" alt="Más opciones">
     </div>
 <article class="flex_row_wrap">
