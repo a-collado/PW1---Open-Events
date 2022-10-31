@@ -12,7 +12,7 @@
     <div class="column">
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                 <ellipse class="green"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -30,7 +30,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                 <ellipse class="yellow"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -48,7 +48,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                 <ellipse class="green"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -63,7 +63,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                 <ellipse class="red"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -80,7 +80,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                 <ellipse></ellipse>
             </div>
             <div class="centered_vertical">
@@ -143,14 +143,6 @@
         margin-bottom: 5px;
         border-style: none;
         outline: none;        
-    }
-
-    .profile_pic_message img{
-        width: 61px;
-        height: 61px;
-        object-fit: cover;
-        object-position: 100% 0;
-        border-radius: 50%;
     }
 
     .message_icon{

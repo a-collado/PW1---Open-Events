@@ -79,17 +79,6 @@ nav {
   width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
 }
 
-.header {
-  display:flex;
-  text-align: center;
-  background: linear-gradient(#00adbdf6, #00adbd38);
-  justify-items: center;
-  flex-wrap: wrap;
-  align-items: center;
-  width:100vw;
-  
-}
-
 /*Profile elements_________________*/
 .profile_info {
   margin: 40px;
@@ -462,6 +451,14 @@ div .button_flex {
   left: 5%;
   top: -80%;
   filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.7))
+}
+
+.small_profilePic{
+  width: 61px;
+  height: 61px;
+  object-fit: cover;
+  object-position: 100% 0;
+  border-radius: 50%;
 }
 
 .landscape{

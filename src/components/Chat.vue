@@ -5,7 +5,7 @@
         <img class="icon" src="../assets/images/icons/dots.png" alt="Más opciones">
     </div>
 <article class="flex_row_wrap">
-    <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+    <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
     <div class="column">
         <h4>Kaladin Stormblessed</h4>
         <h5 class="yellow">Ocupado</h5>
@@ -81,14 +81,6 @@ footer .searchbar{
     border-radius: 19px;
     outline: none;
     border: none;
-}
-
-.profile_pic_message{
-    width: 61px;
-    height: 61px;
-    object-fit: cover;
-    object-position: 100% 0;
-    border-radius: 50%;
 }
 
 .chat{
@@ -224,7 +216,7 @@ h5.red{
         justify-content: flex-start;
     }
     
-    .profile_pic_message{
+    .small_profilePic{
         margin-left: 10vw;
     }
 
