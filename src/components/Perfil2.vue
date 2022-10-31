@@ -91,8 +91,8 @@
 
     <div class="events_statistics_background">
         <div class = "events_statistics_buttons">
-          <router-link to="/perfil" id="button"><button class="eventStatistics"> Eventos </button></router-link>
-          <button class="eventStatistics_Nselected"> Estadísticas </button>
+          <router-link to="/perfil" id="button"><button class="eventStatistics_Nselected"> Eventos </button></router-link>
+          <button class="eventStatistics"> Estadísticas </button>
         </div>
         
         <div class="centered_horitzontal">
