@@ -96,7 +96,7 @@
         </div>
         
         <div class="centered_horitzontal">
-          <div id="timeline">
+          <div class="timeline">
               <div class="timeline_header"> 
                 <h2 class="blue_big"> Timeline</h2>
               </div>

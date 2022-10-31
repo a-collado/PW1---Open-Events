@@ -161,7 +161,7 @@ nav {
 }
 
 /*Timeline elements__________________*/
-#timeline{
+.timeline{
   width: 98%;
   height: 250px;
   background-color: rgba(255,255,255,0.5);
@@ -1038,21 +1038,15 @@ h1{
   /*TIMELINE_MOVIL_________________________________*/
 
   #Abril2021{
-    position: absolute;
-    left:15%;
-    top: 95px;
+    top: 105px;
   }
   
   #Noviembre2021{
-    position: absolute;
-    left:30%;
-    top: 95px;
+    top: 105px;
   }
   
   #Marzo2023{
-    position: absolute;
-    left:75%;
-    top: 95px;
+    top: 105px;
   }
   
   /*____________________________________________________*/
