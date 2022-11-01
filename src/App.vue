@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-    <router-link to="/"><img src="src\assets\images\icons\logo.png" style="width:200px;"></router-link>
+    <router-link to="/"><img id=logo_header src="src\assets\images\icons\logo.png"></router-link>
     <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
   
     <div>
@@ -38,18 +38,81 @@
 }*/
 
 #header {
-  display:flex;
-  text-align: center;
+  display:grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 33.3% 33.3%;
   background: linear-gradient(#00adbdf6, #00adbd38);
-  justify-items: center;
-  flex-wrap: wrap;
-  align-items: center;
   width:100vw;
-  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
 }
 
 #header > div > * {margin: 5px;}
 
+#header div{
+  grid-row-start:1;
+  grid-row-end: span 2;
+  grid-column-start:4;
+  grid-column-end: span 2;
+}
+
+#header input{
+  grid-row-start:3;
+  grid-row-end: span 1;
+  grid-column-start:1;
+  grid-column-end: span 5;
+  margin-bottom: 10px;
+  padding: 15px 20px 15px 15px;
+  border:none;
+  width:70vw;
+}
+
+#header a{
+  grid-row-start:1;
+  grid-row-end: span 2;
+  grid-column-start:1;
+  grid-column-end: span 2;
+}
+
+#logo_header{
+  width:140px;
+  height:80px;
+}
+
+@media only screen and (min-width: 760px) {
+
+  #header {
+  grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67%;
+  grid-template-rows: 50%;
+}
+
+#header > div > * {margin: 5px;}
+
+#header div{
+  grid-column-start:5;
+  grid-column-end: span 2;
+}
+
+#header input{
+  grid-row-start:1;
+  grid-row-end: span 2;
+  grid-column-start:3;
+  grid-column-end: span 2;
+  width:40vw;
+  padding: 20px 40px 20px 20px;
+  
+}
+
+#header a{
+  grid-column-start:1;
+  grid-column-end: span 2;
+}
+
+#logo_header{
+  width:170px;
+  height:100px;
+}
+}
 
 
 
