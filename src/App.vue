@@ -43,6 +43,7 @@
   grid-template-rows: 33.3% 33.3%;
   background: linear-gradient(#00adbdf6, #00adbd38);
   width:100vw;
+  min-width: 375px;
   justify-items: center;
   align-items: center;
 }

@@ -126,11 +126,11 @@ nav {
 .events_statistics_background{
   margin: 10px;
   margin-top: 50px;
+  margin-left: 25px;
   padding: 10px;
   border-radius: 10px;
   width: 88vw;
   min-width: 330px;
-  left: 1%;
   position: absolute;
   background: linear-gradient(#00ADBD, #D9D9D9);
 }
@@ -200,11 +200,13 @@ nav {
 /*Event elements_____________________*/
 .basic_event{
   width: 100vw;
+  min-width: 320px;
   height: 140px;
   filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
   margin: 5px;
   margin-bottom: 12px;
   display: flex;
+  
 }
 
 .footer_basicEvent{
@@ -232,8 +234,8 @@ div.background_white_opac{
   width: 98%;
   background-color: rgba(255,255,255,0.5);
   border-radius: 8px 8px 8px 8px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 /*Timeline events_______*/
@@ -310,6 +312,13 @@ div .button_flex {
     margin:2px;
  }
 
+@media (min-width: 1083px) {
+
+  .events_statistics_background{
+    width: 65vw;
+  }
+ 
+}
 
 @media (min-width: 768px) {
   
@@ -317,7 +326,6 @@ div .button_flex {
     height: 330px;
     width: 100vw; /* 100vw hace que pille todo el ancho del navegador*/
   }
-
   .profile_info {
     margin: 40px;
     margin-left: 100px;
@@ -326,89 +334,85 @@ div .button_flex {
     width: 65vw;
   }
 
-.events_statistics_background{
-  border: 25px;
-  border-radius: 10px;
-  width: 65vw;
-  position: absolute;
-  margin-top: 30px;
-  left: 5%;
-  background: linear-gradient(#00ADBD, #D9D9D9);
-}
-
-.events_statistics_buttons{
-  width: 190px;
-  display: flex;
-  justify-content: space-between;  
-  left: -3px;
-  top: -30px;
-  position: absolute;
-  z-index: -1;
-}
-
-.event_group{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: row;
-}
-
-/*Event elements_____________________*/
-.basic_event{
-  width: 400px;
-  height: 200px;
-}
-
-.footer_basicEvent{
-  width: 100%;
-  height: 30%;
-  border-radius: 0px 0px 8px 8px;
-  background-color: white;
-  position: absolute;
-  top: 140px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.filter_events{
-  display: flex;
-  margin-bottom: 2%;
-  margin-top: 3%;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-}
-
- .profile_info .button_flex{
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: stretch;
-  position: absolute;
-  top: 460px;
-  right: 26%;
- }
-
- .profile_friends{
-  display: flex;
-  width: 25vw;
-  flex-direction: column;
-  /*background: red;*/
-  position: absolute;
-  right: 0px;
-  top: 470px;
-  flex-wrap: wrap;
-  align-content: space-around;
-  align-items: flex-start;
- }
-
- .timeline_event{
-  width: 370px;
+  .events_statistics_background{
+    margin-top: 30px;
+    margin-left: 90px;
   }
+
+
+  .events_statistics_buttons{
+    width: 190px;
+    display: flex;
+    justify-content: space-between;  
+    left: -3px;
+    top: -30px;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .event_group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  /*Event elements_____________________*/
+  .basic_event{
+    width: 400px;
+    height: 200px;
+  }
+
+  .footer_basicEvent{
+    width: 100%;
+    height: 30%;
+    border-radius: 0px 0px 8px 8px;
+    background-color: white;
+    position: absolute;
+    top: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filter_events{
+    display: flex;
+    margin-bottom: 2%;
+    margin-top: 3%;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .profile_info .button_flex{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    position: absolute;
+    top: 460px;
+    right: 26%;
+  }
+
+  .profile_friends{
+    display: flex;
+    width: 25vw;
+    flex-direction: column;
+    /*background: red;*/
+    position: absolute;
+    right: 0px;
+    top: 445px;
+    flex-wrap: wrap;
+    align-content: space-around;
+    align-items: flex-start;
+  }
+
+  .timeline_event{
+    width: 370px;
+    }
 
 }
 
@@ -464,6 +468,7 @@ div .button_flex {
 
 .landscape{
   width: 100%;
+  min-width: 375px;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
@@ -716,6 +721,12 @@ button.eventStatistics_Nselected{
   background: #F9E4CE;
 }
 
+@media only screen and (min-width: 1083px){
+  .profileButtons{
+    display: none;
+  }
+}
+
 @media only screen and (min-width: 768px) {
 
   /*.profile_info div button{
@@ -735,10 +746,6 @@ button.eventStatistics_Nselected{
     font-size: 30px;
     line-height: 36px;
   }*/
-
-  .profileButtons{
-    display: none;
-  }
  
   button-icon{
   border-radius: 10px;
