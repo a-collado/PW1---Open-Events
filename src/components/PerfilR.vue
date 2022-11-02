@@ -100,7 +100,7 @@
         </div>
 
         <div class="event_group">
-          <div class="basic_event">
+          <figure class="basic_event">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
             
             <div class="footer_basicEvent"> 
@@ -119,9 +119,9 @@
               </div>
 
             </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+          </figure> <!--Tanquem figure del event-->
 
-          <div class="basic_event">
+          <figure class="basic_event">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
             
             <div class="footer_basicEvent"> 
@@ -140,9 +140,9 @@
               </div>
 
             </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+          </figure> <!--Tanquem figure del event-->
 
-          <div class="basic_event">
+          <figure class="basic_event">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
             
             <div class="footer_basicEvent"> 
@@ -161,9 +161,9 @@
               </div>
 
             </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+          </figure> <!--Tanquem figure del event-->
 
-          <div class="basic_event">
+          <figure class="basic_event">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
             
             <div class="footer_basicEvent"> 
@@ -182,7 +182,7 @@
               </div>
 
             </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+          </figure> <!--Tanquem figure del event-->
 
       </div> <!--Event group-->
     </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
