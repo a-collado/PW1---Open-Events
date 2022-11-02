@@ -2,15 +2,18 @@
 
 <div class="home-wrapper">
   <hr>
-  <div class="recomended_event">
-    <div class="recomended_event_img">
-        <div class="footer_event"> 
-          <h1 class="Name">Festival anual de Barcelona</h1>
-          <p class="Data">14 de octubre a las 18:00h</p>
-          <p class="Location">Sala Tango, calle Ruiseñor, Barcelona</p>
-        </div>
-    </div>
-  </div>
+  <router-link to="/event">
+    <figure class="recomended_event">
+      <div class="recomended_event_img">
+          <div class="footer_event"> 
+            <h1 class="Name">Festival anual de Barcelona</h1>
+            <p class="Data">14 de octubre a las 18:00h</p>
+            <p class="Location">Sala Tango, calle Ruiseñor, Barcelona</p>
+          </div>
+      </div>
+    </figure>
+  </router-link>
+
   <div class="create_event">
     <hr>
     <router-link to="/create_event" class="button"> Crea tu propio evento </router-link>

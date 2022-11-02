@@ -12,48 +12,66 @@
   
   <div class="profile_friends">
     <h1>Amigos (5)</h1>
-    <div class="flex_row_wrap">
-      <img src="../assets/images/profilepic.webp" alt="profile pic">
+
+    <router-link to="/perfilR">
+      <div class="flex_row_wrap">
+        <img src="../assets/images/profilepic.webp" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
-      </div>  
-    </div>
+        </div>  
+      </div>
+    </router-link>
+
     <hr>
-    <div class="flex_row_wrap">
-      <img src="../assets/images/profilepic.webp" alt="profile pic">
+
+    <router-link to="/perfilR">
+      <div class="flex_row_wrap">
+        <img src="../assets/images/profilepic.webp" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
-      </div>  
-    </div>
+        </div>  
+      </div>
+    </router-link>
+
     <hr>
-    <div class="flex_row_wrap">
-      <img src="../assets/images/profilepic.webp" alt="profile pic">
+
+    <router-link to="/perfilR">
+      <div class="flex_row_wrap">
+        <img src="../assets/images/profilepic.webp" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
-      </div>  
-    </div>
+        </div>  
+      </div>
+    </router-link>
+
     <hr>
-    <div class="flex_row_wrap">
-      <img src="../assets/images/profilepic.webp" alt="profile pic">
+
+    <router-link to="/perfilR">
+      <div class="flex_row_wrap">
+        <img src="../assets/images/profilepic.webp" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
-      </div>  
-    </div>
+        </div>  
+      </div>
+    </router-link>
+
     <hr>
-    <div class="flex_row_wrap">
-      <img src="../assets/images/profilepic.webp" alt="profile pic">
+
+    <router-link to="/perfilR">
+      <div class="flex_row_wrap">
+        <img src="../assets/images/profilepic.webp" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
-      </div>  
-    </div>
+        </div>  
+      </div>
+    </router-link>
     <hr>
-    
-  </div> <!--tanquem div profile friends-->
+  </div> <!--tanquem profile friends-->
   
   <!-- User info-->
   
