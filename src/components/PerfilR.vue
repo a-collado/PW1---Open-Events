@@ -95,7 +95,8 @@
 
       <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
       <div class="button_flex">
-        <router-link to="/chat"><button class="button_pink_normal">Contactar</button></router-link>
+        <button class="button_pink_normal">Enviar solicitud</button>
+        <button-icon><router-link to="/chat"><img class="icon" src="../assets/images/icons/edit.png" alt="send message button"></router-link></button-icon>
       </div>
       <hr>
 

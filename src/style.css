@@ -551,13 +551,6 @@ img.stars{
     
   }
 
-  .icon{
-    object-fit: cover;
-    margin: 2px;
-    width: 20px;
-    height: 20px;
-  }
-
   button-icon .icon{
     width: 40px;
     height: 40px;

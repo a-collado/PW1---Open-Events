@@ -95,10 +95,7 @@
     <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
     <div class="button_flex">
       <router-link to="/editarPerfil"><button class="button_pink_normal">Editar perfil</button></router-link>
-      <button-icon><img class="icon" src="../assets/images/icons/config.png" alt="profile configuration">
-      </button-icon>
-      <button-icon><img class="icon" src="../assets/images/icons/dots_h.png" alt="more options">
-      </button-icon>
+      <button-icon><router-link to="/welcome"><img class="icon" src="../assets/images/icons/logout.png" alt="profile configuration"></router-link></button-icon>
     </div>
     <hr>
 
