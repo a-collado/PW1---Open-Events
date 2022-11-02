@@ -22,7 +22,6 @@
       <router-link to="/register_profile_picture">Register Picture-</router-link>
       <router-link to="/editarPerfil">editarpERFIL-</router-link>
       <router-link to="/">Home-</router-link>
-
     </nav>-->
 </div>
 
@@ -55,6 +54,8 @@
   grid-row-end: span 2;
   grid-column-start:4;
   grid-column-end: span 2;
+  display: flex;
+  align-items: center;
 }
 
 #header input{
@@ -85,6 +86,7 @@
   #header {
   grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67%;
   grid-template-rows: 50%;
+  align-items: center;
 }
 
 #header > div > * {margin: 5px;}
