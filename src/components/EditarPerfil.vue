@@ -33,9 +33,12 @@
             </div>
         </div>
         <br>
-        <router-link to="/perfil"><button class="button_pink_normal">Guardar</button></router-link>
-
-
+        <div class="generic_inputLabel">
+            <div class="row_space">
+                <router-link to="/perfil"><button class="button_pink_small">Guardar</button></router-link>
+                <router-link to="/welcome"><button class="button_purple_small">Eliminar Cuenta</button></router-link>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -48,6 +51,12 @@
         flex-direction: column;
         align-items: center;
         margin-top: 50px;
+    }
+
+    .row_space{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
 
     .generic_inputLabel{
