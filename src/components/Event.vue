@@ -24,7 +24,6 @@
             </div>
         </div>
 
-        <hr>
         <div class="helper_box_pant">
             <div class="rectangle_gray">
                 <div class="helper_box">
@@ -46,52 +45,54 @@
                 </div>
             </div>
         </div>
-
-        <hr>
-
+        
         <div class="helper_box">
             <div class="event_resenas_header">
                 <div class="titulo"><h2>Reseñas del Evento</h2></div>
                 <button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter"></button-icon>
             </div>
-            <div class="helper_box">
-                <div class="resena">
-                    <router-link to="/perfil" id="button"><div class="resena_persona">
-                        <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                        <div class="resena_info">
-                            <div class="texto"><h5>Nombre Apellido</h5></div>
-                            <div class="punctuation">
-                                <h5>5</h5>
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
-                            </div>
-                        </div>
-                    </div></router-link>
-                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
-                </div>
-                <div class="resena">
-                    <router-link to="/perfil" id="button"><div class="resena_persona">
-                        <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                        <div class="resena_info">
-                            <div class="texto"><h5>Nombre Apellido</h5></div>
-                            <div class="punctuation">
-                                <h5>5</h5>
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
-                            </div>
-                        </div>
-                    </div></router-link>
-                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
-                </div>
-            </div>
-        </div>
 
+
+            <table>
+                <tr><div class="resena">
+                    <router-link to="/perfil" id="button"><div class="resena_persona">
+                        <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                        <div class="resena_info">
+                            <div class="texto"><h5>Nombre Apellido</h5></div>
+                            <div class="punctuation">
+                                <h5>5</h5>
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+                            </div>
+                        </div>
+                    </div></router-link>
+                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
+                </div></tr>
+                <tr><div class="resena">
+                    <router-link to="/perfil" id="button"><div class="resena_persona">
+                        <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                        <div class="resena_info">
+                            <div class="texto"><h5>Nombre Apellido</h5></div>
+                            <div class="punctuation">
+                                <h5>5</h5>
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
+                                <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+                            </div>
+                        </div>
+                    </div></router-link>
+                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
+                </div></tr>
+            </table>
+
+            <div class="size_input"><input class="general_input" type="text" placeholder="Añade tu comentario"></div> 
+        </div>
+        
         <button class="button_pink_small">Crear comentario</button>
     </div>
 </template>
@@ -103,6 +104,33 @@
 /*h3.white{
     color: #ffffff;
 }*/
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.resena > * {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+tr:nth-child(even) {background-color: rgb(237, 237, 237);}
+
+.size_input{
+  width:100%;
+  display: flex;
+  margin-top: 15px;
+}
+
+.general_input{
+  width:100%;
+  height: 5px;
+  margin:5px;
+  padding: 20px 40px 20px 20px;
+  border: 1px solid #00adbdf6;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+}
 
 h3.pink{
     color: #C772BA;
@@ -286,7 +314,8 @@ h3.pink{
 
 .resena {
     width:100%;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
