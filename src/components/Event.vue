@@ -91,7 +91,17 @@
             </table>
 
             <div class="size_input"><input class="general_input" type="text" placeholder="Añade tu comentario"></div> 
+            <div class="row_flexEnd">
+                <h5>5</h5>
+                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella"></button>
+                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas"></button>
+                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas"></button>
+                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas"></button>
+                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas"></button>
+            </div>
+
         </div>
+        
         
         <button class="button_pink_small">Crear comentario</button>
     </div>
@@ -122,6 +132,10 @@ tr:nth-child(even) {background-color: rgb(237, 237, 237);}
   margin-top: 15px;
 }
 
+.row_flexEnd > h5 {
+    margin: 4px;
+}
+
 .general_input{
   width:100%;
   height: 5px;
@@ -130,6 +144,13 @@ tr:nth-child(even) {background-color: rgb(237, 237, 237);}
   border: 1px solid #00adbdf6;
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
+}
+
+.row_flexEnd {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 h3.pink{
