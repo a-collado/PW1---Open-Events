@@ -20,13 +20,18 @@
             <li>
                 <hr>
                 <article class="flex_row_wrap">     <!-- Persona --> 
+                    
                     <div class="profile_pic_message">
                         <img src="../assets/images/other_user.png" alt="Foto de perfil">
                     </div>
+                    
                     <div class="centered_vertical">
-                        <h4>John Turturro</h4>
-                        <h5>@john_turturro</h5>
+                        <router-link to="perfilR">
+                            <h4>John Turturro</h4>
+                            <h5>@john_turturro</h5>
+                        </router-link>
                     </div>
+
                 </article>
                 <hr>
             </li>
@@ -35,10 +40,14 @@
                     <div class="profile_pic_message">
                         <img src="../assets/images/other_user.png" alt="Foto de perfil">
                     </div>
+
                     <div class="centered_vertical">
-                        <h4>John Turturro</h4>
-                        <h5>@john_turturro</h5>
+                        <router-link to="perfilR">
+                            <h4>John Turturro</h4>
+                            <h5>@john_turturro</h5>
+                        </router-link>
                     </div>
+
                 </article>
                 <hr>
             </li>    
@@ -47,10 +56,14 @@
                     <div class="profile_pic_message">
                         <img src="../assets/images/other_user.png" alt="Foto de perfil">
                     </div>
+
                     <div class="centered_vertical">
-                        <h4>John Turturro</h4>
-                        <h5>@john_turturro</h5>
+                        <router-link to="perfilR">
+                            <h4>John Turturro</h4>
+                            <h5>@john_turturro</h5>
+                        </router-link>
                     </div>
+                    
                 </article>
                 <hr>
             </li>
@@ -59,10 +72,14 @@
                     <div class="profile_pic_message">
                         <img src="../assets/images/other_user.png" alt="Foto de perfil">
                     </div>
+
                     <div class="centered_vertical">
-                        <h4>John Turturro</h4>
-                        <h5>@john_turturro</h5>
+                        <router-link to="perfilR">
+                            <h4>John Turturro</h4>
+                            <h5>@john_turturro</h5>
+                        </router-link>
                     </div>
+
                 </article>
                 <hr>
             </li>  
@@ -71,10 +88,14 @@
                     <div class="profile_pic_message">
                         <img src="../assets/images/other_user.png" alt="Foto de perfil">
                     </div>
+
                     <div class="centered_vertical">
-                        <h4>John Turturro</h4>
-                        <h5>@john_turturro</h5>
+                        <router-link to="perfilR">
+                            <h4>John Turturro</h4>
+                            <h5>@john_turturro</h5>
+                        </router-link>
                     </div>
+
                 </article>
                 <hr>
             </li>
