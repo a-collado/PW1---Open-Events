@@ -47,6 +47,10 @@ nav {
   justify-content: start;
 }
 
+ul {
+  list-style-type: none;
+}
+
 
 /*STYLE FOR ELEMENTS---------------------------------------------------------------------------------------------------*/
 
@@ -567,7 +571,7 @@ img.stars{
   gap: 10px;
   position: absolute;
   left: 165px;
-  top: 345px;
+  top: 270px;
   font-family: inter;
   font-size: 14px;
 }
