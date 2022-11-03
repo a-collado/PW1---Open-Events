@@ -338,5 +338,9 @@ h3.pink{
         align-items: center;
         justify-content: space-between;
     }
+
+    .event_descrip_box {
+    margin-top: 70px;
+}
 }
 </style>
