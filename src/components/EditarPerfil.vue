@@ -36,7 +36,7 @@
         <div class="generic_inputLabel">
             <div class="row_space">
                 <router-link to="/perfil"><button class="button_pink_small">Guardar</button></router-link>
-                <router-link to="/welcome"><button class="button_purple_small">Eliminar Cuenta</button></router-link>
+                <router-link to="/welcome"><button class="button_purple_small">Eliminar cuenta</button></router-link>
             </div>
         </div>
     </div>

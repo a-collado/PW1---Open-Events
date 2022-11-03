@@ -179,6 +179,7 @@
   align-content: center;
   justify-content: center;
   box-sizing: border-box;
+  margin: 0px;
 }
 
 .footer_event{
@@ -207,7 +208,8 @@
   flex-direction: column;
   justify-content: end;
   align-self: center;
-  margin: 3vw;
+  margin-top: 3vw;
+  margin-bottom: 3vw;
 }
 
 .Name{
@@ -237,7 +239,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin-top: 10px;
   margin-bottom: 30px;
   max-width: 800px;
   
@@ -272,7 +274,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin-top: 20px;
   max-width: 800px;
 }
 
@@ -298,8 +300,8 @@
   justify-content: space-between;
   font-size: 26px;
   font-weight: bold;
-  margin: 20px 20px 0px 20px;
-  width:100vw;
+  margin-top: 20px;
+  width:90vw;
   max-width: 800px;
 }
 
@@ -311,9 +313,9 @@
 }
 
 .event_group{
-  margin-left:20px;
-  margin-right:20px;
+  display: flex;
   max-width: 1000px;
+  justify-content: center;
 }
 
 .small_divider{
