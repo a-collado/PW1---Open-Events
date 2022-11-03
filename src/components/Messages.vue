@@ -13,7 +13,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
+                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
                 <ellipse class="green"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -34,7 +34,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
+                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
                 <ellipse class="yellow"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -54,7 +54,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
+                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
                 <ellipse class="green"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -71,7 +71,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
+                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
                 <ellipse class="red"></ellipse>
             </div>
             <div class="centered_vertical">
@@ -90,7 +90,7 @@
 
         <article class="flex_row_wrap">     <!-- Persona -->
             <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil"></router-link>
+                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
                 <ellipse></ellipse>
             </div>
             <div class="centered_vertical">

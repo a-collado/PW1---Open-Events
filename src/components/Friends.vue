@@ -17,7 +17,7 @@
         <hr>
         <article class="flex_row_wrap">     <!-- Persona --> 
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img src="../assets/images/other_user.png" alt="Foto de perfil">
             </div>
             <div class="centered_vertical">
                 <h4>John Turturro</h4>
@@ -27,7 +27,7 @@
         <hr>
         <article class="flex_row_wrap">     <!-- Persona --> 
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img src="../assets/images/other_user.png" alt="Foto de perfil">
             </div>
             <div class="centered_vertical">
                 <h4>John Turturro</h4>
@@ -37,7 +37,7 @@
         <hr>
         <article class="flex_row_wrap">     <!-- Persona --> 
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img src="../assets/images/other_user.png" alt="Foto de perfil">
             </div>
             <div class="centered_vertical">
                 <h4>John Turturro</h4>
@@ -47,7 +47,7 @@
         <hr>
         <article class="flex_row_wrap">     <!-- Persona --> 
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img src="../assets/images/other_user.png" alt="Foto de perfil">
             </div>
             <div class="centered_vertical">
                 <h4>John Turturro</h4>
@@ -57,7 +57,7 @@
         <hr>
         <article class="flex_row_wrap">     <!-- Persona --> 
             <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                <img src="../assets/images/other_user.png" alt="Foto de perfil">
             </div>
             <div class="centered_vertical">
                 <h4>John Turturro</h4>

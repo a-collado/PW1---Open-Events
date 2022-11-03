@@ -5,7 +5,7 @@
         <img class="icon" src="../assets/images/icons/dots.png" alt="Más opciones">
     </div>
 <article class="flex_row_wrap">
-    <img class="small_profilePic" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+    <img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil">
     <div class="column">
         <h4>Kaladin Stormblessed</h4>
         <h5 class="yellow">Ocupado</h5>

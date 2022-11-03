@@ -15,7 +15,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -27,7 +27,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -39,7 +39,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -51,7 +51,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -63,7 +63,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>

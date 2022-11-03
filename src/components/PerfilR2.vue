@@ -2,7 +2,7 @@
 
   <div class="profile_header">
     <img class="landscape" src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile">
-    <img class="profilePic" src="../assets/images/profilepic.webp" alt="Avatar">
+    <img class="profilePic" src="../assets/images/other_user.png" alt="Avatar">
     
     <div class="profileButtons">
       <button class="button_blues_small">10 Amigos</button>
@@ -15,7 +15,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -27,7 +27,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -39,7 +39,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -51,7 +51,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
@@ -63,7 +63,7 @@
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
-        <img src="../assets/images/profilepic.webp" alt="profile pic">
+        <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
           <h2>Amigo1</h2>
           <p class="grey_normal">@amigo1</p>
