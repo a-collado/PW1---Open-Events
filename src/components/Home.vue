@@ -2,15 +2,18 @@
 
 <div class="home-wrapper">
   <hr>
-  <div class="recomended_event">
-    <div class="recomended_event_img">
-        <div class="footer_event"> 
-          <h1 class="Name">Festival anual de Barcelona</h1>
-          <p class="Data">14 de octubre a las 18:00h</p>
-          <p class="Location">Sala Tango, calle Ruiseñor, Barcelona</p>
-        </div>
-    </div>
-  </div>
+  <router-link to="/event">
+    <figure class="recomended_event">
+      <div class="recomended_event_img">
+          <div class="footer_event"> 
+            <h1 class="Name">Festival anual de Barcelona</h1>
+            <p class="Data">14 de octubre a las 18:00h</p>
+            <p class="Location">Sala Tango, calle Ruiseñor, Barcelona</p>
+          </div>
+      </div>
+    </figure>
+  </router-link>
+
   <div class="create_event">
     <hr>
     <router-link to="/create_event" class="button"> Crea tu propio evento </router-link>
@@ -61,89 +64,97 @@
   </div>
   <div class="events">
     <div class="event_group">
-          <div class="basic_event">
-            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-            
-            <div class="footer_basicEvent"> 
-              <h2 class="blue_big">Fiesta de los 80</h2>
+      <router-link to="/event">
+        <figure class="basic_event">
+          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          
+          <div class="footer_basicEvent"> 
+            <h2 class="blue_big">Fiesta de los 80</h2>
 
-              <div class="column"> 
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
-                </div>
-
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-                  <p class="blue_small_bold">Barcelona</p>
-                </div>
+            <div class="column"> 
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
-            </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <p class="blue_small_bold">Barcelona</p>
+              </div>
+            </div>
 
-          <div class="basic_event">
-            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-            
-            <div class="footer_basicEvent"> 
-              <h2 class="blue_big">Fiesta de los 80</h2>
+          </div><!--Footer del event-->
+        </figure> <!--Tanquem figure del event-->
+      </router-link>
 
-              <div class="column"> 
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
-                </div>
+      <router-link to="/event">
+        <figure class="basic_event">
+          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          
+          <div class="footer_basicEvent"> 
+            <h2 class="blue_big">Fiesta de los 80</h2>
 
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-                  <p class="blue_small_bold">Barcelona</p>
-                </div>
+            <div class="column"> 
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
-            </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <p class="blue_small_bold">Barcelona</p>
+              </div>
+            </div>
 
-          <div class="basic_event">
-            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-            
-            <div class="footer_basicEvent"> 
-              <h2 class="blue_big">Fiesta de los 80</h2>
+          </div><!--Footer del event-->
+        </figure> <!--Tanquem figure del event-->
+      </router-link>
 
-              <div class="column"> 
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
-                </div>
+      <router-link to="/event">
+        <figure class="basic_event">
+          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          
+          <div class="footer_basicEvent"> 
+            <h2 class="blue_big">Fiesta de los 80</h2>
 
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-                  <p class="blue_small_bold">Barcelona</p>
-                </div>
+            <div class="column"> 
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
-            </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <p class="blue_small_bold">Barcelona</p>
+              </div>
+            </div>
 
-          <div class="basic_event">
-            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-            
-            <div class="footer_basicEvent"> 
-              <h2 class="blue_big">Fiesta de los 80</h2>
+          </div><!--Footer del event-->
+        </figure> <!--Tanquem figure del event-->
+      </router-link>
 
-              <div class="column"> 
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                  <p class="blue_small_bold">09/11/2021<br>20:00</p>
-                </div>
+      <router-link to="/event">
+        <figure class="basic_event">
+          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          
+          <div class="footer_basicEvent"> 
+            <h2 class="blue_big">Fiesta de los 80</h2>
 
-                <div class="flex_row_wrap">
-                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-                  <p class="blue_small_bold">Barcelona</p>
-                </div>
+            <div class="column"> 
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
-            </div><!--Footer del event-->
-          </div> <!--Tanquem div del event-->
+              <div class="flex_row_wrap">
+                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <p class="blue_small_bold">Barcelona</p>
+              </div>
+            </div>
+
+          </div><!--Footer del event-->
+        </figure> <!--Tanquem figure del event-->
+      </router-link>
 
       </div> <!--Event group-->
   </div>
