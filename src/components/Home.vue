@@ -178,6 +178,7 @@
   flex-direction: row;
   align-content: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .footer_event{
