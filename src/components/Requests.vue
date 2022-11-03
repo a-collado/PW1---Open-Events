@@ -2,7 +2,9 @@
 
 <article class="centered_vertical">
 <div class="flex_row_wrap">
-    <h2>Amigos(24)</h2>
+    <router-link to="/friends">
+        <h2>Amigos(24)</h2>
+    </router-link>
     <div class="centered_horitzontal">
         <h2>Solicitudes</h2>
         <ellipse>1</ellipse>
@@ -12,7 +14,9 @@
 
 <div class="flex_row_wrap sub">
     <h3>Recibidas</h3>
-    <h3>Pendientes</h3>
+    <router-link to="/pendant">
+        <h3>Pendientes</h3>
+    </router-link>
 </div>
 <hr>
 
@@ -20,87 +24,105 @@
 
 <main>
     <div class="column">
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-            <div class="centered_horitzontal">
-                <button>Confirmar</button>
-                <button class="delete">Eliminar</button>
-            </div>
-        </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-            <div class="centered_horitzontal">
-                <button>Confirmar</button>
-                <button class="delete">Eliminar</button>
-            </div>
-        </article>
-        <hr><article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-            <div class="centered_horitzontal">
-                <button>Confirmar</button>
-                <button class="delete">Eliminar</button>
-            </div>
-        </article>
-        <hr><article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-            <div class="centered_horitzontal">
-                <button>Confirmar</button>
-                <button class="delete">Eliminar</button>
-            </div>
-        </article>
-        <hr><article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-            <div class="centered_horitzontal">
-                <button>Confirmar</button>
-                <button class="delete">Eliminar</button>
-            </div>
-        </article>
-        <hr><article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-            <div class="centered_horitzontal">
-                <button>Confirmar</button>
-                <button class="delete">Eliminar</button>
-            </div>
-        </article>
-        <hr>
+    <ul>
+        <li>
+            <hr>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Confirmar</button>
+                    <button class="delete">Eliminar</button>
+                </div>
+            </article>
+            <hr>
+        </li>
+        <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Confirmar</button>
+                    <button class="delete">Eliminar</button>
+                </div>
+            </article>
+            <hr>
+        </li>
+        <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Confirmar</button>
+                    <button class="delete">Eliminar</button>
+                </div>
+            </article>
+            <hr>
+        </li>
+        <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Confirmar</button>
+                    <button class="delete">Eliminar</button>
+                </div>
+            </article>
+            <hr>
+        </li>
+        <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Confirmar</button>
+                    <button class="delete">Eliminar</button>
+                </div>
+            </article>
+            <hr>
+        </li>
+        <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Confirmar</button>
+                    <button class="delete">Eliminar</button>
+                </div>
+            </article>
+            <hr>
+        </li>
+    </ul>
     </div>
 </main>
 
@@ -287,6 +309,7 @@
     }
 
     button{
+        padding: 8px;
         font-size: 20px;
     }
 

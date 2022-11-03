@@ -4,7 +4,9 @@
     <div class="flex_row_wrap">
         <h2>Amigos(24)</h2>
         <div class="centered_horitzontal">
-            <h2>Solicitudes</h2>
+            <router-link to="/requests">
+                <h2>Solicitudes</h2>
+            </router-link>
             <ellipse>1</ellipse>
         </div>
     </div>
@@ -14,57 +16,69 @@
 
 <main>
     <div class="column">
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/other_user.png" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-        </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/other_user.png" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-        </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/other_user.png" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-        </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/other_user.png" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-        </article>
-        <hr>
-        <article class="flex_row_wrap">     <!-- Persona --> 
-            <div class="profile_pic_message">
-                <img src="../assets/images/other_user.png" alt="Foto de perfil">
-            </div>
-            <div class="centered_vertical">
-                <h4>John Turturro</h4>
-                <h5>@john_turturro</h5>
-            </div>
-        </article>
-        <hr>
+        <ul>
+            <li>
+                <hr>
+                <article class="flex_row_wrap">     <!-- Persona --> 
+                    <div class="profile_pic_message">
+                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                    </div>
+                    <div class="centered_vertical">
+                        <h4>John Turturro</h4>
+                        <h5>@john_turturro</h5>
+                    </div>
+                </article>
+                <hr>
+            </li>
+            <li>
+                <article class="flex_row_wrap">     <!-- Persona --> 
+                    <div class="profile_pic_message">
+                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                    </div>
+                    <div class="centered_vertical">
+                        <h4>John Turturro</h4>
+                        <h5>@john_turturro</h5>
+                    </div>
+                </article>
+                <hr>
+            </li>    
+            <li>
+                <article class="flex_row_wrap">     <!-- Persona --> 
+                    <div class="profile_pic_message">
+                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                    </div>
+                    <div class="centered_vertical">
+                        <h4>John Turturro</h4>
+                        <h5>@john_turturro</h5>
+                    </div>
+                </article>
+                <hr>
+            </li>
+            <li>
+                <article class="flex_row_wrap">     <!-- Persona --> 
+                    <div class="profile_pic_message">
+                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                    </div>
+                    <div class="centered_vertical">
+                        <h4>John Turturro</h4>
+                        <h5>@john_turturro</h5>
+                    </div>
+                </article>
+                <hr>
+            </li>  
+            <li>
+                <article class="flex_row_wrap">     <!-- Persona --> 
+                    <div class="profile_pic_message">
+                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                    </div>
+                    <div class="centered_vertical">
+                        <h4>John Turturro</h4>
+                        <h5>@john_turturro</h5>
+                    </div>
+                </article>
+                <hr>
+            </li>
+        </ul>
     </div>
 </main>
 
