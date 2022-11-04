@@ -27,6 +27,7 @@
 
   <router-view></router-view>
 
+  
   <div id="footer">
     <div id="titleFooter">
      <div><img class=logo_header src="src\assets\images\icons\logo.png"></div>
@@ -63,6 +64,7 @@
   </div>
 
   </div>
+
   
 </template>
 
