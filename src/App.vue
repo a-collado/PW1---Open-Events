@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-    <router-link to="/"><img id=logo_header src="src\assets\images\icons\logo.png"></router-link>
+    <router-link to="/"><img class=logo_header src="src\assets\images\icons\logo.png"></router-link>
     <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
   
     <div>
@@ -28,37 +28,39 @@
   <router-view></router-view>
 
   <div id="footer">
-    <div>
-      <router-link to="/"><img id=logo_header src="src\assets\images\icons\logo.png"></router-link>
-      <div class="flex_row_wrap">
+    <div id="titleFooter">
+     <div><img class=logo_header src="src\assets\images\icons\logo.png"></div>
+      <div>
         <img class="icon" src="src\assets\images\icons\youtube.png">
         <img class="icon" src="src\assets\images\icons\twitter.png">
         <img class="icon" src="src\assets\images\icons\instagram.png">
       </div>
     </div>
 
-  <table>
-    <tr>
-      <th>Company</th>
-      <th>Social</th>
-      <th>Legal</th>
-    </tr>
-    <tr>
-      <td>About us</td>
-      <td>Youtube</td>
-      <td>Terms</td>
-    </tr>
-    <tr>
-      <td>Contact us</td>
-      <td>twitter</td>
-      <td>Privacy</td>
-    </tr>
-    <tr>
-      <td>FAQ</td>
-      <td>Instagram</td>
-      <td></td>
-    </tr>
-  </table>
+    <div class="centered_vertical">
+    <table>
+      <tr>
+        <th>Company</th>
+        <th>Social</th>
+        <th>Legal</th>
+      </tr>
+      <tr>
+        <td>About us</td>
+        <td>Youtube</td>
+        <td>Terms</td>
+      </tr>
+      <tr>
+        <td>Contact us</td>
+        <td>twitter</td>
+        <td>Privacy</td>
+      </tr>
+      <tr>
+        <td>FAQ</td>
+        <td>Instagram</td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
 
   </div>
   
@@ -111,7 +113,7 @@
   grid-column-end: span 2;
 }
 
-#logo_header{
+.logo_header{
   width:140px;
   height:80px;
 }
@@ -146,7 +148,7 @@
   grid-column-end: span 2;
 }
 
-#logo_header{
+.logo_header{
   width:170px;
   height:100px;
 }
@@ -158,15 +160,24 @@
   color:white;
   display:flex;
   flex-direction: column;
-  align-items: center;
   width:100vw;
+  align-items: center;
+  height: 200px;
 }
 
-#footer div {
+#titleFooter {
   background-color: #25585D;
   width:100vw;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+#footer div div{
+  margin-left:10px;
+  margin-right: 10px;
+  display: flex;
+  width:auto;
 
 }
 
@@ -175,10 +186,19 @@
   text-align: left;
   margin:20px 20px 0px 0px;
   min-width: 375px;
+  margin: 0px;
 }
 
 #footer table td{
   font-size: 10px;
+}
+
+.icon{ width: 40px; height: 40px;}
+
+.centered_vertical{
+  display: flex;
+  align-items: center;
+  height:100vw;
 }
 
 
