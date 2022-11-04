@@ -161,13 +161,16 @@
   display:flex;
   flex-direction: column;
   width:100vw;
+  min-width: 375px;
   align-items: center;
   height: 200px;
+  
 }
 
 #titleFooter {
   background-color: #25585D;
   width:100vw;
+  min-width: 375px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -182,7 +185,8 @@
 }
 
 #footer table{
-  width:90vw;
+  width:80vw;
+  max-width: 500px;
   text-align: left;
   margin:20px 20px 0px 0px;
   min-width: 375px;
