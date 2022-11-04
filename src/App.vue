@@ -30,6 +30,11 @@
   <div id="footer">
     <div>
       <router-link to="/"><img id=logo_header src="src\assets\images\icons\logo.png"></router-link>
+      <div class="flex_row_wrap">
+        <img class="icon" src="src\assets\images\icons\youtube.png">
+        <img class="icon" src="src\assets\images\icons\twitter.png">
+        <img class="icon" src="src\assets\images\icons\instagram.png">
+      </div>
     </div>
 
   <table>
@@ -160,12 +165,16 @@
 #footer div {
   background-color: #25585D;
   width:100vw;
+  display: flex;
+  justify-content: space-between;
+
 }
 
 #footer table{
   width:90vw;
   text-align: left;
   margin:20px 20px 0px 0px;
+  min-width: 375px;
 }
 
 #footer table td{
