@@ -26,6 +26,36 @@
 </div>
 
   <router-view></router-view>
+
+  <div id="footer">
+    <div>
+      <router-link to="/"><img id=logo_header src="src\assets\images\icons\logo.png"></router-link>
+    </div>
+
+  <table>
+    <tr>
+      <th>Company</th>
+      <th>Social</th>
+      <th>Legal</th>
+    </tr>
+    <tr>
+      <td>About us</td>
+      <td>Youtube</td>
+      <td>Terms</td>
+    </tr>
+    <tr>
+      <td>Contact us</td>
+      <td>twitter</td>
+      <td>Privacy</td>
+    </tr>
+    <tr>
+      <td>FAQ</td>
+      <td>Instagram</td>
+      <td></td>
+    </tr>
+  </table>
+
+  </div>
   
 </template>
 
@@ -117,6 +147,30 @@
 }
 }
 
+#footer{
+  margin-top: 50px;
+  background-color: #2F3F40;
+  color:white;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width:100vw;
+}
+
+#footer div {
+  background-color: #25585D;
+  width:100vw;
+}
+
+#footer table{
+  width:90vw;
+  text-align: left;
+  margin:20px 20px 0px 0px;
+}
+
+#footer table td{
+  font-size: 10px;
+}
 
 
 </style>
