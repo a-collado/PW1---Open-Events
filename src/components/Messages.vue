@@ -108,6 +108,46 @@
             </div>
         </article>
 
+        <article class="flex_row_wrap">     <!-- Persona -->
+            <div class="profile_pic_message">
+                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
+                <ellipse></ellipse>
+            </div>
+            <div class="centered_vertical">
+                <router-link to="/chat">
+                    <h4>Maya Hawke</h4>
+                    <div>
+                        <p>Nam in tincidunt dolor. Fusce non 
+                        rhoncus ligula. Proin gravida ex a nisi...</p>
+                    </div>
+                </router-link>
+            </div>
+            <div>
+                <h6>+48h</h6>
+                <ellipse>3</ellipse>
+            </div>
+        </article>
+
+        <article class="flex_row_wrap">     <!-- Persona -->
+            <div class="profile_pic_message">
+                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
+                <ellipse></ellipse>
+            </div>
+            <div class="centered_vertical">
+                <router-link to="/chat">
+                    <h4>Maya Hawke</h4>
+                    <div>
+                        <p>Nam in tincidunt dolor. Fusce non 
+                        rhoncus ligula. Proin gravida ex a nisi...</p>
+                    </div>
+                </router-link>
+            </div>
+            <div>
+                <h6>+48h</h6>
+                <ellipse>3</ellipse>
+            </div>
+        </article>
+
     </div>
 </main>
 </template>

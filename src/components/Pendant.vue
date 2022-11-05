@@ -70,6 +70,51 @@
             </article>
             <hr>
             </li>
+            <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Pendiente</button>
+                </div>
+            </article>
+            <hr>
+            </li>
+            <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Pendiente</button>
+                </div>
+            </article>
+            <hr>
+            </li>
+            <li>
+            <article class="flex_row_wrap">     <!-- Persona --> 
+                <div class="profile_pic_message">
+                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                </div>
+                <div class="centered_vertical">
+                    <h4>John Turturro</h4>
+                    <h5>@john_turturro</h5>
+                </div>
+                <div class="centered_horitzontal">
+                    <button>Pendiente</button>
+                </div>
+            </article>
+            <hr>
+            </li>
         </ul>
     </div>
 </main>

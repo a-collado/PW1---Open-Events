@@ -31,6 +31,44 @@
             <img class="icon" src="../assets/images/icons/check_g.png" alt="leido">
             <h4>18:20</h4>
         </div>
+
+        <div class="message received">
+            <p>Ut ex turpis, cursus sit amet odio elementum.</p>
+            <h4>15:25</h4>
+        </div>
+        <div class="message send">
+            <p>Quisque elementum justo sem</p>
+            <img class="icon" src="../assets/images/icons/read_g.png" alt="leido">
+            <h4>16:00</h4>
+        </div>
+        <div class="message received">
+            <p>Ut ex turpis, cursus sit amet odio elementum</p>
+            <h4>15:25</h4>
+        </div>
+        <div class="message send">
+            <p>Quisque elementum justo sem</p>
+            <img class="icon" src="../assets/images/icons/check_g.png" alt="leido">
+            <h4>18:20</h4>
+        </div>
+
+        <div class="message received">
+            <p>Ut ex turpis, cursus sit amet odio elementum.</p>
+            <h4>15:25</h4>
+        </div>
+        <div class="message send">
+            <p>Quisque elementum justo sem</p>
+            <img class="icon" src="../assets/images/icons/read_g.png" alt="leido">
+            <h4>16:00</h4>
+        </div>
+        <div class="message received">
+            <p>Ut ex turpis, cursus sit amet odio elementum</p>
+            <h4>15:25</h4>
+        </div>
+        <div class="message send">
+            <p>Quisque elementum justo sem</p>
+            <img class="icon" src="../assets/images/icons/check_g.png" alt="leido">
+            <h4>18:20</h4>
+        </div>
     </div>
 </main>
 <footer class="flex_row_wrap">
@@ -64,12 +102,12 @@
 }
 
 footer.flex_row_wrap{
-    position: fixed;
+    position: relative;
     justify-content: space-evenly;
     padding-top: 20px;
     padding-bottom: 25px;
     padding-left: 5%;
-    bottom: 0px;
+    bottom: -50px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.03) 68.23%, rgba(0, 0, 0, 0.11) 100%);
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -88,6 +126,7 @@ footer .searchbar{
     flex-direction: column;
     margin: 25px;
     height: 60vw auto;
+    max-height: 50vh;
     overflow: auto;
 }
 

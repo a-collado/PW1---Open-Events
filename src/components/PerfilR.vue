@@ -11,7 +11,9 @@
   </div>
 
   <div class="profile_friends">
-    <h1>Amigos (5)</h1>
+    <router-link to="/friends">
+      <h1>Amigos (5)</h1>
+    </router-link>
 
     <router-link to="/perfilR">
       <div class="flex_row_wrap">
