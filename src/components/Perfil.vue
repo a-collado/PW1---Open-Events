@@ -110,6 +110,7 @@
   <!-- -->
 
     
+  
   <div class="events_statistics_background">
     <div class = "events_statistics_buttons">
       <button class="eventStatistics"> Eventos </button>
@@ -219,6 +220,7 @@
 
     </div> <!--Event group-->
   </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
+
 
   <!---->
 </template>

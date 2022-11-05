@@ -132,7 +132,7 @@ ul {
   margin-top: 50px;
   margin-left: 15px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 0px 10px 10px 10px;
   width: 84vw;
   min-width: 330px;
   position: relative;
@@ -149,10 +149,9 @@ ul {
   width: 190px;
   display: flex;
   justify-content: space-between;  
-  left: -3px;
-  top: -30px;
+  left: -5px;
+  top: -36px;
   position: absolute;
-  z-index: -1;
 }
 
 /*Timeline elements__________________*/
@@ -346,15 +345,7 @@ div .button_flex {
   }
 
 
-  .events_statistics_buttons{
-    width: 190px;
-    display: flex;
-    justify-content: space-between;  
-    left: -3px;
-    top: -30px;
-    position: absolute;
-    z-index: -1;
-  }
+
 
   .event_group{
     display: flex;
@@ -691,7 +682,7 @@ button-icon{
 
 button.eventStatistics{
   border-radius: 10px 10px 0px 0px;
-  padding: 0.25em 0.5em 1em;
+  padding: 10px 10px 10px 10px;
   font-family: inter;
   background: #00ADBD;
   cursor: pointer;
@@ -702,7 +693,7 @@ button.eventStatistics{
 
 button.eventStatistics_Nselected{
   border-radius: 10px 10px 0px 0px;
-  padding: 0.25em 0.5em 1em;
+  padding: 10px 10px 10px 10px;
   font-family: inter;
   background: #1D7780;
   cursor: pointer;

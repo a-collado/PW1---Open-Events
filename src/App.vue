@@ -179,8 +179,8 @@
 }
 
 #footer div div{
-  margin-left:10px;
-  margin-right: 10px;
+  margin-left:5vw;
+  margin-right: 5vw;
   display: flex;
   width:auto;
 
