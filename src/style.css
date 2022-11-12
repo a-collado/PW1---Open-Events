@@ -344,9 +344,6 @@ div .button_flex {
     margin-left: 90px;
   }
 
-
-
-
   .event_group{
     display: flex;
     flex-wrap: wrap;
@@ -563,7 +560,7 @@ img.stars{
   flex-wrap: wrap;
   gap: 10px;
   position: absolute;
-  left: 165px;
+  left: 45vw;
   top: 270px;
   font-family: inter;
   font-size: 14px;
@@ -709,6 +706,13 @@ button.eventStatistics_Nselected{
   padding-left: 12px;
   padding-right: 12px;
   background: #F9E4CE;
+}
+
+@media only screen and (min-width: 768px){
+  .profileButtons{
+    left: 60vw;
+    top: 450px;
+  }
 }
 
 @media only screen and (min-width: 1083px){
