@@ -19,10 +19,10 @@ export default{
 
         registerUser() {
             
-            let name = document.getElementsByName("Name").value
-            let lastName = document.getElementsByName("Last Name").value
-            let email = document.getElementsByName("email").value
-            let password = document.getElementsByName("password").value
+            let name = document.getElementsByClassName("sign_in_input")[0].value;
+            let lastName = document.getElementsByClassName("sign_in_input")[1].value;
+            let email = document.getElementsByClassName("sign_in_input")[3].value;
+            let password = document.getElementsByClassName("sign_in_input")[4].value;
             let image = "src\assets\images\profilepic.jpg"
 
             const user = {name:name, last_name:lastName, email:email, password:password, image:image}
