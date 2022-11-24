@@ -7,7 +7,7 @@
     <div class="profileButtons">
       <router-link to="/friends">
         <button class="button_blues_small">10 Amigos</button>
-      </router-link>
+      </router-link> 
       <button class="button_blues_small">2 Eventos</button>
     </div>
   </div>
