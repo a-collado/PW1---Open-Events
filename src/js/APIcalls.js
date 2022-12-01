@@ -5,6 +5,10 @@ export default class UserManagement{
         const CORRECT = 201;
     }
 
+    static getCORRECT(){
+        return this.CORRECT;
+    }
+
     static async fetchPostUser(url = '', data = {}){
            
         const response = await fetch(url, {
@@ -22,15 +26,12 @@ export default class UserManagement{
         const user = {name:name, last_name:lastName, email:email, password:password, image:image};
 
         return this.fetchPostUser('http://puigmal.salle.url.edu/api/v2/users', user)
-        .then((response) =>{
-            console.log(response)
-    
+        .then((response) =>{    
             if(response.ok == true) return this.CORRECT;
             return response.json();
         }).then((body) =>{
-            if(body == this.CORRECT) return true;
+            if(body == this.CORRECT) return this.CORRECT;
             var output = body.stackTrace.details[0].message;
-            console.log(output);
             return output;
         })
     }

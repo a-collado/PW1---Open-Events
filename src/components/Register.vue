@@ -15,8 +15,11 @@ export default{
 
         register(){
            UserManagement.registerUser(this.name, this.lastName, this.email, this.password).then((output) =>{
-            console.log(output)
-            
+
+            if(output == UserManagement.getCORRECT()) {
+                
+                
+            }
             
            } );
            
