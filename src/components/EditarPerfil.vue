@@ -1,45 +1,48 @@
 <template>
     
-    <div class="centered_column_width">
+    <form>
+        <div class="centered_column_width">
 
-        <div id="profilePic_button">
-            <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
-        </div>
-
-        <div class="generic_inputLabel">
-            <label><p class="darkblue_normal_bold">Nombre</p></label>
-            <input class="general_input" type="text" value="Sandra">
-        </div>
-
-        <div class="generic_inputLabel"> 
-            <label><p class="darkblue_normal_bold">Apellido</p></label>
-            <input class="general_input" type="text" value="Sánchez Laza">
-        </div>
-
-        <div class="generic_inputLabel">
-            <label><p class="darkblue_normal_bold">Email</p></label>
-            <input class="general_input" type="text" value="Sandra.sala@gmail.com">
-        </div>
-
-        <div class="generic_inputLabel">
-            <label><p class="darkblue_normal_bold">Descripción</p></label>
-            <textarea class="general_input" rows="10">Lorem ipsum dolor sit amet. Aut molestiae similique ab nostrum modi quo autem unde? Hic magnam officiis sed fugiat molestias consequatur voluptas. Ex voluptatibus libero ad dolorum asperiores in officiis quia est quibusdam laboriosam ex consequatur perspiciatis non culpa veniam sit obcaecati voluptatum.</textarea>
-        </div>
-
-        <div class="generic_inputLabel">
-            <label><p class="darkblue_normal_bold">Imagen de fondo</p></label>
-            <div id="backgroundPic_button"> 
-                <button><img class="icon" src="../assets/images/icons/editar.png"></button> 
+            <div id="profilePic_button">
+                <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
             </div>
-        </div>
-        <br>
-        <div class="generic_inputLabel">
-            <div class="row_space">
-                <router-link to="/perfil"><button class="button_pink_small">Guardar</button></router-link>
-                <router-link to="/welcome"><button class="button_purple_small">Eliminar cuenta</button></router-link>
+
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Nombre</p></label>
+                <input class="general_input" type="text" value="Sandra">
             </div>
+
+            <div class="generic_inputLabel"> 
+                <label><p class="darkblue_normal_bold">Apellido</p></label>
+                <input class="general_input" type="text" value="Sánchez Laza">
+            </div>
+
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Email</p></label>
+                <input class="general_input" type="text" value="Sandra.sala@gmail.com">
+            </div>
+
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Descripción</p></label>
+                <textarea class="general_input" rows="10">Lorem ipsum dolor sit amet. Aut molestiae similique ab nostrum modi quo autem unde? Hic magnam officiis sed fugiat molestias consequatur voluptas. Ex voluptatibus libero ad dolorum asperiores in officiis quia est quibusdam laboriosam ex consequatur perspiciatis non culpa veniam sit obcaecati voluptatum.</textarea>
+            </div>
+
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Imagen de fondo</p></label>
+                <div id="backgroundPic_button"> 
+                    <button><img class="icon" src="../assets/images/icons/editar.png"></button> 
+                </div>
+            </div>
+            <br>
+            <div class="generic_inputLabel">
+                <div class="row_space">
+                    <router-link to="/perfil"><button class="button_pink_small">Guardar</button></router-link>
+                    <router-link to="/welcome"><button class="button_purple_small">Eliminar cuenta</button></router-link>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </form>
 
 </template>
 
