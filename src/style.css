@@ -626,23 +626,6 @@ button.button_blues_small{
 }
 
 /*_______________________________________________*/
-/*.profile_info div button {
-  margin-right: 10px;
-  padding-top: 1px;
-  padding-left: 10px;
-  padding-bottom: 1px;
-  padding-right: 30px;
-  background: #C772BA;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  font-family: inter;
-  color: white;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 36px;
-}*/
 
 button-icon{
   border-radius: 10px;
@@ -722,74 +705,55 @@ button.eventStatistics_Nselected{
 }
 
 @media only screen and (min-width: 768px) {
-
-  /*.profile_info div button{
-    padding-right: 50px;
-    padding-left: 20px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-right: 20px;
-    background: #C772BA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    font-family: inter;
-    color: white;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-  }*/
  
   button-icon{
-  border-radius: 10px;
-  border: 0px solid transparent;
-  padding: 0.20em 0.5em;
-  padding-top: 10px;
-  margin-right: 20px;
-  font-size: 1.1em;
-  font-weight: 1000;
-  font-family: inherit;
-  background: #CCCCCC;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
-}
-
-/*Generic buttons_______________________________________________*/
-
-button.button_pink_normal{
-  width: 250px;
-  height: 60px;
-  font-size: 25px; 
-}
-
-button.button_pink_small{
-  width: 150px;
-  height: 45px;
-  font-size: 18px; 
-}
-
-button.button_purple_small{
-  width: 150px;
-  height: 45px;
-  font-size: 18px; 
-}
-
-/*_____________________________________________________________*/
-
-
-}
-
-  .events_statistics_background button:hover {
-    background: #C5A17C;
+    border-radius: 10px;
+    border: 0px solid transparent;
+    padding: 0.20em 0.5em;
+    padding-top: 10px;
+    margin-right: 20px;
+    font-size: 1.1em;
+    font-weight: 1000;
+    font-family: inherit;
+    background: #CCCCCC;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
   }
-  
-  .events_statistics_background button:focus,
-  .events_statistics_background button:focus-visible {
-    background: #C5A17C;
-    color: white;
+
+  /*Generic buttons_______________________________________________*/
+
+  button.button_pink_normal{
+    width: 250px;
+    height: 60px;
+    font-size: 25px; 
   }
+
+  button.button_pink_small{
+    width: 150px;
+    height: 45px;
+    font-size: 18px; 
+  }
+
+  button.button_purple_small{
+    width: 150px;
+    height: 45px;
+    font-size: 18px; 
+  }
+
+  /*_____________________________________________________________*/
+
+}
+
+.events_statistics_background button:hover {
+  background: #C5A17C;
+}
+
+.events_statistics_background button:focus,
+.events_statistics_background button:focus-visible {
+  background: #C5A17C;
+  color: white;
+}
 
 /*Router links-----------------------------*/
 router-link{
@@ -982,6 +946,18 @@ p.pink_small_bold{
   color: #C772BA;
   font-size: 10px;
   font-weight: bold;
+}
+
+p.Error_Input{
+  color:rgb(255, 0, 0);
+  background-color: rgb(238, 238, 238);
+  border: solid;
+  border-color: rgb(238, 238, 238);
+  border-radius: 35px;
+  font-weight: bold;
+  font-size: 15px;
+  display: none;
+  justify-content: center;
 }
 
 h1{

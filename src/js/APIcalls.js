@@ -21,29 +21,39 @@ export default class UserManagement{
 
     static async registerUser(name, lastName, email, password) {
     
-        let image = "src\assets\images\profilepic.jpg"
+        let imageUrl = "src\assets\images\profilepic.jpg"
 
-        const user = {name:name, last_name:lastName, email:email, password:password, image:image};
+        const user = {name:name, last_name:lastName, email:email, password:password, image:imageUrl};
 
         return this.fetchPostUser('http://puigmal.salle.url.edu/api/v2/users', user)
         .then((response) =>{    
             if(response.ok == true) return this.CORRECT;
             return response.json();
         }).then((body) =>{
+            //si és correcte, indiquem que ha llegit correctament
             if(body == this.CORRECT) return this.CORRECT;
-            var output = body.stackTrace.details[0].message;
+
+            //Si no és correcte, comprovem si ha hagut error en SQL o en que no compleix els requeriments
+            if (typeof body.stackTrace.details === 'undefined') { //Error Duplicate Key
+                var output = "The email already exists";
+                
+            }else{ //Error dades no correctes
+                var output = body.stackTrace.details[0].message;
+            }
+
             return output;
         })
     }
 
-    loginUser(name, email) {
+    static async loginUser(name, email) {
         const user = {email:this.email, password:this.password};
 
-        this.fetchPostUser('http://puigmal.salle.url.edu/api/v2/users/login', user)
+        return this.fetchPostUser('http://puigmal.salle.url.edu/api/v2/users/login', user)
         .then((response) =>{
             return response.json();
         }).then((body) =>{
             console.log(body);
+            console.log(body.accessToken);
             return body;
         });
     }
