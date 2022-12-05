@@ -1,6 +1,5 @@
 export default class UserManagement{
 
-
     constructor(){
         const CORRECT = 201;
     }
@@ -36,7 +35,7 @@ export default class UserManagement{
             //Si no és correcte, comprovem si ha hagut error en SQL o en que no compleix els requeriments
             if (typeof body.stackTrace.details === 'undefined') { //Error Duplicate Key
                 var output = "The email already exists";
-                
+
             }else{ //Error dades no correctes
                 var output = body.stackTrace.details[0].message;
             }
@@ -45,17 +44,23 @@ export default class UserManagement{
         })
     }
 
-    static async loginUser(name, email) {
-        const user = {email:this.email, password:this.password};
+    static async loginUser(email, password) {
+        const user = {email:email, password:password};
 
         return this.fetchPostUser('http://puigmal.salle.url.edu/api/v2/users/login', user)
-        .then((response) =>{
-            return response.json();
-        }).then((body) =>{
-            console.log(body);
-            console.log(body.accessToken);
-            return body;
-        });
+        .then(response => response.json())
+        .then((body) =>{
+            console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
+            if (typeof body.Error === 'undefined'){
+                return this.CORRECT;
+            }
+            
+            return "The username or the password may not be correct";
+            
+            
+        }) 
+
+        ;
     }
 
 }
