@@ -51,16 +51,23 @@ export default class UserManagement{
         .then(response => response.json())
         .then((body) =>{
             console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
-            if (typeof body.Error === 'undefined'){
+            if (typeof body.Error === 'undefined'){ 
+                window.localStorage.setItem("accessToken", body.accessToken);
+                console.log(window.localStorage.getItem("accessToken"))
                 return this.CORRECT;
             }
             
             return "The username or the password may not be correct";
             
             
-        }) 
+        });
+    }
 
-        ;
+    static hasLoggedIn(){
+        if (typeof window.localStorage.getItem("accessToken") === 'undefined' || window.localStorage.getItem("accessToken") == "")
+            return false;
+        
+        return true;  
     }
 
 }

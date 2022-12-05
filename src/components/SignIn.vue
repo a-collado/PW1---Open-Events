@@ -13,7 +13,6 @@ export default{
         login(){
 
             UserManagement.loginUser(this.email, this.password).then((output) =>{
-                console.log(output);
             if(output == UserManagement.getCORRECT()) {
                 window.location.replace("/");
             }else{

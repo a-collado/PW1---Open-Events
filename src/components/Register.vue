@@ -17,7 +17,12 @@ export default{
             UserManagement.registerUser(this.name, this.lastName, this.email, this.password).then((output) =>{
 
             if(output == UserManagement.getCORRECT()) {
-                UserManagement.loginUser(this.name, this.password);
+                UserManagement.loginUser(this.email, this.password).then((outputLogin) =>{
+                    if(outputLogin == UserManagement.getCORRECT()) {
+                        window.location.replace("/");
+                        return outputLogin;
+                    }
+                })
             }else{
                 document.getElementById("error_register").innerHTML = output;
                 document.getElementById("error_register").style.display = "flex";
