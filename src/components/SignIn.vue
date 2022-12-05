@@ -5,11 +5,24 @@ export default{
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
         }
     },
     methods: {
 
+        shakeElement(el) {
+            //el.classList.add('rotateable');
+            el.style.marginLeft = '20px';
+            console.log("Shake shake");
+
+            setTimeout(function() {
+                el.style.marginLeft = '-20px';
+                setTimeout(function() {
+                el.style.marginLeft = '0px';
+                }, 100);
+            }, 100);
+
+        },
         login(){
 
             UserManagement.loginUser(this.email, this.password).then((output) =>{
@@ -19,11 +32,13 @@ export default{
             }else{
                 document.getElementById("error_login").innerHTML = output;
                 document.getElementById("error_login").style.display = "flex";
+                this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
             }
             
            } );
            
         }
+
     }
 }
 
@@ -49,5 +64,19 @@ export default{
 <style>
 .header{
   background-color: #00adbdf6
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 </style>
