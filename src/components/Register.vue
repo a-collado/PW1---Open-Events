@@ -12,6 +12,19 @@ export default{
         }
     },
     methods: {
+        shakeElement(el) {
+            //el.classList.add('rotateable');
+            el.style.marginLeft = '20px';
+            console.log("Shake shake");
+
+            setTimeout(function() {
+                el.style.marginLeft = '-20px';
+                setTimeout(function() {
+                el.style.marginLeft = '0px';
+                }, 100);
+            }, 100);
+
+        },
 
         register(){
             UserManagement.registerUser(this.name, this.lastName, this.email, this.password).then((output) =>{
@@ -26,6 +39,8 @@ export default{
             }else{
                 document.getElementById("error_register").innerHTML = output;
                 document.getElementById("error_register").style.display = "flex";
+                this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
+
             }
             
            } );
