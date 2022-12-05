@@ -1,3 +1,26 @@
+<script>
+import { stringifyStyle } from "@vue/shared";
+import UserManagement from "./js/APIcalls.js";
+export default{
+    data() {
+        return {
+        }
+    },
+    methods: {
+
+        goToUserAccount(){
+
+          if(UserManagement.hasLoggedIn())
+            window.location.replace("/perfil");
+          else
+            window.location.replace("/sign_in");
+          
+        }
+    }
+}
+
+</script>
+
 <template>
   <div id="header">
     <router-link to="/"><img class=logo_header src="src\assets\images\icons\logo.png"></router-link>
@@ -5,7 +28,7 @@
   
     <div>
       <router-link to="/messages"><img src="src\assets\images\icons\chat.png" style="width:50px; height:50px"></router-link>
-      <router-link to="/perfil"><img class="small_profilePic" src="src\assets\images\profilepic.jpg"></router-link>
+      <button><img class="small_profilePic" src="src\assets\images\profilepic.jpg" v-on:click="goToUserAccount()"></button>
     </div>
     <!--<nav class="navbar">
       <router-link to="/perfil">Perfil-</router-link>
@@ -118,6 +141,11 @@
 .logo_header{
   width:140px;
   height:80px;
+}
+
+button:has(.small_profilePic){
+  background-color: rgb(0,0,0,0);
+  border: none;
 }
 
 @media only screen and (min-width: 760px) {

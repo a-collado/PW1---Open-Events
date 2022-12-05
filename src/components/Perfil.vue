@@ -1,3 +1,21 @@
+<script>
+import { stringifyStyle } from "@vue/shared";
+import UserManagement from "../js/APIcalls.js";
+export default{
+    data() {
+        return {
+        }
+    },
+    methods: {
+
+        logOut(){
+          window.localStorage.setItem("accessToken", "");
+          window.location.replace("/sign_in");
+        }
+    }
+}
+</script>
+
 <template>
 
   <div class="profile_header">
@@ -101,7 +119,7 @@
       <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
       <div class="button_flex">
         <router-link to="/editarPerfil"><button class="button_pink_normal">Editar perfil</button></router-link>
-        <button-icon><router-link to="/welcome"><img class="icon" src="../assets/images/icons/logout.png" alt="profile configuration"></router-link></button-icon>
+        <button-icon v-on:click = "logOut()"><img class="icon" src="../assets/images/icons/logout.png" alt="profile configuration"></button-icon>
       </div>
       <hr>
 
