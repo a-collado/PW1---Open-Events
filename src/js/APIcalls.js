@@ -8,7 +8,8 @@ export default class UserManagement{
         return this.CORRECT;
     }
 
-    static async fetchPostUser(url = '', data = {}){
+    //----------------------------------------FETCHES-------------------------------------------------------
+    static async fetchPost(url = '', data = {}){
            
         const response = await fetch(url, {
             method: 'POST',
@@ -18,13 +19,36 @@ export default class UserManagement{
         return response;
     }
 
+    static async fetchPostBearerToken(url = '', data = {}){
+           
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json',
+                      'Authorization': `Bearer${window.localStorage.getItem("accessToken")}` },
+            body: JSON.stringify(data)
+        });
+        return response;
+    }
+
+    static async fetchGetBearerToken(url = '', data = {}){
+           
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json',
+                      'Authorization': `Bearer${window.localStorage.getItem("accessToken")}`},
+            body: JSON.stringify(data)
+        });
+        return response;
+    }
+
+    //----------------------------------POST USERS (LOGIN-REGISTER)---------------------------------------------------
     static async registerUser(name, lastName, email, password) {
     
-        let imageUrl = "src\assets\images\profilepic.jpg"
+        let imageUrl = "src/assets/images/default_registered_profilePic.jpg";
 
         const user = {name:name, last_name:lastName, email:email, password:password, image:imageUrl};
 
-        return this.fetchPostUser('http://puigmal.salle.url.edu/api/v2/users', user)
+        return this.fetchPost('http://puigmal.salle.url.edu/api/v2/users', user)
         .then((response) =>{    
             if(response.ok == true) return this.CORRECT;
             return response.json();
@@ -47,7 +71,7 @@ export default class UserManagement{
     static async loginUser(email, password) {
         const user = {email:email, password:password};
 
-        return this.fetchPostUser('http://puigmal.salle.url.edu/api/v2/users/login', user)
+        return this.fetchPost('http://puigmal.salle.url.edu/api/v2/users/login', user)
         .then(response => response.json())
         .then((body) =>{
             console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
@@ -68,6 +92,17 @@ export default class UserManagement{
             return false;
         
         return true;  
+    }
+
+     //----------------------------------GET USERS (INFO USERS)---------------------------------------------------
+
+    static async getUsers() {
+
+        return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/'+window.localStorage.getItem("accessToken"))
+        .then(response => response.json())
+        .then((body) =>{            
+            return body;
+        });
     }
 
 }

@@ -4,17 +4,21 @@ import UserManagement from "./js/APIcalls.js";
 export default{
     data() {
         return {
+          imgUrl_profile:"src/assets/images/userDefault_profilePic.jpg"
         }
     },
     methods: {
 
         goToUserAccount(){
-
           if(UserManagement.hasLoggedIn())
             window.location.replace("/perfil");
           else
             window.location.replace("/sign_in");
-          
+        },
+
+        goToMessages(){
+          if(UserManagement.hasLoggedIn())
+            window.location.replace("/messages");
         }
     }
 }
@@ -27,8 +31,8 @@ export default{
     <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
   
     <div>
-      <router-link to="/messages"><img src="src\assets\images\icons\chat.png" style="width:50px; height:50px"></router-link>
-      <button><img class="small_profilePic" src="src\assets\images\profilepic.jpg" v-on:click="goToUserAccount()"></button>
+      <button v-on:click="goToMessages()"><img src="src\assets\images\icons\chat.png" style="width:50px; height:50px"></button>
+      <button v-on:click="goToUserAccount()"><img class="small_profilePic" v-bind:src = imgUrl_profile></button>
     </div>
     <!--<nav class="navbar">
       <router-link to="/perfil">Perfil-</router-link>
@@ -143,9 +147,8 @@ export default{
   height:80px;
 }
 
-button:has(.small_profilePic){
+button:has(img){
   background-color: rgb(0,0,0,0);
-  border: none;
 }
 
 @media only screen and (min-width: 760px) {
