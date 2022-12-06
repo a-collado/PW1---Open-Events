@@ -78,13 +78,21 @@ export default class UserManagement{
             console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
             if (typeof body.Error === 'undefined'){ 
                 window.localStorage.setItem("accessToken", body.accessToken);
-                console.log(window.localStorage.getItem("accessToken"))
+                //console.log(window.localStorage.getItem("accessToken"))
                 return this.CORRECT;
             }
-            
             return "The username or the password may not be correct";
+           
+        })
+        .then((result) =>{
             
-            
+            this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/search?s=' + email)
+            .then(response => response.json())
+            .then((user)=>{
+                //console.log(user);
+                //console.log(user[0].id);
+                window.localStorage.setItem("loggedUser", user[0].id);
+            });
         });
     }
 

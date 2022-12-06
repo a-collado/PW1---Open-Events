@@ -10,6 +10,7 @@ export default{
 
         logOut(){
           window.localStorage.setItem("accessToken", "");
+          window.localStorage.setItem("loggedUser", "");
           window.location.replace("/sign_in");
         }
     }

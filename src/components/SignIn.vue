@@ -27,7 +27,7 @@ export default{
 
             UserManagement.loginUser(this.email, this.password).then((output) =>{
             if(output == UserManagement.getCORRECT()) {
-                window.location.replace("/");
+                //window.location.replace("/");
             }else{
                 document.getElementById("error_login").innerHTML = output;
                 document.getElementById("error_login").style.display = "flex";
