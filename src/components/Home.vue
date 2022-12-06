@@ -1,4 +1,44 @@
+<script>
+import { stringifyStyle } from "@vue/shared";
+import UserManagement from "../js/APIcalls.js";
+export default{
+    data() {
+        return {
+            email: "",
+            password: "",
+        }
+    },
+    methods: {
 
+        shakeElement(el) {
+            //el.classList.add('rotateable');
+            el.style.marginLeft = '20px';
+            console.log("Shake shake");
+
+            setTimeout(function() {
+                el.style.marginLeft = '-20px';
+                setTimeout(function() {
+                el.style.marginLeft = '0px';
+                }, 100);
+            }, 100);
+
+        },
+        getUser(){
+
+            UserManagement.getUsers().then((output) =>{
+            if(output == UserManagement.getCORRECT()) {
+               
+            }else{
+                
+            }
+            
+           } );
+           
+        }
+
+    }
+}
+</script>
 
 <template>
 
@@ -18,7 +58,7 @@
 
   <div class="create_event">
     <hr>
-    <router-link to="/create_event" class="button"> Crea tu propio evento </router-link>
+    <button class="button" v-on:click="getUser()"> Crea tu propio evento </button>
   </div>
   <div class="categories">
     <div class="cat1">Descubrir</div>

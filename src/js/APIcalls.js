@@ -24,19 +24,20 @@ export default class UserManagement{
         const response = await fetch(url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json',
-                      'Authorization': `Bearer${window.localStorage.getItem("accessToken")}` },
+                      'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")},
             body: JSON.stringify(data)
         });
         return response;
     }
 
-    static async fetchGetBearerToken(url = '', data = {}){
+    static async fetchGetBearerToken(url = ''){
+
+        console.log(window.localStorage.getItem("accessToken"));
            
         const response = await fetch(url, {
             method: 'GET',
             headers: {'Content-Type': 'application/json',
-                      'Authorization': `Bearer${window.localStorage.getItem("accessToken")}`},
-            body: JSON.stringify(data)
+                      'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")}
         });
         return response;
     }
@@ -96,12 +97,17 @@ export default class UserManagement{
 
      //----------------------------------GET USERS (INFO USERS)---------------------------------------------------
 
-    static async getUsers() {
+    static async getAllUsers() {
 
-        return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/'+window.localStorage.getItem("accessToken"))
-        .then(response => response.json())
-        .then((body) =>{            
+        return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users')
+        .then((response) =>{
+            console.log(response);
+            return response.json();
+        })
+        .then((body) =>{  
+            console.log(body);          
             return body;
+
         });
     }
 
