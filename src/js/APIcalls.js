@@ -103,7 +103,19 @@ export default class UserManagement{
         return true;  
     }
 
-     //----------------------------------GET USERS (INFO USERS)---------------------------------------------------
+    //----------------------------------GET USERS (INFO USERS)---------------------------------------------------
+
+    //INFO LOGGED USER_______________________________________________
+    static async getInfoLoggedUser(){
+        return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + window.localStorage.getItem("loggedUser"))
+        .then((response) =>{ return response.json();});
+    }
+
+    static getUrlImgLoggedUser(){
+        return getInfoLoggedUser.then((user)=>user.image);
+    }
+
+    //________________________________________________________________
 
     static async getAllUsers() {
 
