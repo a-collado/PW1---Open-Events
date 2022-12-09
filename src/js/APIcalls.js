@@ -1,4 +1,4 @@
-export default class UserManagement{
+export default class ApiCalls{
 
     constructor(){
         const CORRECT = 201;
@@ -129,6 +129,28 @@ export default class UserManagement{
             return body;
 
         });
+    }
+
+
+    //----------------------------------GET USERS EVENTS (CREATED, ASSISTANT)---------------------------------------------------
+
+    static async getCreatedEvents(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/events")
+        .then((response) =>{ return response.json();});
+    }
+
+    static async getAssistanceEvents(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/assistances")
+        .then((response) =>{ return response.json();});
+    }
+
+
+    static async getAllUsersEvents(){}
+
+    //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
+    static async getUserFriends(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/friends")
+        .then((response) =>{ return response.json();});
     }
 
 }

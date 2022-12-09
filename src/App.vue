@@ -1,6 +1,6 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
-import UserManagement from "./js/APIcalls.js";
+import ApiCalls from "./js/APIcalls.js";
 export default{
     data() {
         return {
@@ -10,14 +10,14 @@ export default{
     methods: {
 
         goToUserAccount(){
-          if(UserManagement.hasLoggedIn())
+          if(ApiCalls.hasLoggedIn())
             window.location.replace("/perfil");
           else
             window.location.replace("/sign_in");
         },
 
         goToMessages(){
-          if(UserManagement.hasLoggedIn())
+          if(ApiCalls.hasLoggedIn())
             window.location.replace("/messages");
         }
     }

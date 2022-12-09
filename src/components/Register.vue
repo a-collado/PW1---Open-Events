@@ -1,6 +1,6 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
-import UserManagement from "../js/APIcalls.js";
+import ApiCalls from "../js/APIcalls.js";
 export default{
     data() {
         return {
@@ -27,11 +27,11 @@ export default{
         },
 
         register(){
-            UserManagement.registerUser(this.name, this.lastName, this.email, this.password).then((output) =>{
+            ApiCalls.registerUser(this.name, this.lastName, this.email, this.password).then((output) =>{
 
-            if(output == UserManagement.getCORRECT()) {
-                UserManagement.loginUser(this.email, this.password).then((outputLogin) =>{
-                    if(outputLogin == UserManagement.getCORRECT()) {
+            if(output == ApiCalls.getCORRECT()) {
+                ApiCalls.loginUser(this.email, this.password).then((outputLogin) =>{
+                    if(outputLogin == ApiCalls.getCORRECT()) {
                         window.location.replace("/");
                         return outputLogin;
                     }

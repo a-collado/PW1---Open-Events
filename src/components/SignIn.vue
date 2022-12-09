@@ -1,6 +1,6 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
-import UserManagement from "../js/APIcalls.js";
+import ApiCalls from "../js/APIcalls.js";
 export default{
     data() {
         return {
@@ -25,9 +25,9 @@ export default{
         },
         login(){
 
-            UserManagement.loginUser(this.email, this.password).then((output) =>{
-            if(output == UserManagement.getCORRECT()) {
-                //window.location.replace("/");
+            ApiCalls.loginUser(this.email, this.password).then((output) =>{
+            if(output == ApiCalls.getCORRECT()) {
+                window.location.replace("/");
             }else{
                 document.getElementById("error_login").innerHTML = output;
                 document.getElementById("error_login").style.display = "flex";

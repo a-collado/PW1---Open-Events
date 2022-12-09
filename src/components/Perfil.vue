@@ -1,6 +1,6 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
-import UserManagement from "../js/APIcalls.js";
+import ApiCalls from "../js/APIcalls.js";
 export default{
     data() {
         return {
