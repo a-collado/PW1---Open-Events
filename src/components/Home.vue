@@ -25,7 +25,7 @@ export default{
         },
         getUser(){
 
-          ApiCalls.getUsers().then((output) =>{
+          ApiCalls.getAllUsers().then((output) =>{
             if(output == ApiCalls.getCORRECT()) {
                
             }else{

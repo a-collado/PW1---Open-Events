@@ -145,7 +145,7 @@ export default class ApiCalls{
     }
 
 
-    static async getAllUsersEvents(){}
+    static async getAllUsersEvents(){ return null;}
 
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
     static async getUserFriends(){
