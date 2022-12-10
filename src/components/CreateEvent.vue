@@ -1,3 +1,42 @@
+<script>
+import { stringifyStyle } from "@vue/shared";
+import ApiCalls from "../js/APIcalls.js";
+export default{
+    data() {
+        return {
+            imgEvent_URL: "",
+            eventName: "",
+            eventDescription: "",
+            eventMaxAssistents: 1,
+            initialDate: "",
+            initialHour: "",
+            finalDate: "",
+            finalHour: "", 
+            eventAdress: "",
+            eventLatitude: "",
+            eventAltitud: "",
+            eventType:""
+        }
+    },
+    methods: {
+
+        initializeMap(){
+            var mapInit = {
+                    center: { lat: -33.8688, lng: 151.2195 },
+                    zoom: 13,
+                }
+            var map = new google.maps.Map(document.getElementById("map"), mapInit);    
+        },
+
+        createEvent(){
+            console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDate, initialHour, finalDate, finalHour, eventAdress, eventLatitude, eventAltitud);
+            //window.location.replace("/");
+        }     
+    }
+}
+
+</script>
+
 <template>
 
         <div class="centered_column_width">
@@ -5,25 +44,44 @@
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Imagen del Evento</p></label>
                 <div class="background_image_box">
-                    <div class="centered_horitzontal"><button-icon><img class="icon" src="../assets/images/icons/editar.png" alt="edit image"></button-icon></div>
+                    <div class="centered_horitzontal"><button><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
+                </div>
+                <input class="general_input" type="text" placeholder="URL imagen para el evento" v-model="imgEvent_URL">
+            </div>
+
+            <div class="generic_inputLabel">
+
+                <div class="spaceBetween">
+                    <div>
+                        <label><p class="darkblue_normal_bold">Nombre del evento</p></label>
+                        <input class="general_input" type="text" placeholder="Nombre del Evento" v-model="eventName">
+                    </div>
+
+                    <div>
+                        <label><p class="darkblue_normal_bold">Tipo de evento</p></label>
+                        <select class="input_timeHour" v-model="eventType">
+                            <option value="Social">Social</option>
+                            <option value="Educativo">Educativo</option>
+                            <option value="Deportivo">Deportivo</option>
+                            <option value="Empresarial">Empresarial</option>
+                            <option value="Reunión">Reunión</option>
+                            <option value="Convención">Convención</option>
+                            <option value="Cultural">Cultural</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <div class="generic_inputLabel">
-                <label><p class="darkblue_normal_bold">Nombre del evento</p></label>
-                <input class="general_input" type="text" placeholder="Nombre del Evento">
-            </div>
-
-            <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Descripción</p></label>
-                <input class="general_input" type="text" placeholder="Descripción del Evento">
+                <input class="general_input" type="text" placeholder="Descripción del Evento" v-model="eventDescription">
             </div>
 
             <div class="generic_inputLabel">
-                <label><p class="darkblue_normal_bold">Numero máximo de assistentes (5-1000)</p></label>
+                <label><p class="darkblue_normal_bold">Numero máximo de assistentes (1-1000)</p></label>
                 <div class="flex_row_center">
-                    <input type="range" min="5" max="1000" value="0" id="slider_assistents">
-                    <input class="price_input" type="text" placeholder="X €">
+                    <input type="range" min="1" max="1000" id="slider_assistents" v-model="eventMaxAssistents">
+                    <input class="price_input" type="text" placeholder="XXX" v-model="eventMaxAssistents">
                 </div>
             </div>
 
@@ -32,13 +90,13 @@
                 <div class="spaceBetween">
                     <div>
                         <label><p class="darkblue_normal_bold">Fecha y hora del inicio evento</p></label>
-                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" class="input_timeHour">
+                        <input type="date" id="start" name="trip-start" class="input_timeHour">
                         <input type="time" class="input_timeHour">
                     </div>
 
                     <div>
                         <label><p class="darkblue_normal_bold">Fecha y hora del final evento</p></label>
-                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" class="input_timeHour">
+                        <input type="date" id="start" name="trip-start" class="input_timeHour">
                         <input type="time" class="input_timeHour">
                     </div>
                 </div>
@@ -46,23 +104,17 @@
             </div>
 
             <div class="generic_inputLabel">
-                <label><p class="darkblue_normal_bold">Ubicación del evento</p></label>
-                    <input class="general_input" type="text" placeholder="Ubicación del Evento">
+                <label><p class="darkblue_normal_bold">Ubicación/dirección del evento</p></label>
+                <input class="general_input" type="text" placeholder="Ubicación del Evento">
+                <div id="map"></div>
             </div>
             
-            <router-link to="/"><button class="button_pink_normal">Crear Evento</button></router-link>
+            <button class="button_pink_normal" v-on:click="createEvent()">Crear Evento</button>
         </div>
     
 </template>
 
 <style scoped>
-
-/* General*/
-
-/*h3.white{
-    color: #ffffff;
-}*/
-
 .titulo > *{
     margin: 0px;
     margin-bottom: 4px;
@@ -134,6 +186,12 @@
     
 }
 
+#editIcon{
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
 /* Cuerpo Pagina */
 .general_box {
     display: flex;
@@ -177,6 +235,8 @@
     display: flex;
     justify-content: space-between;
     }
+
+    .general_input{ min-width: 345px;}
 }
 
 #slider_assistents{
@@ -197,6 +257,7 @@
   background-color: #C772BA;
   cursor: pointer;
 }
+
 
 @media screen and (min-width: 768px) {
     .create_event_box{
