@@ -1,46 +1,53 @@
 <template>
-    
-        <div class="general_box">
+
+        <div class="centered_column_width">
             
-            <div class="create_event_box">
-                <div class="titulo"><h2>Imagen del Evento</h2></div>
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Imagen del Evento</p></label>
                 <div class="background_image_box">
                     <div class="centered_horitzontal"><button-icon><img class="icon" src="../assets/images/icons/editar.png" alt="edit image"></button-icon></div>
                 </div>
             </div>
 
-            <div class="create_event_box">
-                <div class="titulo"><h2>Nombre del Evento</h2></div>
-                <div class="size_input"><input class="general_input" type="text" placeholder="Nombre del Evento"></div> 
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Nombre del evento</p></label>
+                <input class="general_input" type="text" placeholder="Nombre del Evento">
             </div>
 
-            <div class="create_event_box">
-                <div class="titulo"><h2>Descripción</h2></div>
-                <div class="size_input"><input class="general_input" type="text" placeholder="Descripción del Evento"></div>
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Descripción</p></label>
+                <input class="general_input" type="text" placeholder="Descripción del Evento">
             </div>
 
-            <div class="create_event_box">
-                <div class="titulo"><h2>Precio de la Entrada</h2></div>
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Numero máximo de assistentes (5-1000)</p></label>
                 <div class="flex_row_center">
-                    <div id="linea"><button class="boton_linea"></button></div>
+                    <input type="range" min="5" max="1000" value="0" id="slider_assistents">
                     <input class="price_input" type="text" placeholder="X €">
                 </div>
             </div>
 
-            <div class="create_event_box">
-                <div class="titulo"><h2>Fecha del Evento</h2></div>
-                <div class="flex_row_center">
-                    <div class="size_input"><input class="general_input" type="text" placeholder="Fecha del Evento"></div> 
-                    <button-icon><img class="icon" src="../assets/images/icons/schedule.png" alt="open calendar"></button-icon>
+            <div class="generic_inputLabel">
+
+                <div class="spaceBetween">
+                    <div>
+                        <label><p class="darkblue_normal_bold">Fecha y hora del inicio evento</p></label>
+                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" class="input_timeHour">
+                        <input type="time" class="input_timeHour">
+                    </div>
+
+                    <div>
+                        <label><p class="darkblue_normal_bold">Fecha y hora del final evento</p></label>
+                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" class="input_timeHour">
+                        <input type="time" class="input_timeHour">
+                    </div>
                 </div>
+                
             </div>
 
-            <div class="create_event_box">
-                <div class="titulo"><h2>Ubicación del Evento</h2></div>
-                <div class="flex_row_center">
-                    <div class="size_input"><input class="general_input" type="text" placeholder="Ubicación del Evento"></div> 
-                    <button-icon><img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="open google maps"></button-icon>
-                </div>
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">Ubicación del evento</p></label>
+                    <input class="general_input" type="text" placeholder="Ubicación del Evento">
             </div>
             
             <router-link to="/"><button class="button_pink_normal">Crear Evento</button></router-link>
@@ -61,13 +68,14 @@
     margin-bottom: 4px;
 }
 
-.background_image_box {
+.background_image_box[data-v-19a51518] {
     width: 100%;
-    height: 140px;
+    padding: 10px;
+    height: 110px;
     margin-top: 5px;
     border-radius: 10px;
     border: 1px solid #00adbdf6;
-    background-color: rgb(237, 237, 237);
+    background-color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,31 +93,6 @@
   width:100%;
   display: flex;
 }
-
-.general_input{
-  width:100%;
-  height: 5px;
-  margin:5px;
-  padding: 20px 40px 20px 20px;
-  border: 1px solid #00adbdf6;
-  background-color: rgb(237, 237, 237);
-  border-radius: 20px;
-}
-
-/*.boton_rosa{
-    border-radius: 10px;
-    border: 0px solid transparent;
-    padding: 0.25em 0.5em;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 36px;
-    cursor: pointer;
-    background-color: #C772BA;
-    transition: border-color 0.25s;
-    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4))
-}*/
 
 .flex_row_center{
   display: flex;
@@ -174,13 +157,45 @@
 
 /* Precio */
 .price_input{
-    margin-left: 10px;
     width:70px;
-    height: 5px;
-    padding: 20px 40px 20px 20px;
+    padding: 10px;
     border: 1px solid #00adbdf6;
-    background-color: rgb(237, 237, 237);
+    background-color: rgb(255,255,255);
     border-radius: 20px;
+    position: relative;
+    left: 10px;
+}
+
+.input_timeHour{
+  border: 1px solid #00adbdf6;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+@media screen and (min-width: 640px){
+    .spaceBetween{
+    display: flex;
+    justify-content: space-between;
+    }
+}
+
+#slider_assistents{
+  -webkit-appearance: none;
+  width: 90%;
+  height: 5px;
+  border-radius: 5px;  
+  background: #235F65;
+}
+
+#slider_assistents::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%; 
+  border: 6px solid #235F65;
+  background-color: #C772BA;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

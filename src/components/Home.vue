@@ -66,7 +66,7 @@ export default{
 
   <div class="create_event">
     <hr>
-    <button class="button" v-on:click="getUser()"> Crea tu propio evento </button>
+    <button class="button" v-on:click="createEvent()"> Crea tu propio evento </button>
   </div>
   <div class="categories">
     <div class="cat1">Descubrir</div>

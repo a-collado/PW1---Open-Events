@@ -48,35 +48,10 @@
 
 <style scoped>
 
-    div.centered_column_width{
-        width: 95%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 50px;
-    }
-
     .row_space{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-    }
-
-    .generic_inputLabel{
-        width: 80%;
-        margin:10px;
-    }
-
-    .general_input{
-        width:100%;
-        border: 1px solid #00adbdf6;
-        border-radius: 30px;
-        padding: 10px;
-    }
-
-    .generic_inputLabel > label >p{
-        margin-left: 10px;
-        margin-bottom: 8px;
     }
 
     .generic_inputLabel > img{
@@ -108,11 +83,7 @@
         justify-content: flex-end;     
     }
 
-    @media screen and (min-width: 768px) {
-        .generic_inputLabel{
-        width: 585px;
-    }
-    }
+
 
 
 </style>
