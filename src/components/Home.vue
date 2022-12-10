@@ -34,6 +34,14 @@ export default{
             
            } );
            
+        },
+
+        createEvent(){
+          if(ApiCalls.hasLoggedIn()){
+            window.location.replace("/create_event");
+          }else{
+            alert("No se puede crear un evento si no se inicia sessión");
+          }
         }
 
     }
