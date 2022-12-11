@@ -10,8 +10,9 @@ export default{
     },
     
     data() {
-        return {};
+      return {};
     },
+
     methods: {
         logOut() {
             window.localStorage.setItem("accessToken", "");

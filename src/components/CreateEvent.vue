@@ -1,7 +1,19 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
+/*import { defineComponent } from "vue";
+import { GoogleMap, Marker } from "vue3-google-map";*/
+
 export default{
+
+    /*defineComponent({
+        components: {GoogleMap, Marker},
+        setup() {
+            const center= { lat: 41.3828939, lng: 2.1774322 },
+            return center;
+        },
+    }),*/
+
     data() {
         return {
             imgEvent_URL: "",
@@ -14,17 +26,15 @@ export default{
             finalHour: "", 
             eventAdress: "",
             eventLatitude: "",
-            eventAltitud: "",
+            eventLongitude: "",
             eventType:""
-        }
+        }  
     },
+
     methods: {
 
         initializeMap(){
-            var mapInit = {
-                    center: { lat: -33.8688, lng: 151.2195 },
-                    zoom: 13,
-                }
+            
             var map = new google.maps.Map(document.getElementById("map"), mapInit);    
         },
 
@@ -33,6 +43,7 @@ export default{
             //window.location.replace("/");
         }     
     }
+    
 }
 
 </script>
@@ -108,6 +119,11 @@ export default{
                 <input class="general_input" type="text" placeholder="Ubicación del Evento">
                 <div id="map"></div>
             </div>
+
+            <!-- <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="10">
+                <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
+                <InfoWindow :options="{ position: { lat: center.lat, lng: 150.8 } }"> Content passed through slot </InfoWindow>
+            </GoogleMap> -->
             
             <button class="button_pink_normal" v-on:click="createEvent()">Crear Evento</button>
         </div>
