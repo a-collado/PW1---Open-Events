@@ -20,10 +20,8 @@ export default{
             eventName: "",
             eventDescription: "",
             eventMaxAssistents: 1,
-            initialDate: "",
-            initialHour: "",
-            finalDate: "",
-            finalHour: "", 
+            initialDateTime: "",
+            finalDateTime: "",
             eventAdress: "",
             eventLatitude: "",
             eventLongitude: "",
@@ -33,15 +31,23 @@ export default{
 
     methods: {
 
-        initializeMap(){
+        /*initializeMap(){
             
             var map = new google.maps.Map(document.getElementById("map"), mapInit);    
-        },
+        },*/
 
         createEvent(){
-            console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDate, initialHour, finalDate, finalHour, eventAdress, eventLatitude, eventAltitud);
+            console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
+            ApiCalls.createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
             //window.location.replace("/");
-        }     
+        },
+        
+        changeImageEvent(){
+           /* let component = document.getElementById("eventImg");
+            component.body.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
+            */
+            
+        }
     }
     
 }
@@ -55,9 +61,9 @@ export default{
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Imagen del Evento</p></label>
                 <div class="background_image_box">
-                    <div class="centered_horitzontal"><button><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
+                    <div id="eventImg" class="centered_horitzontal"><button><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
                 </div>
-                <input class="general_input" type="text" placeholder="URL imagen para el evento" v-model="imgEvent_URL">
+                <input class="general_input" type="text" placeholder="URL imagen para el evento" v-model="imgEvent_URL" v-on:change="changeImageEvent">
             </div>
 
             <div class="generic_inputLabel">
@@ -101,14 +107,12 @@ export default{
                 <div class="spaceBetween">
                     <div>
                         <label><p class="darkblue_normal_bold">Fecha y hora del inicio evento</p></label>
-                        <input type="date" id="start" name="trip-start" class="input_timeHour">
-                        <input type="time" class="input_timeHour">
+                        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="initialDateTime">
                     </div>
 
                     <div>
                         <label><p class="darkblue_normal_bold">Fecha y hora del final evento</p></label>
-                        <input type="date" id="start" name="trip-start" class="input_timeHour">
-                        <input type="time" class="input_timeHour">
+                        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="finalDateTime">
                     </div>
                 </div>
                 

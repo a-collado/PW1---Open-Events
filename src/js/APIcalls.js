@@ -153,4 +153,24 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+     //----------------------------------MANAGE EVENTS (CREATE, EDIT, DELETE)---------------------------------------------------
+     static async createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType){
+
+        const event = {name:eventName, image:imgEvent_URL, location:eventAdress, description:eventDescription, eventStart_date:initialDateTime, eventEnd_date:finalDateTime, n_participators:eventMaxAssistents, type:eventType};
+
+        return this.fetchPostBearerToken("http://puigmal.salle.url.edu/api/v2/events", event)
+        .then((response) =>{ console.log(response); return response.json();});
+    }
+    
+    static async EditEvent(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/friends")
+        .then((response) =>{ return response.json();});
+    }
+
+    static async DeleteEvent(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/friends")
+        .then((response) =>{ return response.json();});
+    }
+
+
 }
