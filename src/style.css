@@ -77,6 +77,12 @@ ul {
   align-items: center;
 }
 
+.generci_spaceBetween{
+  display: flex;
+  justify-content: space-between;
+  }
+
+
 div.centered_column_width{
   width: 100%;
   display: flex;
@@ -85,6 +91,9 @@ div.centered_column_width{
   margin-top: 50px;
 }
 
+.hidden{
+  display: none;
+}
 /*_____________________________________________*/
 
 .profile_header{

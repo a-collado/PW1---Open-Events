@@ -25,7 +25,9 @@ export default{
             eventAdress: "",
             eventLatitude: "",
             eventLongitude: "",
-            eventType:""
+            eventType:"",
+
+            isHidden:true
         }  
     },
 
@@ -43,10 +45,34 @@ export default{
         },
         
         changeImageEvent(){
-           /* let component = document.getElementById("eventImg");
-            component.body.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
-            */
+            console.log(this.imgEvent_URL);
+            let component = document.getElementById("background_image_box");
+            console.log(component);
+            component.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
             
+        },
+
+        showDefaultEventImages(){
+            if (this.isHidden === false) {
+                this.isHidden = true;
+            } else {
+                this.isHidden = false; 
+            }
+        },
+
+        defaultImg1(){
+            this.imgEvent_URL = "../src/assets/images/events/defaultEvent1.webp";
+            this.changeImageEvent();
+        },
+
+        defaultImg2(){
+            this.imgEvent_URL = "../src/assets/images/events/defaultEvent2.webp";
+            this.changeImageEvent();
+        },
+
+        defaultImg3(){
+            this.imgEvent_URL = "../src/assets/images/events/defaultEvent3.jpg";
+            this.changeImageEvent();
         }
     }
     
@@ -60,10 +86,18 @@ export default{
             
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Imagen del Evento</p></label>
-                <div class="background_image_box">
-                    <div id="eventImg" class="centered_horitzontal"><button><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
+                <div id="background_image_box">
+                    <div class="centered_horitzontal"><button v-on:click="showDefaultEventImages()"><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
                 </div>
                 <input class="general_input" type="text" placeholder="URL imagen para el evento" v-model="imgEvent_URL" v-on:change="changeImageEvent">
+            </div>
+
+            <div class="generic_inputLabel" v-bind:class="{hidden: isHidden}">
+                <div class="generci_spaceBetween">
+                    <button class="defaultImgButton" v-on:click="defaultImg1()"><img class="defaultImg" src="../assets/images/events/defaultEvent1.webp"></button>
+                    <button class="defaultImgButton" v-on:click="defaultImg2()"><img class="defaultImg" src="../assets/images/events/defaultEvent2.webp"></button>
+                    <button class="defaultImgButton" v-on:click="defaultImg3()"><img class="defaultImg" src="../assets/images/events/defaultEvent3.jpg"></button>
+                </div>
             </div>
 
             <div class="generic_inputLabel">
@@ -140,14 +174,15 @@ export default{
     margin-bottom: 4px;
 }
 
-.background_image_box[data-v-19a51518] {
+#background_image_box[data-v-19a51518] {
     width: 100%;
     padding: 10px;
-    height: 110px;
+    height: 180px;
     margin-top: 5px;
     border-radius: 10px;
     border: 1px solid #00adbdf6;
-    background-color: rgb(255, 255, 255);
+    background-image: none;
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,24 +211,6 @@ export default{
   display: flex;
   flex-direction: center;
   align-items: center;
-}
-
-#linea{
-  content: '';
-  width: 100%;
-  height: 7px;
-  background-color: #235F65;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.boton_linea{
-    border-radius: 50%;
-    padding: 0.4em 0.4em;
-    cursor: pointer;
-    border: 6px solid #235F65;
-    background-color: #C772BA;
 }
 
 .image {
@@ -248,6 +265,17 @@ export default{
   border: 1px solid #00adbdf6;
   border-radius: 30px;
   padding: 10px;
+}
+
+.defaultImgButton{
+    width: 30%;
+    height: 80px;
+}
+
+.defaultImg{ 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 @media screen and (min-width: 640px){
