@@ -23,6 +23,7 @@ export default{
             initialDateTime: "",
             finalDateTime: "",
             eventAdress: "",
+            provincia:"",
             eventLatitude: "",
             eventLongitude: "",
             eventType:"",
@@ -81,6 +82,61 @@ export default{
 </script>
 
 <template>
+
+<datalist id="provincias">
+    <option value="A Coruña">A Coruña</option>
+    <option value="Alacant">Alacant</option>
+    <option value="Albacete">Albacete</option>
+    <option value="Almería">Almería</option>
+    <option value="Araba">Araba</option>
+    <option value="Asturias">Asturias</option>
+    <option value="Ávila">Ávila</option>
+    <option value="Badajoz">Badajoz</option>
+    <option value="Barcelona">Barcelona</option>
+    <option value="Bizkaia">Bizkaia</option>
+    <option value="Burgos">Burgos</option>
+    <option value="Cantabria">Cantabria</option>
+    <option value="Castelló">Castelló</option>
+    <option value="Ceuta">Ceuta</option>
+    <option value="Ciudad Real">Ciudad Real</option>
+    <option value="Cuenca">Cuenca</option>
+    <option value="Cáceres">Cáceres</option>
+    <option value="Cádiz">Cádiz</option>
+    <option value="Córdoba">Córdoba</option>
+    <option value="Gipuzcoa">Gipuzcoa</option>
+    <option value="Girona">Girona</option>
+    <option value="Granada">Granada</option>
+    <option value="Guadalajara">Guadalajara</option>
+    <option value="Huelva">Huelva</option>
+    <option value="Huesca">Huesca</option>
+    <option value="Illes Balears">Illes Balears</option>
+    <option value="Jaén">Jaén</option>
+    <option value="La Rioja">La Rioja</option>
+    <option value="Las Palmas">Las Palmas</option>
+    <option value="León">León</option>
+    <option value="Lleida">Lleida</option>
+    <option value="Lugo">Lugo</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Melilla">Melilla</option>
+    <option value="Murcia">Murcia</option>
+    <option value="Málaga">Málaga</option>
+    <option value="Navarra">Navarra</option>
+    <option value="Ourense">Ourense</option>
+    <option value="Palencia">Palencia</option>
+    <option value="Pontevedra">Pontevedra</option>
+    <option value="Salamanca">Salamanca</option>
+    <option value="Tenerife">Tenerife</option>
+    <option value="Segovia">Segovia</option>
+    <option value="Sevilla">Sevilla</option>
+    <option value="Soria">Soria</option>
+    <option value="Tarragona">Tarragona</option>
+    <option value="Teruel">Teruel</option>
+    <option value="Toledo">Toledo</option>
+    <option value="Valladolid">Valladolid</option>
+    <option value="València">València</option>
+    <option value="Zamora">Zamora</option>
+    <option value="Zaragoza"></option>
+</datalist>
 
         <div class="centered_column_width">
             
@@ -153,17 +209,29 @@ export default{
             </div>
 
             <div class="generic_inputLabel">
-                <label><p class="darkblue_normal_bold">Ubicación/dirección del evento</p></label>
-                <input class="general_input" type="text" placeholder="Ubicación del Evento">
-                <div id="map"></div>
+
+                <div class="spaceBetween">
+                    <div>
+                        <label><p class="darkblue_normal_bold">Dirección del evento</p></label>
+                        <input class="general_input" type="text" placeholder="Dirección del evento" >
+                    </div>
+
+                    <div>
+                        <label><p class="darkblue_normal_bold">Provincia</p></label>
+                        <input class="input_timeHour"  list="provincias" name="provincia" v-model="provincia"/>
+                    </div>
+                </div>
             </div>
 
             <!-- <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="10">
                 <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
                 <InfoWindow :options="{ position: { lat: center.lat, lng: 150.8 } }"> Content passed through slot </InfoWindow>
             </GoogleMap> -->
+
             
             <button class="button_pink_normal" v-on:click="createEvent()">Crear Evento</button>
+
+           
         </div>
     
 </template>
