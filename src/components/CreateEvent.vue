@@ -40,8 +40,22 @@ export default{
         },*/
 
         createEvent(){
-            console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
-            ApiCalls.createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
+            //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
+            //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, provincia, eventType);
+
+            
+            var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']")
+
+            console.log(obj);
+
+            if(obj != null){
+                alert("valid provincia");  // allow form submission
+            }
+            else{
+                alert("invalid provincia"); // don't allow form submission
+
+            }
+            //ApiCalls.createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
             //window.location.replace("/");
         },
         
@@ -228,7 +242,7 @@ export default{
                 <InfoWindow :options="{ position: { lat: center.lat, lng: 150.8 } }"> Content passed through slot </InfoWindow>
             </GoogleMap> -->
 
-            
+            <br>
             <button class="button_pink_normal" v-on:click="createEvent()">Crear Evento</button>
 
            
