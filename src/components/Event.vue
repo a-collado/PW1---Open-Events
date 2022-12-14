@@ -1,4 +1,81 @@
+<script>
+/*import { stringifyStyle } from "@vue/shared";
+import ApiCalls from "../js/APIcalls.js";
+
+export default{
+
+data() {
+    return {
+        comment:"",
+
+        participateEvent: false,
+        shareEvent:false,
+        rateEvent: false
+    }  
+},
+
+methods: {
+
+    event(){
+                
+        var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']")
+
+        console.log(obj);
+
+        if(obj != null){
+            alert("valid provincia");  // allow form submission
+        }
+        else{
+            alert("invalid provincia"); // don't allow form submission
+
+        }
+    },
+    
+    changeImageEvent(){
+        console.log(this.imgEvent_URL);
+        let component = document.getElementById("background_image_box");
+        console.log(component);
+        component.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
+        
+    },
+
+    showDefaultEventImages(){
+        if (this.shareEvent === false) {
+            this.shareEvent = true;
+        } else {
+            this.shareEvent = false; 
+        }
+    },
+
+    whatsapp(){
+        this.imgEvent_URL = "../src/assets/images/events/defaultEvent1.webp";
+        this.changeImageEvent();
+    },
+
+    instagram(){
+        this.imgEvent_URL = "../src/assets/images/events/defaultEvent2.webp";
+        this.changeImageEvent();
+    },
+
+    discord(){
+        this.imgEvent_URL = "../src/assets/images/events/defaultEvent3.jpg";
+        this.changeImageEvent();
+    }
+
+    twitter(){
+        this.imgEvent_URL = "../src/assets/images/events/defaultEvent3.jpg";
+        this.changeImageEvent();
+    }
+}
+}*/
+</script>
+
 <template>
+    <datalist id="opciones_filtro">
+    <option value="Puntuación media del creador">Puntuacion Creador</option>
+    <option value="Puntuación de las valoraciones">Puntuacion Valoraciones</option>
+</datalist>
+
     <div class="general_box">
         <div class="header_event_box">
             <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
