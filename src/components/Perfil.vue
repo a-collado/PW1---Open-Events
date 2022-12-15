@@ -15,6 +15,7 @@ export default{
 
     mounted(){
       console.log("Perfil created");
+      ApiCalls.getAllUsersEvents
     },
 
     methods: {
