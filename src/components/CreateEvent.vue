@@ -1,22 +1,15 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
-/*import { defineComponent } from "vue";
-import { GoogleMap, Marker } from "vue3-google-map";*/
+import { defineComponent, getTransitionRawChildren } from "vue";
+import { GoogleMap, Marker } from "vue3-google-map";
 
 export default{
-
-    /*defineComponent({
-        components: {GoogleMap, Marker},
-        setup() {
-            const center= { lat: 41.3828939, lng: 2.1774322 },
-            return center;
-        },
-    }),*/
 
     data() {
         return {
             imgEvent_URL: "",
+            imgEventURLStyle: "",
             eventName: "",
             eventDescription: "",
             eventMaxAssistents: 1,
@@ -28,7 +21,9 @@ export default{
             eventLongitude: "",
             eventType:"",
 
-            isHidden:true
+            isHidden:true,
+            error:"",
+            displayError:true
         }  
     },
 
@@ -41,7 +36,7 @@ export default{
 
         createEvent(){
             //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
-            console.log(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType);            
+            //console.log(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType);            
             var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']");
 
             if(obj != null && this.eventAdress.localeCompare("") != 0){
@@ -53,21 +48,30 @@ export default{
                         if(output == ApiCalls.getCORRECT()) {
                             window.location.replace("/");
                         }else{
-                            document.getElementById("error_createEvent").innerHTML = output;
-                            document.getElementById("error_createEvent").style.display = "flex";
+                            //document.getElementById("error_createEvent").innerHTML = output;
+                            //document.getElementById("error_createEvent").style.display = "flex";
+                            this.error = output;
+                            this.displayError = "flex";
                             //this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
                         }
                     });
 
                 }else{
-                    document.getElementById("error_createEvent").innerHTML = "You must select an Start date/hour and a Final date/hour for the event";
-                    document.getElementById("error_createEvent").style.display = "flex";
+                    //document.getElementById("error_createEvent").innerHTML = "You must select an Start date/hour and a Final date/hour for the event";
+                    //document.getElementById("error_createEvent").style.display = "flex";
+                    this.error = "You must select an Start date/hour and a Final date/hour for the event";
+                    this.displayError = "flex";
+
                 }
 
             }
             else{
-                document.getElementById("error_createEvent").innerHTML = "Province or address not valid";
-                document.getElementById("error_createEvent").style.display = "flex";
+                //document.getElementById("error_createEvent").innerHTML = "Province or address not valid";
+                //document.getElementById("error_createEvent").style.display = "flex";
+                console.log("Error");
+                this.error = "Province or address not valid";
+                this.displayError = "flex";
+                console.log(this.error);
 
                 //this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
 
@@ -77,10 +81,11 @@ export default{
         },
         
         changeImageEvent(){
-            console.log(this.imgEvent_URL);
-            let component = document.getElementById("background_image_box");
-            console.log(component);
-            component.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
+            //console.log(this.imgEvent_URL);
+            //let component = document.getElementById("background_image_box");
+            this.imgEventURLStyle = "url('"+ this.imgEvent_URL +"')"
+            //console.log(component);
+            //component.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
             
         },
 
@@ -173,7 +178,7 @@ export default{
             
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Imagen del Evento</p></label>
-                <div id="background_image_box">
+                <div id="background_image_box" v-bind:style="{backgroundImage: imgEventURLStyle}">
                     <div class="centered_horitzontal"><button v-on:click="showDefaultEventImages()"><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
                 </div>
                 <input class="general_input" type="text" placeholder="URL imagen para el evento" v-model="imgEvent_URL" v-on:change="changeImageEvent">
@@ -258,9 +263,9 @@ export default{
                 <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
                 <InfoWindow :options="{ position: { lat: center.lat, lng: 150.8 } }"> Content passed through slot </InfoWindow>
             </GoogleMap> -->
-
+            
             <br>
-            <p class="Error_Input" id="error_createEvent"></p>
+            <p class="Error_Input " v-bind:style="{display: errorIsHidden}">{{ error }}</p>
             <br>
             <button class="button_pink_normal" v-on:click="createEvent()">Crear Evento</button>
 

@@ -13,6 +13,11 @@ export default{
       return {};
     },
 
+    mounted(){
+      console.log("Perfil created");
+      ApiCalls.getAllUsersEvents
+    },
+
     methods: {
         logOut() {
             window.localStorage.setItem("accessToken", "");

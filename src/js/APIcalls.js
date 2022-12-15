@@ -134,16 +134,17 @@ export default class ApiCalls{
 
     //----------------------------------GET USERS EVENTS (CREATED, ASSISTANT)---------------------------------------------------
 
-    static async getCreatedEvents(){
+    static async getUserCreatedEvents(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/events")
         .then((response) =>{ return response.json();});
     }
 
-    static async getAssistanceEvents(){
+    static async getUserAssistanceEvents(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/assistances")
         .then((response) =>{ return response.json();});
     }
 
+    static async getAllEventsFromUser(){ return null;}
 
     static async getAllUsersEvents(){ return null;}
 
