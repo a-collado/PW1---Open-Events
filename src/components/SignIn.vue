@@ -6,6 +6,9 @@ export default{
         return {
             email: "",
             password: "",
+
+            error:"",
+            displayError:"none"
         }
     },
     methods: {
@@ -26,11 +29,12 @@ export default{
         login(){
 
             ApiCalls.loginUser(this.email, this.password).then((output) =>{
+                
             if(output == ApiCalls.getCORRECT()) {
                 window.location.replace("/");
             }else{
-                document.getElementById("error_login").innerHTML = output;
-                document.getElementById("error_login").style.display = "flex";
+                this.error = output;
+                this.displayError="flex";
                 this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
             }
             
@@ -54,7 +58,7 @@ export default{
                 <p>Not Registered?</p>
                 <router-link to="/register" id="button">Register here</router-link>
             </div>
-            <p class="Error_Input" id="error_login"></p>
+            <p class="Error_Input" v-bind:style="{display:displayError}">{{error}}</p>
         </div>
         
     </div>
