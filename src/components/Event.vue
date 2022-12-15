@@ -1,5 +1,5 @@
-<!-- <script>
-/*import { stringifyStyle } from "@vue/shared";
+<!-- --><script>
+import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
 
 export default{
@@ -9,66 +9,32 @@ data() {
         comment:"",
 
         participateEvent: false,
-        shareEvent:false,
+        displaySocials:'none',
         rateEvent: false
     }  
 },
 
 methods: {
 
-    event(){
-                
-        var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']")
-
-        console.log(obj);
-
-        if(obj != null){
-            alert("valid provincia");  // allow form submission
-        }
-        else{
-            alert("invalid provincia"); // don't allow form submission
-
-        }
-    },
-    
-    changeImageEvent(){
-        console.log(this.imgEvent_URL);
-        let component = document.getElementById("background_image_box");
-        console.log(component);
-        component.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
-        
-    },
-
-    showDefaultEventImages(){
-        if (this.shareEvent === false) {
-            this.shareEvent = true;
+    showSocials(){
+        if (this.displaySocials.localeCompare("none") == 0) {
+            this.displaySocials = "flex";
         } else {
-            this.shareEvent = false; 
+            this.displaySocials = "none"; 
         }
     },
 
-    whatsapp(){
-        this.imgEvent_URL = "../src/assets/images/events/defaultEvent1.webp";
-        this.changeImageEvent();
-    },
-
-    instagram(){
-        this.imgEvent_URL = "../src/assets/images/events/defaultEvent2.webp";
-        this.changeImageEvent();
-    },
-
-    discord(){
-        this.imgEvent_URL = "../src/assets/images/events/defaultEvent3.jpg";
-        this.changeImageEvent();
-    }
-
-    twitter(){
-        this.imgEvent_URL = "../src/assets/images/events/defaultEvent3.jpg";
-        this.changeImageEvent();
+    participateEvent(){
+        if (this.participateEvent === false) {
+            this.participateEvent = true;
+            ApiCalls.participateEvent();
+        } else {
+            this.participateEvent = false;
+        }
     }
 }
-}*/
-</script> -->
+}
+</script>
 
 <template>
     <datalist id="opciones_filtro">
@@ -96,8 +62,14 @@ methods: {
             </div>
             <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
             <div class="event_buttons">
-                <button class="button_pink_small">Participar</button>
-                <button class="button_purple_small">Compartir</button>
+                <button v-on:click="participateEvent()" class="button_pink_small">Participar</button>
+                <div class="shareSocials"><button v-on:click="showSocials()" class="button_purple_small">Compartir</button>
+                    <div class="row_medias" v-bind:style="{display: displaySocials}">
+                        <a href="https://www.whatsapp.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/whatsapp.png"></button></a>
+                        <a href="https://www.instagram.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/instagram.png"></button></a>
+                        <a href="https://twitter.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/twitter.png"></button></a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -188,9 +160,24 @@ methods: {
 
 /* General*/
 
-/*h3.white{
-    color: #ffffff;
-}*/
+.socialMedia {
+    margin: 3px;
+    margin-top:6px;
+}
+
+.row_medias {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.shareSocials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -211,6 +198,11 @@ tr:nth-child(even) {background-color: rgb(237, 237, 237);}
 
 .row_flexEnd > h5 {
     margin: 4px;
+}
+
+.event_descrip_box > row_flexEnd {
+    margin-top: 5px;
+    margin-right: 145px;
 }
 
 .general_input{
@@ -244,36 +236,6 @@ h3.pink{
     text-justify: inter-word;
 }
 
-/*.boton_lila{
-    border-radius: 10px;
-    border: 0px solid transparent;
-    padding: 0.25em 0.5em;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 36px;
-    cursor: pointer;
-    background-color: #7280C7;
-    transition: border-color 0.25s;
-    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4))
-}
-
-.boton_rosa{
-    border-radius: 10px;
-    border: 0px solid transparent;
-    padding: 0.25em 0.5em;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 36px;
-    cursor: pointer;
-    background-color: #C772BA;
-    transition: border-color 0.25s;
-    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4))
-    
-}*/
 .rectangle_gray {
     width: 100%;
     height: 90px;

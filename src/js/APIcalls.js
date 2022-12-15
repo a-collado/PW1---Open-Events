@@ -42,6 +42,7 @@ export default class ApiCalls{
         return response;
     }
 
+
     //----------------------------------POST USERS (LOGIN-REGISTER)---------------------------------------------------
     static async registerUser(name, lastName, email, password) {
     
@@ -75,7 +76,7 @@ export default class ApiCalls{
         return this.fetchPost('http://puigmal.salle.url.edu/api/v2/users/login', user)
         .then(response => response.json())
         .then((body) =>{
-            console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
+            //console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
             if (typeof body.Error === 'undefined'){ 
                 window.localStorage.setItem("accessToken", body.accessToken);
                 //console.log(window.localStorage.getItem("accessToken"))
@@ -86,13 +87,18 @@ export default class ApiCalls{
         })
         .then((result) =>{
             
-            this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/search?s=' + email)
-            .then(response => response.json())
-            .then((user)=>{
-                //console.log(user);
-                //console.log(user[0].id);
-                window.localStorage.setItem("loggedUser", user[0].id);
-            });
+            if (result == this.correct){
+                this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/search?s=' + email)
+                .then(response => response.json())
+                .then((user)=>{
+                    //console.log(user);
+                    //console.log(user[0].id);
+                    window.localStorage.setItem("loggedUser", user[0].id);
+                });
+                return this.CORRECT;
+            }else{
+                return result;
+            }
         });
     }
 
@@ -131,6 +137,18 @@ export default class ApiCalls{
         });
     }
 
+    static async searchUser(user = '') {
+
+        const url = 'http://puigmal.salle.url.edu/api/v2/users/search' + '?s=' + user;
+        return this.fetchGetBearerToken(url)
+        .then((response) =>{
+            return response.json();
+        })
+        .then((body) =>{     
+            return body;
+        });
+    }
+
 
     //----------------------------------GET USERS EVENTS (CREATED, ASSISTANT)---------------------------------------------------
 
@@ -144,6 +162,7 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+    static async getAllEventsFromUser(){ return null;}
 
     static async getAllUsersEvents(){
         return null;

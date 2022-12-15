@@ -8,7 +8,10 @@ export default{
             lastName: "",
             email: "",
             password: "",
-            image: ""
+            image: "",
+
+            error:"",
+            displayError:"none"
         }
     },
     methods: {
@@ -37,8 +40,8 @@ export default{
                     }
                 })
             }else{
-                document.getElementById("error_register").innerHTML = output;
-                document.getElementById("error_register").style.display = "flex";
+                this.error = output;
+                this.displayError="flex";
                 this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
 
             }
@@ -73,7 +76,7 @@ export default{
                 
         </div>
 
-        <p class="Error_Input" id="error_register"></p>
+        <p class="Error_Input"  v-bind:style="{display:displayError}">{{error}}</p>
     </form>
 
         
