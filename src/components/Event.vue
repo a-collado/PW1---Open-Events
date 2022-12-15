@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 /*import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
 
@@ -68,7 +68,7 @@ methods: {
     }
 }
 }*/
-</script>
+</script> -->
 
 <template>
     <datalist id="opciones_filtro">
