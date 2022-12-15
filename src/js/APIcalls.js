@@ -144,6 +144,7 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+    static async getAllEventsFromUser(){ return null;}
 
     static async getAllUsersEvents(){ return null;}
 
