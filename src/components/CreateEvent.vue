@@ -50,6 +50,9 @@ export default{
 
             if(obj != null){
                 alert("valid provincia");  // allow form submission
+
+                ApiCalls.createEvent(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventLatitude, this.eventAltitud, this.eventType);
+            //window.location.replace("/");
             }
             else{
                 alert("invalid provincia"); // don't allow form submission

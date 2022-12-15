@@ -154,12 +154,22 @@ export default class ApiCalls{
     }
 
      //----------------------------------MANAGE EVENTS (CREATE, EDIT, DELETE)---------------------------------------------------
-     static async createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType){
+     static async createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, /*eventLatitude, eventAltitud,*/ eventType){
 
         const event = {name:eventName, image:imgEvent_URL, location:eventAdress, description:eventDescription, eventStart_date:initialDateTime, eventEnd_date:finalDateTime, n_participators:eventMaxAssistents, type:eventType};
 
         return this.fetchPostBearerToken("http://puigmal.salle.url.edu/api/v2/events", event)
-        .then((response) =>{ console.log(response); return response.json();});
+        .then((response) =>{ 
+            console.log(response);
+            if(response.ok == true) return this.CORRECT;
+            return response.json();})
+        .then((body) =>{
+            if(body == this.CORRECT) return this.CORRECT;
+                return body.stackTrace.details[0].message;
+            
+        })
+        
+
     }
     
     static async EditEvent(){
