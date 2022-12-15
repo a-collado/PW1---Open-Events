@@ -41,21 +41,35 @@ export default{
 
         createEvent(){
             //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
-            //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, provincia, eventType);
+            console.log(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType);            
+            var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']");
 
-            
-            var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']")
+            if(obj != null && this.eventAdress.localeCompare("") != 0){
 
-            console.log(obj);
+                if(this.initialDateTime.localeCompare("") != 0 && this.finalDateTime.localeCompare("") != 0){
 
-            if(obj != null){
-                alert("valid provincia");  // allow form submission
+                    ApiCalls.createEvent(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType)
+                    .then((output) =>{
+                        if(output == ApiCalls.getCORRECT()) {
+                            window.location.replace("/");
+                        }else{
+                            document.getElementById("error_createEvent").innerHTML = output;
+                            document.getElementById("error_createEvent").style.display = "flex";
+                            //this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
+                        }
+                    });
 
-                ApiCalls.createEvent(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventLatitude, this.eventAltitud, this.eventType);
-            //window.location.replace("/");
+                }else{
+                    document.getElementById("error_createEvent").innerHTML = "You must select an Start date/hour and a Final date/hour for the event";
+                    document.getElementById("error_createEvent").style.display = "flex";
+                }
+
             }
             else{
-                alert("invalid provincia"); // don't allow form submission
+                document.getElementById("error_createEvent").innerHTML = "Province or address not valid";
+                document.getElementById("error_createEvent").style.display = "flex";
+
+                //this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
 
             }
             //ApiCalls.createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
@@ -230,7 +244,7 @@ export default{
                 <div class="spaceBetween">
                     <div>
                         <label><p class="darkblue_normal_bold">Dirección del evento</p></label>
-                        <input class="general_input" type="text" placeholder="Dirección del evento" >
+                        <input class="general_input" type="text" placeholder="Dirección del evento" v-model="eventAdress" >
                     </div>
 
                     <div>
@@ -245,6 +259,8 @@ export default{
                 <InfoWindow :options="{ position: { lat: center.lat, lng: 150.8 } }"> Content passed through slot </InfoWindow>
             </GoogleMap> -->
 
+            <br>
+            <p class="Error_Input" id="error_createEvent"></p>
             <br>
             <button class="button_pink_normal" v-on:click="createEvent()">Crear Evento</button>
 
