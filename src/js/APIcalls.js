@@ -145,7 +145,9 @@ export default class ApiCalls{
     }
 
 
-    static async getAllUsersEvents(){ return null;}
+    static async getAllUsersEvents(){
+        return null;
+    }
 
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
     static async getUserFriends(){
@@ -183,5 +185,10 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+
+    static async GetAllEvents() {
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/")
+        .then((response) =>{ return response.json();});
+    }
 
 }

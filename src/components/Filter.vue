@@ -3,7 +3,12 @@
 export default{
     data() {
         return {
-            
+            location : "",
+            date_start: "",
+            date_end: "",
+            rating: "",
+            category:"",
+            num_assistents:""
 
         }
     },
@@ -15,41 +20,118 @@ export default{
 </script>
 
 <template>
-     <div id="filter" v-bind:class="{hidden: this.$parent.isFilterShown}">
-    <div class="filter_header">
-      <img src="src\assets\images\icons\left-arrow 1.png"  v-on:click="this.$parent.toggleFilter()">
-      <h1>Filtros</h1>
-      <p> Reset</p>
-    </div>
-    <hr class="small_divider">
-    <div class="slider">
-      <div>
-        <p>Rango de precios</p>
-        <p>0-12€</p>
+<datalist id="provincias">
+    <option value="A Coruña">A Coruña</option>
+    <option value="Alacant">Alacant</option>
+    <option value="Albacete">Albacete</option>
+    <option value="Almería">Almería</option>
+    <option value="Araba">Araba</option>
+    <option value="Asturias">Asturias</option>
+    <option value="Ávila">Ávila</option>
+    <option value="Badajoz">Badajoz</option>
+    <option value="Barcelona">Barcelona</option>
+    <option value="Bizkaia">Bizkaia</option>
+    <option value="Burgos">Burgos</option>
+    <option value="Cantabria">Cantabria</option>
+    <option value="Castelló">Castelló</option>
+    <option value="Ceuta">Ceuta</option>
+    <option value="Ciudad Real">Ciudad Real</option>
+    <option value="Cuenca">Cuenca</option>
+    <option value="Cáceres">Cáceres</option>
+    <option value="Cádiz">Cádiz</option>
+    <option value="Córdoba">Córdoba</option>
+    <option value="Gipuzcoa">Gipuzcoa</option>
+    <option value="Girona">Girona</option>
+    <option value="Granada">Granada</option>
+    <option value="Guadalajara">Guadalajara</option>
+    <option value="Huelva">Huelva</option>
+    <option value="Huesca">Huesca</option>
+    <option value="Illes Balears">Illes Balears</option>
+    <option value="Jaén">Jaén</option>
+    <option value="La Rioja">La Rioja</option>
+    <option value="Las Palmas">Las Palmas</option>
+    <option value="León">León</option>
+    <option value="Lleida">Lleida</option>
+    <option value="Lugo">Lugo</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Melilla">Melilla</option>
+    <option value="Murcia">Murcia</option>
+    <option value="Málaga">Málaga</option>
+    <option value="Navarra">Navarra</option>
+    <option value="Ourense">Ourense</option>
+    <option value="Palencia">Palencia</option>
+    <option value="Pontevedra">Pontevedra</option>
+    <option value="Salamanca">Salamanca</option>
+    <option value="Tenerife">Tenerife</option>
+    <option value="Segovia">Segovia</option>
+    <option value="Sevilla">Sevilla</option>
+    <option value="Soria">Soria</option>
+    <option value="Tarragona">Tarragona</option>
+    <option value="Teruel">Teruel</option>
+    <option value="Toledo">Toledo</option>
+    <option value="Valladolid">Valladolid</option>
+    <option value="València">València</option>
+    <option value="Zamora">Zamora</option>
+    <option value="Zaragoza"></option>
+</datalist>
+
+  <form>
+      <div id="filter" v-bind:class="{hidden: this.$parent.isFilterShown}">
+      <div class="filter_header">
+        <img src="src\assets\images\icons\left-arrow 1.png"  v-on:click="this.$parent.toggleFilter()">
+        <h1>Filtros</h1>
+        <p> Reset</p>
       </div>
-      <input type="range" min="0" max="50" value="12" class="slider_bar">
-    </div>
-    <hr class="small_divider">
-    <div class="slider">
-      <div>
-        <p>Distancia</p>
-        <p>&#60; 15 km</p>
+      <hr class="small_divider">
+      <div class="slider">
+        <div>
+          <p>Minimum assistents</p>
+          <p>0 - {{num_assistents}}</p>
+        </div>
+        <input type="range" min="0" max="1000" class="slider_bar" v-model="num_assistents">
       </div>
-      <input type="range" min="0" max="50" value="12" class="slider_bar">
+      <hr class="small_divider">
+      <div class="slider">
+        <div>
+          <p>Min Date</p>
+          <p>{{date_start}}</p>
+        </div>
+        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_start">
+        <div>
+          <p>Max Date</p>
+          <p>{{date_end}}</p>
+        </div>
+        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_end">
+      </div>
+      <hr class="small_divider">
+      <label><p class="darkblue_normal_bold">Tipo de evento</p></label>
+      <select class="input_timeHour" v-model="category">
+          <option value="Social">Social</option>
+          <option value="Educativo">Educativo</option>
+          <option value="Deportivo">Deportivo</option>
+          <option value="Empresarial">Empresarial</option>
+          <option value="Reunión">Reunión</option>
+          <option value="Convención">Convención</option>
+          <option value="Cultural">Cultural</option>
+      </select>
+      <hr class="small_divider">
+      <div class="radio_buttons">
+        <p>Rating:</p>
+        <input type="radio"  name="punt" value="4">
+        <label for="punt1"><img src="src\assets\images\icons\4_estrellas.png"></label><br>
+        <input type="radio"  name="punt" value="3">
+        <label for="punt1"><img src="src\assets\images\icons\3_estrellas.png"></label><br>
+        <input type="radio"  name="punt" value="2">
+        <label for="punt1"><img src="src\assets\images\icons\2_estrellas.png"></label><br>
+        <input type="radio"  name="punt" value="1">
+        <label for="punt1"><img src="src\assets\images\icons\1_estrella.png"></label><br>
+      </div>
+      <div>
+          <label><p class="darkblue_normal_bold">Provincia</p></label>
+          <input class="input_timeHour"  list="provincias" name="provincia" v-model="location"/>
+      </div>
     </div>
-    <hr class="small_divider">
-    <div class="radio_buttons">
-      <p>Puntuación media del creador:</p>
-      <input type="radio"  name="punt" value="4">
-      <label for="punt1"><img src="src\assets\images\icons\4_estrellas.png"></label><br>
-      <input type="radio"  name="punt" value="3">
-      <label for="punt1"><img src="src\assets\images\icons\3_estrellas.png"></label><br>
-      <input type="radio"  name="punt" value="2">
-      <label for="punt1"><img src="src\assets\images\icons\2_estrellas.png"></label><br>
-      <input type="radio"  name="punt" value="1">
-      <label for="punt1"><img src="src\assets\images\icons\1_estrella.png"></label><br>
-    </div>
-  </div>
+  </form>
 </template>
 
 <style>
@@ -64,6 +146,11 @@ export default{
   margin-top: 20px;
   width:90vw;
   max-width: 800px;
+}
+.input_timeHour{
+  border: 1px solid #00adbdf6;
+  border-radius: 30px;
+  padding: 10px;
 }
 
 

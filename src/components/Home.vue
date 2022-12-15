@@ -14,6 +14,7 @@ export default{
             isFilterShown:false
         }
     },
+    
     methods: {
 
         shakeElement(el) {
@@ -56,7 +57,10 @@ export default{
                 this.isFilterShown = false;
             }
         }
-    }
+    },mounted() {
+      console.log('the component is now mounted.')
+      ApiCalls.GetAllEvents()
+   }
 }
 </script>
 
