@@ -22,6 +22,15 @@ methods: {
         } else {
             this.displaySocials = "none"; 
         }
+    },
+
+    participateEvent(){
+        if (this.participateEvent === false) {
+            this.participateEvent = true;
+            ApiCalls.participateEvent();
+        } else {
+            this.participateEvent = false;
+        }
     }
 }
 }
@@ -53,7 +62,7 @@ methods: {
             </div>
             <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
             <div class="event_buttons">
-                <button class="button_pink_small">Participar</button>
+                <button v-on:click="participateEvent()" class="button_pink_small">Participar</button>
                 <div class="shareSocials"><button v-on:click="showSocials()" class="button_purple_small">Compartir</button>
                     <div class="row_medias" v-bind:style="{display: displaySocials}">
                         <a href="https://www.whatsapp.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/whatsapp.png"></button></a>
