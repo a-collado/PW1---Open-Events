@@ -41,7 +41,7 @@ export default{
 
         createEvent(){
             //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
-            console.log(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType);            
+            //console.log(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType);            
             var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']");
 
             if(obj != null && this.eventAdress.localeCompare("") != 0){
@@ -77,9 +77,9 @@ export default{
         },
         
         changeImageEvent(){
-            console.log(this.imgEvent_URL);
+            //console.log(this.imgEvent_URL);
             let component = document.getElementById("background_image_box");
-            console.log(component);
+            //console.log(component);
             component.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
             
         },

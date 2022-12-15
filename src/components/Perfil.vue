@@ -13,6 +13,10 @@ export default{
       return {};
     },
 
+    mounted(){
+      console.log("Perfil created");
+    },
+
     methods: {
         logOut() {
             window.localStorage.setItem("accessToken", "");
