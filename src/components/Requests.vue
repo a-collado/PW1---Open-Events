@@ -1,13 +1,56 @@
+<script>
+import ApiCalls from "../js/APIcalls.js";
+
+export default{
+// Habria que juntar Friends y Request
+    data() {
+      return {
+        friends : [],
+        requests : []
+      };
+    },
+
+    mounted(){
+      this.getFriendsRequests()
+      this.getFriends();
+    },
+
+    methods: {
+
+        getFriends(){
+          this.friends = ApiCalls.getFriends().then((output) =>{
+            this.friends = output;
+            console.log(this.friends)
+          });
+        },
+
+        acceptFriendRequest(id){
+          ApiCalls.AcceptFriendRequest(id).then((output) =>{
+            console.log(output)
+          });
+        },
+
+        getFriendsRequests(){
+          ApiCalls.showFriendsRequests().then((output) =>{
+            this.requests = output;
+            console.log(output)
+          });
+        }
+    },
+
+}
+</script>
+
 <template>
 
 <article class="centered_vertical">
 <div class="flex_row_wrap">
     <router-link to="/friends">
-        <h2>Amigos(24)</h2>
+        <h2>Amigos({{friends.length}})</h2>
     </router-link>
     <div class="centered_horitzontal">
         <h2>Solicitudes</h2>
-        <ellipse>1</ellipse>
+        <ellipse>{{requests.length}}</ellipse>
     </div>
 </div>
 <hr>
@@ -25,15 +68,14 @@
 <main>
     <div class="column">
     <ul>
-        <li>
+        <li v-for="request in requests" :key="request.id">
             <hr>
             <article class="flex_row_wrap">     <!-- Persona --> 
                 <div class="profile_pic_message">
                     <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
                 </div>
                 <div class="centered_vertical">
-                    <h4>John Turturro</h4>
-                    <h5>@john_turturro</h5>
+                    <h4>{{request.name}}</h4>
                 </div>
                 <div class="centered_horitzontal">
                     <button>Confirmar</button>
@@ -42,86 +84,7 @@
             </article>
             <hr>
         </li>
-        <li>
-            <article class="flex_row_wrap">     <!-- Persona --> 
-                <div class="profile_pic_message">
-                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                </div>
-                <div class="centered_vertical">
-                    <h4>John Turturro</h4>
-                    <h5>@john_turturro</h5>
-                </div>
-                <div class="centered_horitzontal">
-                    <button>Confirmar</button>
-                    <button class="delete">Eliminar</button>
-                </div>
-            </article>
-            <hr>
-        </li>
-        <li>
-            <article class="flex_row_wrap">     <!-- Persona --> 
-                <div class="profile_pic_message">
-                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                </div>
-                <div class="centered_vertical">
-                    <h4>John Turturro</h4>
-                    <h5>@john_turturro</h5>
-                </div>
-                <div class="centered_horitzontal">
-                    <button>Confirmar</button>
-                    <button class="delete">Eliminar</button>
-                </div>
-            </article>
-            <hr>
-        </li>
-        <li>
-            <article class="flex_row_wrap">     <!-- Persona --> 
-                <div class="profile_pic_message">
-                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                </div>
-                <div class="centered_vertical">
-                    <h4>John Turturro</h4>
-                    <h5>@john_turturro</h5>
-                </div>
-                <div class="centered_horitzontal">
-                    <button>Confirmar</button>
-                    <button class="delete">Eliminar</button>
-                </div>
-            </article>
-            <hr>
-        </li>
-        <li>
-            <article class="flex_row_wrap">     <!-- Persona --> 
-                <div class="profile_pic_message">
-                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                </div>
-                <div class="centered_vertical">
-                    <h4>John Turturro</h4>
-                    <h5>@john_turturro</h5>
-                </div>
-                <div class="centered_horitzontal">
-                    <button>Confirmar</button>
-                    <button class="delete">Eliminar</button>
-                </div>
-            </article>
-            <hr>
-        </li>
-        <li>
-            <article class="flex_row_wrap">     <!-- Persona --> 
-                <div class="profile_pic_message">
-                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                </div>
-                <div class="centered_vertical">
-                    <h4>John Turturro</h4>
-                    <h5>@john_turturro</h5>
-                </div>
-                <div class="centered_horitzontal">
-                    <button>Confirmar</button>
-                    <button class="delete">Eliminar</button>
-                </div>
-            </article>
-            <hr>
-        </li>
+        
     </ul>
     </div>
 </main>

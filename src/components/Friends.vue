@@ -1,13 +1,52 @@
+<script>
+import ApiCalls from "../js/APIcalls.js";
+
+export default{
+// Habria que juntar Friends y Request
+    data() {
+      return {
+        friends : [],
+        requests : []
+      };
+    },
+
+    mounted(){
+      this.getFriends()
+      this.getFriendsRequests();
+    },
+
+    methods: {
+
+        getFriends(){
+          this.friends = ApiCalls.getFriends().then((output) =>{
+            this.friends = output;
+            console.log(this.friends)
+          });
+        },
+
+        getFriendsRequests(){
+          ApiCalls.showFriendsRequests().then((output) =>{
+            this.requests = output;
+            console.log(output)
+          });
+        }
+    },
+
+}
+</script>
+
+
+
 <template>
 
     <article class="centered_vertical">
     <div class="flex_row_wrap">
-        <h2>Amigos(24)</h2>
+        <h2>Amigos( {{ friends.length }} )</h2>
         <div class="centered_horitzontal">
             <router-link to="/requests">
                 <h2>Solicitudes</h2>
             </router-link>
-            <ellipse>1</ellipse>
+            <ellipse>{{requests.length}}</ellipse>
         </div>
     </div>
     <hr>
@@ -17,7 +56,7 @@
 <main>
     <div class="column">
         <ul>
-            <li>
+            <li v-for="friend in friends" :key="friend.id">
                 <hr>
                 <article class="flex_row_wrap">     <!-- Persona --> 
                     
@@ -27,96 +66,14 @@
                     
                     <div class="centered_vertical">
                         <router-link to="perfilR">
-                            <h4>John Turturro</h4>
-                            <h5>@john_turturro</h5>
+                            <h4>{{friend.name}}</h4>
                         </router-link>
                     </div>
 
                 </article>
                 <hr>
             </li>
-            <li>
-                <article class="flex_row_wrap">     <!-- Persona --> 
-                    <div class="profile_pic_message">
-                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
-                    </div>
-
-                    <div class="centered_vertical">
-                        <router-link to="perfilR">
-                            <h4>John Turturro</h4>
-                            <h5>@john_turturro</h5>
-                        </router-link>
-                    </div>
-
-                </article>
-                <hr>
-            </li>    
-            <li>
-                <article class="flex_row_wrap">     <!-- Persona --> 
-                    <div class="profile_pic_message">
-                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
-                    </div>
-
-                    <div class="centered_vertical">
-                        <router-link to="perfilR">
-                            <h4>John Turturro</h4>
-                            <h5>@john_turturro</h5>
-                        </router-link>
-                    </div>
-                    
-                </article>
-                <hr>
-            </li>
-            <li>
-                <article class="flex_row_wrap">     <!-- Persona --> 
-                    <div class="profile_pic_message">
-                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
-                    </div>
-
-                    <div class="centered_vertical">
-                        <router-link to="perfilR">
-                            <h4>John Turturro</h4>
-                            <h5>@john_turturro</h5>
-                        </router-link>
-                    </div>
-
-                </article>
-                <hr>
-            </li>  
-            <li>
-                <article class="flex_row_wrap">     <!-- Persona --> 
-                    <div class="profile_pic_message">
-                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
-                    </div>
-
-                    <div class="centered_vertical">
-                        <router-link to="perfilR">
-                            <h4>John Turturro</h4>
-                            <h5>@john_turturro</h5>
-                        </router-link>
-                    </div>
-
-                </article>
-                <hr>
-                
-            </li>
-            <li>
-                <article class="flex_row_wrap">     <!-- Persona --> 
-                    <div class="profile_pic_message">
-                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
-                    </div>
-
-                    <div class="centered_vertical">
-                        <router-link to="perfilR">
-                            <h4>John Turturro</h4>
-                            <h5>@john_turturro</h5>
-                        </router-link>
-                    </div>
-
-                </article>
-                <hr>
-                
-            </li>
+            
         </ul>
     </div>
 </main>

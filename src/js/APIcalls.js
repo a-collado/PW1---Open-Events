@@ -30,12 +30,32 @@ export default class ApiCalls{
         return response;
     }
 
+    static async fetchPostBearerTokenUrl(url = ''){
+           
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json',
+                      'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")}
+        });
+        return response;
+    }
+
     static async fetchGetBearerToken(url = ''){
 
         console.log(window.localStorage.getItem("accessToken"));
            
         const response = await fetch(url, {
             method: 'GET',
+            headers: {'Content-Type': 'application/json',
+                      'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")}
+        });
+        return response;
+    }
+
+    static async fetchPutBearerTokenUrl(url = ''){
+           
+        const response = await fetch(url, {
+            method: 'PUT',
             headers: {'Content-Type': 'application/json',
                       'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")}
         });
@@ -153,12 +173,12 @@ export default class ApiCalls{
     //----------------------------------GET USERS EVENTS (CREATED, ASSISTANT)---------------------------------------------------
 
     static async getUserCreatedEvents(){
-        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/events")
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/events")
         .then((response) =>{ return response.json();});
     }
 
     static async getUserAssistanceEvents(){
-        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/assistances")
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/assistances")
         .then((response) =>{ return response.json();});
     }
 
@@ -169,8 +189,31 @@ export default class ApiCalls{
     }
 
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
+    static async getFriends(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/friends")
+        .then((response) =>{ return response.json();});
+    }
+    
     static async getUserFriends(){
-        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/friends")
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/friends")
+        .then((response) =>{ return response.json();});
+    }
+
+    static async showFriendsRequests(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2//friends/requests")
+        .then((response) =>{ return response.json();});
+    }
+
+    //----------------------------------POST USERS FRIENDS (SEND FRIEND REQUESTS)---------------------------------------------------
+    static async sendFriendRequest(id){
+        
+        return this.fetchPostBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/friends/" + id)
+        .then((response) =>{ return response.json();});
+    }
+    
+    static async AcceptFriendRequest(id){
+        
+        return this.fetchPutBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/friends/" + id)
         .then((response) =>{ return response.json();});
     }
 
@@ -195,12 +238,12 @@ export default class ApiCalls{
     }
     
     static async EditEvent(){
-        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/friends")
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/friends")
         .then((response) =>{ return response.json();});
     }
 
     static async DeleteEvent(){
-        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem(loggedUser) + "/friends")
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/friends")
         .then((response) =>{ return response.json();});
     }
 

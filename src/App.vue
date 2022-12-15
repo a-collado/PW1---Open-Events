@@ -28,7 +28,7 @@ export default{
             window.location.replace("/messages");
         },
         search(){
-          console.log(this.search_bar_text);
+          //console.log(this.search_bar_text);
           if(!this.search_bar_text.length == 0)
           this.search_result = ApiCalls.searchUser(this.search_bar_text).then((output) =>{
             this.search_results = output;
@@ -38,6 +38,9 @@ export default{
         },
         showResults(){
           this.show_results = true;
+        },
+        hideResults(){
+          this.show_results = false;
         }
     }
 }
@@ -46,7 +49,7 @@ export default{
 
 <template>
   <div id="header">
-    <router-link to="/"><img class=logo_header src="src\assets\images\icons\logo.png"></router-link>
+    <router-link to="/" v-on:click="hideResults"><img class=logo_header src="src\assets\images\icons\logo.png"></router-link>
     <input v-on:keyup.enter="search" class="searchbar" type="text" v-model="search_bar_text" placeholder="¿Que tipo de evento estas buscando?">
   
     <div>

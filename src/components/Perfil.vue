@@ -10,12 +10,17 @@ export default{
     },
     
     data() {
-      return {};
+      return {
+        friends : []
+      };
     },
 
     mounted(){
       console.log("Perfil created");
-      ApiCalls.getAllUsersEvents
+      ApiCalls.getAllUsersEvents()
+      //this.getFriends()
+      this.getFriends()
+
     },
 
     methods: {
@@ -23,6 +28,31 @@ export default{
             window.localStorage.setItem("accessToken", "");
             window.localStorage.setItem("loggedUser", "");
             window.location.replace("/sign_in");
+        },
+
+        getFriends(){
+          this.friends = ApiCalls.getFriends().then((output) =>{
+            this.friends = output;
+            console.log(this.friends)
+          });
+        },
+        // Funciones auxiliares. Luego se borraran
+        sendFriendRequest(id){
+          ApiCalls.sendFriendRequest(id).then((output) =>{
+            console.log(output)
+          });
+        },
+
+        acceptFriendRequest(id){
+          ApiCalls.AcceptFriendRequest(id).then((output) =>{
+            console.log(output)
+          });
+        },
+
+        seeFriendsRequests(){
+          ApiCalls.showFriendsRequests().then((output) =>{
+            console.log(output)
+          });
         }
     },
 
@@ -37,7 +67,7 @@ export default{
     
     <div class="profileButtons">
       <router-link to="/friends">
-        <button class="button_blues_small">10 Amigos</button>
+        <button class="button_blues_small">{{ this.friends.length }} Amigos</button>
       </router-link> 
       <button class="button_blues_small">2 Eventos</button>
     </div>
@@ -46,67 +76,20 @@ export default{
   <div class="profile_friends">
 
     <router-link to="/friends">
-      <h1>Amigos (5)</h1>
+      <h1>Amigos ({{ this.friends.length }})</h1>
     </router-link>
 
-    <router-link to="/perfilR">
+    <router-link to="/perfilR" v-for="friend in friends" :key="friend.id">
       <div class="flex_row_wrap">
         <img src="../assets/images/other_user.png" alt="profile pic">
         <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
+          <h2>{{ friend.name }}</h2>
         </div>  
       </div>
     </router-link>
     <hr>
+
+    
   </div> <!--tanquem profile friends-->
 
     <!-- User info-->

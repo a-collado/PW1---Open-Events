@@ -21,7 +21,6 @@ export default{
         <ul>
             <li v-for="user in results" :key="user.id">
                 <hr>
-
                 <article  class="flex_row_wrap">     <!-- Persona --> 
                     
                     <div class="profile_pic_message">
@@ -35,7 +34,6 @@ export default{
                     </div>
 
                 </article>
-                <hr>
             </li>
     
         </ul>
