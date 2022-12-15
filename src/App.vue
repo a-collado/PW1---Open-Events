@@ -1,10 +1,17 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "./js/APIcalls.js";
+import SearchUsers from "./components/SearchUsers.vue"
+
 export default{
+
+    components: {SearchUsers:SearchUsers},
     data() {
         return {
-          imgUrl_profile:"src/assets/images/userDefault_profilePic.jpg"
+          imgUrl_profile:"src/assets/images/userDefault_profilePic.jpg",
+          search_bar_text:"",
+          search_results: [],
+          show_results: false
         }
     },
     methods: {
@@ -19,6 +26,18 @@ export default{
         goToMessages(){
           if(ApiCalls.hasLoggedIn())
             window.location.replace("/messages");
+        },
+        search(){
+          console.log(this.search_bar_text);
+          if(!this.search_bar_text.length == 0)
+          this.search_result = ApiCalls.searchUser(this.search_bar_text).then((output) =>{
+            this.search_results = output;
+            console.log(this.search_results)
+            this.showResults();
+          });
+        },
+        showResults(){
+          this.show_results = true;
         }
     }
 }
@@ -28,7 +47,7 @@ export default{
 <template>
   <div id="header">
     <router-link to="/"><img class=logo_header src="src\assets\images\icons\logo.png"></router-link>
-    <input class="searchbar" type="text" placeholder="¿Que tipo de evento estas buscando?">
+    <input v-on:keyup.enter="search" class="searchbar" type="text" v-model="search_bar_text" placeholder="¿Que tipo de evento estas buscando?">
   
     <div>
       <button v-on:click="goToMessages()"><img src="src\assets\images\icons\chat.png" style="width:50px; height:50px"></button>
@@ -52,7 +71,8 @@ export default{
     </nav>-->
 </div>
 
-  <router-view></router-view>
+  <router-view v-if="!show_results"></router-view>
+  <SearchUsers v-else :results = "this.search_results"></SearchUsers>
 
   
   <div id="footer">

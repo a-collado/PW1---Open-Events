@@ -42,6 +42,7 @@ export default class ApiCalls{
         return response;
     }
 
+
     //----------------------------------POST USERS (LOGIN-REGISTER)---------------------------------------------------
     static async registerUser(name, lastName, email, password) {
     
@@ -128,6 +129,18 @@ export default class ApiCalls{
             console.log(body);          
             return body;
 
+        });
+    }
+
+    static async searchUser(user = '') {
+
+        const url = 'http://puigmal.salle.url.edu/api/v2/users/search' + '?s=' + user;
+        return this.fetchGetBearerToken(url)
+        .then((response) =>{
+            return response.json();
+        })
+        .then((body) =>{     
+            return body;
         });
     }
 

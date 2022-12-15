@@ -17,6 +17,7 @@ import Requests from '../components/Requests.vue'
 import Pendant from '../components/Pendant.vue'
 import EditarPerfil from '../components/EditarPerfil.vue'
 import Filter from '../components/Filter.vue'
+
 const routes = [
     {
         path: '/welcome',
