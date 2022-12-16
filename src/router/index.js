@@ -13,8 +13,6 @@ import Chat from '../components/Chat.vue'
 import RegisterProfilePicture from '../components/RegisterProfilePicture.vue'
 import Home from '../components/Home.vue'
 import Friends from '../components/Friends.vue'
-import Requests from '../components/Requests.vue'
-import Pendant from '../components/Pendant.vue'
 import EditarPerfil from '../components/EditarPerfil.vue'
 import Filter from '../components/Filter.vue'
 
@@ -88,16 +86,6 @@ const routes = [
         path: '/friends',
         name: 'Friends',
         component: Friends
-    },
-    {
-        path: '/requests',
-        name: 'Requests',
-        component: Requests
-    },
-    {
-        path: '/pendant',
-        name: 'Pendant',
-        component: Pendant
     },
     {
 

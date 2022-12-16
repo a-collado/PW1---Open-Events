@@ -3,37 +3,22 @@ import ApiCalls from "../js/APIcalls.js";
 
 export default{
 // Habria que juntar Friends y Request
-    data() {
-      return {
-        friends : [],
-        requests : []
-      };
+    props: {
+        requests: Array
     },
-
+    data() {
+      return {}
+    },
     mounted(){
-      this.getFriendsRequests()
-      this.getFriends();
+
     },
 
     methods: {
 
-        getFriends(){
-          this.friends = ApiCalls.getFriends().then((output) =>{
-            this.friends = output;
-            console.log(this.friends)
-          });
-        },
-
         acceptFriendRequest(id){
           ApiCalls.AcceptFriendRequest(id).then((output) =>{
             console.log(output)
-          });
-        },
-
-        getFriendsRequests(){
-          ApiCalls.showFriendsRequests().then((output) =>{
-            this.requests = output;
-            console.log(output)
+            vm.$forceUpdate();
           });
         }
     },
@@ -42,30 +27,8 @@ export default{
 </script>
 
 <template>
-
-<article class="centered_vertical">
-<div class="flex_row_wrap">
-    <router-link to="/friends">
-        <h2>Amigos({{friends.length}})</h2>
-    </router-link>
-    <div class="centered_horitzontal">
-        <h2>Solicitudes</h2>
-        <ellipse>{{requests.length}}</ellipse>
-    </div>
-</div>
-<hr>
-
-<div class="flex_row_wrap sub">
-    <h3>Recibidas</h3>
-    <router-link to="/pendant">
-        <h3>Pendientes</h3>
-    </router-link>
-</div>
-<hr>
-
-</article>
-
 <main>
+    <hr>
     <div class="column">
     <ul>
         <li v-for="request in requests" :key="request.id">
@@ -78,7 +41,7 @@ export default{
                     <h4>{{request.name}}</h4>
                 </div>
                 <div class="centered_horitzontal">
-                    <button>Confirmar</button>
+                    <button v-on:click="acceptFriendRequest(request.id)">Confirmar</button>
                     <button class="delete">Eliminar</button>
                 </div>
             </article>

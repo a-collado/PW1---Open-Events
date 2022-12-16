@@ -1,44 +1,19 @@
 <script>
+import { registerRuntimeCompiler } from "vue";
 import ApiCalls from "../js/APIcalls.js";
-import FriendList from "./FriendsList.vue"
-import Requests from "./Requests.vue";
 
 export default{
 // Habria que juntar Friends y Request
-    components:{
-      FriendList: FriendList,
-      Requests: Requests
+    props: {
+        friends: Array
     },
     data() {
       return {
-        friends : [],
-        requests : [],
-        showFriends : true
       };
     },
-    mounted(){
-      this.getFriends()
-      this.getFriendsRequests()
+    mounted() {
     },
     methods: {
-
-        getFriends(){
-          this.friends = ApiCalls.getFriends().then((output) =>{
-            this.friends = output;
-            console.log(this.friends)
-          });
-        },
-
-        getFriendsRequests(){
-          ApiCalls.showFriendsRequests().then((output) =>{
-            this.requests = output;
-            console.log(output)
-          });
-        },
-
-        showfriends(show){
-            this.showFriends = show;
-        }
     },
 
 }
@@ -47,19 +22,31 @@ export default{
 
 
 <template>
+    <hr>
+    <main>
+    <div class="column">
+        <ul>
+            <li v-for="friend in friends" :key="friend.id">
+                <article class="flex_row_wrap">     <!-- Persona --> 
+                    
+                    <div class="profile_pic_message">
+                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                    </div>
+                    
+                    <div class="centered_vertical">
+                        <router-link to="perfilR">
+                            <h4>{{friend.name}}</h4>
+                        </router-link>
+                    </div>
 
-    <article class="centered_vertical">
-    <div class="flex_row_wrap">
-        <h2 v-on:click="showfriends(true)">Amigos( {{ friends.length }} )</h2>
-        <div class="centered_horitzontal">
-        <h2 v-on:click="showfriends(false)">Solicitudes</h2>
-        <ellipse>{{requests.length}}</ellipse>
-        </div>
+                </article>
+                <hr>
+            </li>
+            
+        </ul>
     </div>
-    </article>
+</main>
 
-    <FriendList v-if="showFriends" :friends = "this.friends"></FriendList>
-    <Requests v-else :requests = "this.requests"></Requests>
 
 </template>
 

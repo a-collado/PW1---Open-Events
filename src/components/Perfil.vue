@@ -6,7 +6,7 @@ import ApiCalls from "../js/APIcalls.js";
 export default{
     components:{
       UsersEvents: UsersEvents,
-      UsersStatistics: UsersStatistics
+      UsersStatistics: UsersStatistics,
     },
     
     data() {
@@ -53,6 +53,10 @@ export default{
           ApiCalls.showFriendsRequests().then((output) =>{
             console.log(output)
           });
+        },
+
+        print(cosa){
+          console.log(cosa)
         }
     },
 
