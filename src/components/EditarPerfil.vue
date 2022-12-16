@@ -1,3 +1,44 @@
+<script>
+import ApiCalls from "../js/APIcalls.js";
+
+export default{
+    data() {
+        return {
+            user: [],
+            imageUrl: "",
+            name: "",
+            surname: "",
+            email: "",
+
+            error:"",
+        }
+    },
+    mounted(){
+        this.getProfileInfo()
+        //this.setProfileInfo()
+    },
+    methods: {
+        getProfileInfo(){
+          this.user = ApiCalls.getInfoLoggedUser().then((user) =>{
+            //this.user = user[0];
+            //console.log(this.user)
+            return user[0];
+          })
+        .then((body) =>{  
+            console.log(body);          
+            this.imageUrl = body.image;
+
+        });;
+         },
+         //setProfileInfo(){
+         //   this.imageUrl = this.user.image;
+        // },
+    }
+}
+
+</script>
+
+
 <template>
     
     <form>
@@ -5,6 +46,11 @@
 
             <div id="profilePic_button">
                 <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
+            </div>
+
+            <div class="generic_inputLabel">
+                <label><p class="darkblue_normal_bold">URL de la imagen de perfil</p></label>
+                <input class="general_input" type="text" v-model="imageUrl">
             </div>
 
             <div class="generic_inputLabel">

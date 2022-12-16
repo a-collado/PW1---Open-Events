@@ -11,16 +11,16 @@ export default{
     
     data() {
       return {
-        friends : []
+        friends : [],
+        user: []
       };
     },
 
     mounted(){
       console.log("Perfil created");
       ApiCalls.getAllUsersEvents()
-      //this.getFriends()
+      this.setProfileInfo()
       this.getFriends()
-
     },
 
     methods: {
@@ -31,36 +31,21 @@ export default{
         },
 
         getFriends(){
-          this.friends = ApiCalls.getFriends().then((output) =>{
-            this.friends = output;
+          this.friends = ApiCalls.getFriends().then((friends) =>{
+            this.friends = friends;
             console.log(this.friends)
           });
+          
         },
-        // Funciones auxiliares. Luego se borraran
-        sendFriendRequest(id){
-          ApiCalls.sendFriendRequest(id).then((output) =>{
-            console.log(output)
+         setProfileInfo(){
+          this.user = ApiCalls.getInfoLoggedUser().then((user) =>{
+            this.user = user[0];
+            console.log(this.user)
           });
-        },
-
-        acceptFriendRequest(id){
-          ApiCalls.AcceptFriendRequest(id).then((output) =>{
-            console.log(output)
-          });
-        },
-
-        seeFriendsRequests(){
-          ApiCalls.showFriendsRequests().then((output) =>{
-            console.log(output)
-          });
-        },
-
-        print(cosa){
-          console.log(cosa)
+         } 
         }
-    },
+    }
 
-}
 </script>
 
 <template>
@@ -100,9 +85,8 @@ export default{
   <main>
     <div class="profile_info"> 
       <article>
-        <h1>Nombre</h1>
-        <!--<h4>@nombre2</h4>-->
-        <p class="grey_normal">@nombre</p> 
+        <h1>{{user.name}}</h1>
+        <p class="grey_normal">{{user.email}}</p> 
       </article>
       <div class="flex_row_wrap">
         <p class="pink_normal">Barcelona, España</p>

@@ -100,13 +100,14 @@ export default class ApiCalls{
             if (typeof body.Error === 'undefined'){ 
                 window.localStorage.setItem("accessToken", body.accessToken);
                 //console.log(window.localStorage.getItem("accessToken"))
+
                 return this.CORRECT;
             }
             return "The username or the password may not be correct";
+            console.log("Error")
            
         })
         .then((result) =>{
-            
             if (result == this.correct){
                 this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/search?s=' + email)
                 .then(response => response.json())
@@ -114,8 +115,9 @@ export default class ApiCalls{
                     //console.log(user);
                     //console.log(user[0].id);
                     window.localStorage.setItem("loggedUser", user[0].id);
+                    return this.CORRECT;
                 });
-                return this.CORRECT;
+                
             }else{
                 return result;
             }
