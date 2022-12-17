@@ -45,7 +45,7 @@ export default{
                     
                     <div class="centered_vertical" v-on:click="goToProfileR(friend.id)">
                         <router-link to="perfilR">
-                            <h4>{{friend.name}}</h4>
+                            <h4>{{friend.name + " " + friend.last_name}}</h4>
                             <h5>{{friend.email}}</h5>
                         </router-link>
                     </div>

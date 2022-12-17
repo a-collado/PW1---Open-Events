@@ -1,41 +1,40 @@
 <script>
-import ApiCalls from "../js/APIcalls.js"
-import ChatWindow from "./ChatWindow.vue"
 
 // Corregir error al recibir mensajes muy largos
 
 export default{
-    components: {
-        ChatWindow: ChatWindow
-    },
+    
     props: {
-        user: Object,
         messages: Array
     },
     data() {
       return {
-        typingText: ""
+        timer: ""
       };
     },
     mounted() {
-      
-    },
+		this.scrollToEnd();
+        this.forceUpdateChat();
+        
+	},
     methods: {
-        backToChat(){
-            this.$parent.toggleShowChat(false);
-        },
         messageSended(sender_id) {
             return sender_id == localStorage.getItem("loggedUser");
         },
-        sendMessage(){
-            ApiCalls.sendMessage(this.user.id, this.typingText).then((output) =>{
-                this.updateMessages()
-                this.$parent.forceRerenderChat();
-          })
-        },
-        updateMessages(){
-            this.$parent.updateMessages(this.user.id)
-        },
+        scrollToEnd() {
+			var container = document.querySelector(".prechat");
+			var scrollHeight = container.scrollHeight;
+			container.scrollTop = scrollHeight;
+		},
+        forceUpdateChat() {
+            this.timer = window.setInterval(() => {
+                this.$parent.updateMessages();
+                this.$forceUpdate();
+            }, 5000)
+        }, 
+    },
+    unmounted() {
+        clearInterval(this.timer)
     },
 
 }
@@ -43,67 +42,30 @@ export default{
 
 <template>
 
-<div class="centered_horitzontal">
-        <img class="icon" src="../assets/images/icons/return.png" alt="Pagina anterior" v-on:click="backToChat">
-        <img class="icon" src="../assets/images/icons/dots.png" alt="Más opciones">
+<main>
+    <div class="prechat">
+        <div class="chat"  v-for="message in messages" :key="message.id">
+
+            <div class="message send" v-if="messageSended(message.user_id_send)">
+                <p>{{ message.content }}</p>
+                <img class="icon" src="../assets/images/icons/read_g.png" alt="leido">
+                <h4>{{ message.timeStamp.substr(11,5) }}</h4>
+            </div>
+            <div class="message received" v-else>
+                <p>{{ message.content }}</p>
+                <img class="icon" src="../assets/images/icons/read_g.png" alt="leido">
+                <h4>{{ message.timeStamp.substr(11,5) }}</h4>
+            </div>
+            
+
+        </div>
     </div>
-<article class="flex_row_wrap">
-    <img class="small_profilePic" :src="user.image" alt="Foto de perfil">
-    <div class="column">
-        <h4>{{user.name + " " + user.last_name}}</h4>
-        <h5 class="yellow">Ocupado</h5>
-    </div>
-</article>
-<ChatWindow :messages="this.messages"></ChatWindow>
-<footer class="flex_row_wrap">
-    <input v-on:keyup.enter="sendMessage" class="searchbar" type="text" placeholder="Escribe aqui..." v-model="typingText">
-    <ellipse>
-        <img v-on:click="sendMessage" class="icon" src="../assets/images/icons/send.png" alt="leido">
-    </ellipse>
-</footer>
+</main>
 
 </template>
 
 
 <style scoped>
-
-.flex_row_wrap{
-    margin-top: 0px;
-    width: 90%;
-    padding-right: 10%;
-    padding-bottom: 10px;
-    justify-items:center;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.centered_horitzontal{
-    width: 95%;
-    margin-left: 2.5%;
-    margin-bottom: -15px;
-    justify-content: space-between;
-}
-
-footer.flex_row_wrap{
-    position: relative;
-    justify-content: space-evenly;
-    padding-top: 20px;
-    padding-bottom: 25px;
-    padding-left: 5%;
-    bottom: -50px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.03) 68.23%, rgba(0, 0, 0, 0.11) 100%);
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-footer .searchbar{
-    width: 30vh;
-    background: rgba(0, 0, 0, 0.06);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 19px;
-    outline: none;
-    border: none;
-}
 
 .chat{
     display: flex;

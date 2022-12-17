@@ -1,4 +1,102 @@
+<script>
+import ApiCalls from "../js/APIcalls.js"
+import Chat from "./Chat.vue"
+
+export default{
+    components:{
+      Chat: Chat
+    },
+    data() {
+        return {
+            users: [],
+            chatUser: [],
+            showChat: false,
+            messages:[],
+            lastMessageContent: [],
+            lastMessageHour: [],
+            chatKey: 0
+        }
+    },
+    created(){
+        this.getPreviewMessages();
+    },
+    methods: {
+        goToProfileR(id){
+            if (id == localStorage.getItem("loggedUser"))
+            {
+                window.location.replace("/perfil");
+            }else{
+                window.localStorage.setItem("userR", id);
+                window.location.replace("/perfilR");
+            }
+        } ,
+        async getUserMessages(){
+            return await ApiCalls.getMessageUsers().then((output) =>{
+            this.users = output;
+            return output;
+          });
+        },
+        getMessages(id){
+            
+            return ApiCalls.getMessages(id).then((output) =>{
+                return output
+            ;
+         });
+        },
+        getLastMessage(id){
+            return this.getMessages(id).then((output) =>{
+
+            return output[output.length-1];
+        });
+        },
+        enterChat(id, user){
+            this.getMessages(id).then(message => {
+                this.messages = message;
+                this.chatUser = user;
+                this.toggleShowChat(true);
+            });
+        },
+        toggleShowChat(bool){
+            this.showChat = bool;
+        },
+        forceRerenderChat() {
+            this.chatKey += 1;
+        },
+        updateMessages(id){
+            this.getMessages(id).then(message => {
+                this.messages = message;
+                this.toggleShowChat(true);
+            });
+        },
+        getPreviewMessages(){
+            this.getUserMessages().then((users)=>{
+            this.lastMessage = new Array();
+
+            users.forEach(user => {
+                this.getLastMessage(user.id).then((message)=>{
+                    this.lastMessageContent.push(message.content)  
+                    this.lastMessageHour.push(message.timeStamp.substr(11,5))                  
+                });
+                
+            });
+
+            });
+        },
+        print(){
+            console.log("AAAAAAAAAAAAAAAAAAAAAAA")
+        }
+
+    },
+
+
+}
+
+</script>
+
+
 <template>
+
+<div v-if="!showChat">    
 
 <article class="centered_vertical">
     <div class="flex_row_wrap">
@@ -11,145 +109,28 @@
 <main>
     <div class="column">
 
-        <article class="flex_row_wrap">     <!-- Persona -->
+        <article class="flex_row_wrap" v-for="(user, index) in users" :key="user.id">     <!-- Persona -->
             <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
+                <img class="small_profilePic" :src="user.image" alt="Foto de perfil"  v-on:click="goToProfileR(user.id)">
                 <ellipse class="green"></ellipse>
             </div>
-            <div class="centered_vertical">
-                <router-link to="/chat">
-                    <h4>John Turturro</h4>
+            <div class="centered_vertical" v-on:click="this.enterChat(user.id, user)">
+                    <h4>{{user.name + " " + user.last_name}}</h4>
                     <div>
                         <img class = "message_icon" src="../assets/images/icons/read_g.png" align="left" />
-                        <p>Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit. Nullam su.</p>
+                        <p>{{ this.lastMessageContent[index] }}</p>
                     </div>
-                </router-link>
             </div>
             <div>
-                <h6>15:25</h6>
-            </div>
-        </article>
-
-
-        <article class="flex_row_wrap">     <!-- Persona -->
-            <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
-                <ellipse class="yellow"></ellipse>
-            </div>
-            <div class="centered_vertical">
-                <router-link to="/chat">
-                    <h4>Kaladin Stormblessed</h4>
-                    <div>
-                        <p>Ut ex turpis, cursus sit amet odio 
-                        elementum.</p>
-                    </div>
-                </router-link>
-            </div>
-            <div>
-                <h6>15:25</h6>
-                <ellipse>1</ellipse>
-            </div>
-        </article>
-
-        <article class="flex_row_wrap">     <!-- Persona -->
-            <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
-                <ellipse class="green"></ellipse>
-            </div>
-            <div class="centered_vertical">
-                <router-link to="/chat">
-                    <h4>Kiriona</h4>
-                    <div>
-                        <p class="writing">Escribiendo...</p>
-                    </div>
-                </router-link>
-            </div>
-            <div>
-            </div>
-        </article>
-
-        <article class="flex_row_wrap">     <!-- Persona -->
-            <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
-                <ellipse class="red"></ellipse>
-            </div>
-            <div class="centered_vertical">
-                <router-link to="/chat">
-                    <h4>Nona</h4>
-                    <div>
-                        <img class = "message_icon" src="../assets/images/icons/check_g.png" align="left" />
-                        <p>Maecenas tincidunt laoreet leo.</p>
-                    </div>
-                </router-link>
-            </div>
-            <div>
-                <h6>ayer</h6>
-            </div>
-        </article>
-
-        <article class="flex_row_wrap">     <!-- Persona -->
-            <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
-                <ellipse></ellipse>
-            </div>
-            <div class="centered_vertical">
-                <router-link to="/chat">
-                    <h4>Maya Hawke</h4>
-                    <div>
-                        <p>Nam in tincidunt dolor. Fusce non 
-                        rhoncus ligula. Proin gravida ex a nisi...</p>
-                    </div>
-                </router-link>
-            </div>
-            <div>
-                <h6>+48h</h6>
-                <ellipse>3</ellipse>
-            </div>
-        </article>
-
-        <article class="flex_row_wrap">     <!-- Persona -->
-            <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
-                <ellipse></ellipse>
-            </div>
-            <div class="centered_vertical">
-                <router-link to="/chat">
-                    <h4>Maya Hawke</h4>
-                    <div>
-                        <p>Nam in tincidunt dolor. Fusce non 
-                        rhoncus ligula. Proin gravida ex a nisi...</p>
-                    </div>
-                </router-link>
-            </div>
-            <div>
-                <h6>+48h</h6>
-                <ellipse>3</ellipse>
-            </div>
-        </article>
-
-        <article class="flex_row_wrap">     <!-- Persona -->
-            <div class="profile_pic_message">
-                <router-link to="/perfilR"><img class="small_profilePic" src="../assets/images/other_user.png" alt="Foto de perfil"></router-link>
-                <ellipse></ellipse>
-            </div>
-            <div class="centered_vertical">
-                <router-link to="/chat">
-                    <h4>Maya Hawke</h4>
-                    <div>
-                        <p>Nam in tincidunt dolor. Fusce non 
-                        rhoncus ligula. Proin gravida ex a nisi...</p>
-                    </div>
-                </router-link>
-            </div>
-            <div>
-                <h6>+48h</h6>
-                <ellipse>3</ellipse>
+                <h6>{{lastMessageHour[index]}}</h6>
             </div>
         </article>
 
     </div>
 </main>
+
+</div>
+<Chat v-else :messages="this.messages" :user="chatUser" :key="this.chatKey"></Chat>
 </template>
 
 

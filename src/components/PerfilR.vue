@@ -18,6 +18,7 @@ export default{
         friends : [],
         user: [],
         isFriend: false,
+        
         showFriends: false
       };
     },
@@ -69,6 +70,9 @@ export default{
           }
 
         },
+        openChat(){
+  
+        }
          
         }
     }
@@ -105,7 +109,7 @@ export default{
   <main>
     <div class="profile_info"> 
       <article>
-        <h1>{{user.name}}</h1>
+        <h1>{{user.name + " " + user.last_name}}</h1>
         <p class="grey_normal">{{user.email}}</p> 
       </article>
       <div class="flex_row_wrap">
@@ -124,7 +128,7 @@ export default{
       <div class="button_flex">
         <button v-if="!isFriend" class="button_pink_normal" v-on:click.prevent="sendFriendRequest">Enviar solicitud</button>
         <button v-else class="button_pink_normal">Amigo</button>
-        <button-icon><router-link to="/chat"><img class="icon" src="../assets/images/icons/edit.png" alt="send message button"></router-link></button-icon>
+        <button-icon v-on:click="openChat"><img class="icon" src="../assets/images/icons/edit.png" alt="send message button"></button-icon>
       </div>
       <hr>
 

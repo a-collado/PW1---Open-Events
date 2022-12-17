@@ -311,4 +311,25 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+    //----------------------------------MANAGE MESAGES -----------------------------------------------------------------------------------
+
+    static async getMessageUsers() {
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/messages/users")
+        .then((response) =>{ return response.json();});
+    }
+
+    static async sendMessage(id, content) {
+
+        const message = {content:content, user_id_send:localStorage.getItem("loggedUser"), user_id_recived:id};
+
+        return this.fetchPostBearerToken("http://puigmal.salle.url.edu/api/v2/messages/", message)
+        .then((response) =>{ return response.json();});
+    }
+
+    static async getMessages(id) {
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/messages/" + id)
+        .then((response) =>{ return response.json();});
+    }
+
+    
 }

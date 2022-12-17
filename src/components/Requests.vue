@@ -41,7 +41,7 @@ export default{
                     <img :src="request.image" alt="Foto de perfil">
                 </div>
                 <div class="centered_vertical">
-                    <h4>{{request.name}}</h4>
+                    <h4>{{request.name + " " + request.last_name}}</h4>
                     <h5>{{request.email}}</h5>
                 </div>
                 <div class="centered_horitzontal">
