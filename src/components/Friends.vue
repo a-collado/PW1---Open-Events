@@ -4,28 +4,23 @@ import FriendList from "./FriendsList.vue"
 import Requests from "./Requests.vue";
 
 export default{
+    props: {
+        friends: Array
+    },
     components:{
       FriendList: FriendList,
       Requests: Requests
     },
     data() {
       return {
-        friends : [],
         requests : [],
         showFriends : true
       };
     },
     mounted(){
-      this.getFriends()
       this.getFriendsRequests()
     },
     methods: {
-
-        getFriends(){
-          this.friends = ApiCalls.getFriends().then((output) =>{
-            this.friends = output;
-          });
-        },
 
         getFriendsRequests(){
           ApiCalls.showFriendsRequests().then((output) =>{
@@ -35,6 +30,10 @@ export default{
 
         showfriends(show){
             this.showFriends = show;
+        },
+
+        showFriendList(){
+            this.$parent.showFriendList(false);
         }
     },
 
@@ -47,6 +46,7 @@ export default{
 
     <article class="centered_vertical">
     <div class="flex_row_wrap">
+        <img class="icon" v-on:click.prevent="showFriendList()" src="../assets/images/icons/return.png" alt="Pagina anterior">
         <h2 v-on:click="showfriends(true)">Amigos( {{ friends.length }} )</h2>
         <div class="centered_horitzontal">
         <h2 v-on:click="showfriends(false)">Solicitudes</h2>

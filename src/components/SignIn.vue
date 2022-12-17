@@ -50,8 +50,8 @@ export default{
     <div class="background">
         <div class="Sign_in_box">
             <h1>Sign In</h1>
-            <input class="sign_in_input" type="text" placeholder="Email" v-model = "email">
-            <input class="sign_in_input" type="password" placeholder="Password" v-model = "password">
+            <input class="sign_in_input" type="text" placeholder="Email" v-model = "email" v-on:keyup.enter="login">
+            <input class="sign_in_input" type="password" placeholder="Password" v-model = "password" v-on:keyup.enter="login">
             <input type="submit" class="sign_in_button" v-on:click.prevent="login()" value="Login">
             <div class="register_here">
                 <p>Not Registered?</p>

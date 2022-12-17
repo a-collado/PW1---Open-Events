@@ -64,7 +64,7 @@ export default{
                 <input class="sign_in_input" type="text" placeholder="Name" name="Name" v-model = "name">
                 <input class="sign_in_input" type="text" placeholder="Last Name" name="Last Name" v-model = "lastName">
                 <input class="sign_in_input" type="text" placeholder="Email" name="Email" v-model = "email">
-                <input class="sign_in_input" type="password" placeholder="Password" name="Password" v-model = "password">
+                <input class="sign_in_input" type="password" placeholder="Password" name="Password" v-model = "password" v-on:keyup.enter="register">
                 <!--<input class="sign_in_input" type="password" placeholder="Confirm password" name="Confirm password">-->
                 <input type="submit" class="sign_in_button" v-on:click.prevent="register()" value="Register">
 

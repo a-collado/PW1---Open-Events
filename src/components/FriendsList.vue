@@ -1,13 +1,9 @@
 <script>
 import { registerRuntimeCompiler } from "vue";
-import PerfilR from "./PerfilR.vue";
 import ApiCalls from "../js/APIcalls.js";
 
 export default{
-    components:{
-      PerfilR: PerfilR,
-
-    },
+    
     props: {
         friends: Array
     },

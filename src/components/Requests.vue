@@ -16,9 +16,13 @@ export default{
 
         acceptFriendRequest(id){
           ApiCalls.AcceptFriendRequest(id).then((output) =>{
-            console.log(output)
             this.$router.go()
           });
+        },
+        rejectFriendRequest(id){
+          ApiCalls.rejectFriendRequest(id).then((output) =>{
+            this.$router.go()
+          });      
         }
     },
 
@@ -42,7 +46,7 @@ export default{
                 </div>
                 <div class="centered_horitzontal">
                     <button v-on:click="acceptFriendRequest(request.id)">Confirmar</button>
-                    <button class="delete">Eliminar</button>
+                    <button class="delete" v-on:click="rejectFriendRequest(request.id)">Eliminar</button>
                 </div>
             </article>
             <hr>

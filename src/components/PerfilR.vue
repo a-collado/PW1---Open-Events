@@ -3,11 +3,22 @@ import UsersEvents from "./UsersEvents.vue";
 import UsersStatistics from "./UsersStatistics.vue";
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
+import { registerRuntimeCompiler } from "vue";
+import FriendsList from "./FriendsList.vue"
+
+
+//TODO IMPORTANTE: Hacer que no se vea la pagina hasta que acabe de cargar, porque puedes ver por un momento la pagina del anterior usuario
+
 export default{
+    components:{
+      FriendsList: FriendsList
+    },
     data() {
       return {
         friends : [],
-        user: []
+        user: [],
+        isFriend: false,
+        showFriends: false
       };
     },
 
@@ -21,6 +32,9 @@ export default{
         getFriends(){
           this.friends = ApiCalls.getUserRFriends().then((friends) =>{
             this.friends = friends;
+            return friends
+          }).then(body => {
+            body.forEach(this.checkIfFriend);
           });
           
         },
@@ -40,11 +54,22 @@ export default{
           }
         } ,
         sendFriendRequest(){
-          // Comprovar que no seais ya amigos
+          // Comprovar que no le hayas enviado ya una solicitud
           ApiCalls.sendFriendRequest(localStorage.getItem("userR")).then((output) =>{
             console.log(output)
           });
-        }  
+        },
+        showFriendList(b){
+          this.showFriends = b;
+        },
+        checkIfFriend(friend){
+
+          if (friend.id == localStorage.getItem("loggedUser")) {
+            this.isFriend = true;
+          }
+
+        },
+         
         }
     }
 
@@ -54,20 +79,19 @@ export default{
 
 <template>
 
+<div v-if="!showFriends">
   <div class="profile_header">
     <img class="landscape" src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile">
     <img class="profilePic" :src="user.image" alt="Avatar">
     
     <div class="profileButtons">
-      <button class="button_blues_small">{{friends.length}} Amigos</button>
+      <button class="button_blues_small" v-on:click.prevent="showFriendList(true)">{{friends.length}} Amigos</button>
       <button class="button_blues_small">2 Eventos</button>
     </div>
   </div>
 
   <div class="profile_friends">
-    <router-link to="/friends">
-      <h1>Amigos ({{friends.length}})</h1>
-    </router-link>
+    <h1 v-on:click.prevent="showFriendList(true)">Amigos ({{friends.length}})</h1>
 
     <div class="flex_row_wrap" v-on:click="goToProfileR(friend.id)" v-for="friend in friends" :key="friend.id">
         <img :src="friend.image" alt="profile pic">
@@ -98,7 +122,8 @@ export default{
 
       <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
       <div class="button_flex">
-        <button class="button_pink_normal" v-on:click.prevent="sendFriendRequest">Enviar solicitud</button>
+        <button v-if="!isFriend" class="button_pink_normal" v-on:click.prevent="sendFriendRequest">Enviar solicitud</button>
+        <button v-else class="button_pink_normal">Amigo</button>
         <button-icon><router-link to="/chat"><img class="icon" src="../assets/images/icons/edit.png" alt="send message button"></router-link></button-icon>
       </div>
       <hr>
@@ -220,5 +245,34 @@ export default{
 
   <!---->
 
+</div>
+
+<div v-else>
+  <article class="centered_vertical" id="cv">
+    <div class="flex_row_wrap" id="f">
+        <img class="icon" v-on:click.prevent="showFriendList(false)" src="../assets/images/icons/return.png" alt="Pagina anterior">
+        <h2>Amigos( {{ friends.length }} )</h2>
+    </div>
+    </article>
+  <FriendsList :friends = "this.friends"></FriendsList>
+</div>
+
+
 </template>
 
+<style scoped>
+
+#cv {
+        width: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+}
+
+#f {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+}
+
+</style>

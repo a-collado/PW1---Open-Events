@@ -468,14 +468,20 @@ div .button_flex {
   position: relative;
   left: 5%;
   top: -80%;
-  filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.7))
+  filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.7));
+
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
 }
 
 .small_profilePic{
   width: 61px;
   height: 61px;
   object-fit: cover;
-  /*object-position: 100% 0; ABANS per la foto hardcodejada*/
   border-radius: 50%;
 }
 
@@ -485,6 +491,12 @@ div .button_flex {
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
+
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 /*Icon_______________________________*/

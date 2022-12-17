@@ -269,6 +269,12 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+    static async rejectFriendRequest(id){
+        
+        return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/friends/" + id)
+        .then((response) =>{ return response.json();});
+    }
+
      //----------------------------------MANAGE EVENTS (CREATE, EDIT, DELETE)---------------------------------------------------
      static async createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, /*eventLatitude, eventAltitud,*/ eventType){
 

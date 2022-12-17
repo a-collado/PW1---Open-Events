@@ -60,8 +60,8 @@ export default{
 <template>
     
     <form>
+        
         <div class="centered_column_width">
-
             <div id="profilePic_button" :style="imageUrlStyle">
                 <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
             </div>

@@ -3,16 +3,19 @@ import UsersEvents from "./UsersEvents.vue";
 import UsersStatistics from "./UsersStatistics.vue";
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
+import Friends from "./Friends.vue"
 export default{
     components:{
       UsersEvents: UsersEvents,
       UsersStatistics: UsersStatistics,
+      Friends: Friends
     },
     
     data() {
       return {
         friends : [],
         user: [],
+        showFriends: false
       };
     },
 
@@ -40,6 +43,9 @@ export default{
             this.user = user[0];
           });
          },
+         showFriendList(b){
+          this.showFriends = b;
+        },
          goToProfileR(id){
             window.localStorage.setItem("userR", id);
             window.location.replace("/perfilR");
@@ -50,24 +56,22 @@ export default{
 </script>
 
 <template>
+  <div v-if="!showFriends">
 
   <div class="profile_header">
     <img class="landscape" src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile">
     <img class="profilePic" :src="user.image" alt="Avatar">
     
     <div class="profileButtons">
-      <router-link to="/friends">
-        <button class="button_blues_small">{{ this.friends.length }} Amigos</button>
-      </router-link> 
+      <button class="button_blues_small" v-on:click.prevent="showFriendList(true)">{{ this.friends.length }} Amigos</button>
+      
       <button class="button_blues_small">2 Eventos</button>
     </div>
   </div>
 
   <div class="profile_friends">
 
-    <router-link to="/friends">
-      <h1>Amigos ({{ this.friends.length }})</h1>
-    </router-link>
+    <h1 v-on:click.prevent="showFriendList(true)">Amigos ({{ this.friends.length }})</h1>
     <!-- Hay que hacer que las lineas horizontales entre amigos se muestren bien -->
     <div class="flex_row_wrap" v-on:click="goToProfileR(friend.id)" v-for="friend in friends" :key="friend.id">
         <img :src="friend.image" alt="profile pic">
@@ -112,6 +116,9 @@ export default{
 
      <UsersEvents></UsersEvents>
      <UsersStatistics></UsersStatistics>
+
+  </div>  
+  <Friends v-else :friends = "this.friends"></Friends>
 
 </template>
 
