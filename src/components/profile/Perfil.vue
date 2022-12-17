@@ -2,8 +2,10 @@
 import UsersEvents from "./UsersEvents.vue";
 import UsersStatistics from "./UsersStatistics.vue";
 import { stringifyStyle } from "@vue/shared";
-import ApiCalls from "../js/APIcalls.js";
+import ApiCalls from "../../js/APIcalls.js";
 import Friends from "./Friends.vue"
+
+
 export default{
     components:{
       UsersEvents: UsersEvents,
@@ -15,7 +17,8 @@ export default{
       return {
         friends : [],
         user: [],
-        showFriends: false
+        showFriends: false,
+
       };
     },
 
@@ -95,11 +98,11 @@ export default{
       <div class="flex_row_wrap">
         <p class="pink_normal">Barcelona, España</p>
         <div class="punctuation">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="1 estrella">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="2 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="3 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="4 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="5 estrellas">
           <h5>5</h5>
         </div>
       </div>
@@ -107,7 +110,7 @@ export default{
       <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
       <div class="button_flex">
         <router-link to="/editarPerfil"><button class="button_pink_normal">Editar perfil</button></router-link>
-        <button-icon v-on:click = "logOut()"><img class="icon" src="../assets/images/icons/logout.png" alt="profile configuration"></button-icon>
+        <button-icon v-on:click = "logOut()"><img class="icon" src="../../assets/images/icons/logout.png" alt="profile configuration"></button-icon>
       </div>
       <hr>
 

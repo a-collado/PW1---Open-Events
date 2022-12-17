@@ -1,5 +1,5 @@
 <script>
-import ApiCalls from "../js/APIcalls.js";
+import ApiCalls from "../../js/APIcalls.js"
 
 export default{
     props: {

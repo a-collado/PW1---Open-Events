@@ -1,29 +1,40 @@
 <script>
-import { registerRuntimeCompiler } from "vue";
-import ApiCalls from "../js/APIcalls.js";
+import ApiCalls from "../../js/APIcalls.js";
+import FriendList from "./FriendsList.vue"
+import Requests from "./Requests.vue";
 
 export default{
-    
     props: {
         friends: Array
     },
+    components:{
+      FriendList: FriendList,
+      Requests: Requests
+    },
     data() {
       return {
+        requests : [],
+        showFriends : true
       };
     },
-    mounted() {
+    mounted(){
+      this.getFriendsRequests()
     },
     methods: {
-        goToProfileR(id){
 
-        if (id == localStorage.getItem("loggedUser"))
-        {
-            window.location.replace("/perfil");
-        }else{
-            window.localStorage.setItem("userR", id);
-            window.location.replace("/perfilR");
+        getFriendsRequests(){
+          ApiCalls.showFriendsRequests().then((output) =>{
+            this.requests = output;
+          });
+        },
+
+        showfriends(show){
+            this.showFriends = show;
+        },
+
+        showFriendList(){
+            this.$parent.showFriendList(false);
         }
-        } 
     },
 
 }
@@ -32,32 +43,20 @@ export default{
 
 
 <template>
-    <hr>
-    <main>
-    <div class="column">
-        <ul>
-            <li v-for="friend in friends" :key="friend.id">
-                <article class="flex_row_wrap">     <!-- Persona --> 
-                    
-                    <div class="profile_pic_message">
-                        <img :src="friend.image" alt="Foto de perfil">
-                    </div>
-                    
-                    <div class="centered_vertical" v-on:click="goToProfileR(friend.id)">
-                        <router-link to="perfilR">
-                            <h4>{{friend.name + " " + friend.last_name}}</h4>
-                            <h5>{{friend.email}}</h5>
-                        </router-link>
-                    </div>
 
-                </article>
-                <hr>
-            </li>
-            
-        </ul>
+    <article class="centered_vertical">
+    <div class="flex_row_wrap">
+        <img class="icon" v-on:click.prevent="showFriendList()" src="../../assets/images/icons/return.png" alt="Pagina anterior">
+        <h2 v-on:click="showfriends(true)">Amigos( {{ friends.length }} )</h2>
+        <div class="centered_horitzontal">
+        <h2 v-on:click="showfriends(false)">Solicitudes</h2>
+        <ellipse>{{requests.length}}</ellipse>
+        </div>
     </div>
-</main>
+    </article>
 
+    <FriendList v-if="showFriends" :friends = "this.friends"></FriendList>
+    <Requests v-else :requests = "this.requests"></Requests>
 
 </template>
 

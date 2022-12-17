@@ -2,16 +2,18 @@
 import UsersEvents from "./UsersEvents.vue";
 import UsersStatistics from "./UsersStatistics.vue";
 import { stringifyStyle } from "@vue/shared";
-import ApiCalls from "../js/APIcalls.js";
+import ApiCalls from "../../js/APIcalls.js";
 import { registerRuntimeCompiler } from "vue";
 import FriendsList from "./FriendsList.vue"
+import Messages from "../Messages.vue"
 
 
 //TODO IMPORTANTE: Hacer que no se vea la pagina hasta que acabe de cargar, porque puedes ver por un momento la pagina del anterior usuario
 
 export default{
     components:{
-      FriendsList: FriendsList
+      FriendsList: FriendsList,
+      Messages: Messages
     },
     data() {
       return {
@@ -71,7 +73,7 @@ export default{
 
         },
         openChat(){
-  
+          
         }
          
         }
@@ -115,11 +117,11 @@ export default{
       <div class="flex_row_wrap">
         <p class="pink_normal">Barcelona, España</p>
         <div class="punctuation">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-          <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="1 estrella">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="2 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="3 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="4 estrellas">
+          <img class="stars" src="../../assets/images/icons/star_b.png" alt="5 estrellas">
           <h5>5</h5>
         </div>
       </div>
@@ -128,7 +130,7 @@ export default{
       <div class="button_flex">
         <button v-if="!isFriend" class="button_pink_normal" v-on:click.prevent="sendFriendRequest">Enviar solicitud</button>
         <button v-else class="button_pink_normal">Amigo</button>
-        <button-icon v-on:click="openChat"><img class="icon" src="../assets/images/icons/edit.png" alt="send message button"></button-icon>
+        <button-icon v-on:click="openChat"><img class="icon" src="../../assets/images/icons/edit.png" alt="send message button"></button-icon>
       </div>
       <hr>
 
@@ -140,13 +142,13 @@ export default{
   <div class="events_statistics_background">
     <div class = "events_statistics_buttons">
       <button class="eventStatistics"> Eventos </button>
-      <router-link to="/perfilR_statistics" id="button"><button class="eventStatistics_Nselected"> Estadísticas </button></router-link>
+      <button class="eventStatistics_Nselected"> Estadísticas </button>
     </div>
     <div class="filter_events">
       <button>Todos</button>
       <button>Creados</button>
       <button>Inscrito</button>
-      <button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter">
+      <button-icon><img class="icon" src="../../assets/images/icons/up-down.png" alt="filter">
       </button-icon>
     </div>
 
@@ -154,19 +156,19 @@ export default{
 
       <router-link to="/event">
         <figure class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          <img class="event_img" src="../../assets/images/events/80_party_event.jpg" alt="image of the event">
           
           <div class="footer_basicEvent"> 
             <h2 class="blue_big">Fiesta de los 80</h2>
 
             <div class="column"> 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
                 <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/maps.png" alt="icon">
                 <p class="blue_small_bold">Barcelona</p>
               </div>
             </div>
@@ -177,19 +179,19 @@ export default{
 
       <router-link to="/event">
         <figure class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          <img class="event_img" src="../../assets/images/events/80_party_event.jpg" alt="image of the event">
           
           <div class="footer_basicEvent"> 
             <h2 class="blue_big">Fiesta de los 80</h2>
 
             <div class="column"> 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
                 <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/maps.png" alt="icon">
                 <p class="blue_small_bold">Barcelona</p>
               </div>
             </div>
@@ -200,19 +202,19 @@ export default{
 
       <router-link to="/event">
         <figure class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          <img class="event_img" src="../../assets/images/events/80_party_event.jpg" alt="image of the event">
           
           <div class="footer_basicEvent"> 
             <h2 class="blue_big">Fiesta de los 80</h2>
 
             <div class="column"> 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
                 <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/maps.png" alt="icon">
                 <p class="blue_small_bold">Barcelona</p>
               </div>
             </div>
@@ -223,19 +225,19 @@ export default{
 
       <router-link to="/event">
         <figure class="basic_event">
-          <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
+          <img class="event_img" src="../../assets/images/events/80_party_event.jpg" alt="image of the event">
           
           <div class="footer_basicEvent"> 
             <h2 class="blue_big">Fiesta de los 80</h2>
 
             <div class="column"> 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
                 <p class="blue_small_bold">09/11/2021<br>20:00</p>
               </div>
 
               <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                <img class="icon" src="../../assets/images/icons/maps.png" alt="icon">
                 <p class="blue_small_bold">Barcelona</p>
               </div>
             </div>
@@ -254,7 +256,7 @@ export default{
 <div v-else>
   <article class="centered_vertical" id="cv">
     <div class="flex_row_wrap" id="f">
-        <img class="icon" v-on:click.prevent="showFriendList(false)" src="../assets/images/icons/return.png" alt="Pagina anterior">
+        <img class="icon" v-on:click.prevent="showFriendList(false)" src="../../assets/images/icons/return.png" alt="Pagina anterior">
         <h2>Amigos( {{ friends.length }} )</h2>
     </div>
     </article>

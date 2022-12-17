@@ -82,9 +82,6 @@ export default{
 
             });
         },
-        print(){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA")
-        }
 
     },
 

@@ -1,19 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Perfil from '../components/Perfil.vue'
+import Perfil from '../components/profile/Perfil.vue'
 import Welcome from '../components/Welcome.vue'
 import SignIn from '../components/SignIn.vue'
 import Register from '../components/Register.vue'
 import CreateEvent from '../components/CreateEvent.vue'
 import Event from '../components/Event.vue'
-import Perfil2 from '../components/Perfil2.vue'
-import PerfilR2 from '../components/PerfilR2.vue'
-import PerfilR from '../components/PerfilR.vue'
+import PerfilR from '../components/profile/PerfilR.vue'
 import Messages from '../components/Messages.vue'
 import Chat from '../components/Chat.vue'
 import RegisterProfilePicture from '../components/RegisterProfilePicture.vue'
 import Home from '../components/Home.vue'
-import Friends from '../components/Friends.vue'
-import EditarPerfil from '../components/EditarPerfil.vue'
+import Friends from '../components/profile/Friends.vue'
+import EditarPerfil from '../components/profile/EditarPerfil.vue'
 import Filter from '../components/Filter.vue'
 
 const routes = [
@@ -28,19 +26,9 @@ const routes = [
         component: Perfil
     },
     {
-        path: '/perfil_statistics',
-        name: 'Perfil2',
-        component: Perfil2
-    },
-    {
         path: '/perfilR',
         name: 'PerfilR',
         component: PerfilR
-    },
-    {
-        path: '/perfilR_statistics',
-        name: 'PerfilR2',
-        component: PerfilR2
     },
     {
         path: '/sign_in',

@@ -1,5 +1,5 @@
 <script>
-import ApiCalls from "../js/APIcalls.js";
+import ApiCalls from "../../js/APIcalls.js"
 
 export default{
     data() {
@@ -63,7 +63,7 @@ export default{
         
         <div class="centered_column_width">
             <div id="profilePic_button" :style="imageUrlStyle">
-                <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
+                <button ><img class="icon" src="../../assets/images/icons/editar.png"></button> 
             </div>
 
             <div class="generic_inputLabel">
@@ -94,7 +94,7 @@ export default{
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Imagen de fondo</p></label>
                 <div id="backgroundPic_button"> 
-                    <button><img class="icon" src="../assets/images/icons/editar.png"></button> 
+                    <button><img class="icon" src="../../assets/images/icons/editar.png"></button> 
                 </div>
             </div>
             <br>
@@ -126,7 +126,7 @@ export default{
     }
 
     #profilePic_button{
-        background-image: url("../assets/images/profilepic.jpg");
+        background-image: url("../../assets/images/profilepic.jpg");
         background-size: cover;
         width: 160px;
         height: 160px;
