@@ -41,8 +41,6 @@ export default class ApiCalls{
     }
 
     static async fetchGetBearerToken(url = ''){
-
-        console.log(window.localStorage.getItem("accessToken"));
            
         const response = await fetch(url, {
             method: 'GET',
@@ -56,6 +54,28 @@ export default class ApiCalls{
            
         const response = await fetch(url, {
             method: 'PUT',
+            headers: {'Content-Type': 'application/json',
+                      'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")}
+        });
+        return response;
+    }
+
+    
+    static async fetchPutBearerToken(url = '', data = {}){
+           
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json',
+                      'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")},
+            body: JSON.stringify(data)
+        });
+        return response;
+    }
+
+    static async fetchDeleteBearerTokenUrl(url = ''){
+           
+        const response = await fetch(url, {
+            method: 'DELETE',
             headers: {'Content-Type': 'application/json',
                       'Authorization': "Bearer "+ window.localStorage.getItem("accessToken")}
         });
@@ -99,21 +119,18 @@ export default class ApiCalls{
             //console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
             if (typeof body.Error === 'undefined'){ 
                 window.localStorage.setItem("accessToken", body.accessToken);
-                //console.log(window.localStorage.getItem("accessToken"))
 
                 return this.CORRECT;
             }
             return "The username or the password may not be correct";
-            console.log("Error")
-           
         })
         .then((result) =>{
             if (result == this.correct){
-                this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/search?s=' + email)
+
+                return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/search?s=' + email)
                 .then(response => response.json())
                 .then((user)=>{
-                    //console.log(user);
-                    //console.log(user[0].id);
+                                    
                     window.localStorage.setItem("loggedUser", user[0].id);
                     return this.CORRECT;
                 });
@@ -121,6 +138,8 @@ export default class ApiCalls{
             }else{
                 return result;
             }
+
+
         });
     }
 
@@ -136,11 +155,19 @@ export default class ApiCalls{
     //INFO LOGGED USER_______________________________________________
     static async getInfoLoggedUser(){
         return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + window.localStorage.getItem("loggedUser"))
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ 
+            return response.json();});
     }
 
     static getUrlImgLoggedUser(){
-        return getInfoLoggedUser.then((user)=>user.image);
+        return this.getInfoLoggedUser().then((user)=>{ 
+            return user[0].image});
+    }
+
+    static async getInfoInfoUserR(){
+        return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + window.localStorage.getItem("userR"))
+        .then((response) =>{ 
+            return response.json();});
     }
 
     //________________________________________________________________
@@ -171,6 +198,18 @@ export default class ApiCalls{
         });
     }
 
+    static async updateUser(name, lastName, email, imageUrl) {
+
+        const user = {name:name, last_name:lastName, email:email, image:imageUrl};
+        return this.fetchPutBearerToken('http://puigmal.salle.url.edu/api/v2/users', user)
+        .then((response) =>{    
+            console.log("A")
+            if(response.ok == true) return this.CORRECT;
+            return response.json();
+        });
+
+    }
+
 
     //----------------------------------GET USERS EVENTS (CREATED, ASSISTANT)---------------------------------------------------
 
@@ -190,6 +229,12 @@ export default class ApiCalls{
         return null;
     }
 
+    static async deleteUser(){
+        return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/users/")
+        .then((response) =>{ 
+            return response;});
+    }
+
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
     static async getFriends(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/friends")
@@ -198,6 +243,11 @@ export default class ApiCalls{
     
     static async getUserFriends(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/friends")
+        .then((response) =>{ return response.json();});
+    }
+
+    static async getUserRFriends(){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("userR") + "/friends")
         .then((response) =>{ return response.json();});
     }
 

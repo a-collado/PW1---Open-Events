@@ -12,12 +12,11 @@ export default{
     data() {
       return {
         friends : [],
-        user: []
+        user: [],
       };
     },
 
     mounted(){
-      console.log("Perfil created");
       ApiCalls.getAllUsersEvents()
       this.setProfileInfo()
       this.getFriends()
@@ -33,16 +32,18 @@ export default{
         getFriends(){
           this.friends = ApiCalls.getFriends().then((friends) =>{
             this.friends = friends;
-            console.log(this.friends)
           });
           
         },
          setProfileInfo(){
           this.user = ApiCalls.getInfoLoggedUser().then((user) =>{
             this.user = user[0];
-            console.log(this.user)
           });
-         } 
+         },
+         goToProfileR(id){
+            window.localStorage.setItem("userR", id);
+            window.location.replace("/perfilR");
+        } 
         }
     }
 
@@ -52,7 +53,7 @@ export default{
 
   <div class="profile_header">
     <img class="landscape" src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile">
-    <img class="profilePic" src="../assets/images/profilepic.webp" alt="Avatar">
+    <img class="profilePic" :src="user.image" alt="Avatar">
     
     <div class="profileButtons">
       <router-link to="/friends">
@@ -67,15 +68,14 @@ export default{
     <router-link to="/friends">
       <h1>Amigos ({{ this.friends.length }})</h1>
     </router-link>
-
-    <router-link to="/perfilR" v-for="friend in friends" :key="friend.id">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
+    <!-- Hay que hacer que las lineas horizontales entre amigos se muestren bien -->
+    <div class="flex_row_wrap" v-on:click="goToProfileR(friend.id)" v-for="friend in friends" :key="friend.id">
+        <img :src="friend.image" alt="profile pic">
         <div class="column">
           <h2>{{ friend.name }}</h2>
         </div>  
       </div>
-    </router-link>
+    
     <hr>
 
     

@@ -1,87 +1,88 @@
+<script>
+import UsersEvents from "./UsersEvents.vue";
+import UsersStatistics from "./UsersStatistics.vue";
+import { stringifyStyle } from "@vue/shared";
+import ApiCalls from "../js/APIcalls.js";
+export default{
+    data() {
+      return {
+        friends : [],
+        user: []
+      };
+    },
+
+    mounted(){
+      this.setProfileInfo()
+      this.getFriends()
+    },
+
+    methods: {
+
+        getFriends(){
+          this.friends = ApiCalls.getUserRFriends().then((friends) =>{
+            this.friends = friends;
+          });
+          
+        },
+         setProfileInfo(){
+          this.user = ApiCalls.getInfoInfoUserR().then((user) =>{
+            this.user = user[0];
+          });
+         },
+         goToProfileR(id){
+
+          if (id == localStorage.getItem("loggedUser"))
+          {
+              window.location.replace("/perfil");
+          }else{
+              window.localStorage.setItem("userR", id);
+              window.location.replace("/perfilR");
+          }
+        } ,
+        sendFriendRequest(){
+          // Comprovar que no seais ya amigos
+          ApiCalls.sendFriendRequest(localStorage.getItem("userR")).then((output) =>{
+            console.log(output)
+          });
+        }  
+        }
+    }
+
+</script>
+
+
+
 <template>
 
   <div class="profile_header">
     <img class="landscape" src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile">
-    <img class="profilePic" src="../assets/images/other_user.png" alt="Avatar">
+    <img class="profilePic" :src="user.image" alt="Avatar">
     
     <div class="profileButtons">
-      <button class="button_blues_small">10 Amigos</button>
+      <button class="button_blues_small">{{friends.length}} Amigos</button>
       <button class="button_blues_small">2 Eventos</button>
     </div>
   </div>
 
   <div class="profile_friends">
     <router-link to="/friends">
-      <h1>Amigos (5)</h1>
+      <h1>Amigos ({{friends.length}})</h1>
     </router-link>
 
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
+    <div class="flex_row_wrap" v-on:click="goToProfileR(friend.id)" v-for="friend in friends" :key="friend.id">
+        <img :src="friend.image" alt="profile pic">
         <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
+          <h2>{{ friend.name }}</h2>
         </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-
-    <hr>
-
-    <router-link to="/perfilR">
-      <div class="flex_row_wrap">
-        <img src="../assets/images/other_user.png" alt="profile pic">
-        <div class="column">
-          <h2>Amigo1</h2>
-          <p class="grey_normal">@amigo1</p>
-        </div>  
-      </div>
-    </router-link>
-    <hr>
+    </div>
   </div> <!--tanquem profile friends-->
 
     <!-- User info-->
   <main>
     <div class="profile_info"> 
       <article>
-        <h1>Nombre</h1>
-        <!--<h4>@nombre2</h4>-->
-        <p class="grey_normal">@nombre</p> 
+        <h1>{{user.name}}</h1>
+        <p class="grey_normal">{{user.email}}</p> 
       </article>
       <div class="flex_row_wrap">
         <p class="pink_normal">Barcelona, España</p>
@@ -97,7 +98,7 @@
 
       <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
       <div class="button_flex">
-        <button class="button_pink_normal">Enviar solicitud</button>
+        <button class="button_pink_normal" v-on:click.prevent="sendFriendRequest">Enviar solicitud</button>
         <button-icon><router-link to="/chat"><img class="icon" src="../assets/images/icons/edit.png" alt="send message button"></router-link></button-icon>
       </div>
       <hr>

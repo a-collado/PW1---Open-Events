@@ -14,6 +14,10 @@ export default{
           show_results: false
         }
     },
+    mounted(){
+      this.goToWelcome();
+      this.showProfilePic();
+    },
     methods: {
 
         goToUserAccount(){
@@ -26,6 +30,22 @@ export default{
         goToMessages(){
           if(ApiCalls.hasLoggedIn())
             window.location.replace("/messages");
+        },
+        goToWelcome(){
+          if(!ApiCalls.hasLoggedIn() && window.location.pathname != "/welcome"){
+            window.location.replace("/welcome");
+          }
+        },
+        showProfilePic(){
+          if(ApiCalls.hasLoggedIn()){
+            this.imgUrl_profile=ApiCalls.getUrlImgLoggedUser().then((image) =>{
+            this.imgUrl_profile = image;
+          });
+        }
+          else
+          {
+            this.imgUrl_profile = "src/assets/images/userDefault_profilePic.jpg"
+          }
         },
         search(){
           //console.log(this.search_bar_text);
@@ -40,6 +60,7 @@ export default{
           this.show_results = true;
         },
         hideResults(){
+          this.goToWelcome();
           this.show_results = false;
         }
     }

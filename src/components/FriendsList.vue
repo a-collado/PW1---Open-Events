@@ -1,9 +1,13 @@
 <script>
 import { registerRuntimeCompiler } from "vue";
+import PerfilR from "./PerfilR.vue";
 import ApiCalls from "../js/APIcalls.js";
 
 export default{
-// Habria que juntar Friends y Request
+    components:{
+      PerfilR: PerfilR,
+
+    },
     props: {
         friends: Array
     },
@@ -14,6 +18,16 @@ export default{
     mounted() {
     },
     methods: {
+        goToProfileR(id){
+
+        if (id == localStorage.getItem("loggedUser"))
+        {
+            window.location.replace("/perfil");
+        }else{
+            window.localStorage.setItem("userR", id);
+            window.location.replace("/perfilR");
+        }
+        } 
     },
 
 }
@@ -30,12 +44,13 @@ export default{
                 <article class="flex_row_wrap">     <!-- Persona --> 
                     
                     <div class="profile_pic_message">
-                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                        <img :src="friend.image" alt="Foto de perfil">
                     </div>
                     
-                    <div class="centered_vertical">
+                    <div class="centered_vertical" v-on:click="goToProfileR(friend.id)">
                         <router-link to="perfilR">
                             <h4>{{friend.name}}</h4>
+                            <h5>{{friend.email}}</h5>
                         </router-link>
                     </div>
 

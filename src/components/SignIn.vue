@@ -29,8 +29,7 @@ export default{
         login(){
 
             ApiCalls.loginUser(this.email, this.password).then((output) =>{
-                
-            if(output == ApiCalls.getCORRECT()) {
+            if(output === ApiCalls.getCORRECT()) {
                 window.location.replace("/");
             }else{
                 this.error = output;

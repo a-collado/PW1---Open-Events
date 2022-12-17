@@ -8,6 +8,19 @@ export default{
         return {
           
         }
+    },
+    methods: {
+
+         goToProfileR(id){
+
+            if (id == localStorage.getItem("loggedUser"))
+            {
+                window.location.replace("/perfil");
+            }else{
+                window.localStorage.setItem("userR", id);
+                window.location.replace("/perfilR");
+            }
+        } 
     }
 }
 
@@ -21,15 +34,16 @@ export default{
         <ul>
             <li v-for="user in results" :key="user.id">
                 <hr>
-                <article  class="flex_row_wrap">     <!-- Persona --> 
+                <article  class="flex_row_wrap" v-on:click="goToProfileR(user.id)">     <!-- Persona --> 
                     
                     <div class="profile_pic_message">
-                        <img src="../assets/images/other_user.png" alt="Foto de perfil">
+                        <img :src="user.image" alt="Foto de perfil">
                     </div>
                     
                     <div class="centered_vertical">
                         <router-link to="perfilR">
                             <h4> {{ user.name }}</h4>
+                            <h5> {{ user.email}} </h5>
                         </router-link>
                     </div>
 

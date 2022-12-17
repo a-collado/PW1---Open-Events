@@ -2,7 +2,6 @@
 import ApiCalls from "../js/APIcalls.js";
 
 export default{
-// Habria que juntar Friends y Request
     props: {
         requests: Array
     },
@@ -18,7 +17,7 @@ export default{
         acceptFriendRequest(id){
           ApiCalls.AcceptFriendRequest(id).then((output) =>{
             console.log(output)
-            vm.$forceUpdate();
+            this.$router.go()
           });
         }
     },
@@ -35,10 +34,11 @@ export default{
             <hr>
             <article class="flex_row_wrap">     <!-- Persona --> 
                 <div class="profile_pic_message">
-                    <img src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                    <img :src="request.image" alt="Foto de perfil">
                 </div>
                 <div class="centered_vertical">
                     <h4>{{request.name}}</h4>
+                    <h5>{{request.email}}</h5>
                 </div>
                 <div class="centered_horitzontal">
                     <button v-on:click="acceptFriendRequest(request.id)">Confirmar</button>

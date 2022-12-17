@@ -7,32 +7,50 @@ export default{
             user: [],
             imageUrl: "",
             name: "",
-            surname: "",
+            last_name: "",
             email: "",
+
+            imageUrlStyle: "",
 
             error:"",
         }
     },
     mounted(){
         this.getProfileInfo()
-        //this.setProfileInfo()
     },
     methods: {
         getProfileInfo(){
           this.user = ApiCalls.getInfoLoggedUser().then((user) =>{
-            //this.user = user[0];
-            //console.log(this.user)
             return user[0];
           })
         .then((body) =>{  
-            console.log(body);          
             this.imageUrl = body.image;
-
-        });;
+            this.name = body.name;
+            this.last_name = body.last_name;
+            this.email = body.email;
+            this.imageUrlStyle = "background-image: url(" + this.imageUrl + ")";
+        });
          },
-         //setProfileInfo(){
-         //   this.imageUrl = this.user.image;
-        // },
+         updateProfileInfo(){
+            // Habria que comprobar que esta todo bien
+            ApiCalls.updateUser(this.name,  this.last_name, this.email, this.imageUrl).then((result) =>{
+            if (result == ApiCalls.getCORRECT()){
+                window.location.replace("/perfil");
+            }
+          });
+         },
+         deleteUser(){
+            ApiCalls.deleteUser().then( 
+                //window.location.replace("/welcome")
+            );
+            
+         },
+         changeImage(){
+            
+            this.imageUrlStyle = "background-image: url(" + this.imageUrl + ")";
+            console.log(this.imageUrlStyle)
+            console.log(this.imageUrl)
+        },
     }
 }
 
@@ -44,28 +62,28 @@ export default{
     <form>
         <div class="centered_column_width">
 
-            <div id="profilePic_button">
+            <div id="profilePic_button" :style="imageUrlStyle">
                 <button ><img class="icon" src="../assets/images/icons/editar.png"></button> 
             </div>
 
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">URL de la imagen de perfil</p></label>
-                <input class="general_input" type="text" v-model="imageUrl">
+                <input class="general_input" type="text" v-model="imageUrl" v-on:change="changeImage">
             </div>
 
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Nombre</p></label>
-                <input class="general_input" type="text" value="Sandra">
+                <input class="general_input" type="text" v-model="name">
             </div>
 
             <div class="generic_inputLabel"> 
                 <label><p class="darkblue_normal_bold">Apellido</p></label>
-                <input class="general_input" type="text" value="Sánchez Laza">
+                <input class="general_input" type="text" v-model="last_name">
             </div>
 
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Email</p></label>
-                <input class="general_input" type="text" value="Sandra.sala@gmail.com">
+                <input class="general_input" type="text" v-model="email">
             </div>
 
             <div class="generic_inputLabel">
@@ -82,8 +100,8 @@ export default{
             <br>
             <div class="generic_inputLabel">
                 <div class="row_space">
-                    <router-link to="/perfil"><button class="button_pink_small">Guardar</button></router-link>
-                    <router-link to="/welcome"><button class="button_purple_small">Eliminar cuenta</button></router-link>
+                    <button class="button_pink_small" v-on:click.prevent="updateProfileInfo">Guardar</button>
+                    <button class="button_purple_small" v-on:click.prevent="deleteUser">Eliminar cuenta</button>
                 </div>
             </div>
 

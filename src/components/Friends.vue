@@ -4,7 +4,6 @@ import FriendList from "./FriendsList.vue"
 import Requests from "./Requests.vue";
 
 export default{
-// Habria que juntar Friends y Request
     components:{
       FriendList: FriendList,
       Requests: Requests
@@ -25,14 +24,12 @@ export default{
         getFriends(){
           this.friends = ApiCalls.getFriends().then((output) =>{
             this.friends = output;
-            console.log(this.friends)
           });
         },
 
         getFriendsRequests(){
           ApiCalls.showFriendsRequests().then((output) =>{
             this.requests = output;
-            console.log(output)
           });
         },
 
