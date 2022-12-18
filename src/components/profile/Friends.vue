@@ -2,10 +2,36 @@
 import ApiCalls from "../../js/APIcalls.js";
 import FriendList from "./FriendsList.vue"
 import Requests from "./Requests.vue";
+import { useRoute } from 'vue-router';
+import { watch, ref } from 'vue'
+import router from "../../router/index.js";
+
+
+
 
 export default{
-    props: {
-        friends: Array
+    /*props: {
+        friends: Array,
+        logedUser: Boolean
+    },*/
+    setup(){
+        const route = useRoute();
+        const id = ref();
+        
+        id.value = route.params.id;
+
+       /* watch(
+        () => route.params.id,
+        async newId => {
+            window.location.reload()
+        },
+        () => { 
+            id.value = route.params.id; 
+        }
+        )
+        */
+
+        return { id };
     },
     components:{
       FriendList: FriendList,
@@ -13,27 +39,61 @@ export default{
     },
     data() {
       return {
+        friends: [],
         requests : [],
-        showFriends : true
+        showFriends : true,
+        show : false,
+        logedUser: true
       };
     },
-    mounted(){
-      this.getFriendsRequests()
+    created(){
+      //this.getUserFriends(this.id);
+        this.getData(this.id)
+
+      //this.getFriendsRequests()
     },
     methods: {
 
-        getFriendsRequests(){
-          ApiCalls.showFriendsRequests().then((output) =>{
-            this.requests = output;
+        async getFriendsByID(userID){
+          return ApiCalls.getFriendsByID(userID).then((friends) =>{
+            return friends
+          })
+        },
+
+        async getFriendsRequestsByID(){
+          return ApiCalls.showFriendsRequests().then((output) =>{
+            return output
           });
+        },
+
+        async getData(userID){
+            return await this.getFriendsByID(userID).then((user) =>{
+                 
+                 return this.getFriendsRequestsByID(userID).then(request =>{
+                     this.friends = user;
+                     this.requests = request;
+                     this.show = true;
+
+                     if (userID != localStorage.getItem("loggedUser")){
+                        this.logedUser = false;
+                     }
+
+
+                     return
+                 });
+            });
         },
 
         showfriends(show){
             this.showFriends = show;
         },
 
-        showFriendList(){
-            this.$parent.showFriendList(false);
+        goToProfileR(userID){
+            router.push({name: 'user', params: { id: userID }});
+        },
+
+        goBack(){
+            router.push({name: 'user', params: { id: this.id }});
         }
     },
 
@@ -44,18 +104,29 @@ export default{
 
 <template>
 
-    <article class="centered_vertical">
-    <div class="flex_row_wrap">
-        <img class="icon" v-on:click.prevent="showFriendList()" src="../../assets/images/icons/return.png" alt="Pagina anterior">
-        <h2 v-on:click="showfriends(true)">Amigos( {{ friends.length }} )</h2>
-        <div class="centered_horitzontal">
-        <h2 v-on:click="showfriends(false)">Solicitudes</h2>
-        <ellipse>{{requests.length}}</ellipse>
+    <div v-if="logedUser">
+        <article class="centered_vertical">
+        <div class="flex_row_wrap">
+            <img class="icon" v-on:click.prevent="goBack" src="../../assets/images/icons/return.png" alt="Pagina anterior">
+            <h2 v-on:click="showfriends(true)">Amigos( {{ friends.length }} )</h2>
+            <div class="centered_horitzontal">
+            <h2 v-on:click="showfriends(false)">Solicitudes</h2>
+            <ellipse>{{requests.length}}</ellipse>
+            </div>
         </div>
+        </article>
     </div>
-    </article>
+    <div v-else>
+        <article class="centered_vertical" id="cv">
+            <div class="flex_row_wrap" id="f">
+                <img class="icon" v-on:click.prevent="goBack" src="../../assets/images/icons/return.png" alt="Pagina anterior">
+                <h2>Amigos( {{ friends.length }} )</h2>
+            </div>
+            </article>
+        <FriendsList :friends = "this.friends"></FriendsList>
+    </div>
 
-    <FriendList v-if="showFriends" :friends = "this.friends"></FriendList>
+    <FriendList v-if="showFriends" :friends = "this.friends" @goToProfileR="goToProfileR($event)"></FriendList>
     <Requests v-else :requests = "this.requests"></Requests>
 
 </template>

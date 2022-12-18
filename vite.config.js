@@ -9,5 +9,6 @@ export default defineConfig({
         isCustomElement: (tag) => ['button-icon'].includes(tag),
       }
     }
-  })]
+  })
+  ]
 })

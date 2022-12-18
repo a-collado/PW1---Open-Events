@@ -26,7 +26,12 @@ export default{
             displayError:true
         }  
     },
-
+    setup(){
+      const defaultImg1 = new URL('../images/events/defaultEvent1.webp', import.meta.url)
+      const defaultImg2 = new URL('../images/events/defaultEvent2.webp', import.meta.url)
+      const defaultImg3 = new URL('../images/events/defaultEvent3.jpg', import.meta.url)
+      return { defaultImg1, defaultImg2, defaultImg3 };
+    },
     methods: {
 
         /*initializeMap(){
@@ -188,9 +193,9 @@ export default{
 
             <div class="generic_inputLabel" v-bind:class="{hidden: isHidden}">
                 <div class="generci_spaceBetween">
-                    <button class="defaultImgButton" v-on:click="defaultImg1()"><img class="defaultImg" src="../assets/images/events/defaultEvent1.webp"></button>
-                    <button class="defaultImgButton" v-on:click="defaultImg2()"><img class="defaultImg" src="../assets/images/events/defaultEvent2.webp"></button>
-                    <button class="defaultImgButton" v-on:click="defaultImg3()"><img class="defaultImg" src="../assets/images/events/defaultEvent3.jpg"></button>
+                    <button class="defaultImgButton" v-on:click="defaultImg1"><img class="defaultImg" src="../assets/images/events/defaultEvent1.webp"></button>
+                    <button class="defaultImgButton" v-on:click="defaultImg2"><img class="defaultImg" src="../assets/images/events/defaultEvent2.webp"></button>
+                    <button class="defaultImgButton" v-on:click="defaultImg3"><img class="defaultImg" src="../assets/images/events/defaultEvent3.jpg"></button>
                 </div>
             </div>
 

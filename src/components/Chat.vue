@@ -1,66 +1,120 @@
 <script>
 import ApiCalls from "../js/APIcalls.js"
 import ChatWindow from "./ChatWindow.vue"
+import router from "../router/index.js";
+import { useRoute } from 'vue-router';
+import { watch, ref } from 'vue'
 
 // Corregir error al recibir mensajes muy largos
+// Hacer que no puedas empezar un chat contigo mismo
 
 export default{
     components: {
-        ChatWindow: ChatWindow
-    },
-    props: {
-        user: Object,
-        messages: Array
+        ChatWindow: ChatWindow,
     },
     data() {
       return {
-        typingText: ""
+        user: [],
+        messages: [],
+        typingText: "",
+        show: false,
+        scrollTrigger: false
       };
     },
-    mounted() {
-      
+    setup(){
+        const route = useRoute();
+        const id = ref();
+        id.value = route.params.id;
+
+        /*watch(
+        () => route.params.id,
+        async newId => {
+            window.location.reload()
+        },
+        () => { 
+            id.value = route.params.id; 
+        }
+        )*/
+
+        return { id };
+    },
+    
+    created(){
+        
+        this.getChatInfo(this.id);
+        this.forceUpdateChat();
+        
     },
     methods: {
-        backToChat(){
-            this.$parent.toggleShowChat(false);
+
+        async getMessages(id){
+            
+            return ApiCalls.getMessages(id).then((output) =>{
+                return output;
+         });
         },
-        messageSended(sender_id) {
-            return sender_id == localStorage.getItem("loggedUser");
+        async getUserByID(userID){
+            return ApiCalls.getInfoInfoUserByID(userID).then((user) =>{
+            return user[0];
+          });
+        },
+        async getChatInfo(userID){
+            return await this.getMessages(userID).then((messages) =>{
+                 
+                 return this.getUserByID(userID).then(user =>{
+                     this.user = user;
+                     this.messages = messages;
+                    
+                     this.show = true;
+                     return
+                 });
+            });
         },
         sendMessage(){
             ApiCalls.sendMessage(this.user.id, this.typingText).then((output) =>{
                 this.updateMessages()
-                this.$parent.forceRerenderChat();
+                this.typingText = ""
+                //window.location.reload()
           })
         },
         updateMessages(){
-            this.$parent.updateMessages(this.user.id)
+            this.getMessages(this.id).then(message => {
+                this.messages = message;
+            });
         },
+        forceUpdateChat() {
+            this.timer = window.setInterval(() => {
+                this.updateMessages();
+            }, 5000)
+        }, 
     },
 
 }
 </script>
 
 <template>
+    <div v-if="show">
+        <div class="centered_horitzontal">
+            <router-link :to="{ name: 'Messages' }"> <img class="icon" src="../assets/images/icons/return.png" alt="Pagina anterior"> </router-link>
+                <img class="icon" src="../assets/images/icons/dots.png" alt="Más opciones">
+            </div>
+        <article class="flex_row_wrap">
+            <img class="small_profilePic" :src="user.image" alt="Foto de perfil">
+            <div class="column">
+                <h4>{{user.name + " " + user.last_name}}</h4>
+                <h5 class="yellow">Ocupado</h5>
+            </div>
+        </article>
+        <ChatWindow :messages="this.messages"></ChatWindow>
+        <footer class="flex_row_wrap">
+            <input v-on:keyup.enter="sendMessage" class="searchbar" type="text" placeholder="Escribe aqui..." v-model="typingText">
+            <ellipse>
+                <img v-on:click="sendMessage" class="icon" src="../assets/images/icons/send.png" alt="leido">
+            </ellipse>
+        </footer>
+    </div>
+    <div v-else class="empty"></div>
 
-<div class="centered_horitzontal">
-        <img class="icon" src="../assets/images/icons/return.png" alt="Pagina anterior" v-on:click="backToChat">
-        <img class="icon" src="../assets/images/icons/dots.png" alt="Más opciones">
-    </div>
-<article class="flex_row_wrap">
-    <img class="small_profilePic" :src="user.image" alt="Foto de perfil">
-    <div class="column">
-        <h4>{{user.name + " " + user.last_name}}</h4>
-        <h5 class="yellow">Ocupado</h5>
-    </div>
-</article>
-<ChatWindow :messages="this.messages"></ChatWindow>
-<footer class="flex_row_wrap">
-    <input v-on:keyup.enter="sendMessage" class="searchbar" type="text" placeholder="Escribe aqui..." v-model="typingText">
-    <ellipse>
-        <img v-on:click="sendMessage" class="icon" src="../assets/images/icons/send.png" alt="leido">
-    </ellipse>
-</footer>
 
 </template>
 
@@ -105,44 +159,6 @@ footer .searchbar{
     border: none;
 }
 
-.chat{
-    display: flex;
-    flex-direction: column;
-}
-
-.prechat{
-    margin: 25px;
-    height: 60vw auto;
-    max-height: 50vh;
-    overflow: auto;
-}
-
-.message{
-    display: flex;
-    flex-wrap: nowrap;
-    width: fit-content;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.message.send{
-    background: linear-gradient(180deg, #25585D 0%, rgba(61, 178, 190, 0.79) 0.01%, rgba(59, 225, 240, 0.48) 100%);
-    align-self: flex-end;
-}
-
-.message.received{
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.0222) 100%);
-    align-self: flex-start;
-}
-
-.messageBox{
-    display: flex;
-    flex-direction: column;
-    height: 60vw auto;
-    max-height: 50vh;
-    overflow: auto;
-}
-
 ellipse{
     padding: 8px;
     border-radius: 50%;
@@ -162,16 +178,6 @@ ellipse{
 .icon{
     width: 35px;
     height: 35px;
-}
-
-.message .icon{
-    width: 17px;
-    height: 17px;
-    align-self: flex-end;
-    margin-bottom: 12px;
-    margin-left: 10px;
-    margin-right: 5px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 ellipse img.icon{
@@ -202,27 +208,6 @@ h4{
     margin-left: 12px;
 }
 
-.message h4{
-    position: relative;
-    margin: 0px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: -0.11em;
-    color: #ABABAB;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    align-self: flex-end;
-    margin-right: 15px;
-    margin-bottom: 15px;
-    margin-left: 10px;
-}
-
-.message.send h4{
-    margin-left: 0px;
-    color: #ffffff;
-}
 
 h5{
     font-family: 'Inter';
@@ -246,6 +231,37 @@ h5.red{
     color: #FF265A;
 }
 
+.empty{
+    display: inline-block;
+    margin: 0; 
+    text-align: center;
+    height: 1000px;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("../assets/fonts/inter/Inter-ExtraLight-BETA.ttf");
+  font-weight: light;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("../assets/fonts/inter/Inter-Regular.ttf");
+}
+
+
+@font-face {
+  font-family: inter;
+  src: url("../assets/fonts/inter/Inter-Medium.ttf");
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("../assets/fonts/inter/Inter-Bold.ttf");
+  font-weight: bold;
+}
+
 @media (min-width: 768px) {
     .flex_row_wrap{
         justify-content: flex-start;
@@ -253,14 +269,6 @@ h5.red{
     
     .small_profilePic{
         margin-left: 10vw;
-    }
-
-    .message.received{
-        margin-left: 10vw;
-    }
-
-    .message.send{
-        margin-right: 10vw;
     }
 
     footer .searchbar{

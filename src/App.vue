@@ -1,9 +1,15 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "./js/APIcalls.js";
-import SearchUsers from "./components/SearchUsers.vue"
+import SearchUsers from "./components/profile/SearchUsers.vue"
+
+import { RouterLink} from "vue-router";
+import { watch } from 'vue'
+import router from "./router/index.js";
 
 export default{
+
+  // NO PODEMOS USAR 'location.replace()', tenemos que usar el routing de Vue
 
     components: {SearchUsers:SearchUsers},
     data() {
@@ -11,9 +17,18 @@ export default{
           imgUrl_profile:"src/assets/images/userDefault_profilePic.jpg",
           search_bar_text:"",
           search_results: [],
-          show_results: false
+          show_results: false,
         }
     },
+    setup(){
+      const logoUrl = new URL('../images/icons/logo.png', import.meta.url)
+      const chatIconUrl = new URL('../images/icons/chat.png', import.meta.url)
+      const youtubeIconUrl = new URL('../images/icons/youtube.png', import.meta.url)
+      const instagramIconUrl = new URL('../images/icons/instagram.png', import.meta.url)
+      const twitterIconUrl = new URL('../images/icons/twitter.png', import.meta.url)
+      return { logoUrl, chatIconUrl, youtubeIconUrl, instagramIconUrl, twitterIconUrl};
+    },
+
     mounted(){
       this.goToWelcome();
       this.showProfilePic();
@@ -21,8 +36,9 @@ export default{
     methods: {
 
         goToUserAccount(){
+          this.show_results = false;
           if(ApiCalls.hasLoggedIn())
-            window.location.replace("/perfil");
+          router.push({name: 'user', params: { id: localStorage.getItem("loggedUser") }});
           else
             window.location.replace("/sign_in");
         },
@@ -32,6 +48,7 @@ export default{
             window.location.replace("/messages");
         },
         goToWelcome(){
+          this.hideSearchResults();
           if(!ApiCalls.hasLoggedIn() && window.location.pathname != "/welcome"){
             window.location.replace("/welcome");
           }
@@ -52,17 +69,15 @@ export default{
           if(!this.search_bar_text.length == 0)
           this.search_result = ApiCalls.searchUser(this.search_bar_text).then((output) =>{
             this.search_results = output;
-            console.log(this.search_results)
             this.showResults();
           });
         },
         showResults(){
           this.show_results = true;
         },
-        hideResults(){
-          this.goToWelcome();
+        hideSearchResults(){
           this.show_results = false;
-        }
+        },
     }
 }
 
@@ -70,26 +85,27 @@ export default{
 
 <template>
   <div id="header">
-    <router-link to="/" v-on:click="hideResults"><img class=logo_header src="src\assets\images\icons\logo.png"></router-link>
+    <router-link :to="{ name: 'Home' }" v-on:click="goToWelcome"><img class=logo_header :src="logoUrl"></router-link>
     <input v-on:keyup.enter="search" class="searchbar" type="text" v-model="search_bar_text" placeholder="¿Que tipo de evento estas buscando?">
   
     <div>
-      <button v-on:click="goToMessages()"><img src="src\assets\images\icons\chat.png" style="width:50px; height:50px"></button>
+      <button v-on:click="goToMessages()"><img :src="chatIconUrl" style="width:50px; height:50px"></button>
       <button v-on:click="goToUserAccount()"><img class="small_profilePic" v-bind:src = imgUrl_profile></button>
+      <!--<router-link :to="{name: 'Perfil', params: { id: 15 }}"> <button><img class="small_profilePic" v-bind:src = imgUrl_profile></button> </router-link>-->
     </div>
 </div>
 
   <router-view v-if="!show_results"></router-view>
-  <SearchUsers v-else :results = "this.search_results"></SearchUsers>
+  <SearchUsers v-else :results = "this.search_results" @goToProfile="hideSearchResults"></SearchUsers>
 
   
   <div id="footer">
     <div id="titleFooter">
-     <div><img class=logo_header src="src\assets\images\icons\logo.png"></div>
+     <div><img class=logo_header :src="logoUrl"></div>
       <div>
-        <img class="icon" src="src\assets\images\icons\youtube.png">
-        <img class="icon" src="src\assets\images\icons\twitter.png">
-        <img class="icon" src="src\assets\images\icons\instagram.png">
+        <img class="icon" :src="youtubeIconUrl">
+        <img class="icon" :src="twitterIconUrl">
+        <img class="icon" :src="instagramIconUrl">
       </div>
     </div>
 

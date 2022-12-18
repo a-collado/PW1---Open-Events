@@ -15,14 +15,8 @@ export default{
     methods: {
         goToProfileR(id){
 
-        if (id == localStorage.getItem("loggedUser"))
-        {
-            window.location.replace("/perfil");
-        }else{
-            window.localStorage.setItem("userR", id);
-            window.location.replace("/perfilR");
+        this.$emit("goToProfileR", id)
         }
-        } 
     },
 
 }
@@ -43,10 +37,8 @@ export default{
                     </div>
                     
                     <div class="centered_vertical" v-on:click="goToProfileR(friend.id)">
-                        <router-link to="perfilR">
                             <h4>{{friend.name + " " + friend.last_name}}</h4>
                             <h5>{{friend.email}}</h5>
-                        </router-link>
                     </div>
 
                 </article>

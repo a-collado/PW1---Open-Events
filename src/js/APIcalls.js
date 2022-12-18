@@ -4,6 +4,12 @@ export default class ApiCalls{
         const CORRECT = 201;
     }
 
+    setup(){
+        const defaultImageURL = new URL('../images/default_registered_profilePic.jpg', import.meta.url)
+
+        return { defaultImageURL };
+    }
+
     static getCORRECT(){
         return this.CORRECT;
     }
@@ -86,7 +92,7 @@ export default class ApiCalls{
     //----------------------------------POST USERS (LOGIN-REGISTER)---------------------------------------------------
     static async registerUser(name, lastName, email, password) {
     
-        let imageUrl = "src/assets/images/default_registered_profilePic.jpg";
+        const imageUrl = new URL('../assets/images/default_registered_profilePic.jpg', import.meta.url);
 
         const user = {name:name, last_name:lastName, email:email, password:password, image:imageUrl};
 
@@ -164,8 +170,8 @@ export default class ApiCalls{
             return user[0].image});
     }
 
-    static async getInfoInfoUserR(){
-        return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + window.localStorage.getItem("userR"))
+    static async getInfoInfoUserByID(userID){
+        return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + userID)
         .then((response) =>{ 
             return response.json();});
     }
@@ -203,7 +209,6 @@ export default class ApiCalls{
         const user = {name:name, last_name:lastName, email:email, image:imageUrl};
         return this.fetchPutBearerToken('http://puigmal.salle.url.edu/api/v2/users', user)
         .then((response) =>{    
-            console.log("A")
             if(response.ok == true) return this.CORRECT;
             return response.json();
         });
@@ -246,8 +251,8 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
-    static async getUserRFriends(){
-        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("userR") + "/friends")
+    static async getFriendsByID(userID){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + userID + "/friends")
         .then((response) =>{ return response.json();});
     }
 

@@ -1,6 +1,7 @@
 <script>
 import ApiCalls from "../../js/APIcalls.js"
 
+//TODO: Hay que hacer que se actualicen las request cuando aceptas o rechazas una
 export default{
     props: {
         requests: Array

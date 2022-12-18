@@ -1,4 +1,5 @@
 <script>
+import router from "../../router/index.js";
 
 export default{
     props: {
@@ -10,17 +11,10 @@ export default{
         }
     },
     methods: {
-
-         goToProfileR(id){
-
-            if (id == localStorage.getItem("loggedUser"))
-            {
-                window.location.replace("/perfil");
-            }else{
-                window.localStorage.setItem("userR", id);
-                window.location.replace("/perfilR");
-            }
-        } 
+        goToUserAccount(userID){
+          router.push({name: 'user', params: { id: userID }});
+          this.$emit("goToProfile");
+        },
     }
 }
 
@@ -34,17 +28,15 @@ export default{
         <ul>
             <li v-for="user in results" :key="user.id">
                 <hr>
-                <article  class="flex_row_wrap" v-on:click="goToProfileR(user.id)">     <!-- Persona --> 
+                <article  class="flex_row_wrap" v-on:click="goToUserAccount(user.id)">     <!-- Persona --> 
                     
                     <div class="profile_pic_message">
                         <img :src="user.image" alt="Foto de perfil">
                     </div>
                     
                     <div class="centered_vertical">
-                        <router-link to="perfilR">
-                            <h4> {{ user.name }}</h4>
+                            <h4> {{ user.name + " " + user.last_name}}</h4>
                             <h5> {{ user.email}} </h5>
-                        </router-link>
                     </div>
 
                 </article>
@@ -73,10 +65,6 @@ export default{
         align-items: center;
     }
 
-    .centered_horitzontal{
-        align-items:center;
-    }
-
     .column{
         align-items: center;
     }
@@ -87,15 +75,6 @@ export default{
         justify-items:center;
         align-items: stretch;
         justify-content: left;
-    }
-    .searchbar{
-        background: rgba(0, 0, 0, 0.07);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
-        padding: 15px; 
-        margin-bottom: 5px;
-        border-style: none;
-        outline: none;        
     }
     .profile_pic_message{
         margin-right: -20px;
@@ -183,9 +162,7 @@ export default{
         width: 50vw;
         /*justify-content: center;*/
     }
-    .searchbar{    
-        width: 30%;  
-    }
+
     hr{
         width: 60vw;
     }

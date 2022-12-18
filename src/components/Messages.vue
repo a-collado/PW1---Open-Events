@@ -1,6 +1,10 @@
 <script>
 import ApiCalls from "../js/APIcalls.js"
 import Chat from "./Chat.vue"
+import router from "../router/index.js";
+
+
+// TODO: Hay que corregir la preview de los mensajes
 
 export default{
     components:{
@@ -10,7 +14,6 @@ export default{
         return {
             users: [],
             chatUser: [],
-            showChat: false,
             messages:[],
             lastMessageContent: [],
             lastMessageHour: [],
@@ -21,15 +24,6 @@ export default{
         this.getPreviewMessages();
     },
     methods: {
-        goToProfileR(id){
-            if (id == localStorage.getItem("loggedUser"))
-            {
-                window.location.replace("/perfil");
-            }else{
-                window.localStorage.setItem("userR", id);
-                window.location.replace("/perfilR");
-            }
-        } ,
         async getUserMessages(){
             return await ApiCalls.getMessageUsers().then((output) =>{
             this.users = output;
@@ -49,25 +43,20 @@ export default{
             return output[output.length-1];
         });
         },
-        enterChat(id, user){
-            this.getMessages(id).then(message => {
-                this.messages = message;
-                this.chatUser = user;
-                this.toggleShowChat(true);
-            });
+        enterChat(userID){
+            router.push({ name: 'Chat' , params: {id: userID}})
         },
-        toggleShowChat(bool){
-            this.showChat = bool;
-        },
+
         forceRerenderChat() {
             this.chatKey += 1;
         },
+
         updateMessages(id){
             this.getMessages(id).then(message => {
                 this.messages = message;
-                this.toggleShowChat(true);
             });
         },
+
         getPreviewMessages(){
             this.getUserMessages().then((users)=>{
             this.lastMessage = new Array();
@@ -108,10 +97,10 @@ export default{
 
         <article class="flex_row_wrap" v-for="(user, index) in users" :key="user.id">     <!-- Persona -->
             <div class="profile_pic_message">
-                <img class="small_profilePic" :src="user.image" alt="Foto de perfil"  v-on:click="goToProfileR(user.id)">
+                <router-link :to="{ name: 'user' , params: {id: user.id}}"> <img class="small_profilePic" :src="user.image" alt="Foto de perfil"  v-on:click="goToProfileR(user.id)"> </router-link>
                 <ellipse class="green"></ellipse>
             </div>
-            <div class="centered_vertical" v-on:click="this.enterChat(user.id, user)">
+            <div class="centered_vertical" v-on:click="this.enterChat(user.id)">
                     <h4>{{user.name + " " + user.last_name}}</h4>
                     <div>
                         <img class = "message_icon" src="../assets/images/icons/read_g.png" align="left" />
@@ -127,7 +116,8 @@ export default{
 </main>
 
 </div>
-<Chat v-else :messages="this.messages" :user="chatUser" :key="this.chatKey"></Chat>
+<!-- <div v-else class="empty"></div> -->
+<!-- <Chat v-else :messages="this.messages" :user="chatUser" :key="this.chatKey"></Chat> --> 
 </template>
 
 
@@ -270,6 +260,13 @@ export default{
         font-weight: 600;
         color: #E26ABA;
     }
+
+    .empty{
+        display: inline-block;
+        margin: 0; 
+        text-align: center;
+        height: 1000px;
+    }   
 
 
     @media (min-width: 768px) {

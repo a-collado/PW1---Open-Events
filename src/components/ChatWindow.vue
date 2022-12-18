@@ -5,17 +5,24 @@
 export default{
     
     props: {
-        messages: Array
+        messages: Array,
     },
     data() {
       return {
         timer: ""
       };
     },
+    watch: { 
+        messages: function(newVal, oldVal) {
+        if (newVal.length != oldVal.length){
+            this.$forceUpdate();
+            this.scrollToEnd();
+        }
+        }
+    },
     mounted() {
 		this.scrollToEnd();
-        this.forceUpdateChat();
-        
+        //this.forceUpdateChat();
 	},
     methods: {
         messageSended(sender_id) {
@@ -26,12 +33,12 @@ export default{
 			var scrollHeight = container.scrollHeight;
 			container.scrollTop = scrollHeight;
 		},
-        forceUpdateChat() {
+        /*forceUpdateChat() {
             this.timer = window.setInterval(() => {
                 this.$parent.updateMessages();
                 this.$forceUpdate();
             }, 5000)
-        }, 
+        }, */
     },
     unmounted() {
         clearInterval(this.timer)

@@ -11,7 +11,7 @@ export default{
         return {
             email: "",
             password: "",
-            isFilterShown:false
+            isFilterShown:true
         }
     },
     
@@ -58,7 +58,6 @@ export default{
             }
         }
     },mounted() {
-      console.log('the component is now mounted.')
       ApiCalls.GetAllEvents()
    }
 }

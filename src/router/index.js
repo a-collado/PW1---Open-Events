@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Perfil from '../components/profile/Perfil.vue'
+import Perfil from '../components/profile/Profile.vue'
+import User from '../components/profile/User.vue'
 import Welcome from '../components/Welcome.vue'
 import SignIn from '../components/SignIn.vue'
 import Register from '../components/Register.vue'
 import CreateEvent from '../components/CreateEvent.vue'
 import Event from '../components/Event.vue'
-import PerfilR from '../components/profile/PerfilR.vue'
 import Messages from '../components/Messages.vue'
 import Chat from '../components/Chat.vue'
 import RegisterProfilePicture from '../components/RegisterProfilePicture.vue'
@@ -21,15 +21,23 @@ const routes = [
         component: Welcome
     },
     {
-        path: '/perfil',
+        path: '/perfil/:id',
         name: 'Perfil',
-        component: Perfil
+        component: Perfil,
+        children: [
+            {
+                path: '', 
+                name: 'user', 
+                component: User
+            },
+            {
+                path: 'friends',
+                name: 'Friends',
+                component: Friends
+            },
+        ]
     },
-    {
-        path: '/perfilR',
-        name: 'PerfilR',
-        component: PerfilR
-    },
+    
     {
         path: '/sign_in',
         name: 'Sign in',
@@ -56,7 +64,7 @@ const routes = [
         component: Messages
     },
     {
-        path: '/chat',
+        path: '/chat/:id',
         name: 'Chat',
         component: Chat
     },
@@ -69,11 +77,6 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home
-    },
-    {
-        path: '/friends',
-        name: 'Friends',
-        component: Friends
     },
     {
 
@@ -94,6 +97,5 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
-
 
 export default router

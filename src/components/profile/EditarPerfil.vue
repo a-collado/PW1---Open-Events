@@ -1,5 +1,8 @@
 <script>
 import ApiCalls from "../../js/APIcalls.js"
+import router from "../../router/index.js";
+
+// Hay que meter esto en el /
 
 export default{
     data() {
@@ -35,13 +38,15 @@ export default{
             // Habria que comprobar que esta todo bien
             ApiCalls.updateUser(this.name,  this.last_name, this.email, this.imageUrl).then((result) =>{
             if (result == ApiCalls.getCORRECT()){
-                window.location.replace("/perfil");
+                var id = localStorage.getItem("loggedUser")
+                router.push({name: 'user', params: { id }});
+
             }
           });
          },
          deleteUser(){
             ApiCalls.deleteUser().then( 
-                //window.location.replace("/welcome")
+                router.push({name: 'Welcome'})
             );
             
          },
