@@ -82,7 +82,7 @@ export default{
 
       //______________________________________________________________________
       goToEvent(eventID){
-        router.push({name: '', params: {id: eventID}});
+        router.push({name: 'Event', params: {id: eventID}});
       }
 
       
@@ -114,7 +114,7 @@ export default{
 
     <div class="event_group">
 
-        <figure class="basic_event" v-for = "event in createdEvents" :key="event.id">
+        <figure class="basic_event" v-on:click="goToEvent(event.id)" v-for = "event in createdEvents" :key="event.id">
           <img class="event_img" v-bind:src=event.image alt="image of the event">
           
           <div class="footer_basicEvent"> 
