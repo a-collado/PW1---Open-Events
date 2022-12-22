@@ -15,6 +15,7 @@ export default{
         return {
             user: [],
             friends: [],
+            events:[],
 
             ownProfile: false,
             profile: false,
@@ -26,62 +27,98 @@ export default{
         }
     },
     setup(){
-        const route = useRoute();
-        const id = ref();
-        id.value = route.params.id;
+        const ROUTE = useRoute();
+        const ID = ref();
+        ID.value = ROUTE.params.id;
 
         watch(
-        () => route.params.id,
+        () => ROUTE.params.id,
         async newId => {
             window.location.reload()
         },
         () => { 
-            id.value = route.params.id; 
+            ID.value = ROUTE.params.id; 
         }
         )
 
-        return { id };
+        return { ID };
     },
     
     created(){
         
-        this.getUserInfo(this.id);
+      this.getUserInfo(this.ID);
         
     },
     methods: {
-        async getUserInfo(userID){
-            return await this.getUserByID(userID).then((user) =>{
-                 
-                 return this.getFriendsByID(userID).then(friends =>{
-                     this.user = user;
-                     this.friends = friends;
-                    
-                     if (userID == localStorage.getItem("loggedUser")){
-                     this.ownProfile = true
-                     }
-                     this.profile = true;
-                     return
-                 });
+      async getUserInfo(userID){
+          /*return await this.getUserByID(userID).then((user) =>{
+                
+            return this.getFriendsByID(userID).then(friends =>{
+              this.user = user;
+              this.friends = friends;
+            
+              if (userID == localStorage.getItem("loggedUser")){
+              this.ownProfile = true
+              }
+              this.profile = true;
+              return
             });
+
+          });*/
+
+          this.getUserByID(userID)
+          .then((user) => {
+              this.getFriendsByID(userID).then(friends =>{
+                this.user = user;
+                this.friends = friends;
+              
+                if (userID == localStorage.getItem("loggedUser")){
+                this.ownProfile = true
+
+                return;
+              }
+
+              return;
+            });
+          /*}).then((vacio) => {
+              this.getEventsAll().then((events) => {
+                this.events = events;
+                return;
+              })
+              return;*/
+          });
+
+
         },
+
+        //METHODS API__________________________________________________________
         async getUserByID(userID){
             return ApiCalls.getInfoInfoUserByID(userID).then((user) =>{
             return user[0];
           });
         },
         async getFriendsByID(userID){
-          return ApiCalls.getFriendsByID(userID).then((friends) =>{
-            return friends
-          }).then(body => {
+          return ApiCalls.getFriendsByID(userID)
+          .then(body => {
             body.forEach(this.checkIfFriend);
             return body;
           });
         },
+
+        sendFriendRequest(){
+          return ApiCalls.sendFriendRequest(this.ID).then((respone) =>{
+            return Response;
+          });
+        },
+
+        //METHODS USED IN METHODS API___________________________________________
         checkIfFriend(friend){
             if (friend.id == localStorage.getItem("loggedUser")) {
             this.isFriend = true;
             }
         },
+
+        //______________________________________________________________________
         showingProfile(boolean){
             this.profile = boolean;
         },
@@ -97,13 +134,9 @@ export default{
           router.push({name: 'Friends'});
         },
         openChat(){
-          router.push({ name: 'Chat' , params: {id: this.id}});
-        },
-        sendFriendRequest(){
-          return ApiCalls.sendFriendRequest(this.id).then((respone) =>{
-            return Response;
-          });
+          router.push({ name: 'Chat' , params: {id: this.ID}});
         }
+
     }
 }
 
