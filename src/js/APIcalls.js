@@ -316,7 +316,17 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
-    //----------------------------------MANAGE MESAGES -----------------------------------------------------------------------------------
+    static async getCreatedEventsFromUser(id){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id + "/events")
+        .then((response) =>{ return response.json();});
+
+    }
+    static async getAssitedEventsFromUser(id){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id + "/assistances")
+        .then((response) =>{ return response.json();});
+    }
+
+    //----------------------------------MANAGE MEsSAGES -----------------------------------------------------------------------------------
 
     static async getMessageUsers() {
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/messages/users")
