@@ -252,6 +252,31 @@ div.centered_column_width{
   margin: 3px;
 }
 
+.extraInfo_basicEvent{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.extraInfo_basicEvent > * {
+  color: white;
+  background-color: #00ADBD;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 7px;
+  width: 110px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center; 
+}
+
+
 /*Timeline elements_____________________*/
 div.background_white_opac{
   width: 98%;

@@ -45,7 +45,7 @@ export default{
       return ApiCalls.getCreatedEventsFromUser(userID)
       .then((createdEvents) => {
         this.createdEvents = createdEvents;
-        this.createdEvents.forEach(this.changeLocationEvent);
+        this.createdEvents.forEach(this.updateInfoEvent);
         console.log(this.createdEvents);
 
         return;
@@ -54,7 +54,7 @@ export default{
         return ApiCalls.getAssitedEventsFromUser(userID)
         .then((assitedEvents) => {
           this.assitedEvents = assitedEvents;
-          this.assitedEvents.forEach(this.changeLocationEvent);
+          this.assitedEvents.forEach(this.updateInfoEvent);
           this.eventsFinished = true;
           //console.log(this.assitedEvents);
           //console.log(this.eventsFinished);
@@ -69,13 +69,21 @@ export default{
 
     
       //METHODS USED IN METHODS API___________________________________________
-      changeLocationEvent(event, index){
+      updateInfoEvent(event, index){
         //console.log(event);
         if(event.location.indexOf("(") >= 0){
           event.province = event.location.substring(event.location.indexOf("(") + 1, event.location.length - 1);
 
         }else{
           event.province = event.location;
+        }
+
+        if(event.eventStart_date == null){
+          event.eventStart_date = event.date
+        }
+
+        if(event.eventEnd_date == null){
+          event.eventStart_date = event.date
         }
       },
 
@@ -116,6 +124,11 @@ export default{
 
         <figure class="basic_event" v-on:click="goToEvent(event.id)" v-for = "event in createdEvents" :key="event.id">
           <img class="event_img" v-bind:src=event.image alt="image of the event">
+          <div class="extraInfo_basicEvent">
+            <p style="background-color: #C772BA;">creado</p>
+            <!--<p style="{background-color: #C772BA}">Inscrito</p>-->
+            <p v-if="Date.now() > new Date(event.eventEnd_date)" style="background-color: #235F65;">finalizado</p>
+          </div>
           
           <div class="footer_basicEvent"> 
             <h2 class="blue_big">{{event.name}}</h2>
@@ -123,7 +136,7 @@ export default{
             <div class="column"> 
               <div class="flex_row_wrap">
                 <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
-                <p class="blue_small_bold">{{event.date.substring(0,10)}}<br>{{event.date.substring(11,16)}}</p>
+                <p class="blue_small_bold">{{event.eventStart_date.substring(0,10)}}<br>{{event.eventStart_date.substring(11,16)}}</p>
               </div>
 
               <div class="flex_row_wrap">
