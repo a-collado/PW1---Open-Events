@@ -45,16 +45,20 @@ export default{
       return ApiCalls.getCreatedEventsFromUser(userID)
       .then((createdEvents) => {
         this.createdEvents = createdEvents;
+        this.createdEvents.forEach(this.changeLocationEvent);
         console.log(this.createdEvents);
+
         return;
       })
       .then((vacio) => { 
         return ApiCalls.getAssitedEventsFromUser(userID)
         .then((assitedEvents) => {
-          this.assitedEvents = assitedEvents
+          this.assitedEvents = assitedEvents;
+          this.assitedEvents.forEach(this.changeLocationEvent);
           this.eventsFinished = true;
           //console.log(this.assitedEvents);
           //console.log(this.eventsFinished);
+          return;
         });
 
       });
@@ -65,14 +69,21 @@ export default{
 
     
       //METHODS USED IN METHODS API___________________________________________
-      goToProfileR(friendID){
-          router.push({name: 'user', params: { id: friendID }});
-        },
+      changeLocationEvent(event, index){
+        //console.log(event);
+        if(event.location.indexOf("(") >= 0){
+          event.province = event.location.substring(event.location.indexOf("(") + 1, event.location.length - 1);
+
+        }else{
+          event.province = event.location;
+        }
+      },
+
+
+      //______________________________________________________________________
       goToEvent(eventID){
         router.push({name: '', params: {id: eventID}});
       }
-
-      //______________________________________________________________________
 
       
 
@@ -103,13 +114,6 @@ export default{
 
     <div class="event_group">
 
-      <!-- <div class="flex_row_wrap" v-on:click="goToProfileR(friend.id)" v-for="friend in friends" :key="friend.id">
-          <img :src="friend.image" alt="profile pic">
-          <div class="column">
-            <h2>{{ friend.name }}</h2>
-          </div>  
-        </div>-->
-
         <figure class="basic_event" v-for = "event in createdEvents" :key="event.id">
           <img class="event_img" v-bind:src=event.image alt="image of the event">
           
@@ -119,12 +123,12 @@ export default{
             <div class="column"> 
               <div class="flex_row_wrap">
                 <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
-                <p class="blue_small_bold">{{event.date}}<br>{{event.date}}</p>
+                <p class="blue_small_bold">{{event.date.substring(0,10)}}<br>{{event.date.substring(11,16)}}</p>
               </div>
 
               <div class="flex_row_wrap">
                 <img class="icon" src="../../assets/images/icons/maps.png" alt="icon">
-                <p class="blue_small_bold">{{event.location}}</p>
+                <p class="blue_small_bold">{{event.province}}</p>
               </div>
             </div>
 
