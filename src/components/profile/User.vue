@@ -22,7 +22,9 @@ export default{
             isFriend: false,
             showingFriends: false,
 
-            profileKey:0
+            profileKey:0,
+
+            showEvents:true
 
         }
     },
@@ -187,8 +189,8 @@ export default{
 
       </div>
     </main>
-    <UsersEvents/>
-    <UsersStatistics/>
+    <UsersEvents v-if="showEvents"/>
+    <UsersStatistics v-else/>
 
   </div>  
   <div v-else class="empty"></div>
