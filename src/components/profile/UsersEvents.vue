@@ -1,3 +1,92 @@
+<!--<script>
+import ApiCalls from "../../js/APIcalls.js"
+import router from "../../router/index.js";
+import { useRoute } from 'vue-router';
+import { watch, ref } from 'vue'
+
+export default{
+    
+    data() {
+        return {
+            events:[],
+
+            userEvents: false,
+            profileKey:0
+
+        }
+    },
+    setup(){
+        const ROUTE = useRoute();
+        const ID = ref();
+        ID.value = ROUTE.params.id;
+
+        watch(
+        () => ROUTE.params.id,
+        async newId => {
+            window.location.reload()
+        },
+        () => { 
+            ID.value = ROUTE.params.id; 
+        }
+        )
+
+        return { ID };
+    },
+    
+    created(){
+        
+      //this.getEventsAll(this.ID);
+      console.log("UserEvents", this.ID);
+        
+    }/*,
+    methods: {
+      async getEventsAll(userID){
+        
+          /*this.getUserByID(userID)
+          .then((user) => {
+              this.getFriendsByID(userID).then(friends =>{
+                this.user = user;
+                this.friends = friends;
+              
+                if (userID == localStorage.getItem("loggedUser")){
+                this.ownProfile = true
+
+                return;
+              }
+
+              return;
+            });
+          }).then((vacio) => {
+              this.getEventsAll().then((events) => {
+                this.events = events;
+                return;
+              })
+              return;
+          });*/
+
+
+        /*},
+
+        //METHODS API__________________________________________________________
+        async getUserByID(userID){
+            return ApiCalls.getInfoInfoUserByID(userID).then((user) =>{
+            return user[0];
+          });
+        },
+        
+
+        //METHODS USED IN METHODS API___________________________________________
+
+
+        //______________________________________________________________________
+
+        
+
+    }*/
+}
+
+</script> -->
+
 
 <template>
 

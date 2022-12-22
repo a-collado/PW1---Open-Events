@@ -66,7 +66,7 @@ export default{
 
           });*/
 
-          this.getUserByID(userID)
+          return this.getUserByID(userID)
           .then((user) => {
               this.getFriendsByID(userID).then(friends =>{
                 this.user = user;
@@ -74,12 +74,14 @@ export default{
               
                 if (userID == localStorage.getItem("loggedUser")){
                 this.ownProfile = true
+                }
 
                 return;
-              }
-
+                
+              });
+              this.profile = true;
               return;
-            });
+              
           /*}).then((vacio) => {
               this.getEventsAll().then((events) => {
                 this.events = events;
