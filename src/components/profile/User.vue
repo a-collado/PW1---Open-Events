@@ -51,21 +51,7 @@ export default{
     },
     methods: {
       async getUserInfo(userID){
-          /*return await this.getUserByID(userID).then((user) =>{
-                
-            return this.getFriendsByID(userID).then(friends =>{
-              this.user = user;
-              this.friends = friends;
-            
-              if (userID == localStorage.getItem("loggedUser")){
-              this.ownProfile = true
-              }
-              this.profile = true;
-              return
-            });
-
-          });*/
-
+         
           return this.getUserByID(userID)
           .then((user) => {
               this.getFriendsByID(userID).then(friends =>{
@@ -82,12 +68,6 @@ export default{
               this.profile = true;
               return;
               
-          /*}).then((vacio) => {
-              this.getEventsAll().then((events) => {
-                this.events = events;
-                return;
-              })
-              return;*/
           });
 
 
