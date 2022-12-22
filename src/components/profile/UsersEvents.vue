@@ -111,8 +111,6 @@ export default{
         this.showAssistidos = true;
       }
 
-      
-
   } //methods
 } //Export default data
 
@@ -128,7 +126,7 @@ export default{
   <div class="events_statistics_background">
     <div class = "events_statistics_buttons">
       <button class="eventStatistics"> Eventos </button>
-      <router-link to="/perfil_statistics" id="button"><button class="eventStatistics_Nselected"> Estadísticas </button></router-link>
+      <button v-on:click="$emit('add', false)" class="eventStatistics_Nselected"> Estadísticas </button>
     </div>
     <div class="filter_events">
       <button v-on:click="showAllEvents()">Todos</button>

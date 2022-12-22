@@ -119,6 +119,13 @@ export default{
         },
         openChat(){
           router.push({ name: 'Chat' , params: {id: this.ID}});
+        },
+
+        
+
+        changeShowingEventStatistics(value){
+          console.log(value);
+          this.showEvents = value;
         }
 
     }
@@ -189,8 +196,8 @@ export default{
 
       </div>
     </main>
-    <UsersEvents v-if="showEvents"/>
-    <UsersStatistics v-else/>
+    <UsersEvents v-on:add="changeShowingEventStatistics()" v-if="showEvents" />
+    <UsersStatistics v-on:add="changeShowingEventStatistics()" v-else/>
 
   </div>  
   <div v-else class="empty"></div>
