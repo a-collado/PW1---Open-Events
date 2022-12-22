@@ -53,19 +53,24 @@ export default{
         .then((assitedEvents) => {
           this.assitedEvents = assitedEvents
           this.eventsFinished = true;
-          console.log(this.assitedEvents);
-          console.log(this.eventsFinished);
+          //console.log(this.assitedEvents);
+          //console.log(this.eventsFinished);
         });
 
       });
 
-    }
+    },
 
       //METHODS API__________________________________________________________
 
     
       //METHODS USED IN METHODS API___________________________________________
-
+      goToProfileR(friendID){
+          router.push({name: 'user', params: { id: friendID }});
+        },
+      goToEvent(eventID){
+        router.push({name: '', params: {id: eventID}});
+      }
 
       //______________________________________________________________________
 
@@ -79,10 +84,10 @@ export default{
 
 <template>
 
+
+
 <div v-if="eventsFinished">
 
-  <p>{{ this.createdEvents.lenght }}</p>
-     
   <div class="events_statistics_background">
     <div class = "events_statistics_buttons">
       <button class="eventStatistics"> Eventos </button>
@@ -105,8 +110,8 @@ export default{
           </div>  
         </div>-->
 
-        <figure class="basic_event" v-for = "createdEvents in event" :key="event.id">
-          <img class="event_img" src="event.image" alt="image of the event">
+        <figure class="basic_event" v-for = "event in createdEvents" :key="event.id">
+          <img class="event_img" v-bind:src=event.image alt="image of the event">
           
           <div class="footer_basicEvent"> 
             <h2 class="blue_big">{{event.name}}</h2>
