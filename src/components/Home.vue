@@ -11,7 +11,8 @@ export default{
         return {
             email: "",
             password: "",
-            isFilterShown:true
+            isFilterShown:true,
+            events: []
         }
     },
     
@@ -51,17 +52,23 @@ export default{
           }
         },
         toggleFilter() {
-            if(this.isFilterShown===false) {
-                this.isFilterShown = true;
-            }else {
-                this.isFilterShown = false;
-            }
+            this.isFilterShown = !this.isFilterShown;
+        },
+        showEvents() {
+          
+        },
+        getAllEvents() {
+          ApiCalls.GetAllEvents();
         }
-    },mounted() {
-      ApiCalls.GetAllEvents()
+
+    },created() {
+      this.getAllEvents();
+      
    }
 }
 </script>
+
+<!-- ##################### HTML #####################-->
 
 <template>
 
@@ -119,7 +126,6 @@ export default{
           </div><!--Footer del event-->
         </figure> <!--Tanquem figure del event-->
       </router-link>
-
       <router-link to="/event">
         <figure class="basic_event">
           <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
@@ -194,6 +200,10 @@ export default{
 </div>
 
 </template>
+
+
+<!-- ##################### CSS ######################## -->
+
 
 <style scoped>
 
