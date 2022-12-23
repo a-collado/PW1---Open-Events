@@ -86,7 +86,12 @@ export default{
         },
         goToEvent(eventID){
           router.push({name: 'Event', params: {id: eventID}});
+        },
+        //Filters and sorters
+        filterEventByLocation(){
+          
         }
+
 
     },created() {
       this.getAllEvents();
