@@ -196,8 +196,8 @@ export default{
 
       </div>
     </main>
-    <UsersEvents v-on:add="changeShowingEventStatistics()" v-if="showEvents" />
-    <UsersStatistics v-on:add="changeShowingEventStatistics()" v-else/>
+    <UsersEvents v-on:add="changeShowingEventStatistics" v-if="showEvents" />
+    <UsersStatistics v-on:add="changeShowingEventStatistics" v-else/>
 
   </div>  
   <div v-else class="empty"></div>
