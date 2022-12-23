@@ -1,7 +1,7 @@
 /*  Esto es lo que hay que usar para que cambie si esta en mobil
 @media only screen and (max-width: 768px) {
 */
-
+.hidden
 .background{
     background-color: #00ADBDFF;
     background: linear-gradient(#00ADBDFF, #00ADBD00);

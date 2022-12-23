@@ -8,12 +8,17 @@ export default{
             date_end: "",
             rating: "",
             category:"",
-            num_assistents:""
+            num_assistents:"",
+
+            starsLocked: false
 
         }
     },
     methods: {
-
+      setRating(rating){
+        console.log("clicked on star " + rating);
+        this.starsLocked = true;
+      }
     }
 }
 
@@ -77,59 +82,67 @@ export default{
 
   <form>
       <div id="filter" v-bind:class="{hidden: this.$parent.isFilterShown}">
-      <div class="filter_header">
-        <img src="src\assets\images\icons\left-arrow 1.png"  v-on:click="this.$parent.toggleFilter()">
-        <h1>Filtros</h1>
-        <p> Reset</p>
-      </div>
-      <hr class="small_divider">
-      <div class="slider">
-        <div>
-          <p>Minimum assistents</p>
-          <p>0 - {{num_assistents}}</p>
+        <div class="filter_header">
+          <img src="src\assets\images\icons\left-arrow 1.png"  v-on:click="this.$parent.toggleFilter()">
+          <h1>Filtros</h1>
+          <p> Reset</p>
         </div>
-        <input type="range" min="0" max="1000" class="slider_bar" v-model="num_assistents">
-      </div>
-      <hr class="small_divider">
-      <div class="slider">
-        <div>
-          <p>Min Date</p>
-          <p>{{date_start}}</p>
+        <div class="flex_container">
+          <hr class="small_divider">
+          <div class="slider">
+            <div>
+              <p class="darkblue_normal_bold">Minimum assistents</p>
+              <p>0 - {{num_assistents}}</p>
+            </div>
+            <input type="range" min="0" max="1000" class="slider_bar" v-model="num_assistents">
+          </div>
+          <hr class="small_divider">
+          <div class="slider">
+            <div>
+              <p class="darkblue_normal_bold">Min Date</p>
+              <p>{{date_start}}</p>
+            </div>
+            <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_start">
+            <div class="darkblue_normal_bold">
+              <p class="darkblue_normal_bold">Max Date</p>
+              <p>{{date_end}}</p>
+            </div>
+            <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_end">
+          </div>
+          <hr class="small_divider">
+          <div>
+            <label><p class="darkblue_normal_bold">Tipo de evento</p></label>
+            <select class="input_timeHour" v-model="category">
+                <option value="Social">Social</option>
+                <option value="Educativo">Educativo</option>
+                <option value="Deportivo">Deportivo</option>
+                <option value="Empresarial">Empresarial</option>
+                <option value="Reunión">Reunión</option>
+                <option value="Convención">Convención</option>
+                <option value="Cultural">Cultural</option>
+          </select>
+          </div>
+          <hr class="small_divider">
+          <div class="radio_buttons">
+            <p class="darkblue_normal_bold">Rating:</p>
+            <div class="rate">
+              <input type="radio" id="star5" name="rate" value="5" />
+              <label for="star5" title="star5" v-on:click="this.setRating(5)"></label>
+              <input type="radio" id="star4" name="rate" value="4" />
+              <label for="star4" title="star4" v-on:click="this.setRating(4)"></label>
+              <input type="radio" id="star3" name="rate" value="3" />
+              <label for="star3" title="star3" v-on:click="this.setRating(3)"></label>
+              <input type="radio" id="star2" name="rate" value="2" />
+              <label for="star2" title="star2" v-on:click="this.setRating(2)" ></label>
+              <input type="radio" id="star1" name="rate" value="1" />
+              <label for="star1" title="star1" v-on:click="this.setRating(1)"></label>
+            </div>
+          </div>
+          <div>
+              <label><p class="darkblue_normal_bold">Provincia</p></label>
+              <input class="input_timeHour"  list="provincias" name="provincia" v-model="location"/>
+          </div>
         </div>
-        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_start">
-        <div>
-          <p>Max Date</p>
-          <p>{{date_end}}</p>
-        </div>
-        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_end">
-      </div>
-      <hr class="small_divider">
-      <label><p class="darkblue_normal_bold">Tipo de evento</p></label>
-      <select class="input_timeHour" v-model="category">
-          <option value="Social">Social</option>
-          <option value="Educativo">Educativo</option>
-          <option value="Deportivo">Deportivo</option>
-          <option value="Empresarial">Empresarial</option>
-          <option value="Reunión">Reunión</option>
-          <option value="Convención">Convención</option>
-          <option value="Cultural">Cultural</option>
-      </select>
-      <hr class="small_divider">
-      <div class="radio_buttons">
-        <p>Rating:</p>
-        <input type="radio"  name="punt" value="4">
-        <label for="punt1"><img src="src\assets\images\icons\4_estrellas.png"></label><br>
-        <input type="radio"  name="punt" value="3">
-        <label for="punt1"><img src="src\assets\images\icons\3_estrellas.png"></label><br>
-        <input type="radio"  name="punt" value="2">
-        <label for="punt1"><img src="src\assets\images\icons\2_estrellas.png"></label><br>
-        <input type="radio"  name="punt" value="1">
-        <label for="punt1"><img src="src\assets\images\icons\1_estrella.png"></label><br>
-      </div>
-      <div>
-          <label><p class="darkblue_normal_bold">Provincia</p></label>
-          <input class="input_timeHour"  list="provincias" name="provincia" v-model="location"/>
-      </div>
     </div>
   </form>
 </template>
@@ -170,10 +183,15 @@ export default{
   font-size: 18px;
 }
 
+.flex_container{
+  display: flex;
+}
 #filter{
   border: 1px solid #000000;
   border-radius: 15px;
   padding: 5px;
+  width: 100vw;
+
 }
 
 .slider div{
@@ -186,7 +204,6 @@ export default{
 
 .slider input {
   -webkit-appearance: none;
-  width: 100%;
   height: 5px;
   border-radius: 5px;  
   background: #d3d3d3;
@@ -209,8 +226,12 @@ export default{
 .radio_buttons{
   font-size: 14px;
 }
+
+.radio_buttons input{
+  display:none;
+}
 .radio_buttons label{
-  margin-left: 80px;
+  margin-left: 0px;
 }
 
 .small_divider{
@@ -219,5 +240,41 @@ export default{
   margin: 8px
 }
 
+.rate {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px;
+    margin: 0px
+}
+.rate:not(:checked) > input {
+    position:absolute;
+
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
 
 </style>
