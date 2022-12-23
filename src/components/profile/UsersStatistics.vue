@@ -200,8 +200,6 @@
   height: 75%;
   background-color: rgba(255,255,255,0.5);
   border-radius: 0px 0px 8px 8px;
-  display: flex;
-  align-items: center;
 }
 
 #line{
@@ -210,7 +208,7 @@
   height: 7px;
   background-color: #235F65;
   position: relative;
-  top: -10px;
+  top: 80px;
 }
 
 #Abril2021{
@@ -233,17 +231,23 @@
 
 /*Timeline months__________________________________*/
 .infoTimeline{
-    position:relative;
+    min-width: 120px;
+    height: 148px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .timeline_footer > div{
     display:flex;
     justify-content: space-around;
+    overflow: auto;
 }
 
 .infoTimeline > p {
-    position: relative;
-    top:-30px;
+
 }
 
 
