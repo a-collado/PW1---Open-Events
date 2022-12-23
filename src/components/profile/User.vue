@@ -22,7 +22,9 @@ export default{
             isFriend: false,
             showingFriends: false,
 
-            profileKey:0
+            profileKey:0,
+
+            showEvents:true
 
         }
     },
@@ -117,6 +119,13 @@ export default{
         },
         openChat(){
           router.push({ name: 'Chat' , params: {id: this.ID}});
+        },
+
+        
+
+        changeShowingEventStatistics(value){
+          console.log(value);
+          this.showEvents = value;
         }
 
     }
@@ -187,8 +196,8 @@ export default{
 
       </div>
     </main>
-    <UsersEvents/>
-    <UsersStatistics/>
+    <UsersEvents v-on:add="changeShowingEventStatistics()" v-if="showEvents" />
+    <UsersStatistics v-on:add="changeShowingEventStatistics()" v-else/>
 
   </div>  
   <div v-else class="empty"></div>

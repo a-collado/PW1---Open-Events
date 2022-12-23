@@ -2,7 +2,7 @@
 
     <div class="events_statistics_background">
         <div class = "events_statistics_buttons">
-        <router-link to="/perfil" id="button"><button class="eventStatistics_Nselected"> Eventos </button></router-link>
+        <button v-on:click="$emit('add', true)" class="eventStatistics_Nselected"> Eventos </button>
         <button class="eventStatistics"> Estadísticas </button>
         </div>
         
