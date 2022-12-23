@@ -73,13 +73,13 @@ export default{
         toggleFilter() {
             this.isFilterShown = !this.isFilterShown;
         },
-        showEvents() {
-          
-        },
         getAllEvents() {
           ApiCalls.GetAllEvents()
           .then((allEvents) => {
             this.events = allEvents;
+            this.events.forEach(event => {
+              event.isShown = true;
+            });
             console.log(this.events);
             return;
           });
@@ -88,8 +88,97 @@ export default{
           router.push({name: 'Event', params: {id: eventID}});
         },
         //Filters and sorters
-        filterEventByLocation(){
+        applyFilter(filters){
+
+          //reset shown events
+          this.events.forEach(event => {
+            event.isShown = true;
+          });
+
+          //filter them
+          this.events.forEach(event => {
+            
+              if (event.location !== filters[0] && filters[0]!=="") {
+                event.isShown = false;
+              }
+              
+              if (event.eventStart_date !== filters[1] && filters[1]!=="") {
+                event.isShown = false;
+              }
+              if (event.eventEnd_date !== filters[2] && filters[2]!=="") {
+                event.isShown = false;
+              }
+              if (event.type !== filters[4] && filters[4]!=="") {
+                event.isShown = false;
+              }
+              if (event.n_participators !== filters[5] && filters[5]!=="") {
+                event.isShown = false;
+              }
+
+              //Sort the events
+              if (filters[6] !== ""){
+                var type = filters[6].split('_')[0];
+                var dir = filters[6].split('_')[1];
+                switch (type) {
+                  case "alph":
+                      
+                    this.events.sort(function(a, b){
+                      let x = a.name.toLowerCase();
+                      let y = b.name.toLowerCase();
+                      if (x < y) {return -1;}
+                      if (x > y) {return 1;}
+                      return 0;
+                    });
+
+                    if (dir === "do"){
+                      this.events.reverse();
+                    }
+
+
+                    break;
+
+                  case "date":
+
+                    this.events.sort(function(a, b){
+                      return a.date.getTime() - b.date.getTime()}
+                    );
+
+                    if (dir === "do"){
+                      this.events.reverse();
+                    }
+                    break;
+
+                  case "assi":
+
+                    this.events.sort(function(a, b){
+                        return a.n_participators - b.n_participators}
+                      );
+
+                    if (dir === "do"){
+                      this.events.reverse();
+                    }
+                    break;
+
+                  case "rati":
+
+                    break;
+
+                  default:
+                    console.log("Sorting gone wrong: " + type + " - " + dir);
+                    break;
+                }
+              }
+
+
+          });
           
+          var filteredEvent = [];
+          this.events.forEach(event => {
+              if (event.isShown){
+                filteredEvent.push(event);
+              }
+          });
+          console.log(filteredEvent);
         }
 
 
@@ -136,25 +225,26 @@ export default{
   <Filter/>
     
   <div class="events">
-    <div class="event_group">
-        <figure class="basic_event" v-on:click="goToEvent(event.id)" v-for ="event in events" :key="event.id">
-          <img class="event_img" :src="event.image" alt="image of the event">
+    <div class="event_group" v-for ="event in events" :key="event.id">
+        <figure class="basic_event" v-on:click="goToEvent(event.id)"  v-if="event.isShown">
           
-          <div class="footer_basicEvent"> 
-            <h2 class="blue_big">{{event.name}}</h2>
+            <img class="event_img" :src="event.image" alt="image of the event">
+            
+            <div class="footer_basicEvent"> 
+              <h2 class="blue_big">{{event.name}}</h2>
 
-            <div class="column"> 
-              <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                <p class="blue_small_bold">{{event.date}}</p>
-              </div>
+              <div class="column"> 
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
+                  <p class="blue_small_bold">{{event.date}}</p>
+                </div>
 
-              <div class="flex_row_wrap">
-                <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
-                <p class="blue_small_bold">{{event.location}}</p>
+                <div class="flex_row_wrap">
+                  <img class="icon" src="../assets/images/icons/maps.png" alt="icon">
+                  <p class="blue_small_bold">{{event.location}}</p>
+                </div>
               </div>
-            </div>
-          </div><!--Footer del event-->
+            </div><!--Footer del event-->
         </figure> <!--Tanquem figure del event-->
       </div> <!--Event group-->
   </div>
