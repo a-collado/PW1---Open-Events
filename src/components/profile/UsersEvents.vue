@@ -13,8 +13,12 @@ export default{
 
       showCreados:true,
       showAssistidos:true,
+      showFinished:true,
+
+      showSortFilter:false,
 
       eventsFinished: false,
+
     }
   },
   setup(){
@@ -109,6 +113,39 @@ export default{
       showAssistidosMethod(){
         this.showCreados = false;
         this.showAssistidos = true;
+      },
+
+      sortEvents(value){
+        switch (value) {
+          case 1: //By name A-Z
+            this.createdEvents = this.createdEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
+            break;
+          case 2: //By name Z-A
+            this.createdEvents = this.createdEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
+            break;
+          
+          case 3: //By date Oldest-Newest
+            this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
+            break;
+
+          case 4: //By date Newest-Oldest
+            this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
+          break;
+
+        }
+        
+        
+
+      }, 
+
+      showSortFilterMethod(){
+        if(this.showSortFilter){
+          this.showSortFilter = false;
+        }else{ this.showSortFilter = true;}
       }
 
   } //methods
@@ -129,11 +166,25 @@ export default{
       <button v-on:click="$emit('add', false)" class="eventStatistics_Nselected"> Estadísticas </button>
     </div>
     <div class="filter_events">
-      <button v-on:click="showAllEvents()">Todos</button>
-      <button v-on:click="showCreadosMethod()">Creados</button>
-      <button v-on:click="showAssistidosMethod()">Inscrito</button>
-      <button-icon><img class="icon" src="../../assets/images/icons/up-down.png" alt="filter">
-      </button-icon>
+      <div class="flex_row"> <!-- no treure DIV -> ajuda a un selector CSS-->
+        <button v-on:click="showAllEvents()">Todos</button>
+        <button v-on:click="showCreadosMethod()">Creados</button>
+        <button v-on:click="showAssistidosMethod()">Inscrito</button>
+        <button v-on:click="showSortFilterMethod()"><img class="icon" src="../../assets/images/icons/up-down.png" alt="filter"></button>
+      </div>
+
+      <form v-if="showSortFilter">
+        <p>OrderBy:</p>
+        <input type="radio" name="sort" value=1 v-on:change="sortEvents(1)">
+        <label>By name A-Z</label><br>
+        <input type="radio" name="sort" value=2 v-on:change="sortEvents(2)">
+        <label>By name Z-A</label><br>  
+        <input type="radio" name="sort" value=3 v-on:change="sortEvents(3)">
+        <label>By date Oldest-Newest</label><br>
+        <input type="radio" name="sort" value=4 v-on:change="sortEvents(4)">
+        <label>By date Newest-Oldest</label>
+      </form>
+
     </div>
 
     <div class="event_group">
