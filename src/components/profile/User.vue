@@ -124,7 +124,7 @@ export default{
         
 
         changeShowingEventStatistics(value){
-          console.log(value);
+          //console.log(value);
           this.showEvents = value;
         }
 

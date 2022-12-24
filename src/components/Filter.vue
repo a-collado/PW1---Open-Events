@@ -9,21 +9,41 @@ export default{
             rating: "",
             category:"",
             num_assistents:"",
-
-            starsLocked: false
+            sort_option: "",
 
         }
     },
     methods: {
       setRating(rating){
         console.log("clicked on star " + rating);
-        this.starsLocked = true;
       },
       applyFilter(){
-        console.log("filter applied")
+        console.log("filter applied");
+        console.log(this.location + ", " 
+        + this.date_start + ", "
+        + this.date_end + ", " 
+        + this.rating + ", " 
+        + this.category + ", " 
+        + this.num_assistents + ", "
+        + this.sort_option);
+
+        //Filter events
+        var filters = [this.location, this.date_start, this.date_end, this.rating, this.category, this.num_assistents, this.sort_option];
+
+        console.log(filters);
+        this.$parent.applyFilter(filters);
+        
+      
+
       },
       resetFilter(){
-
+        this.location = "";
+        this.date_start= "";
+        this.date_end = "";
+        this.rating = "";
+        this.category = "";
+        this.num_assistents = "";
+        this.sort_option = "";
       }
     }
 }
@@ -162,44 +182,44 @@ export default{
           <div id="alphabetically" class="sorter_option">
             <p class="darkblue_normal_bold">Alphabetically</p>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="alph_up" class="darkblue_normal_bold" v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort alphabetically ↑</label>
             </div>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="alph_do" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort alphabetically ↓</label>
             </div> 
           </div>
           <div id="date">
             <p class="darkblue_normal_bold">Date</p>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="date_up" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort by date ↑</label>
             </div>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="date_do" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort by date ↓</label>
             </div>
           </div>
           <div id="Assistance">
             <p class="darkblue_normal_bold">Assistance</p>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="assi_up" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort by assistance ↑</label>
             </div>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="assi_do" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort by assistance ↓</label>
             </div>
           </div>
           <div id="Rating">
             <p class="darkblue_normal_bold">Rating</p>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="rati_up" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort by rating ↑</label>
             </div>
             <div>
-              <input type="radio" id="alphaUp" name="sort" value="alphaUp" class="darkblue_normal_bold">
+              <input type="radio" id="alphaUp" name="sort" value="rati_do" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort by rating ↓</label>
             </div></div>
         </div>
