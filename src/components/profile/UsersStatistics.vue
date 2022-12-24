@@ -1,3 +1,175 @@
+<script>
+import ApiCalls from "../../js/APIcalls.js"
+import router from "../../router/index.js";
+import { useRoute } from 'vue-router';
+import { watch, ref } from 'vue'
+
+export default{
+    
+  data() {
+    return {
+
+      timeline:[{"month":"Enero", "num_month":1}, {"month":"Febrero", "num_month":2}, 
+                {"month":"Marzo", "num_month":3}, {"month":"Abril", "num_month":4}, 
+                {"month":"Mayo", "num_month":5}, {"month":"Junio", "num_month":6}, 
+                {"month":"Julio", "num_month":7}, {"month":"Agosto", "num_month":8}, 
+                {"month":"Setiembre", "num_month":9}, {"month":"Octubre", "num_month":10}, 
+                {"month":"Noviembre", "num_month":11}, {"month":"Diciembre", "num_month":12}],
+      statisticsFinished: false,
+
+      currentYear: ""
+
+    }
+  },
+  setup(){
+    const ROUTE = useRoute();
+    const ID = ref();
+    ID.value = ROUTE.params.id;
+
+    watch(
+    () => ROUTE.params.id,
+    async newId => {
+      window.location.reload()
+    },
+    () => { 
+      ID.value = ROUTE.params.id; 
+    }
+    )
+
+    return { ID };
+  },
+  
+  created(){
+    console.log(this.timeline);
+    this.getEventsAll(this.ID);
+      
+  },
+  
+  methods: {
+
+    async getEventsAll(userID){
+
+      return ApiCalls.getCreatedEventsFromUser(userID)
+      .then((createdEvents) => {
+        //this.createdEvents = createdEvents;
+        //console.log(createdEvents);
+        createdEvents = createdEvents.map( createdEvent => {
+          createdEvent.created = true;
+          createdEvent.assisted = false;
+          return createdEvent;
+        });
+
+        //console.log(createdEvents);
+
+        createdEvents.forEach(this.updateInfoEvent);
+
+        this.events = createdEvents;
+        return;
+      })
+      .then((vacio) => { 
+        return ApiCalls.getAssitedEventsFromUser(userID)
+        .then((assitedEvents) => {
+          //this.assitedEvents = assitedEvents;
+
+          assitedEvents = assitedEvents.map( assitedEvent => {
+            assitedEvent.created = false;
+            assitedEvent.assisted = true;
+            return assitedEvent;
+          });
+
+          assitedEvents.forEach(this.updateInfoEvent);
+          this.events = this.events.concat(assitedEvents);
+          this.eventsFinished = true;
+
+          return;
+        });
+
+      });
+
+    },
+
+      //METHODS API__________________________________________________________
+
+    
+      //METHODS USED IN METHODS API___________________________________________
+      updateInfoEvent(event){
+        
+        if(event.location.indexOf("(") >= 0){
+          event.province = event.location.substring(event.location.indexOf("(") + 1, event.location.length - 1);
+
+        }else{
+          event.province = event.location;
+        }
+
+        if(event.eventStart_date == null){
+          event.eventStart_date = event.date
+        }
+
+        if(event.eventEnd_date == null){
+          event.eventStart_date = event.date
+        }
+
+      },
+
+
+      //______________________________________________________________________
+      goToEvent(eventID){
+        router.push({name: 'Event', params: {id: eventID}});
+      },
+
+      showAllEvents(){
+        this.showCreados = true;
+        this.showAssistidos = true;
+      },
+
+      showCreadosMethod(){
+        this.showAssistidos = false;
+        this.showCreados = true;
+      },
+
+      showAssistidosMethod(){
+        this.showCreados = false;
+        this.showAssistidos = true;
+      },
+
+      sortEvents(value){
+        switch (value) {
+          case 1: //By name A-Z
+            this.createdEvents = this.createdEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
+            break;
+          case 2: //By name Z-A
+            this.createdEvents = this.createdEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
+            break;
+          
+          case 3: //By date Oldest-Newest
+            this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
+            break;
+
+          case 4: //By date Newest-Oldest
+            this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
+            this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
+          break;
+
+        }
+        
+        
+
+      }, 
+
+      showSortFilterMethod(){
+        if(this.showSortFilter){
+          this.showSortFilter = false;
+        }else{ this.showSortFilter = true;}
+      }
+
+  } //methods
+} //Export default data
+
+</script> 
+
 <template>
 
     <div class="events_statistics_background">
@@ -10,6 +182,9 @@
         <div class="timeline">
             <div class="timeline_header">
                 <h2 class="blue_big"> Timeline</h2>
+                <form>
+                  <input class="general_input" type="number" min="2020" max="2030" step="1" placeholder="year" />
+                </form>
             </div>
 
             <div class="timeline_footer">
@@ -17,9 +192,12 @@
 
                 <div>
                     <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Enero</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
+                        <!--<p class="darkblue_normal_bold">Enero</p>
+                        <button class="button_timeline">1</button>-->
+                        <svg height="50" width="50">
+                          <circle cx="25" cy="20" r="10" fill="#235F65" />
+                        </svg>
+
                     </div>
 
                     <div class="infoTimeline">
@@ -195,9 +373,13 @@
   justify-content: center;
 }
 
+.timeline_header > form{
+  margin:3%;
+}
+
 .timeline_footer{
   width:100%;
-  height: 75%;
+  height: 70%;
   background-color: rgba(255,255,255,0.5);
   border-radius: 0px 0px 8px 8px;
 }
@@ -208,7 +390,7 @@
   height: 7px;
   background-color: #235F65;
   position: relative;
-  top: 80px;
+  top: 65px;
 }
 
 #Abril2021{
@@ -231,9 +413,9 @@
 
 /*Timeline months__________________________________*/
 .infoTimeline{
-    min-width: 120px;
-    height: 148px;
-    margin: 10px;
+    min-width: 140px;
+    height: 150px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -243,11 +425,34 @@
 .timeline_footer > div{
     display:flex;
     justify-content: space-around;
-    overflow: auto;
+    justify-content: flex-start;
+    position: relative;
+    overflow-x:scroll;
+    overflow-y:hidden;
+    top:-8px;
 }
 
-.infoTimeline > p {
+/*ScrollBar*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1D7780; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #115258; 
 }
 
 
