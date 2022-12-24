@@ -170,7 +170,7 @@ export default{
           <h1>{{user.name + " " + user.last_name}}</h1>
           <p class="grey_normal">{{user.email}}</p> 
         </article>
-        <div class="flex_row_wrap">
+         <!--<div class="flex_row_wrap">
           <p class="pink_normal">Barcelona, España</p>
           <div class="punctuation">
             <img class="stars" src="../../assets/images/icons/star_b.png" alt="1 estrella">
@@ -183,6 +183,7 @@ export default{
         </div>
 
         <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
+        --> 
         <div v-if="this.ownProfile" class="button_flex">
           <router-link to="/editarPerfil"><button class="button_pink_normal">Editar perfil</button></router-link>
           <button-icon v-on:click = "logOut()"><img class="icon" src="../../assets/images/icons/logout.png" alt="profile configuration"></button-icon>
