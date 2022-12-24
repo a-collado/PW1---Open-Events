@@ -15,7 +15,8 @@ export default{
             email: "",
             password: "",
             isFilterShown:true,
-            events: []
+            events: [],
+            recomendedEvent: ""
         }
     },
     setup(){
@@ -182,7 +183,10 @@ export default{
                 }
               }
               if (filters[3]!==""){
-
+                  if (event.avg_score < parseInt(filters[3])*2) {
+                    event.isShown = false;
+                  }
+                  
               }
               if (event.type !== filters[4] && filters[4]!=="") {
                 event.isShown = false;
@@ -207,10 +211,17 @@ export default{
           this.events.forEach(event => {
             event.isShown = true;
           });
+        },async loadRecomendedEvent() {
+             await ApiCalls.sortByRating()
+                .then((sortedEvents) => {
+                  this.recomendedEvent = sortedEvents[0];
+                  console.log(this.recomendedEvent);
+                })
         }
         
       },created() {
-        console.log("Loading events")
+        console.log("Loading events");
+        this.loadRecomendedEvent();
         this.getAllEvents();  
       }
       
@@ -226,11 +237,11 @@ export default{
   <hr>
   <router-link to="/event">
     <figure class="recomended_event">
-      <div class="recomended_event_img">
+      <div class="recomended_event_img" style="background-image: url({{this.recomendedEvent.image}});">
           <div class="footer_event"> 
-            <h1 class="Name">Festival anual de Barcelona</h1>
-            <p class="Data">14 de octubre a las 18:00h</p>
-            <p class="Location">Sala Tango, calle Ruiseñor, Barcelona</p>
+            <h1 class="Name">{{this.recomendedEvent.name}}</h1>
+            <p class="Data">{{this.recomendedEvent.eventStart_date.substring(0,10)}}   -  {{this.recomendedEvent.eventStart_date.substring(11,16)}}</p>
+            <p class="Location">{{this.recomendedEvent.location}}</p>
           </div>
       </div>
     </figure>
@@ -316,7 +327,7 @@ export default{
 }
 
 .recomended_event_img{
-  background-image: url("../assets/images/events/80_party_event.jpg");
+  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

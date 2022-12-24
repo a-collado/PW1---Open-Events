@@ -27,6 +27,10 @@ export default{
         + this.num_assistents + ", "
         + this.sort_option);
 
+        if (this.rating !== ""){
+          this.sort_option = "rati_up"
+        }
+
         //Filter events
         var filters = [this.location, this.date_start, this.date_end, this.rating, this.category, this.num_assistents, this.sort_option];
 
