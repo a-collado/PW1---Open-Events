@@ -325,8 +325,14 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
 
     }
+
     static async getAssitedEventsFromUser(id){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id + "/assistances")
+        .then((response) =>{ return response.json();});
+    }
+
+    static async getAssistancesFromEvent(id){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/" + id + "/assistances")
         .then((response) =>{ return response.json();});
     }
 
