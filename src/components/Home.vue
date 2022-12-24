@@ -15,7 +15,8 @@ export default{
             email: "",
             password: "",
             isFilterShown:true,
-            events: []
+            events: [],
+            recomendedEvent: ""
         }
     },
     setup(){
@@ -88,8 +89,73 @@ export default{
           router.push({name: 'Event', params: {id: eventID}});
         },
         //Filters and sorters
-        applyFilter(filters){
+        async applyFilter(filters){
 
+          //Sort the events
+          if (filters[6] !== ""){
+            var type = filters[6].split('_')[0];
+            var dir = filters[6].split('_')[1];
+            switch (type) {
+              case "alph":
+                  
+                this.events.sort(function(a, b){
+                  let x = a.name.toLowerCase();
+                  let y = b.name.toLowerCase();
+                  if (x < y) {return -1;}
+                  if (x > y) {return 1;}
+                  return 0;
+                });
+
+                if (dir === "do"){
+                  this.events.reverse();
+                }
+
+
+                break;
+
+              case "date":
+
+                this.events.sort(function(a,b){
+                  return new Date(b.eventStart_date) - new Date(a.eventStart_date);
+                });
+
+                if (dir === "do"){
+                  this.events.reverse();
+                }
+                break;
+
+              case "assi":
+
+                this.events.sort(function(a, b){
+                    return a.n_participators - b.n_participators}
+                  );
+
+                if (dir === "do"){
+                  this.events.reverse();
+                }
+                break;
+
+              case "rati":
+
+                await ApiCalls.sortByRating()
+                  .then((sortedEvents) => {
+                    this.events = sortedEvents;
+                  }).then((events)=>{
+                    if (dir === "do"){
+                      this.events.reverse();
+                    }
+                  });
+                console.log("Sorting by rating");
+                
+
+                break;
+
+              default:
+                console.log("Sorting gone wrong: " + type + " - " + dir);
+                break;
+            }
+          }
+          
           //reset shown events
           this.events.forEach(event => {
             event.isShown = true;
@@ -102,73 +168,32 @@ export default{
                 event.isShown = false;
               }
               
-              if (event.eventStart_date !== filters[1] && filters[1]!=="") {
-                event.isShown = false;
+              if (filters[1]!=="") {
+                var d1 = new Date(event.eventStart_date);
+                var d2 = new Date(filters[2]);
+                if (d1 <= d2) {
+                  event.isShown = false;
+                }
               }
-              if (event.eventEnd_date !== filters[2] && filters[2]!=="") {
-                event.isShown = false;
+              if (filters[2]!=="") {
+                var d1 = new Date(event.eventEnd_date);
+                var d2 = new Date(filters[2]);
+                if (d1 > d2) {
+                  event.isShown = false;
+                }
+              }
+              if (filters[3]!==""){
+                  if (event.avg_score < parseInt(filters[3])*2) {
+                    event.isShown = false;
+                  }
+                  
               }
               if (event.type !== filters[4] && filters[4]!=="") {
                 event.isShown = false;
               }
-              if (event.n_participators !== filters[5] && filters[5]!=="") {
+              if (event.n_participators < filters[5] && filters[5]!=="") {
                 event.isShown = false;
               }
-
-              //Sort the events
-              if (filters[6] !== ""){
-                var type = filters[6].split('_')[0];
-                var dir = filters[6].split('_')[1];
-                switch (type) {
-                  case "alph":
-                      
-                    this.events.sort(function(a, b){
-                      let x = a.name.toLowerCase();
-                      let y = b.name.toLowerCase();
-                      if (x < y) {return -1;}
-                      if (x > y) {return 1;}
-                      return 0;
-                    });
-
-                    if (dir === "do"){
-                      this.events.reverse();
-                    }
-
-
-                    break;
-
-                  case "date":
-
-                    this.events.sort(function(a, b){
-                      return a.date.getTime() - b.date.getTime()}
-                    );
-
-                    if (dir === "do"){
-                      this.events.reverse();
-                    }
-                    break;
-
-                  case "assi":
-
-                    this.events.sort(function(a, b){
-                        return a.n_participators - b.n_participators}
-                      );
-
-                    if (dir === "do"){
-                      this.events.reverse();
-                    }
-                    break;
-
-                  case "rati":
-
-                    break;
-
-                  default:
-                    console.log("Sorting gone wrong: " + type + " - " + dir);
-                    break;
-                }
-              }
-
 
           });
           
@@ -179,13 +204,28 @@ export default{
               }
           });
           console.log(filteredEvent);
+        
+
+
+        },resetFilter(){
+          this.events.forEach(event => {
+            event.isShown = true;
+          });
+        },async loadRecomendedEvent() {
+             await ApiCalls.sortByRating()
+                .then((sortedEvents) => {
+                  this.recomendedEvent = sortedEvents[0];
+                  console.log(this.recomendedEvent);
+                })
         }
-
-
-    },created() {
-      this.getAllEvents();
+        
+      },created() {
+        console.log("Loading events");
+        this.loadRecomendedEvent();
+        this.getAllEvents();  
+      }
       
-   }
+   
 }
 </script>
 
@@ -197,11 +237,11 @@ export default{
   <hr>
   <router-link to="/event">
     <figure class="recomended_event">
-      <div class="recomended_event_img">
+      <div class="recomended_event_img" style="background-image: url({{this.recomendedEvent.image}});">
           <div class="footer_event"> 
-            <h1 class="Name">Festival anual de Barcelona</h1>
-            <p class="Data">14 de octubre a las 18:00h</p>
-            <p class="Location">Sala Tango, calle Ruiseñor, Barcelona</p>
+            <h1 class="Name">{{this.recomendedEvent.name}}</h1>
+            <p class="Data">{{this.recomendedEvent.eventStart_date.substring(0,10)}}   -  {{this.recomendedEvent.eventStart_date.substring(11,16)}}</p>
+            <p class="Location">{{this.recomendedEvent.location}}</p>
           </div>
       </div>
     </figure>
@@ -236,7 +276,7 @@ export default{
               <div class="column"> 
                 <div class="flex_row_wrap">
                   <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                  <p class="blue_small_bold">{{event.date}}</p>
+                  <p class="blue_small_bold">{{event.date.substring(0,10)}}<br>{{event.date.substring(11,16)}}</p>
                 </div>
 
                 <div class="flex_row_wrap">
@@ -287,7 +327,7 @@ export default{
 }
 
 .recomended_event_img{
-  background-image: url("../assets/images/events/80_party_event.jpg");
+  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
