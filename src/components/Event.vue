@@ -1,17 +1,38 @@
-<!-- --><script>
+<!-- v-bind:class = "{'participateEvent' : participateEvent()}"--><script>
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
+import router from "../router/index.js";
+import { useRoute } from 'vue-router';
+import { watch, ref } from 'vue';
 
 export default{
 
 data() {
     return {
+        user: [],
+        event:[],
+        eventStartDate:"",
+        eventEndDate:"",
+        eventCreator:"",
         comment:"",
 
         participateEvent: false,
         displaySocials:'none',
         rateEvent: false
     }  
+},
+
+setup(){
+    const ROUTE = useRoute();
+    const ID = ref();
+    ID.value = ROUTE.params.id;
+
+    return { ID };
+},
+
+created(){
+    this.getEventByID(this.ID)
+   // this.participateEvent(this.ID)
 },
 
 methods: {
@@ -23,29 +44,56 @@ methods: {
             this.displaySocials = "none"; 
         }
     },
+    
+    async getOwnerByID(userID){
+        return ApiCalls.getInfoInfoUserByID(userID).then((user) =>{
+            this.user = user[0];
+            this.eventCreator = this.user.name + " " + this.user.last_name;
+        });
+    },
 
-    participateEvent(){
+    async getEventByID(eventID){
+        return await ApiCalls.GetEvent(eventID).then((event) =>{
+            this.event = event[0];
+
+            var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            this.splitDate = this.event.eventStart_date.split(/-|T|\./);
+            this.eventStartDate = this.splitDate[2] + " " + month[(parseInt(this.splitDate[1]) - 1)] + " " + this.splitDate[0] + " (" + this.splitDate[3] + ")";
+            
+            this.splitDate = this.event.eventEnd_date.split(/-|T|\./);
+            this.eventEndDate = this.splitDate[2] + " " + month[(parseInt(this.splitDate[1]) - 1)] + " " + this.splitDate[0] + " (" + this.splitDate[3] + ")";
+            
+            return this.getOwnerByID(this.event.owner_id).then((eventCreator) =>{});
+
+            return event;
+        });
+    },
+
+    /*async participateEvent(eventID){
         if (this.participateEvent === false) {
             this.participateEvent = true;
-            ApiCalls.participateEvent();
+            //ApiCalls.participateEvent();
         } else {
             this.participateEvent = false;
         }
-    }
+        console.log(this.participateEvent);
+    }*/
 }
+
 }
 </script>
 
 <template>
     <datalist id="opciones_filtro">
-    <option value="Puntuación media del creador">Puntuacion Creador</option>
-    <option value="Puntuación de las valoraciones">Puntuacion Valoraciones</option>
-</datalist>
+        <option value="Puntuación media del creador">Puntuacion Creador</option>
+        <option value="Puntuación de las valoraciones">Puntuacion Valoraciones</option>
+    </datalist>
 
     <div class="general_box">
         <div class="header_event_box">
-            <img class="event_img" src="../assets/images/events/80_party_event.jpg" alt="image of the event">
-            <div class="footer_basicEvent"><div class="titulo"><h2>Nombre del Evento</h2></div></div>
+            <img class="event_img" :src="event.image" alt="image of the event">
+            <div class="footer_basicEvent"><div class="titulo"><h2>{{event.name}}</h2><h5> (De {{eventCreator}})</h5></div></div>
         </div>
 
         <div class="event_descrip_box">
@@ -60,9 +108,9 @@ methods: {
                     <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
                 </div>
             </div>
-            <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
+            <div class="texto"><h5>({{event.type}}) {{event.description}}</h5></div>
             <div class="event_buttons">
-                <button v-on:click="participateEvent()" class="button_pink_small">Participar</button>
+                <button  v-on:click="participateEvent()" class="button_pink_small">Participar</button>
                 <div class="shareSocials"><button v-on:click="showSocials()" class="button_purple_small">Compartir</button>
                     <div class="row_medias" v-bind:style="{display: displaySocials}">
                         <a href="https://www.whatsapp.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/whatsapp.png"></button></a>
@@ -78,18 +126,21 @@ methods: {
                 <div class="helper_box">
                     <div class="event_info">
                         <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
-                        <div class="texto"><h5>25 Diciembre 2022 (20h00 - 24h00)</h5></div>
+                        <div class="column">
+                            <div class="texto"><h5>From: {{eventStartDate}}</h5></div>
+                            <div class="texto"><h5>To: {{eventEndDate}}</h5></div>
+                        </div>
                     </div>
                     <div class="event_info">
                         <img class="icon" src="../assets/images/icons/gglMapsButton.png" alt="icon">
-                        <div class="texto"><h5>Calle 4 Camins 256, 08019, Barcelona</h5></div>
+                        <div class="texto"><h5>{{event.location}}</h5></div>
                     </div>
                 </div>
             </div>
 
             <div class="rectangle_gradient">
                 <div class="event_info">
-                    <div class="titulo"><h2>3.019</h2></div>
+                    <div class="titulo"><h2>{{event.n_participators}}</h2></div>
                     <div class="titulo"><h3 class="pink">Participantes</h3></div>
                 </div>
             </div>
@@ -252,6 +303,12 @@ h3.pink{
     background: linear-gradient(#00ADBD, #ffffff);
     border: 1px solid #00ADBD;
     display: flex;
+}
+
+.participateEvent {
+    background-color: lightblue;
+    border: green solid 2px;
+    color: red;
 }
 
 .profile_pic_message{
