@@ -9,15 +9,20 @@ export default{
 
 data() {
     return {
-        user: [],
-        event:[],
+        logedUser: [],
+        event: [],
+        ownerEventUser: [],
+        assistances: [],
         eventStartDate:"",
         eventEndDate:"",
         eventCreator:"",
-        comment:"",
+        eventRating:"",
+        userComment:"",
+        userRating:"",
 
         participateEvent: false,
         displaySocials:'none',
+        displayStars:'none',
         rateEvent: false
     }  
 },
@@ -32,6 +37,7 @@ setup(){
 
 created(){
     this.getEventByID(this.ID)
+    this.getAssistancesByID(this.ID)
    // this.participateEvent(this.ID)
 },
 
@@ -44,11 +50,32 @@ methods: {
             this.displaySocials = "none"; 
         }
     },
+
+    showStars(){
+        if (this.displayStars.localeCompare("none") == 0) {
+            this.displayStars = "flex";
+        } else {
+            this.displayStars = "none"; 
+        }
+    },
     
+    /*async getLoggedUser(){
+        return ApiCalls.getInfoLoggedUser().then((logedUser) =>{
+            this.logedUser = logedUser[0];
+        });   
+    },
+*/
+    async createEventPuntuation(userRating){
+        this.userRating = userRating;
+        /*return ApiCalls.getLoggedUserAssistances(this.logedUser).then((logedUser) =>{
+
+        });   */
+    },
+
     async getOwnerByID(userID){
-        return ApiCalls.getInfoInfoUserByID(userID).then((user) =>{
-            this.user = user[0];
-            this.eventCreator = this.user.name + " " + this.user.last_name;
+        return ApiCalls.getInfoInfoUserByID(userID).then((ownerEventUser) =>{
+            this.ownerEventUser = ownerEventUser[0];
+            this.eventCreator = this.ownerEventUser.name + " " + this.ownerEventUser.last_name;
         });
     },
 
@@ -67,6 +94,23 @@ methods: {
             return this.getOwnerByID(this.event.owner_id).then((eventCreator) =>{});
 
             return event;
+        });
+    },
+
+    async getAssistancesByID(eventID){
+        return ApiCalls.getAssistancesFromEvent(eventID).then((assistances) =>{
+           this.assistances = assistances;
+           let totalStars = 0;
+           for (let i = 0; i < assistances.length; i++) {
+                totalStars += parseInt(assistances[i].puntuation);
+           }
+
+           if (assistances.length) {
+                this.eventRating = Math.round(totalStars / assistances.length);
+           } else {
+                this.eventRating = "Sin Valoraciones"
+           }
+           
         });
     },
 
@@ -93,19 +137,15 @@ methods: {
     <div class="general_box">
         <div class="header_event_box">
             <img class="event_img" :src="event.image" alt="image of the event">
-            <div class="footer_basicEvent"><div class="titulo"><h2>{{event.name}}</h2><h5> (De {{eventCreator}})</h5></div></div>
+            <div class="footer_basicEvent"><div class="titulo"><h2>{{event.name}}</h2><h5> (Creado por: {{eventCreator}})</h5></div></div>
         </div>
 
         <div class="event_descrip_box">
             <div class="event_descrip">
                 <div class="titulo"><h2>Descripción</h2></div>
                 <div class="star">
-                    <h5>5</h5>
-                    <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-                    <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-                    <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-                    <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-                    <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+                    <h5>{{eventRating}}</h5>
+                    <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
                 </div>
             </div>
             <div class="texto"><h5>({{event.type}}) {{event.description}}</h5></div>
@@ -127,8 +167,8 @@ methods: {
                     <div class="event_info">
                         <img class="icon" src="../assets/images/icons/schedule.png" alt="icon">
                         <div class="column">
-                            <div class="texto"><h5>From: {{eventStartDate}}</h5></div>
-                            <div class="texto"><h5>To: {{eventEndDate}}</h5></div>
+                            <div class="texto"><h5>Desde: {{eventStartDate}}</h5></div>
+                            <div class="texto"><h5>Hasta: {{eventEndDate}}</h5></div>
                         </div>
                     </div>
                     <div class="event_info">
@@ -152,58 +192,43 @@ methods: {
                 <button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter"></button-icon>
             </div>
 
-
-            <table>
-                <tr><div class="resena">
-                    <router-link to="/perfil" id="button"><div class="resena_persona">
-                        <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                        <div class="resena_info">
-                            <div class="texto"><h5>Nombre Apellido</h5></div>
-                            <div class="punctuation">
-                                <h5>5</h5>
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
+            <div v-if="!assistances.length"><h5>No hay comentarios.</h5></div>
+            <div v-else>
+                <table>
+                    <tr v-for="assistance in assistances" :key="assistance.id"><div class="resena">
+                        <router-link to="/perfil" id="button"><div class="resena_persona">
+                            <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                            <div class="resena_info">
+                                <div class="texto"><h5>{{assistance.name}} {{assistance.last_name}}</h5></div>
+                                <div class="punctuation" v-if="assistance.puntuation !== null">
+                                    <h5>{{assistance.puntuation}}</h5>
+                                    <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
+                                </div>
                             </div>
-                        </div>
-                    </div></router-link>
-                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
-                </div></tr>
-                <tr><div class="resena">
-                    <router-link to="/perfil" id="button"><div class="resena_persona">
-                        <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
-                        <div class="resena_info">
-                            <div class="texto"><h5>Nombre Apellido</h5></div>
-                            <div class="punctuation">
-                                <h5>5</h5>
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas">
-                                <img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas">
-                            </div>
-                        </div>
-                    </div></router-link>
-                    <div class="texto"><h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</h5></div>
-                </div></tr>
-            </table>
-
-            <div class="size_input"><input class="general_input" type="text" placeholder="Añade tu comentario"></div> 
-            <div class="row_flexEnd">
-                <h5>5</h5>
-                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="1 estrella"></button>
-                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="2 estrellas"></button>
-                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="3 estrellas"></button>
-                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="4 estrellas"></button>
-                <button><img class="stars" src="../assets/images/icons/star_b.png" alt="5 estrellas"></button>
+                        </div></router-link>
+                        <div class="texto" v-if="assistance.comentary !== null"><h5>{{assistance.comentary}}</h5></div>
+                    </div></tr>
+                </table>
             </div>
 
+            
+            <div class="size_input"><input class="general_input" type="text" placeholder="Añade tu comentario" v-model="userComment"></div> 
+            <div class="flex_row_spaceBetween">
+                <div class="row_flexStart">
+                    <button v-on:click="showStars()"><img class="stars" src="../assets/images/icons/userStar.png" alt="estrellaUser"></button>
+                    <h5 v-if="userRating">{{userRating}}</h5>
+                </div>
+                <div class="row_flexEnd" v-bind:style="{display: displayStars}">
+                    <div v-for="i in parseInt(10)" :key="i">
+                        <button v-on:click="showStars(); createEventPuntuation(i)"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
+                    </div>
+                </div>
+                
+            </div>
         </div>
         
         
-        <button class="button_pink_small">Crear comentario</button>
+        <button class="button_pink_small" v-on:click="createComentary()">Crear comentario</button>
     </div>
 </template>
 
@@ -221,6 +246,13 @@ methods: {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+}
+
+.flex_row_spaceBetween {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .shareSocials {
@@ -273,6 +305,18 @@ tr:nth-child(even) {background-color: rgb(237, 237, 237);}
     justify-content: flex-end;
 }
 
+.row_flexStart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.row_flexStart > h5 {
+    margin: 0px;
+    margin-left: 5px;
+}
+
 h3.pink{
     color: #C772BA;
 }
@@ -322,7 +366,7 @@ h3.pink{
 .helper_box {
     width:100%;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
