@@ -67,7 +67,7 @@ export default{
         },
         search(){
           //console.log(this.search_bar_text);
-          if(!this.search_bar_text.length == 0)
+          if(!this.search_bar_text.length == 0 && ApiCalls.hasLoggedIn())
           this.search_result = ApiCalls.searchUser(this.search_bar_text).then((output) =>{
             this.search_results = output;
             this.showResults();
