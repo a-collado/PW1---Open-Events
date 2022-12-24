@@ -310,6 +310,10 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+    static async GetEvent(id) {
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/" + id)
+        .then((response) =>{ return response.json();});
+    }
 
     static async GetAllEvents() {
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/")
