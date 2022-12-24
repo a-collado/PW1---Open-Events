@@ -44,6 +44,8 @@ export default{
         this.category = "";
         this.num_assistents = "";
         this.sort_option = "";
+
+        this.$parent.resetFilter();
       }
     }
 }
@@ -131,12 +133,12 @@ export default{
           <hr class="small_divider">
           <div class="slider">
             <div>
-              <p class="darkblue_normal_bold">Min Date</p>
+              <p class="darkblue_normal_bold">Min Start Date</p>
               <p>{{date_start}}</p>
             </div>
             <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_start">
             <div class="darkblue_normal_bold">
-              <p class="darkblue_normal_bold">Max Date</p>
+              <p class="darkblue_normal_bold">Max Start Date</p>
               <p>{{date_end}}</p>
             </div>
             <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="date_end">
@@ -191,7 +193,7 @@ export default{
             </div> 
           </div>
           <div id="date">
-            <p class="darkblue_normal_bold">Date</p>
+            <p class="darkblue_normal_bold">Start Date</p>
             <div>
               <input type="radio" id="alphaUp" name="sort" value="date_up" class="darkblue_normal_bold"  v-model="sort_option">
               <label for="alphaUp" title="alpha" name="alphabet">Sort by date ↑</label>
