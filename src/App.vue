@@ -14,7 +14,7 @@ export default{
     components: {SearchUsers:SearchUsers},
     data() {
         return {
-          imgUrl_profile:"src/assets/images/userDefault_profilePic.jpg",
+          imgUrl_profile: this.defaultProfilePic,
           search_bar_text:"",
           search_results: [],
           show_results: false,
@@ -26,7 +26,8 @@ export default{
       const youtubeIconUrl = new URL('../images/icons/youtube.png', import.meta.url)
       const instagramIconUrl = new URL('../images/icons/instagram.png', import.meta.url)
       const twitterIconUrl = new URL('../images/icons/twitter.png', import.meta.url)
-      return { logoUrl, chatIconUrl, youtubeIconUrl, instagramIconUrl, twitterIconUrl};
+      const defaultProfilePic = new URL('../images/userDefault_profilePic.jpg', import.meta.url)
+      return { logoUrl, chatIconUrl, youtubeIconUrl, instagramIconUrl, twitterIconUrl, defaultProfilePic};
     },
 
     mounted(){
@@ -55,13 +56,13 @@ export default{
         },
         showProfilePic(){
           if(ApiCalls.hasLoggedIn()){
-            this.imgUrl_profile=ApiCalls.getUrlImgLoggedUser().then((image) =>{
+            this.imgUrl_profile = ApiCalls.getUrlImgLoggedUser().then((image) =>{
             this.imgUrl_profile = image;
           });
         }
           else
           {
-            this.imgUrl_profile = "src/assets/images/userDefault_profilePic.jpg"
+            this.imgUrl_profile = this.defaultProfilePic;
           }
         },
         search(){
