@@ -5,16 +5,20 @@ import { useRoute } from 'vue-router';
 import { watch, ref } from 'vue'
 
 export default{
+
+  /*props: {
+    events:Array
+  },*/
     
   data() {
     return {
 
-      timeline:[{"month":"Enero", "num_month":1}, {"month":"Febrero", "num_month":2}, 
-                {"month":"Marzo", "num_month":3}, {"month":"Abril", "num_month":4}, 
-                {"month":"Mayo", "num_month":5}, {"month":"Junio", "num_month":6}, 
-                {"month":"Julio", "num_month":7}, {"month":"Agosto", "num_month":8}, 
-                {"month":"Setiembre", "num_month":9}, {"month":"Octubre", "num_month":10}, 
-                {"month":"Noviembre", "num_month":11}, {"month":"Diciembre", "num_month":12}],
+      timeline:[{"month":"Enero", "num_month":1, "events":{}}, {"month":"Febrero", "num_month":2, "events":{}}, 
+                {"month":"Marzo", "num_month":3, "events":{}, "events":{}}, {"month":"Abril", "num_month":4, "events":{}}, 
+                {"month":"Mayo", "num_month":5, "events":{}}, {"month":"Junio", "num_month":6, "events":{}}, 
+                {"month":"Julio", "num_month":7, "events":{}}, {"month":"Agosto", "num_month":8, "events":{}}, 
+                {"month":"Setiembre", "num_month":9, "events":{}}, {"month":"Octubre", "num_month":10, "events":{}}, 
+                {"month":"Noviembre", "num_month":11, "events":{}}, {"month":"Diciembre", "num_month":12, "events":{}}],
       statisticsFinished: false,
 
       currentYear: ""
@@ -41,75 +45,14 @@ export default{
   
   created(){
     console.log(this.timeline);
-    this.getEventsAll(this.ID);
       
   },
   
   methods: {
 
-    async getEventsAll(userID){
-
-      return ApiCalls.getCreatedEventsFromUser(userID)
-      .then((createdEvents) => {
-        //this.createdEvents = createdEvents;
-        //console.log(createdEvents);
-        createdEvents = createdEvents.map( createdEvent => {
-          createdEvent.created = true;
-          createdEvent.assisted = false;
-          return createdEvent;
-        });
-
-        //console.log(createdEvents);
-
-        createdEvents.forEach(this.updateInfoEvent);
-
-        this.events = createdEvents;
-        return;
-      })
-      .then((vacio) => { 
-        return ApiCalls.getAssitedEventsFromUser(userID)
-        .then((assitedEvents) => {
-          //this.assitedEvents = assitedEvents;
-
-          assitedEvents = assitedEvents.map( assitedEvent => {
-            assitedEvent.created = false;
-            assitedEvent.assisted = true;
-            return assitedEvent;
-          });
-
-          assitedEvents.forEach(this.updateInfoEvent);
-          this.events = this.events.concat(assitedEvents);
-          this.eventsFinished = true;
-
-          return;
-        });
-
-      });
-
-    },
-
       //METHODS API__________________________________________________________
 
-    
-      //METHODS USED IN METHODS API___________________________________________
-      updateInfoEvent(event){
-        
-        if(event.location.indexOf("(") >= 0){
-          event.province = event.location.substring(event.location.indexOf("(") + 1, event.location.length - 1);
-
-        }else{
-          event.province = event.location;
-        }
-
-        if(event.eventStart_date == null){
-          event.eventStart_date = event.date
-        }
-
-        if(event.eventEnd_date == null){
-          event.eventStart_date = event.date
-        }
-
-      },
+  
 
 
       //______________________________________________________________________
