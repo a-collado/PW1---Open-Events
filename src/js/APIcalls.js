@@ -234,17 +234,19 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
+    static async editUserAssistanceEvent(event_id, newPuntuation, newComment){
+        const eventRate = {puntuation:newPuntuation, comentary:newComment};
+        
+        return this.fetchPutBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances", eventRate)
+        .then((response) =>{ return response.json();});
+    }
+
     static async deleteUserAssistanceEvent (event_id) {
         return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances")
         .then((response) =>{ return response.json();});
     }
 
-    static async editUserAssistanceEvent(event_id, newPuntuation, newComment){
-        const eventRate = {user_id:localStorage.getItem("loggedUser"), event_id:event_id, puntuation:newPuntuation, comentary:newComment};
-        
-        return this.fetchPostBearerToken("http://puigmal.salle.url.edu/api/v2/assistances/" + localStorage.getItem("loggedUser") + "/" + event_id, eventRate)
-        .then((response) =>{ return response.json();});
-    }
+  
 
     static async getAllEventsFromUser(){ return null;}
 
