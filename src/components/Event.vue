@@ -21,9 +21,11 @@ data() {
         userRating:"",
 
         participate: false,
+        erraseComment: false,
+        erraseRating: false,
         displaySocials:'none',
         displayStars:'none',
-        rateEvent: false
+        newValoration: false
     }  
 },
 
@@ -72,7 +74,12 @@ methods: {
             for (let i = 0; i < eventsAssistance.length; i++) {
                 if (parseInt(eventID) === eventsAssistance[i].id) {
                     this.participate = true;
+                    this.userRating = eventsAssistance[i].puntuation;
+                    this.userComment = eventsAssistance[i].comentary;
                 }
+            }
+            if (this.userRating === null && this.userComment === null) {
+                this.newValoration = true;
             }
         });
     },
@@ -80,6 +87,8 @@ methods: {
     async changeParticipationEvent(){
         if (this.participate === true) {
             this.participate = false;
+            
+            //borrar comentario
             return ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{
             });
         } else {
@@ -89,19 +98,46 @@ methods: {
         }
     },
 
+    userEventValoration (userRating, userComment) {
+        if (this.participate === true) {
+            
+        }
+        if (this.erraseComment === true) {
+            this.erraseComment = false;
+            //añadir comentario
+        } else {
+            this.erraseComment = true;
+        }
+    },
+
+    userEventPuntuation (userRating) {
+        if (this.erraseRating === true) {
+            this.erraseRating = false;
+            //AÑADIR RATING
+        } else {
+            this.erraseRating = true;
+        }
+    },
+
     async addEventValoration(userRating, userComment){
         if (this.participate === true) {
-            console.log(this.participate)
-            console.log(userRating)
-            if (userRating !== 0) {
+            
+            if (userRating !== null) {
                 this.userRating = userRating;
-                console.log(userRating)
             } else {
                 this.userComment = userComment;
             }
-            
-            return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{
-            });/*.then((output) =>{
+
+            if (this.newValoration === true) {
+                //create
+                this.newValoration = false;
+            } else if (this.userRating === null && this.userComment === null) {
+                //deleteRating
+                this.newValoration = true;
+            } else {
+                //edit
+                return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{
+                });/*.then((output) =>{
                             if(output == ApiCalls.getCORRECT()) {
                                 window.location.replace("/");
                             }else{
@@ -109,7 +145,9 @@ methods: {
                                 this.displayError = "flex";
                             }
                         });*/
-        }
+            }
+            
+        } 
 
     },
 
@@ -194,7 +232,8 @@ methods: {
             <div class="event_buttons">
                 <button v-on:click="changeParticipationEvent()" class="button_pink_small" v-if="!participate">Participar</button>
                 <button v-on:click="changeParticipationEvent()" class="button_pink_small" v-else>Inscrito</button>
-                <div class="shareSocials"><button v-on:click="showSocials()" class="button_purple_small">Compartir</button>
+                <div class="shareSocials">
+                    <button v-on:click="showSocials()" class="button_purple_small">Compartir</button>
                     <div class="row_medias" v-bind:style="{display: displaySocials}">
                         <a href="https://www.whatsapp.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/whatsapp.png"></button></a>
                         <a href="https://www.instagram.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/instagram.png"></button></a>
@@ -247,6 +286,10 @@ methods: {
                                     <h5>{{assistance.puntuation}}</h5>
                                     <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
                                 </div>
+                                <div class="punctuation" v-if="assistance.puntuation === null">
+                                    <h5>no hsy puntu{{assistance.puntuation}}</h5>
+                                    <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
+                                </div>
                             </div>
                         </div></router-link>
                         <div class="texto" v-if="assistance.comentary !== null"><h5>{{assistance.comentary}}</h5></div>
@@ -258,6 +301,7 @@ methods: {
             <div class="size_input"><input class="general_input" type="text" placeholder="Añade tu comentario" v-model="userComment"></div> 
             <div class="flex_row_spaceBetween">
                 <div class="row_flexStart">
+                    <button v-on:click="addEventValoration('', '')" v-if="userRating"><img class="stars" src="../assets/images/icons/cancel.png" alt="cancelar"></button>
                     <button v-on:click="showStars()"><img class="stars" src="../assets/images/icons/userStar.png" alt="estrellaUser"></button>
                     <h5 v-if="userRating">{{userRating}}</h5>
                 </div>
@@ -279,7 +323,8 @@ methods: {
         </div>
         
         
-        <button class="button_pink_small" v-on:click="addEventValoration('', userComment)">Crear comentario</button>
+        <button class="button_pink_small" v-on:click="userEventComentary('')" v-if="!erraseComment">Crear comentario</button>
+        <button class="button_pink_small" v-on:click="userEventComentary('')" v-else>Borrar comentario</button>
     </div>
 </template>
 
