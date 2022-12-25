@@ -1,4 +1,4 @@
-<!-- v-bind:class = "{'participateEvent' : participateEvent()}"--><script>
+<!----><script>
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
 import router from "../router/index.js";
@@ -9,9 +9,9 @@ export default{
 
 data() {
     return {
-        logedUser: [],
+       // logedUser: [],
         event: [],
-        ownerEventUser: [],
+        //ownerEventUser: [],
         assistances: [],
         eventStartDate:"",
         eventEndDate:"",
@@ -20,7 +20,7 @@ data() {
         userComment:"",
         userRating:"",
 
-        participateEvent: false,
+        participate: false,
         displaySocials:'none',
         displayStars:'none',
         rateEvent: false
@@ -38,7 +38,9 @@ setup(){
 created(){
     this.getEventByID(this.ID)
     this.getAssistancesByID(this.ID)
-   // this.participateEvent(this.ID)
+    this.participateEvent(this.ID)
+    this.forceUpdate()
+    //getLoggedUser()
 },
 
 methods: {
@@ -63,19 +65,57 @@ methods: {
         return ApiCalls.getInfoLoggedUser().then((logedUser) =>{
             this.logedUser = logedUser[0];
         });   
+    },*/
+    
+    async participateEvent(eventID) {
+        return ApiCalls.getUserAssistanceEvents().then((eventsAssistance) =>{
+            for (let i = 0; i < eventsAssistance.length; i++) {
+                if (parseInt(eventID) === eventsAssistance[i].id) {
+                    this.participate = true;
+                }
+            }
+        });
     },
-*/
-    async createEventPuntuation(userRating){
-        this.userRating = userRating;
-        /*return ApiCalls.getLoggedUserAssistances(this.logedUser).then((logedUser) =>{
 
-        });   */
+    async changeParticipationEvent(){
+        if (this.participate === true) {
+            this.participate = false;
+            return ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{
+            });
+        } else {
+            this.participate = true;
+            return ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{
+            });
+        }
+    },
+
+    async addEventValoration(userRating, userComment){
+        if (this.participate === true) {
+            console.log(this.participate)
+            console.log(userRating)
+            if (userRating !== 0) {
+                this.userRating = userRating;
+                console.log(userRating)
+            } else {
+                this.userComment = userComment;
+            }
+            
+            return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{
+            });/*.then((output) =>{
+                            if(output == ApiCalls.getCORRECT()) {
+                                window.location.replace("/");
+                            }else{
+                                this.error = output;
+                                this.displayError = "flex";
+                            }
+                        });*/
+        }
+
     },
 
     async getOwnerByID(userID){
         return ApiCalls.getInfoInfoUserByID(userID).then((ownerEventUser) =>{
-            this.ownerEventUser = ownerEventUser[0];
-            this.eventCreator = this.ownerEventUser.name + " " + this.ownerEventUser.last_name;
+            this.eventCreator = ownerEventUser[0].name + " " + ownerEventUser[0].last_name;
         });
     },
 
@@ -92,8 +132,6 @@ methods: {
             this.eventEndDate = this.splitDate[2] + " " + month[(parseInt(this.splitDate[1]) - 1)] + " " + this.splitDate[0] + " (" + this.splitDate[3] + ")";
             
             return this.getOwnerByID(this.event.owner_id).then((eventCreator) =>{});
-
-            return event;
         });
     },
 
@@ -101,28 +139,32 @@ methods: {
         return ApiCalls.getAssistancesFromEvent(eventID).then((assistances) =>{
            this.assistances = assistances;
            let totalStars = 0;
+           let numRatings = 0;
            for (let i = 0; i < assistances.length; i++) {
-                totalStars += parseInt(assistances[i].puntuation);
+                if (assistances[i].puntuation !== null) {
+                   totalStars += parseInt(assistances[i].puntuation);
+                   numRatings += 1;
+                }
            }
 
-           if (assistances.length) {
-                this.eventRating = Math.round(totalStars / assistances.length);
+           if (numRatings !== 0) {
+                this.eventRating = Math.round(totalStars / numRatings);
            } else {
                 this.eventRating = "Sin Valoraciones"
            }
-           
         });
     },
 
-    /*async participateEvent(eventID){
-        if (this.participateEvent === false) {
-            this.participateEvent = true;
-            //ApiCalls.participateEvent();
-        } else {
-            this.participateEvent = false;
-        }
-        console.log(this.participateEvent);
-    }*/
+    updateContent() {
+        this.getEventByID(this.event.id);
+        this.getAssistancesByID(this.event.id);
+    },
+
+    forceUpdate() {
+        this.timer = window.setInterval(() => {
+            this.updateContent();
+        }, 5000)
+    }
 }
 
 }
@@ -137,7 +179,7 @@ methods: {
     <div class="general_box">
         <div class="header_event_box">
             <img class="event_img" :src="event.image" alt="image of the event">
-            <div class="footer_basicEvent"><div class="titulo"><h2>{{event.name}}</h2><h5> (Creado por: {{eventCreator}})</h5></div></div>
+            <div class="footer_basicEvent"><div class="titulo; flex_row_spaceBetween"><h2>{{event.name}} </h2><h5> - ({{eventCreator}})</h5></div></div>
         </div>
 
         <div class="event_descrip_box">
@@ -150,7 +192,8 @@ methods: {
             </div>
             <div class="texto"><h5>({{event.type}}) {{event.description}}</h5></div>
             <div class="event_buttons">
-                <button  v-on:click="participateEvent()" class="button_pink_small">Participar</button>
+                <button v-on:click="changeParticipationEvent()" class="button_pink_small" v-if="!participate">Participar</button>
+                <button v-on:click="changeParticipationEvent()" class="button_pink_small" v-else>Inscrito</button>
                 <div class="shareSocials"><button v-on:click="showSocials()" class="button_purple_small">Compartir</button>
                     <div class="row_medias" v-bind:style="{display: displaySocials}">
                         <a href="https://www.whatsapp.com/"><button class="socialMedia"><img class="icon" src="../assets/images/icons/whatsapp.png"></button></a>
@@ -218,9 +261,17 @@ methods: {
                     <button v-on:click="showStars()"><img class="stars" src="../assets/images/icons/userStar.png" alt="estrellaUser"></button>
                     <h5 v-if="userRating">{{userRating}}</h5>
                 </div>
-                <div class="row_flexEnd" v-bind:style="{display: displayStars}">
+                <div class="row_flexEnd" v-if="!userRating" v-bind:style="{display: displayStars}">
                     <div v-for="i in parseInt(10)" :key="i">
-                        <button v-on:click="showStars(); createEventPuntuation(i)"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
+                        <button v-on:click="showStars(); addEventValoration(i, '')"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
+                    </div>
+                </div>
+                <div class="row_flexEnd" v-if="userRating" v-bind:style="{display: displayStars}">
+                    <div v-for="i in parseInt(userRating)" :key="i">
+                        <button v-on:click="showStars(); addEventValoration(i, '')"><img class="stars" src="../assets/images/icons/star_b.png" alt="estrella"></button>
+                    </div>
+                    <div v-for="i in parseInt(10 - userRating)" :key="i">
+                        <button v-on:click="showStars(); addEventValoration(i + userRating, '')"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
                     </div>
                 </div>
                 
@@ -228,7 +279,7 @@ methods: {
         </div>
         
         
-        <button class="button_pink_small" v-on:click="createComentary()">Crear comentario</button>
+        <button class="button_pink_small" v-on:click="addEventValoration('', userComment)">Crear comentario</button>
     </div>
 </template>
 
@@ -347,12 +398,6 @@ h3.pink{
     background: linear-gradient(#00ADBD, #ffffff);
     border: 1px solid #00ADBD;
     display: flex;
-}
-
-.participateEvent {
-    background-color: lightblue;
-    border: green solid 2px;
-    color: red;
 }
 
 .profile_pic_message{
