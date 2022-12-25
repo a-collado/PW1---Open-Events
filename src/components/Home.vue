@@ -217,6 +217,7 @@ export default{
         },loadRecomendedEvent() {
              ApiCalls.sortByRating()
                 .then((sortedEvents) => {
+                  console.log(sortedEvents);
                   this.recomendedEvent = sortedEvents[0];
                   console.log(this.recomendedEvent);
                   this.showAll = true;
