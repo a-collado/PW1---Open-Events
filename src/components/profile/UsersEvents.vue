@@ -16,8 +16,8 @@ export default{
       showAssistidos:true,
       showFinished:true,
 
-      events:{},
-      eventsFinished:false,
+      /*events:{},
+      eventsFinished:false,*/
 
       showSortFilter:false
 
@@ -43,7 +43,7 @@ export default{
   },
   
   created(){
-    this.getEventsAll(this.ID);
+    //this.getEventsAll(this.ID);
   },
 
   mounted(){console.log(this.events);},
@@ -52,7 +52,7 @@ export default{
 
       
     //METHODS API__________________________________________________________
-    async getEventsAll(userID){
+    /*async getEventsAll(userID){
 
       return await ApiCalls.getCreatedEventsFromUser(userID)
       .then((createdEvents) => {
@@ -111,7 +111,7 @@ export default{
         event.eventStart_date = event.date
       }
 
-    },
+    },*/
 
 
       //______________________________________________________________________

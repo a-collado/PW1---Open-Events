@@ -214,6 +214,7 @@ export default{
         },async loadRecomendedEvent() {
              await ApiCalls.sortByRating()
                 .then((sortedEvents) => {
+                  console.log(sortedEvents);
                   this.recomendedEvent = sortedEvents[0];
                   console.log(this.recomendedEvent);
                 })
@@ -235,7 +236,7 @@ export default{
 
 <div class="home-wrapper">
   <hr>
-  <router-link to="/event">
+  <!--<router-link to="/event">
     <figure class="recomended_event">
       <div class="recomended_event_img" style="background-image: url({{this.recomendedEvent.image}});">
           <div class="footer_event"> 
@@ -245,7 +246,7 @@ export default{
           </div>
       </div>
     </figure>
-  </router-link>
+  </router-link>-->
 
   <div class="create_event">
     <hr>

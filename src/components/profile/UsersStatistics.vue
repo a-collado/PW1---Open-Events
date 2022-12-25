@@ -6,9 +6,9 @@ import { watch, ref } from 'vue'
 
 export default{
 
-  /*props: {
+  props: {
     events:Array
-  },*/
+  },
     
   data() {
     return {
@@ -21,7 +21,11 @@ export default{
                 {"month":"Noviembre", "num_month":11, "events":{}}, {"month":"Diciembre", "num_month":12, "events":{}}],
       statisticsFinished: false,
 
-      currentYear: ""
+      inputYear: new Date().getFullYear(),
+
+      avgScore: 0,
+      numComents: 0,
+      percentageComentersBelow: "0"
 
     }
   },
@@ -45,68 +49,104 @@ export default{
   
   created(){
     console.log(this.timeline);
+
+    this.getEventsByMonths();
       
   },
+
   
   methods: {
 
-      //METHODS API__________________________________________________________
+    getEventsByMonths(){
+      console.log(this.events);
+      console.log(this.timeline);
+      console.log(this.events.length);
+      let trobat;
 
+      //Esborrem per cada mes, els events que hi havien abans
+      this.timeline.forEach(function(item){
+        item.events = {};
+      });
+
+      //Per cada evento del usuari mirem si l'hem de ficar al timeline
+      for(let i=0; i < this.events.length; i++){
+
+        let date = new Date(this.events[i].eventStart_date);
+        
+        if(date.getFullYear() == this.inputYear){
+          trobat = false;
+
+          for(let j=0; j < this.timeline.length && !trobat; j++){
+
+            if (this.timeline[j].num_month == date.getMonth){
+              this.timeline[j].events.push(this.events[i]);
+              trobat = true;
+            }
+
+          }
+        } //if(date.getFullYear() == this.inputYear){
+
+      } //for
+
+      console.log(this.timeline);
+
+
+    },
   
 
 
-      //______________________________________________________________________
-      goToEvent(eventID){
-        router.push({name: 'Event', params: {id: eventID}});
-      },
+    //______________________________________________________________________
+    goToEvent(eventID){
+      router.push({name: 'Event', params: {id: eventID}});
+    },
 
-      showAllEvents(){
-        this.showCreados = true;
-        this.showAssistidos = true;
-      },
+    showAllEvents(){
+      this.showCreados = true;
+      this.showAssistidos = true;
+    },
 
-      showCreadosMethod(){
-        this.showAssistidos = false;
-        this.showCreados = true;
-      },
+    showCreadosMethod(){
+      this.showAssistidos = false;
+      this.showCreados = true;
+    },
 
-      showAssistidosMethod(){
-        this.showCreados = false;
-        this.showAssistidos = true;
-      },
+    showAssistidosMethod(){
+      this.showCreados = false;
+      this.showAssistidos = true;
+    },
 
-      sortEvents(value){
-        switch (value) {
-          case 1: //By name A-Z
-            this.createdEvents = this.createdEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
-            this.assitedEvents = this.assitedEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
-            break;
-          case 2: //By name Z-A
-            this.createdEvents = this.createdEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
-            this.assitedEvents = this.assitedEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
-            break;
-          
-          case 3: //By date Oldest-Newest
-            this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
-            this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
-            break;
-
-          case 4: //By date Newest-Oldest
-            this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
-            this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
+    sortEvents(value){
+      switch (value) {
+        case 1: //By name A-Z
+          this.createdEvents = this.createdEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
+          this.assitedEvents = this.assitedEvents.sort(function(a,b){return a.name.localeCompare(b.name);});
+          break;
+        case 2: //By name Z-A
+          this.createdEvents = this.createdEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
+          this.assitedEvents = this.assitedEvents.sort(function(a,b){return b.name.localeCompare(a.name);});
+          break;
+        
+        case 3: //By date Oldest-Newest
+          this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
+          this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(a.eventStart_date) - new Date(b.eventStart_date);});
           break;
 
-        }
-        
-        
+        case 4: //By date Newest-Oldest
+          this.createdEvents = this.createdEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
+          this.assitedEvents = this.assitedEvents.sort(function(a,b){return new Date(b.eventStart_date) - new Date(a.eventStart_date);});
+        break;
 
-      }, 
-
-      showSortFilterMethod(){
-        if(this.showSortFilter){
-          this.showSortFilter = false;
-        }else{ this.showSortFilter = true;}
       }
+      
+      
+
+    }, 
+
+    showSortFilterMethod(){
+      if(this.showSortFilter){
+        this.showSortFilter = false;
+      }else{ this.showSortFilter = true;}
+    }
 
   } //methods
 } //Export default data
@@ -116,67 +156,87 @@ export default{
 <template>
 
     <div class="events_statistics_background">
-        <div class = "events_statistics_buttons">
+      <div class = "events_statistics_buttons">
         <button v-on:click="$emit('add', true)" class="eventStatistics_Nselected"> Eventos </button>
         <button class="eventStatistics"> Estadísticas </button>
-        </div>
-        
-        <div class="centered_horitzontal">
+      </div>
+
+      <div class="centered_horitzontal">
+        <table>
+          <thead>
+            <tr> 
+              <th>Avg score</th>
+              <th>Number of comments</th>
+              <th>% Comentaristas por debajo</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>{{avgScore}}</td>
+              <td>{{numComents}}</td>
+              <td>{{percentageComentersBelow}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="centered_horitzontal">
         <div class="timeline">
             <div class="timeline_header">
                 <h2 class="blue_big"> Timeline</h2>
                 <form>
-                  <input class="general_input" type="number" min="2020" max="2030" step="1" placeholder="year" />
+                  <input class="general_input" type="number" min="2020" max="2030" step="1" v-model="inputYear" />
                 </form>
             </div>
 
             <div class="timeline_footer">
-                <div id="line"></div>
+              <div id="line"></div>
 
                 <div>
                     <div class="infoTimeline">
-                        <!--<p class="darkblue_normal_bold">Enero</p>
-                        <button class="button_timeline">1</button>-->
-                        <svg height="50" width="50">
-                          <circle cx="25" cy="20" r="10" fill="#235F65" />
-                        </svg>
+                      <!--<p class="darkblue_normal_bold">Enero</p>
+                      <button class="button_timeline">1</button>-->
+                      <svg height="50" width="50">
+                        <circle cx="25" cy="20" r="10" fill="#235F65" />
+                      </svg>
 
                     </div>
 
                     <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Febrero</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
+                      <p class="darkblue_normal_bold">Febrero</p>
+                      <button class="button_timeline">1</button>
+                      <!--<div class = "elipseTimeline">-->
                     </div>
 
                     <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Marzo</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
+                      <p class="darkblue_normal_bold">Marzo</p>
+                      <button class="button_timeline">1</button>
+                      <!--<div class = "elipseTimeline">-->
                     </div>
 
                     <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Abril</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
+                      <p class="darkblue_normal_bold">Abril</p>
+                      <button class="button_timeline">1</button>
+                      <!--<div class = "elipseTimeline">-->
                     </div>
 
                     <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Mayo</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
+                      <p class="darkblue_normal_bold">Mayo</p>
+                      <button class="button_timeline">1</button>
+                      <!--<div class = "elipseTimeline">-->
                     </div>
 
                     <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Junio</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
+                      <p class="darkblue_normal_bold">Junio</p>
+                      <button class="button_timeline">1</button>
+                      <!--<div class = "elipseTimeline">-->
                     </div>
 
                     <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Julio</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
+                      <p class="darkblue_normal_bold">Julio</p>
+                      <button class="button_timeline">1</button>
+                      <!--<div class = "elipseTimeline">-->
                     </div>
 
                     <div class="infoTimeline">
@@ -208,7 +268,7 @@ export default{
                         <button class="button_timeline">1</button>
                         <!--<div class = "elipseTimeline">-->
                     </div>
-                </div>
+              </div>
 
 
             </div>
@@ -301,7 +361,7 @@ export default{
   width: 98%;
   height: 270px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: column;
 }
@@ -353,6 +413,49 @@ export default{
   left:75%;
   /*top: 105px;*/
 }
+
+/*Table statistics*/
+table {
+  width:98%;
+  border-collapse: separate;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+td, th {
+  text-align: center;
+  padding: 8px;
+}
+
+th{
+  background-color: white;
+}
+
+td{
+  background-color: rgba(255, 255, 255, 0.616);
+}
+
+table tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+/* bottom-left border-radius */
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+/* bottom-right border-radius */
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
 
 /*Timeline months__________________________________*/
 .infoTimeline{
