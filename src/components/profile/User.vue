@@ -15,7 +15,7 @@ export default{
     return {
       user: [],
       friends: [],
-      //userEvents:[], //user events i user statistics
+      userEvents:[], //user events i user statistics
 
       ownProfile: false,
       profile: false, //mira si de la API ja ha agafat la info
@@ -25,7 +25,7 @@ export default{
       profileKey:0,
 
       showEvents:true, //canvi vista entre user events i user statistics
-      //eventsFinished: false, //mira si de la API ja ha agafat la info
+      eventsFinished: false, //mira si de la API ja ha agafat la info
 
     }
   },
@@ -51,7 +51,7 @@ export default{
   created(){
         
     this.getUserInfo(this.ID);
-    //this.getEventsAll(this.ID);
+    this.getEventsAll(this.ID);
         
   },
 
@@ -78,7 +78,7 @@ export default{
 
   },
 
-  /*async getEventsAll(userID){
+  async getEventsAll(userID){
 
     return await ApiCalls.getCreatedEventsFromUser(userID)
     .then((createdEvents) => {
@@ -94,7 +94,7 @@ export default{
 
       createdEvents.forEach(this.updateInfoEvent);
 
-      this.events = createdEvents;
+      this.userEvents = createdEvents;
       return;
     })
     .then((vacio) => { 
@@ -109,15 +109,15 @@ export default{
         });
 
         assitedEvents.forEach(this.updateInfoEvent);
-        this.events = this.events.concat(assitedEvents);
+        this.userEvents = this.events.concat(assitedEvents);
         this.eventsFinished = true;
-        console.log(this.events);
+        console.log(this.userEvents);
         return;
       });
 
     });
 
-  },*/
+  },
 
     //METHODS API__________________________________________________________
     async getUserByID(userID){
@@ -140,7 +140,7 @@ export default{
       });
     },
 
-    /*updateInfoEvent(event){
+    updateInfoEvent(event){
       
       if(event.location.indexOf("(") >= 0){
         event.province = event.location.substring(event.location.indexOf("(") + 1, event.location.length - 1);
@@ -157,7 +157,7 @@ export default{
         event.eventStart_date = event.date
       }
 
-    },*/
+    },
 
     //METHODS USED IN METHODS API___________________________________________
     checkIfFriend(friend){
@@ -262,11 +262,11 @@ export default{
       </div>
     </main>
 
-    <!--<UsersEvents :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-if="showEvents" />
-    <UsersStatistics :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-else/> -->
+    <UsersEvents :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-if="showEvents" />
+    <UsersStatistics :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-else/> 
 
-    <UsersEvents v-on:add="changeShowingEventStatistics" v-if="showEvents" />
-    <UsersStatistics v-on:add="changeShowingEventStatistics" v-else/>
+    <!--<UsersEvents v-on:add="changeShowingEventStatistics" v-if="showEvents" />
+    <UsersStatistics v-on:add="changeShowingEventStatistics" v-else/> -->
 
   </div>  
   <div v-else class="empty"></div>
