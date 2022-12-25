@@ -13,12 +13,12 @@ export default{
   data() {
     return {
 
-      timeline:[{"month":"Enero", "num_month":1, "events":{}}, {"month":"Febrero", "num_month":2, "events":{}}, 
-                {"month":"Marzo", "num_month":3, "events":{}, "events":{}}, {"month":"Abril", "num_month":4, "events":{}}, 
-                {"month":"Mayo", "num_month":5, "events":{}}, {"month":"Junio", "num_month":6, "events":{}}, 
-                {"month":"Julio", "num_month":7, "events":{}}, {"month":"Agosto", "num_month":8, "events":{}}, 
-                {"month":"Setiembre", "num_month":9, "events":{}}, {"month":"Octubre", "num_month":10, "events":{}}, 
-                {"month":"Noviembre", "num_month":11, "events":{}}, {"month":"Diciembre", "num_month":12, "events":{}}],
+      timeline:[{"month":"Enero", "num_month":1, "events":[]}, {"month":"Febrero", "num_month":2, "events":[]}, 
+                {"month":"Marzo", "num_month":3, "events":[]}, {"month":"Abril", "num_month":4, "events":[]}, 
+                {"month":"Mayo", "num_month":5, "events":[]}, {"month":"Junio", "num_month":6, "events":[]}, 
+                {"month":"Julio", "num_month":7, "events":[]}, {"month":"Agosto", "num_month":8, "events":[]}, 
+                {"month":"Setiembre", "num_month":9, "events":[]}, {"month":"Octubre", "num_month":10, "events":[]}, 
+                {"month":"Noviembre", "num_month":11, "events":[]}, {"month":"Diciembre", "num_month":12, "events":[]}],
       statisticsFinished: false,
 
       inputYear: new Date().getFullYear(),
@@ -60,25 +60,29 @@ export default{
     getEventsByMonths(){
       console.log(this.events);
       console.log(this.timeline);
-      console.log(this.events.length);
       let trobat;
 
       //Esborrem per cada mes, els events que hi havien abans
       this.timeline.forEach(function(item){
-        item.events = {};
+        item.events = [];
       });
 
       //Per cada evento del usuari mirem si l'hem de ficar al timeline
       for(let i=0; i < this.events.length; i++){
 
         let date = new Date(this.events[i].eventStart_date);
+        console.log(date.getFullYear(), date.getMonth());
         
         if(date.getFullYear() == this.inputYear){
           trobat = false;
 
           for(let j=0; j < this.timeline.length && !trobat; j++){
 
-            if (this.timeline[j].num_month == date.getMonth){
+            //console.log(this.timeline[j].num_month + " - " + date.getMonth());
+            if (this.timeline[j].num_month == date.getMonth()){
+              //console.log("iguals");
+              console.log(this.events[i]);
+              console.log( this.timeline[j].events);
               this.timeline[j].events.push(this.events[i]);
               trobat = true;
             }
@@ -183,100 +187,32 @@ export default{
 
       <div class="centered_horitzontal">
         <div class="timeline">
-            <div class="timeline_header">
-                <h2 class="blue_big"> Timeline</h2>
-                <form>
-                  <input class="general_input" type="number" min="2020" max="2030" step="1" v-model="inputYear" />
-                </form>
-            </div>
+          <div class="timeline_header">
+              <h2 class="blue_big"> Timeline</h2>
+              <form>
+                <input class="general_input" type="number" min="2020" max="2030" step="1" v-on:change="getEventsByMonths()" v-model="inputYear"/>
+              </form>
+          </div> <!--Tanquem div timeline_header-->
 
-            <div class="timeline_footer">
-              <div id="line"></div>
+          <div class="timeline_footer">
+            <div id="line"></div>
 
-                <div>
-                    <div class="infoTimeline">
-                      <!--<p class="darkblue_normal_bold">Enero</p>
-                      <button class="button_timeline">1</button>-->
-                      <svg height="50" width="50">
-                        <circle cx="25" cy="20" r="10" fill="#235F65" />
-                      </svg>
+              <div> <!--NO TREURE; CSS A DINS-->
 
-                    </div>
-
-                    <div class="infoTimeline">
-                      <p class="darkblue_normal_bold">Febrero</p>
-                      <button class="button_timeline">1</button>
-                      <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                      <p class="darkblue_normal_bold">Marzo</p>
-                      <button class="button_timeline">1</button>
-                      <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                      <p class="darkblue_normal_bold">Abril</p>
-                      <button class="button_timeline">1</button>
-                      <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                      <p class="darkblue_normal_bold">Mayo</p>
-                      <button class="button_timeline">1</button>
-                      <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                      <p class="darkblue_normal_bold">Junio</p>
-                      <button class="button_timeline">1</button>
-                      <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                      <p class="darkblue_normal_bold">Julio</p>
-                      <button class="button_timeline">1</button>
-                      <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Agosto</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Setiembre</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Octubre</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Noviembre</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
-                    </div>
-
-                    <div class="infoTimeline">
-                        <p class="darkblue_normal_bold">Diciembre</p>
-                        <button class="button_timeline">1</button>
-                        <!--<div class = "elipseTimeline">-->
-                    </div>
-              </div>
-
+                <div class="infoTimeline" v-for="month in timeline" :key="month.num_month">
+                  <p class="darkblue_normal_bold" >{{ month.month }}</p>
+                  <button class="button_timeline" v-if="month.events.length>0">{{ month.events.length }}</button>
+                  <svg height="50" width="50" v-else>
+                    <circle cx="25" cy="20" r="10" fill="#235F65" />
+                  </svg>
+                </div>
 
             </div>
+
+          </div><!--Tanquem div timeline_footer-->
             
-
-
         </div> <!--Tanquem div timeline-->
-        </div> <!--Tanquem div centered_horitzontal-->
+      </div> <!--Tanquem div centered_horitzontal-->
 
         <div class="centered_horitzontal"> 
         <div class="background_white_opac">
@@ -466,6 +402,11 @@ table tr:last-child td:last-child {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+
+.infoTimeline > svg{
+  position: relative;
+  top:-38px;
 }
 
 .timeline_footer > div{
