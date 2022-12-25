@@ -16,7 +16,8 @@ export default{
             password: "",
             isFilterShown:true,
             events: [],
-            recomendedEvent: ""
+            recomendedEvent: "",
+            showAll: false
         }
     },
     setup(){
@@ -83,6 +84,8 @@ export default{
             });
             console.log(this.events);
             return;
+          }).catch((error)=>{
+            console.error(error, " happened");
           });
         },
         goToEvent(eventID){
@@ -211,12 +214,15 @@ export default{
           this.events.forEach(event => {
             event.isShown = true;
           });
-        },async loadRecomendedEvent() {
-             await ApiCalls.sortByRating()
+        },loadRecomendedEvent() {
+             ApiCalls.sortByRating()
                 .then((sortedEvents) => {
                   this.recomendedEvent = sortedEvents[0];
                   console.log(this.recomendedEvent);
+                  this.showAll = true;
                 })
+        }, replaceByDefault(e) {
+          e.target.src = "../src/assets/images/events/defaultEvent1.webp";
         }
         
       },created() {
@@ -233,19 +239,17 @@ export default{
 
 <template>
 
-<div class="home-wrapper">
+<div class="home-wrapper" v-if="this.showAll">
   <hr>
-  <router-link to="/event">
-    <figure class="recomended_event">
-      <div class="recomended_event_img" style="background-image: url({{this.recomendedEvent.image}});">
-          <div class="footer_event"> 
-            <h1 class="Name">{{this.recomendedEvent.name}}</h1>
-            <p class="Data">{{this.recomendedEvent.eventStart_date.substring(0,10)}}   -  {{this.recomendedEvent.eventStart_date.substring(11,16)}}</p>
-            <p class="Location">{{this.recomendedEvent.location}}</p>
-          </div>
-      </div>
-    </figure>
-  </router-link>
+  <figure class="recomended_event" v-on:click="goToEvent(this.recomendedEvent.id)">
+    <img class="recomended_event_img" :src="this.recomendedEvent.image" @error="replaceByDefault">
+    <div class="footer_event"> 
+      <h1 class="Name">{{this.recomendedEvent.name}}</h1>
+      <p class="Data" >{{this.recomendedEvent.date.substring(0,10)}}   -  {{this.recomendedEvent.date.substring(11,16)}}</p>
+      <p class="Location">{{this.recomendedEvent.location}}</p>
+    </div>
+  </figure>
+
 
   <div class="create_event">
     <hr>
@@ -268,7 +272,7 @@ export default{
     <div class="event_group" v-for ="event in events" :key="event.id">
         <figure class="basic_event" v-on:click="goToEvent(event.id)"  v-if="event.isShown">
           
-            <img class="event_img" :src="event.image" alt="image of the event">
+            <img class="event_img" :src="event.image" @error="replaceByDefault" alt="image of the event">
             
             <div class="footer_basicEvent"> 
               <h2 class="blue_big">{{event.name}}</h2>
@@ -309,23 +313,40 @@ export default{
 .recomended_event{
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   align-content: center;
   justify-content: center;
   box-sizing: border-box;
   margin: 0px;
+  margin-bottom: 7vw;
+  
 }
 
 .footer_event{
-  height: 40%;
+  height: 17vw;
   border-radius: 0px 0px 20px 20px;
   background-color: rgba(23, 22, 22, 0.6);
   position: relative;
-  padding: 5px;
+  padding: 2vw;
   padding-left: 15px;
+  margin-top: -20.5vw;
+
+
 
 }
 
+
+.recomended_event_img{
+  margin: 0px;
+  border-radius: 8px;
+  width: 80vw;
+  height: 40vw;
+  object-fit: cover;
+  filter: saturate(75%);
+
+
+}
+/**
 .recomended_event_img{
   
   background-position: center;
@@ -345,17 +366,17 @@ export default{
   margin-top: 3vw;
   margin-bottom: 3vw;
 }
-
+ */
 .Name{
   font-weight: bold;
-  font-size: 100%;
+  font-size: 5vw;
   color: white;
-  margin:1px;
+  margin:3px;
 
 }
 
 .Data{
-  font-size: 80%;
+  font-size: 3vw;
   font-weight: bold;
   color: rgb(237, 70, 234);
   margin:1px;
@@ -363,7 +384,7 @@ export default{
 
 .Location{
   font-weight: bold;
-  font-size: 80%;
+  font-size: 3vw;
   color: white;
   margin:1px;
 }
@@ -456,37 +477,6 @@ export default{
   }
 
 
-@media (min-width: 450px) {
 
-  .footer_event{
-    height: 40%;
-    border-radius: 0px 0px 20px 20px;
-    background-color: rgba(23, 22, 22, 0.6);
-    position: relative;
-    padding: 5px;
-    padding-left: 30px;
-  }
-  .Name{
-    font-weight: bold;
-    font-size: 24px;
-    color: white;
-    margin:2px;
 
-  }
-
-  .Data{
-    font-size: 20px;
-    font-weight: bold;
-    color: rgb(237, 70, 234);
-    margin:2px;
-  }
-
-  .Location{
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-    margin:2px;
-  }
-
-}
 </style>

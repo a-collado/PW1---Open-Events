@@ -2,10 +2,14 @@
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
 import { defineComponent, getTransitionRawChildren } from "vue";
-import { GoogleMap, Marker } from "vue3-google-map";
+import Map from "./Map.vue";
+
 
 export default{
 
+    components: {
+        Map: Map
+    },
     data() {
         return {
             imgEvent_URL: "",
@@ -265,6 +269,7 @@ export default{
                     </div>
                 </div>
             </div>
+            <!--<Map></Map>-->
 
             <!-- <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="10">
                 <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
