@@ -109,7 +109,7 @@ export default{
         });
 
         assitedEvents.forEach(this.updateInfoEvent);
-        this.userEvents = this.events.concat(assitedEvents);
+        this.userEvents = this.userEvents.concat(assitedEvents);
         this.eventsFinished = true;
         console.log(this.userEvents);
         return;
@@ -207,7 +207,7 @@ export default{
       <div class="profileButtons">
         <button class="button_blues_small" v-on:click.prevent="goToFriendList">{{ this.friends.length }} Amigos</button>
         
-        <button class="button_blues_small">2 Eventos</button>
+        <button class="button_blues_small">{{this.userEvents.length}} Eventos</button>
       </div>
     </div>
 
