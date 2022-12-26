@@ -17,7 +17,11 @@ export default{
             isFilterShown:true,
             events: [],
             recomendedEvent: "",
-            showAll: false
+            showAll: false,
+            categoryDescubrir: true,
+            categoryTuZona: false,
+            categoryAmigos: false
+
         }
     },
     setup(){
@@ -82,7 +86,6 @@ export default{
             this.events.forEach(event => {
               event.isShown = true;
             });
-            console.log(this.events);
             return;
           }).catch((error)=>{
             console.error(error, " happened");
@@ -160,9 +163,10 @@ export default{
           }
           
           //reset shown events
-          this.events.forEach(event => {
+          
+          /*this.events.forEach(event => {
             event.isShown = true;
-          });
+          });*/
 
           //filter them
           this.events.forEach(event => {
@@ -199,31 +203,81 @@ export default{
               }
 
           });
-          
-          var filteredEvent = [];
-          this.events.forEach(event => {
-              if (event.isShown){
-                filteredEvent.push(event);
-              }
-          });
-          console.log(filteredEvent);
-        
-
 
         },resetFilter(){
-          this.events.forEach(event => {
-            event.isShown = true;
-          });
+            this.getAllEvents();  
+            this.events.forEach(event => {
+                event.isShown = true;
+            });
+
+            this.categoryAmigos = false;
+            this.categoryTuZona = false;
+            this.categoryDescubrir = true;
+
         },loadRecomendedEvent() {
              ApiCalls.sortByRating()
                 .then((sortedEvents) => {
-                  console.log(sortedEvents);
                   this.recomendedEvent = sortedEvents[0];
-                  console.log(this.recomendedEvent);
                   this.showAll = true;
                 })
+
         }, replaceByDefault(e) {
           e.target.src = "../src/assets/images/events/defaultEvent1.webp";
+        
+        },applyFilterDescubrir() {
+            this.categoryAmigos = false;
+            this.categoryTuZona = false;
+            this.categoryDescubrir = true;
+            
+
+            this.resetFilter();
+
+        },applyFilterZona() {
+            this.events.forEach(event => {
+                event.isShown = true;
+            });
+            //Filter with events near your location
+            this.categoryAmigos = false;
+            this.categoryTuZona = true;
+            this.categoryDescubrir = false;
+
+            var zona = "Barcelona";
+
+            this.events.forEach(event => {
+                if (event.location !== zona) {
+                event.isShown = false;
+                }
+            });   
+
+            console.log(this.events);
+
+        },applyFilterAmigos() {
+
+            this.events.forEach(event => {
+                event.isShown = true;
+            });
+            //Filter with events of your friends
+            this.categoryAmigos = true;
+            this.categoryTuZona = false;
+            this.categoryDescubrir = true;
+
+
+            ApiCalls.getFriendsEvents().then((friendsEvent)=>{
+                console.log(friendsEvent, friendsEvent[0]);
+
+                for (let i = 0; i < friendsEvent.length; i++) {
+                    let event = friendsEvent[i];
+                    this.events.forEach(event => {
+                        if (friendEvent.id === event.id){
+                            event.isShown = true;
+                        }else{
+                            event.isShown = false;
+                        }
+                        console.log("event: ", event, " === friend: ",friendEvent);
+                    });
+                }
+                       
+            });
         }
         
       },created() {
@@ -232,7 +286,6 @@ export default{
         this.getAllEvents();  
       }
       
-   
 }
 </script>
 
@@ -249,21 +302,21 @@ export default{
       <p class="Data" >{{this.recomendedEvent.date.substring(0,10)}}   -  {{this.recomendedEvent.date.substring(11,16)}}</p>
       <p class="Location">{{this.recomendedEvent.location}}</p>
     </div>
-  </figure>
+  </figure>    
 
 
   <div class="create_event">
-    <hr>
+     <hr>
     <button class="button" v-on:click="createEvent()"> Crea tu propio evento </button>
   </div>
 
   <div class="categories">
-    <div class="cat1">Descubrir</div>
-    <div class="cat2">Tu zona</div>
-    <div class="cat3">Amigos</div>
+    <div class="cat1" v-on:click="applyFilterDescubrir()">Descubrir</div>
+    <div class="cat2" v-on:click="applyFilterZona()">Tu zona</div>
+    <div class="cat3" v-on:click="applyFilterAmigos()">Amigos</div>
   </div>
   <div class="filter-row">
-    <p style="margin:0px">Populares</p>
+    <p style="margin:0px">Eventos</p>
       <button  v-on:click="toggleFilter()"><img src="src\assets\images\icons\options 1.png" width="30px" height="30px"></button>
   </div>
 
@@ -330,7 +383,7 @@ export default{
   position: relative;
   padding: 2vw;
   padding-left: 15px;
-  margin-top: -20.5vw;
+  margin-top: -21vw;
 
 
 

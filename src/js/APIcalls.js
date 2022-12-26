@@ -259,7 +259,34 @@ export default class ApiCalls{
         .then((response) =>{ 
             return response;});
     }
+    
+    static async getFriendsEvents(){
+        let futureFriendsEvents = [];
+        //Get friends
+        //let friends = [];
+        //friends = await this.getFriends();
+        //Get  Events from friends
 
+        return this.getFriends().then((friends) => {
+
+            friends.forEach(async friend => {
+                futureFriendsEvents.push(...await this.getUserIdFutureEvents(friend.id));
+            });
+  
+            console.log(futureFriendsEvents);
+            return futureFriendsEvents;
+
+        })
+        
+        
+        
+
+    }
+
+    static getUserIdFutureEvents(id) {
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id + "/events/future")
+        .then((response) =>{ return response.json();});
+    }
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
     static async getFriends(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/friends")
