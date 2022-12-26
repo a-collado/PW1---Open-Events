@@ -228,16 +228,15 @@ export default class ApiCalls{
         .then((response) =>{ return response.json();});
     }
 
-    //eto ta mal
     static async createUserAssistanceEvent (event_id) {
         return this.fetchPostBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances")
         .then((response) =>{ return response.json();});
     }
 
     static async editUserAssistanceEvent(event_id, newPuntuation, newComment){
-        const eventRate = {puntuation:newPuntuation, comentary:newComment};
+        const event = {puntuation:newPuntuation, comentary:newComment};
         
-        return this.fetchPutBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances", eventRate)
+        return this.fetchPutBearerToken('http://puigmal.salle.url.edu/api/v2/events/' + event_id + '/assistances', event)
         .then((response) =>{ return response.json();});
     }
 

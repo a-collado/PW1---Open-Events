@@ -21,11 +21,9 @@ data() {
         userRating:"",
 
         participate: false,
-        erraseComment: false,
-        erraseRating: false,
+        postComment: false,
         displaySocials:'none',
-        displayStars:'none',
-        newValoration: false
+        displayStars:'none'
     }  
 },
 
@@ -78,77 +76,51 @@ methods: {
                     this.userComment = eventsAssistance[i].comentary;
                 }
             }
-            if (this.userRating === null && this.userComment === null) {
-                this.newValoration = true;
-            }
         });
     },
 
     async changeParticipationEvent(){
         if (this.participate === true) {
             this.participate = false;
-            
-            //borrar comentario
             return ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{
             });
+
         } else {
             this.participate = true;
+            console.log("participa")
             return ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{
             });
         }
     },
 
-    userEventValoration (userRating, userComment) {
-        if (this.participate === true) {
-            
-        }
-        if (this.erraseComment === true) {
-            this.erraseComment = false;
-            //añadir comentario
-        } else {
-            this.erraseComment = true;
-        }
-    },
-
-    userEventPuntuation (userRating) {
-        if (this.erraseRating === true) {
-            this.erraseRating = false;
-            //AÑADIR RATING
-        } else {
-            this.erraseRating = true;
-        }
-    },
-
     async addEventValoration(userRating, userComment){
         if (this.participate === true) {
-            
-            if (userRating !== null) {
-                this.userRating = userRating;
-            } else {
-                this.userComment = userComment;
-            }
+            console.log(userRating, userComment)
 
-            if (this.newValoration === true) {
-                //create
-                this.newValoration = false;
-            } else if (this.userRating === null && this.userComment === null) {
-                //deleteRating
-                this.newValoration = true;
-            } else {
-                //edit
-                return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{
-                });/*.then((output) =>{
-                            if(output == ApiCalls.getCORRECT()) {
-                                window.location.replace("/");
-                            }else{
-                                this.error = output;
-                                this.displayError = "flex";
-                            }
-                        });*/
-            }
-            
-        } 
+            if (userRating === "delete" || userComment ==="delete") {
+                if ((userRating === "delete")) {
+                    this.userRating = '';
+                    console.log(this.userRating, "no2R")
+                } else {
+                    this.userComment = '';
+                    this.postComment = false;
+                    console.log(this.postComment, "no2C")
+                }
 
+            } else {
+                console.log(this.postComment, "a")
+                if (userRating !== "") {
+                    this.userRating = userRating;
+                    console.log(this.userRating, "noR")
+                } else {
+                    this.userComment = userComment;
+                    this.postComment = true;
+                    console.log(this.postComment, "noC")
+                }
+            }
+            console.log(this.userRating, this.userComment)
+            return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{});
+        }      
     },
 
     async getOwnerByID(userID){
@@ -301,7 +273,7 @@ methods: {
             <div class="size_input"><input class="general_input" type="text" placeholder="Añade tu comentario" v-model="userComment"></div> 
             <div class="flex_row_spaceBetween">
                 <div class="row_flexStart">
-                    <button v-on:click="addEventValoration('', '')" v-if="userRating"><img class="stars" src="../assets/images/icons/cancel.png" alt="cancelar"></button>
+                    <button v-on:click="addEventValoration('delete', '')" v-if="userRating"><img class="stars" src="../assets/images/icons/cancel.png" alt="cancelar"></button>
                     <button v-on:click="showStars()"><img class="stars" src="../assets/images/icons/userStar.png" alt="estrellaUser"></button>
                     <h5 v-if="userRating">{{userRating}}</h5>
                 </div>
@@ -323,8 +295,8 @@ methods: {
         </div>
         
         
-        <button class="button_pink_small" v-on:click="userEventComentary('')" v-if="!erraseComment">Crear comentario</button>
-        <button class="button_pink_small" v-on:click="userEventComentary('')" v-else>Borrar comentario</button>
+        <button class="button_pink_small" v-on:click="addEventValoration('', userComment)" v-if="!postComment">Crear comentario</button>
+        <button class="button_pink_small" v-on:click="addEventValoration('', 'delete')" v-else>Borrar comentario</button>
     </div>
 </template>
 
