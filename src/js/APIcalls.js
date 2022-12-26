@@ -283,7 +283,7 @@ export default class ApiCalls{
     static async editUserAssistanceEvent(event_id, newPuntuation, newComment){
         const event = {puntuation:newPuntuation, comentary:newComment};
         
-        return this.fetchPutBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances", eventRate)
+        return this.fetchPutBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances", event)
         .then((response) =>{ return response.json();})
         .catch((error) => {
             console.error('Error:', error);
