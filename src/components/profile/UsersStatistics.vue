@@ -66,13 +66,14 @@ export default{
       //Esborrem per cada mes, els events que hi havien abans
       this.timeline.forEach(function(item){
         item.events = [];
+        item.showEvents = false;
       });
 
       //Per cada evento del usuari mirem si l'hem de ficar al timeline
       for(let i=0; i < this.events.length; i++){
 
         let date = new Date(this.events[i].eventStart_date);
-        //console.log(date.getFullYear(), date.getMonth());
+        console.log(date, date.getMonth());
         
         if(date.getFullYear() == this.inputYear){
           trobat = false;
@@ -80,7 +81,7 @@ export default{
           for(let j=0; j < this.timeline.length && !trobat; j++){
 
             //console.log(this.timeline[j].num_month + " - " + date.getMonth());
-            if (this.timeline[j].num_month == date.getMonth()){
+            if (this.timeline[j].num_month == date.getMonth()+1){
               //console.log("iguals");
               //console.log(this.events[i]);
               //console.log( this.timeline[j].events);
