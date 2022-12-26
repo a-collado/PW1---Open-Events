@@ -19,13 +19,16 @@ export default{
                 {"month":"Julio", "num_month":7, "events":[], "showEvents": false}, {"month":"Agosto", "num_month":8, "events":[], "showEvents": false}, 
                 {"month":"Setiembre", "num_month":9, "events":[], "showEvents": false}, {"month":"Octubre", "num_month":10, "events":[], "showEvents": false}, 
                 {"month":"Noviembre", "num_month":11, "events":[], "showEvents": false}, {"month":"Diciembre", "num_month":12, "events":[], "showEvents": false}],
-      statisticsFinished: false,
+             
 
       inputYear: new Date().getFullYear(),
 
       avgScore: 0,
       numComents: 0,
       percentageComentersBelow: 0,
+
+      statisticsFinished: false
+
 
 
     }
@@ -50,8 +53,8 @@ export default{
   
   created(){
     //console.log(this.timeline);
-
     this.getEventsByMonths();
+    this.getStatistics();
       
   },
 
@@ -66,13 +69,13 @@ export default{
       //Esborrem per cada mes, els events que hi havien abans
       this.timeline.forEach(function(item){
         item.events = [];
+        item.showEvents = false;
       });
 
       //Per cada evento del usuari mirem si l'hem de ficar al timeline
       for(let i=0; i < this.events.length; i++){
 
         let date = new Date(this.events[i].eventStart_date);
-        //console.log(date.getFullYear(), date.getMonth());
         
         if(date.getFullYear() == this.inputYear){
           trobat = false;
@@ -80,7 +83,7 @@ export default{
           for(let j=0; j < this.timeline.length && !trobat; j++){
 
             //console.log(this.timeline[j].num_month + " - " + date.getMonth());
-            if (this.timeline[j].num_month == date.getMonth()){
+            if (this.timeline[j].num_month == date.getMonth()+1){
               //console.log("iguals");
               //console.log(this.events[i]);
               //console.log( this.timeline[j].events);
@@ -93,8 +96,27 @@ export default{
 
       } //for
 
-      console.log(this.timeline);
+    },
 
+    getStatistics(){
+      ApiCalls.getUserStatistics(this.ID)
+      .then((statistics) => {
+        //console.log(statistics, statistics[0].avg_score);
+        if(statistics[0].avg_score == null){
+          this.avgScore = 0;
+        }else{
+          this.avgScore = statistics[0].avg_score;
+        }
+
+        if(statistics[0].percentage_commenters_below == null){
+          this.percentageComentersBelow = 0;
+        }else{
+          this.percentageComentersBelow = statistics[0].percentage_commenters_below;
+        }
+
+        this.numComents = statistics[0].num_comments;
+
+      });
 
     },
   
@@ -194,7 +216,7 @@ export default{
 
           <div class="flex_row_wrap">
             <!--v-if="monthTimeline.showEvents && this.showEventsMonth"-->
-            <figure class="basic_event" v-on:click="goToEvent(event.id)" v-for = "event in monthTimeline.events" :key="event.id">
+            <figure class="timeline_event" v-on:click="goToEvent(event.id)" v-for = "event in monthTimeline.events" :key="event.id">
               <img class="event_img" v-bind:src=event.image alt="image of the event">
               <div class="extraInfo_basicEvent">
                 <p style="background-color: #C772BA;" v-if="event.created">creado</p>
@@ -202,8 +224,15 @@ export default{
                 <p v-if="Date.now() > new Date(event.eventEnd_date)" style="background-color: #235F65;">finalizado</p>
               </div>
               
-              <div class="footer_basicEvent"> 
-                <h2 class="blue_big">{{event.name}}</h2>
+              <div class="footer_timelineEvent"> 
+                <div>
+                  <h2 class="blue_big">{{event.name}}</h2>
+                  <div class="flex_row_wrap">
+                    <img class="icon" src="../../assets/images/icons/comment.png" alt="icon">
+                    <p class="pink_small_bold"> Num máximo de participantes: {{event.n_participators }}</p>
+                    <p class="blue_small_bold">Tipo de evento: {{event.type}}</p>
+                  </div>
+                </div>
 
                 <div class="column"> 
                   <div class="flex_row_wrap">
@@ -272,22 +301,8 @@ export default{
   top: 65px;
 }
 
-#Abril2021{
-  position: absolute;
-  left:15%;
-  /*top: 105px;*/
-}
-
-#Noviembre2021{
-  position: absolute;
-  left:30%;
-  /*top: 105px;*/
-}
-
-#Marzo2023{
-  position: absolute;
-  left:75%;
-  /*top: 105px;*/
+.basic_event{
+  min-width: none;
 }
 
 /*Table statistics*/
@@ -425,7 +440,7 @@ div.background_white_opac{
 }
 
 div.background_white_opac > div{
-  margin-left:18px;
+  margin-left:2%;
 }
 
 div.background_white_opac > h2{
@@ -441,7 +456,7 @@ div.background_white_opac > h2{
 /*Timeline events_______*/
 .timeline_event{
   height: 170px;
-  width:81vw;
+  width:94%;
   min-width: 300px;
   filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.4));
   margin: 0px 0px 18px 10px;
@@ -462,7 +477,8 @@ div.background_white_opac > h2{
 }
 
 .footer_timelineEvent > *{
-  margin: 10px;
+  margin: 10px;    
+  max-width: 235px;
 }
 .footer_timelineEvent > div > *, .footer_timelineEvent > div > div > p{
   margin: 1px;

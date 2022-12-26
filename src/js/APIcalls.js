@@ -113,7 +113,9 @@ export default class ApiCalls{
             }
 
             return output;
-        })
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async loginUser(email, password) {
@@ -146,6 +148,9 @@ export default class ApiCalls{
             }
 
 
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
     }
 
@@ -162,7 +167,11 @@ export default class ApiCalls{
     static async getInfoLoggedUser(){
         return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + window.localStorage.getItem("loggedUser"))
         .then((response) =>{ 
-            return response.json();});
+            return response.json();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static getUrlImgLoggedUser(){
@@ -173,7 +182,11 @@ export default class ApiCalls{
     static async getInfoInfoUserByID(userID){
         return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + userID)
         .then((response) =>{ 
-            return response.json();});
+            return response.json();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     //________________________________________________________________
@@ -189,6 +202,9 @@ export default class ApiCalls{
             console.log(body);          
             return body;
 
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
     }
 
@@ -201,6 +217,9 @@ export default class ApiCalls{
         })
         .then((body) =>{     
             return body;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
     }
 
@@ -211,39 +230,73 @@ export default class ApiCalls{
         .then((response) =>{    
             if(response.ok == true) return this.CORRECT;
             return response.json();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
 
     }
 
+    static async deleteUser(){
+        return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/users/")
+        .then((response) =>{ 
+            return response;});
+    }
+
+    static async getUserStatistics(id_user){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id_user + "/statistics")
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+    }
 
     //----------------------------------GET USERS EVENTS (CREATED, ASSISTANT)---------------------------------------------------
 
     static async getUserCreatedEvents(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/events")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async getUserAssistanceEvents(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/assistances")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
+
+    //---------------------------------USER MANAGE ASSISTANCE EVENTS------------------------------------------------------------
 
     //eto ta mal
     static async createUserAssistanceEvent (event_id) {
         return this.fetchPostBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async editUserAssistanceEvent(event_id, newPuntuation, newComment){
         const eventRate = {puntuation:newPuntuation, comentary:newComment};
         
         return this.fetchPutBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances", eventRate)
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async deleteUserAssistanceEvent (event_id) {
         return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
   
@@ -290,41 +343,62 @@ export default class ApiCalls{
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
     static async getFriends(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/friends")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
     
     static async getUserFriends(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/friends")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async getFriendsByID(userID){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + userID + "/friends")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async showFriendsRequests(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2//friends/requests")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     //----------------------------------POST USERS FRIENDS (SEND FRIEND REQUESTS)---------------------------------------------------
     static async sendFriendRequest(id){
         
         return this.fetchPostBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/friends/" + id)
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
     
     static async AcceptFriendRequest(id){
         
         return this.fetchPutBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/friends/" + id)
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async rejectFriendRequest(id){
         
         return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/friends/" + id)
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
      //----------------------------------MANAGE EVENTS (CREATE, EDIT, DELETE)---------------------------------------------------
@@ -342,6 +416,9 @@ export default class ApiCalls{
             if(body == this.CORRECT) return this.CORRECT;
             if (typeof body.Error === 'undefined') return body.details[0].message;
             return "An error has occurred, try again"
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
         
 
@@ -349,50 +426,77 @@ export default class ApiCalls{
     
     static async EditEvent(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/friends")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async DeleteEvent(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/friends")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async GetEvent(id) {
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/" + id)
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async sortByRating() {
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/best")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async GetAllEvents() {
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async getCreatedEventsFromUser(id){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id + "/events")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
     }
 
     static async getAssitedEventsFromUser(id){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id + "/assistances")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async getAssistancesFromEvent(id){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/" + id + "/assistances")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     //----------------------------------MANAGE MEsSAGES -----------------------------------------------------------------------------------
 
     static async getMessageUsers() {
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/messages/users")
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async sendMessage(id, content) {
@@ -400,12 +504,18 @@ export default class ApiCalls{
         const message = {content:content, user_id_send:localStorage.getItem("loggedUser"), user_id_recived:id};
 
         return this.fetchPostBearerToken("http://puigmal.salle.url.edu/api/v2/messages/", message)
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     static async getMessages(id) {
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/messages/" + id)
-        .then((response) =>{ return response.json();});
+        .then((response) =>{ return response.json();})
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     
