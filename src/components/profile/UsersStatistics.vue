@@ -110,9 +110,12 @@ export default{
       console.log("showEventsOfMonh, " + num_month);
       
       if(this.timeline[num_month-1].showEvents == true){
-        this.timeline[num_month-1].showEvents == false;
+        console.log(true);
+        this.timeline[num_month-1].showEvents = false;
+        console.log(this.timeline[num_month-1]);
 
       }else{
+        console.log("else");
         this.timeline.forEach(function(item){
           item.showEvents = false; //inicialitzem totes a false
         });
@@ -187,7 +190,7 @@ export default{
 
       <div class="background_white_opac" v-if="monthTimeline.showEvents">
   
-          <h2 class="blue_big" style="margin-left:20px">{{monthTimeline.month + " " + this.inputYear}}</h2>
+          <h2 class="blue_big">{{monthTimeline.month + " " + this.inputYear}}</h2>
 
           <div class="flex_row_wrap">
             <!--v-if="monthTimeline.showEvents && this.showEventsMonth"-->
@@ -420,6 +423,20 @@ div.background_white_opac{
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+div.background_white_opac > div{
+  margin-left:18px;
+}
+
+div.background_white_opac > h2{
+  margin-left: 28px;
+    margin-top: 0px;
+    height: 63px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
 
 /*Timeline events_______*/
 .timeline_event{
