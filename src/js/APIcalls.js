@@ -215,6 +215,17 @@ export default class ApiCalls{
 
     }
 
+    static async deleteUser(){
+        return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/users/")
+        .then((response) =>{ 
+            return response;});
+    }
+
+    static async getUserStatistics(id_user){
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id_user + "/statistics")
+        .then((response) => response.json());
+
+    }
 
     //----------------------------------GET USERS EVENTS (CREATED, ASSISTANT)---------------------------------------------------
 
@@ -227,6 +238,8 @@ export default class ApiCalls{
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + localStorage.getItem("loggedUser") + "/assistances")
         .then((response) =>{ return response.json();});
     }
+
+    //---------------------------------USER MANAGE ASSISTANCE EVENTS------------------------------------------------------------
 
     //eto ta mal
     static async createUserAssistanceEvent (event_id) {
@@ -247,17 +260,10 @@ export default class ApiCalls{
     }
 
   
-
     static async getAllEventsFromUser(){ return null;}
 
     static async getAllUsersEvents(){
         return null;
-    }
-
-    static async deleteUser(){
-        return this.fetchDeleteBearerTokenUrl("http://puigmal.salle.url.edu/api/v2/users/")
-        .then((response) =>{ 
-            return response;});
     }
 
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
