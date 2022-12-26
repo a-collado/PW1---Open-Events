@@ -87,7 +87,6 @@ methods: {
 
         } else {
             this.participate = true;
-            console.log("participa")
             return ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{
             });
         }
@@ -95,30 +94,24 @@ methods: {
 
     async addEventValoration(userRating, userComment){
         if (this.participate === true) {
-            console.log(userRating, userComment)
 
             if (userRating === "delete" || userComment ==="delete") {
                 if ((userRating === "delete")) {
                     this.userRating = '';
-                    console.log(this.userRating, "no2R")
                 } else {
                     this.userComment = '';
                     this.postComment = false;
-                    console.log(this.postComment, "no2C")
                 }
 
             } else {
-                console.log(this.postComment, "a")
                 if (userRating !== "") {
                     this.userRating = userRating;
-                    console.log(this.userRating, "noR")
                 } else {
                     this.userComment = userComment;
                     this.postComment = true;
-                    console.log(this.postComment, "noC")
                 }
             }
-            console.log(this.userRating, this.userComment)
+
             return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{});
         }      
     },
