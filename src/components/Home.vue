@@ -259,7 +259,7 @@ export default{
             //Filter with events of your friends
             this.categoryAmigos = true;
             this.categoryTuZona = false;
-            this.categoryDescubrir = true;
+            this.categoryDescubrir = false;
 
 
             ApiCalls.getFriendsEvents().then((friendsEvent)=>{
@@ -311,9 +311,9 @@ export default{
   </div>
 
   <div class="categories">
-    <div class="cat1" v-on:click="applyFilterDescubrir()">Descubrir</div>
-    <div class="cat2" v-on:click="applyFilterZona()">Tu zona</div>
-    <div class="cat3" v-on:click="applyFilterAmigos()">Amigos</div>
+    <div class="cat1" v-bind:class="{selectedCategory:this.categoryDescubrir}" v-on:click="applyFilterDescubrir()" >Descubrir</div>
+    <div class="cat2" v-bind:class="{selectedCategory:this.categoryTuZona}" v-on:click="applyFilterZona()">Tu zona</div>
+    <div class="cat3" v-bind:class="{selectedCategory:this.categoryAmigos}" v-on:click="applyFilterAmigos()">Amigos</div>
   </div>
   <div class="filter-row">
     <p style="margin:0px">Eventos</p>
@@ -498,7 +498,7 @@ export default{
   height: 61px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.42) 13.02%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0.17) 100%);
   margin: 2px;
-}.cat3{
+}.selectedCategory{
   background: linear-gradient(180deg, rgba(226, 106, 186, 0.64) 13.02%, rgba(226, 106, 186, 0) 100%);
 }
 

@@ -85,9 +85,10 @@ export default{
 </script>
 
 <template>
+
   <div id="header">
     <router-link :to="{ name: 'Home' }" v-on:click="goToWelcome"><img class=logo_header :src="logoUrl"></router-link>
-    <input v-on:keyup.enter="search" class="searchbar" type="text" v-model="search_bar_text" placeholder="¿Que tipo de evento estas buscando?">
+    <input v-on:keyup.enter="search" class="searchbar" type="text" v-model="search_bar_text" placeholder="Busca un evento o una persona">
   
     <div>
       <button v-on:click="goToMessages()"><img :src="chatIconUrl" style="width:50px; height:50px"></button>
