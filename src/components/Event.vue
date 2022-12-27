@@ -11,7 +11,6 @@ data() {
     return {
        // logedUser: [],
         event: [],
-        //ownerEventUser: [],
         assistances: [],
         eventStartDate:"",
         eventEndDate:"",
@@ -21,11 +20,9 @@ data() {
         userRating:"",
 
         participate: false,
-        erraseComment: false,
-        erraseRating: false,
+        postComment: false,
         displaySocials:'none',
-        displayStars:'none',
-        newValoration: false
+        displayStars:'none'
     }  
 },
 
@@ -63,12 +60,6 @@ methods: {
         }
     },
     
-    /*async getLoggedUser(){
-        return ApiCalls.getInfoLoggedUser().then((logedUser) =>{
-            this.logedUser = logedUser[0];
-        });   
-    },*/
-    
     async participateEvent(eventID) {
         return ApiCalls.getUserAssistanceEvents().then((eventsAssistance) =>{
             for (let i = 0; i < eventsAssistance.length; i++) {
@@ -78,77 +69,46 @@ methods: {
                     this.userComment = eventsAssistance[i].comentary;
                 }
             }
-            if (this.userRating === null && this.userComment === null) {
-                this.newValoration = true;
-            }
         });
     },
 
     async changeParticipationEvent(){
         if (this.participate === true) {
             this.participate = false;
-            
-            //borrar comentario
             return ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{
             });
-        } else {
-            this.participate = true;
-            return ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{
-            });
-        }
-    },
 
-    userEventValoration (userRating, userComment) {
-        if (this.participate === true) {
-            
-        }
-        if (this.erraseComment === true) {
-            this.erraseComment = false;
-            //añadir comentario
         } else {
-            this.erraseComment = true;
-        }
-    },
-
-    userEventPuntuation (userRating) {
-        if (this.erraseRating === true) {
-            this.erraseRating = false;
-            //AÑADIR RATING
-        } else {
-            this.erraseRating = true;
+            if (this.assistances.length < this.event.n_participators) {
+                this.participate = true;
+                return ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{
+                });
+            }
         }
     },
 
     async addEventValoration(userRating, userComment){
         if (this.participate === true) {
-            
-            if (userRating !== null) {
-                this.userRating = userRating;
+
+            if (userRating === "delete" || userComment ==="delete") {
+                if ((userRating === "delete")) {
+                    this.userRating = '';
+                } else {
+                    this.userComment = '';
+                    this.postComment = false;
+                }
+
             } else {
-                this.userComment = userComment;
+                if (userRating !== "") {
+                    this.userRating = userRating;
+                } else {
+                    this.userComment = userComment;
+                    this.postComment = true;
+                }
             }
 
-            if (this.newValoration === true) {
-                //create
-                this.newValoration = false;
-            } else if (this.userRating === null && this.userComment === null) {
-                //deleteRating
-                this.newValoration = true;
-            } else {
-                //edit
-                return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{
-                });/*.then((output) =>{
-                            if(output == ApiCalls.getCORRECT()) {
-                                window.location.replace("/");
-                            }else{
-                                this.error = output;
-                                this.displayError = "flex";
-                            }
-                        });*/
-            }
-            
-        } 
-
+            return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{});
+        }      
     },
 
     async getOwnerByID(userID){
@@ -169,7 +129,7 @@ methods: {
             this.splitDate = this.event.eventEnd_date.split(/-|T|\./);
             this.eventEndDate = this.splitDate[2] + " " + month[(parseInt(this.splitDate[1]) - 1)] + " " + this.splitDate[0] + " (" + this.splitDate[3] + ")";
             
-            return this.getOwnerByID(this.event.owner_id).then((eventCreator) =>{});
+            this.getOwnerByID(this.event.owner_id).then((eventCreator) =>{});
         });
     },
 
@@ -260,12 +220,13 @@ methods: {
                 </div>
             </div>
 
-            <div class="rectangle_gradient">
+            <div class="rectangle_gradient"><div class="helper_box">
                 <div class="event_info">
-                    <div class="titulo"><h2>{{event.n_participators}}</h2></div>
+                    <div class="titulo"><h2>{{assistances.length}}</h2></div>
                     <div class="titulo"><h3 class="pink">Participantes</h3></div>
                 </div>
-            </div>
+                <div class="event_info"><div class="texto"><h5>(máx {{event.n_participators}})</h5></div></div>
+            </div></div>
         </div>
         
         <div class="helper_box">
@@ -286,10 +247,6 @@ methods: {
                                     <h5>{{assistance.puntuation}}</h5>
                                     <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
                                 </div>
-                                <div class="punctuation" v-if="assistance.puntuation === null">
-                                    <h5>no hsy puntu{{assistance.puntuation}}</h5>
-                                    <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
-                                </div>
                             </div>
                         </div></router-link>
                         <div class="texto" v-if="assistance.comentary !== null"><h5>{{assistance.comentary}}</h5></div>
@@ -298,10 +255,11 @@ methods: {
             </div>
 
             
-            <div class="size_input"><input class="general_input" type="text" placeholder="Añade tu comentario" v-model="userComment"></div> 
+            <div class="size_input" v-if="!postComment"><input class="general_input" type="text" placeholder="Añade tu comentario" v-model="userComment"></div>
+            <div class="size_input" v-else><input class="general_input" type="text" readonly="readonly" placeholder="Añadiste un comentario"></div>
             <div class="flex_row_spaceBetween">
                 <div class="row_flexStart">
-                    <button v-on:click="addEventValoration('', '')" v-if="userRating"><img class="stars" src="../assets/images/icons/cancel.png" alt="cancelar"></button>
+                    <button v-on:click="addEventValoration('delete', '')" v-if="userRating"><img class="stars" src="../assets/images/icons/cancel.png" alt="cancelar"></button>
                     <button v-on:click="showStars()"><img class="stars" src="../assets/images/icons/userStar.png" alt="estrellaUser"></button>
                     <h5 v-if="userRating">{{userRating}}</h5>
                 </div>
@@ -323,8 +281,8 @@ methods: {
         </div>
         
         
-        <button class="button_pink_small" v-on:click="userEventComentary('')" v-if="!erraseComment">Crear comentario</button>
-        <button class="button_pink_small" v-on:click="userEventComentary('')" v-else>Borrar comentario</button>
+        <button class="button_pink_small" v-on:click="addEventValoration('', userComment)" v-if="!postComment">Crear comentario</button>
+        <button class="button_pink_small" v-on:click="addEventValoration('', 'delete')" v-else>Borrar comentario</button>
     </div>
 </template>
 
