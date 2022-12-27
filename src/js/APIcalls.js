@@ -339,6 +339,19 @@ export default class ApiCalls{
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/users/" + id + "/events/future")
         .then((response) =>{ return response.json();});
     }
+
+    static async searchEventsKeyword(keyword) {
+        return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/events/search?keyword=" + keyword)
+        .then((response) =>{
+             return response.json();
+        })
+        .then((body) =>{     
+            return body;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
     //----------------------------------GET USERS FRIENDS (CREATED, ASSISTANT)---------------------------------------------------
     static async getFriends(){
         return this.fetchGetBearerToken("http://puigmal.salle.url.edu/api/v2/friends")

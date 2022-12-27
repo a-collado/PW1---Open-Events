@@ -2,6 +2,7 @@
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "./js/APIcalls.js";
 import SearchUsers from "./components/profile/SearchUsers.vue"
+import SearchEvents from "./components/SearchEvents.vue";
 
 import { RouterLink} from "vue-router";
 import { watch } from 'vue'
@@ -11,13 +12,20 @@ export default{
 
   // NO PODEMOS USAR 'location.replace()', tenemos que usar el routing de Vue
 
-    components: {SearchUsers:SearchUsers},
+    components: {
+        SearchUsers:SearchUsers,
+        SearchEvents: SearchEvents
+    },
     data() {
         return {
           imgUrl_profile: this.defaultProfilePic,
           search_bar_text:"",
-          search_results: [],
+          search_result_user: [],
+          search_result_event: [],
+          show_results_event: false,
+          show_results_user: false,
           show_results: false,
+
         }
     },
     setup(){
@@ -68,17 +76,52 @@ export default{
         search(){
           //console.log(this.search_bar_text);
           if(!this.search_bar_text.length == 0 && ApiCalls.hasLoggedIn())
-          this.search_result = ApiCalls.searchUser(this.search_bar_text).then((output) =>{
-            this.search_results = output;
-            this.showResults();
+          this.search_result_user = ApiCalls.searchUser(this.search_bar_text).then((output) =>{
+            this.search_result_user = output;
+            console.log(output)
+            this.showResultsUser();
+            this.show_results = true;
+
           });
+          this.search_result_event = ApiCalls.searchEventsKeyword(this.search_bar_text).then((output) => {
+            this.search_result_event = output;
+            console.log(output)
+            this.showResultsEvents();
+            this.show_results = true;
+
+          })
+
         },
         showResults(){
-          this.show_results = true;
+            this.show_results = true;
         },
         hideSearchResults(){
-          this.show_results = false;
+            this.show_results = false;
         },
+        showResultsUser(){
+          this.show_results_user = true;
+        },
+        showResultsEvents(){
+          this.show_results_event = true;
+        },
+        hideSearchResultsEvent(){
+          this.show_results_event = false;
+        },
+        hideSearchResultsUser(){
+          this.show_results_user = false;
+        },
+        toggleHideUsers() {
+            this.show_results_user = !this.show_results_user;
+        },
+        toggleHideEvents() {
+            this.show_results_event = !this.show_results_event;
+        },
+        replaceImgEventByDefault(e){
+            e.target.src = "../src/assets/images/events/defaultEvent1.webp";
+        },
+        replaceImgUserByDefault(e) {
+            e.target.src = this.defaultProfilePic;
+        }
     }
 }
 
@@ -95,10 +138,19 @@ export default{
       <button v-on:click="goToUserAccount()"><img class="small_profilePic" v-bind:src = imgUrl_profile></button>
       <!--<router-link :to="{name: 'Perfil', params: { id: 15 }}"> <button><img class="small_profilePic" v-bind:src = imgUrl_profile></button> </router-link>-->
     </div>
-</div>
+  </div>
 
-  <router-view v-if="!show_results"></router-view>
-  <SearchUsers v-else :results = "this.search_results" @goToProfile="hideSearchResults"></SearchUsers>
+  <router-view v-if="!this.show_results"></router-view>
+  <div v-else>
+    <div style="display:flex; justify-content: center; margin: 10px;">
+        <button v-on:click="this.toggleHideUsers()">Users</button>
+        <button  v-on:click="this.toggleHideEvents()">Events</button>
+    </div>
+    <SearchUsers v-if="this.show_results_user" :results = "this.search_result_user" @goToProfile="hideSearchResults"></SearchUsers>
+    <SearchEvents v-if="this.show_results_event" :results = "this.search_result_event" @goToEvent="hideSearchResults"></SearchEvents>
+
+  </div>
+  
 
   
   <div id="footer">
@@ -147,6 +199,11 @@ export default{
   flex-direction: row;
   flex-wrap: wrap;
 }*/
+button{
+    margin: 10px;
+    width: 80px;
+    height: 50px;
+}
 
 #header {
   display:grid;

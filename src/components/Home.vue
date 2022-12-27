@@ -221,9 +221,6 @@ export default{
                   this.showAll = true;
                 })
 
-        }, replaceByDefault(e) {
-          e.target.src = "../src/assets/images/events/defaultEvent1.webp";
-        
         },applyFilterDescubrir() {
             this.categoryAmigos = false;
             this.categoryTuZona = false;
@@ -262,7 +259,7 @@ export default{
             this.categoryDescubrir = false;
 
 
-            ApiCalls.getFriendsEvents().then((friendsEvent)=>{
+            var friendsEvent = ApiCalls.getFriendsEvents().then((friendsEvent)=>{
                 console.log(friendsEvent, friendsEvent[0]);
 
                 for (let i = 0; i < friendsEvent.length; i++) {
@@ -296,7 +293,7 @@ export default{
 <div class="home-wrapper" v-if="this.showAll">
   <hr>
   <figure class="recomended_event" v-on:click="goToEvent(this.recomendedEvent.id)">
-    <img class="recomended_event_img" :src="this.recomendedEvent.image" @error="replaceByDefault">
+    <img class="recomended_event_img" :src="this.recomendedEvent.image" @error="this.$root.replaceImgEventByDefault">
     <div class="footer_event"> 
       <h1 class="Name">{{this.recomendedEvent.name}}</h1>
       <p class="Data" >{{this.recomendedEvent.date.substring(0,10)}}   -  {{this.recomendedEvent.date.substring(11,16)}}</p>
@@ -326,7 +323,7 @@ export default{
     <div class="event_group" v-for ="event in events" :key="event.id">
         <figure class="basic_event" v-on:click="goToEvent(event.id)"  v-if="event.isShown">
           
-            <img class="event_img" :src="event.image" @error="replaceByDefault" alt="image of the event">
+            <img class="event_img" :src="event.image" @error="this.$root.replaceImgEventByDefault()" alt="image of the event">
             
             <div class="footer_basicEvent"> 
               <h2 class="blue_big">{{event.name}}</h2>
@@ -400,27 +397,7 @@ export default{
 
 
 }
-/**
-.recomended_event_img{
-  
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width:94vw;
-  max-width: 800px;
-  height:40vw;
-  max-height: 320px;
-  border-radius: 20px;
-  box-sizing: border-box;
-  filter: saturate(75%);
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-self: center;
-  margin-top: 3vw;
-  margin-bottom: 3vw;
-}
- */
+
 .Name{
   font-weight: bold;
   font-size: 5vw;
