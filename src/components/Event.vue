@@ -16,13 +16,17 @@ data() {
         eventEndDate:"",
         eventCreator:"",
         eventRating:"",
+        totalComents:"",
         userComment:"",
         userRating:"",
 
         participate: false,
         postComment: false,
         displaySocials:'none',
-        displayStars:'none'
+        displayStars:'none',
+
+        errorValoration: false,
+        errorParticipation: ""
     }  
 },
 
@@ -67,31 +71,47 @@ methods: {
                     this.participate = true;
                     this.userRating = eventsAssistance[i].puntuation;
                     this.userComment = eventsAssistance[i].comentary;
+                    if (this.userComment) {
+                        this.postComment = true;
+                    }
                 }
             }
         });
     },
 
     async changeParticipationEvent(){
-        if (this.participate === true) {
-            this.participate = false;
-            return ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{
-            });
+        
+        let localDate = (new Date()).toISOString();
+        if (localDate > this.event.eventStart_date) {
+            this.errorParticipation = 'No se admiten cambios tras el inicio del evento.';
 
         } else {
-            if (this.assistances.length < this.event.n_participators) {
-                this.participate = true;
-                return ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{
+            if (this.participate === true) {
+                this.participate = false;
+                return ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{
                 });
+
+            } else {
+                if (this.assistances.length < this.event.n_participators) {
+                    this.participate = true;
+                    this.errorValoration = false;
+                    return ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{
+                    });
+                } else {
+                    this.errorParticipation = 'Inscripciones agotadas.';
+                    this.errorValoration = false;
+                }
             }
         }
     },
 
     async addEventValoration(userRating, userComment){
+        console.log(userRating, userComment)
         if (this.participate === true) {
-
-            if (userRating === "delete" || userComment ==="delete") {
-                if ((userRating === "delete")) {
+            
+            if (userRating.localeCompare("delete") == 0 || userComment.localeCompare("delete") == 0) {
+                console.log('borrar')
+                if ((userRating.localeCompare("delete")) == 0) {
                     this.userRating = '';
                 } else {
                     this.userComment = '';
@@ -99,16 +119,18 @@ methods: {
                 }
 
             } else {
-                if (userRating !== "") {
-                    this.userRating = userRating;
+                if (userRating) {
+                    this.userRating = userRating; console.log("aaa")
                 } else {
                     this.userComment = userComment;
                     this.postComment = true;
                 }
             }
 
-            return ApiCalls.editUserAssistanceEvent(this.userRating, this.userComment).then((response) =>{});
-        }      
+            return ApiCalls.editUserAssistanceEvent(this.event.id, this.userRating, this.userComment).then((response) =>{});
+        } else {
+            this.errorValoration = true;
+        }  
     },
 
     async getOwnerByID(userID){
@@ -129,6 +151,8 @@ methods: {
             this.splitDate = this.event.eventEnd_date.split(/-|T|\./);
             this.eventEndDate = this.splitDate[2] + " " + month[(parseInt(this.splitDate[1]) - 1)] + " " + this.splitDate[0] + " (" + this.splitDate[3] + ")";
             
+            this.event.location = this.event.location.replace('(', ' (');
+
             this.getOwnerByID(this.event.owner_id).then((eventCreator) =>{});
         });
     },
@@ -137,14 +161,19 @@ methods: {
         return ApiCalls.getAssistancesFromEvent(eventID).then((assistances) =>{
            this.assistances = assistances;
            let totalStars = 0;
+           let totalComents = 0;
            let numRatings = 0;
            for (let i = 0; i < assistances.length; i++) {
                 if (assistances[i].puntuation !== null) {
                    totalStars += parseInt(assistances[i].puntuation);
                    numRatings += 1;
                 }
+                if(assistances[i].puntuation !== null || assistances[i].comentary !== null){
+                    totalComents += 1;
+                }
            }
 
+           this.totalComents = totalComents;
            if (numRatings !== 0) {
                 this.eventRating = Math.round(totalStars / numRatings);
            } else {
@@ -156,6 +185,7 @@ methods: {
     updateContent() {
         this.getEventByID(this.event.id);
         this.getAssistancesByID(this.event.id);
+        this.errorParticipation = false;
     },
 
     forceUpdate() {
@@ -183,12 +213,20 @@ methods: {
         <div class="event_descrip_box">
             <div class="event_descrip">
                 <div class="titulo"><h2>Descripción</h2></div>
-                <div class="star">
+                <div class="star" v-if="eventRating != 'Sin Valoraciones'">
                     <h5>{{eventRating}}</h5>
-                    <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
+                    <div v-for="i in parseInt(eventRating/2)" :key="i">
+                        <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
+                    </div>
+                    <div><img class="stars" v-if="eventRating%2 != 0" src="../assets/images/icons/star_c.png" alt="estrella"></div>
+                    <div v-for="i in parseInt(5-eventRating/2)" :key="i">
+                        <img class="stars" src="../assets/images/icons/star_a.png" alt="estrella">
+                    </div>
                 </div>
+                <div v-else><h5>{{eventRating}}</h5></div>
             </div>
             <div class="texto"><h5>({{event.type}}) {{event.description}}</h5></div>
+            <p class="Error_Input " v-if="errorParticipation != ''">Ya no pueden realizarse cambios en la inscripción</p>
             <div class="event_buttons">
                 <button v-on:click="changeParticipationEvent()" class="button_pink_small" v-if="!participate">Participar</button>
                 <button v-on:click="changeParticipationEvent()" class="button_pink_small" v-else>Inscrito</button>
@@ -235,17 +273,23 @@ methods: {
                 <button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter"></button-icon>
             </div>
 
-            <div v-if="!assistances.length"><h5>No hay comentarios.</h5></div>
+            <div v-if="!totalComents"><h5>No hay comentarios.</h5></div>
             <div v-else>
                 <table>
-                    <tr v-for="assistance in assistances" :key="assistance.id"><div class="resena">
+                    <tr v-for="assistance in assistances" :key="assistance.id"><div clas="resena" v-if="assistance.puntuation !== null || assistance.comentary !== null">
                         <router-link to="/perfil" id="button"><div class="resena_persona">
                             <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
                             <div class="resena_info">
                                 <div class="texto"><h5>{{assistance.name}} {{assistance.last_name}}</h5></div>
                                 <div class="punctuation" v-if="assistance.puntuation !== null">
+                                    <div v-for="i in parseInt(assistance.puntuation/2)" :key="i">
+                                        <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
+                                    </div>
+                                    <img class="stars" v-if="assistance.puntuation%2 != 0" src="../assets/images/icons/star_c.png" alt="estrella">
+                                    <div v-for="i in parseInt(5-assistance.puntuation/2)" :key="i">
+                                        <img class="stars" src="../assets/images/icons/star_a.png" alt="estrella">
+                                    </div>
                                     <h5>{{assistance.puntuation}}</h5>
-                                    <img class="stars" src="../assets/images/icons/star_b.png" alt="estrella">
                                 </div>
                             </div>
                         </div></router-link>
@@ -254,7 +298,8 @@ methods: {
                 </table>
             </div>
 
-            
+            <p class="Error_Input " v-if="errorValoration">Inscribete al evento para añadir una reseña</p>
+           
             <div class="size_input" v-if="!postComment"><input class="general_input" type="text" placeholder="Añade tu comentario" v-model="userComment"></div>
             <div class="size_input" v-else><input class="general_input" type="text" readonly="readonly" placeholder="Añadiste un comentario"></div>
             <div class="flex_row_spaceBetween">
@@ -324,8 +369,6 @@ table {
     margin-left: 10px;
     margin-right: 10px;
 }
-
-tr:nth-child(even) {background-color: rgb(237, 237, 237);}
 
 .size_input{
   width:100%;
