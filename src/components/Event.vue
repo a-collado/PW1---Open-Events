@@ -108,20 +108,18 @@ methods: {
     async addEventValoration(userRating, userComment){
         console.log(userRating, userComment)
         if (this.participate === true) {
-            
-            if ((userRating.toString()).localeCompare("delete") == 0 || userComment.localeCompare("delete") == 0) {
-                console.log('borrar')
-                if (userRating.localeCompare("delete") == 0) {console.log("aaa")
-                    this.userRating = '';
-                } else {
-                    this.userComment = ''; console.log('borrare')
-                    this.postComment = false;
-                }
+            console.log(userRating, userComment)
 
-            } else {
-                console.log('guardar')
-                if (userRating !== '' || userRating !== null) {
-                    this.userRating = userRating; console.log("aaae")
+            if (userRating == 0) {
+                this.userRating = null;
+            } else if (userRating !== null) {
+                this.userRating = userRating; console.log("aaae")
+            }
+
+            if (userComment !== null) {
+                if (userComment.localeCompare("delete") == 0) {
+                    this.userComment = null; console.log('borrare')
+                    this.postComment = false;
                 } else {
                     this.userComment = userComment;console.log("eeeee")
                     this.postComment = true;
@@ -310,21 +308,21 @@ methods: {
             <div class="size_input" v-else><input class="general_input" type="text" readonly="readonly" placeholder="Añadiste un comentario"></div>
             <div class="flex_row_spaceBetween">
                 <div class="row_flexStart">
-                    <button v-on:click="addEventValoration('delete', '')" v-if="userRating"><img class="stars" src="../assets/images/icons/cancel.png" alt="cancelar"></button>
+                    <button v-on:click="addEventValoration(0, null)" v-if="userRating"><img class="stars" src="../assets/images/icons/cancel.png" alt="cancelar"></button>
                     <button v-on:click="showStars()"><img class="stars" src="../assets/images/icons/userStar.png" alt="estrellaUser"></button>
                     <h5 v-if="userRating">{{userRating}}</h5>
                 </div>
                 <div class="row_flexEnd" v-if="!userRating" v-bind:style="{display: displayStars}">
                     <div v-for="i in parseInt(10)" :key="i">
-                        <button v-on:click="showStars(); addEventValoration(i, '')"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
+                        <button v-on:click="showStars(); addEventValoration(i, null)"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
                     </div>
                 </div>
                 <div class="row_flexEnd" v-if="userRating" v-bind:style="{display: displayStars}">
                     <div v-for="i in parseInt(userRating)" :key="i">
-                        <button v-on:click="showStars(); addEventValoration(i, '')"><img class="stars" src="../assets/images/icons/star_b.png" alt="estrella"></button>
+                        <button v-on:click="showStars(); addEventValoration(i, null)"><img class="stars" src="../assets/images/icons/star_b.png" alt="estrella"></button>
                     </div>
                     <div v-for="i in parseInt(10 - userRating)" :key="i">
-                        <button v-on:click="showStars(); addEventValoration(i + userRating, '')"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
+                        <button v-on:click="showStars(); addEventValoration(i + userRating, null)"><img class="stars" src="../assets/images/icons/star_a.png" alt="estrella"></button>
                     </div>
                 </div>
                 
@@ -332,8 +330,8 @@ methods: {
         </div>
         
         
-        <button class="button_pink_small" v-on:click="addEventValoration('', userComment)" v-if="!postComment">Crear comentario</button>
-        <button class="button_pink_small" v-on:click="addEventValoration('', 'delete')" v-else>Borrar comentario</button>
+        <button class="button_pink_small" v-on:click="addEventValoration(null, userComment)" v-if="!postComment">Crear comentario</button>
+        <button class="button_pink_small" v-on:click="addEventValoration(null, 'delete')" v-else>Borrar comentario</button>
     </div>
 </template>
 

@@ -179,7 +179,7 @@ export default class ApiCalls{
             return user[0].image});
     }
 
-    static async getInfoInfoUserByID(userID){
+    static async getInfoInfoUserByID (userID){
         return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users/' + userID)
         .then((response) =>{ 
             return response.json();
