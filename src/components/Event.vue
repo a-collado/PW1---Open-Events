@@ -109,24 +109,26 @@ methods: {
         console.log(userRating, userComment)
         if (this.participate === true) {
             
-            if (userRating.localeCompare("delete") == 0 || userComment.localeCompare("delete") == 0) {
+            if ((userRating.toString()).localeCompare("delete") == 0 || userComment.localeCompare("delete") == 0) {
                 console.log('borrar')
-                if ((userRating.localeCompare("delete")) == 0) {
+                if (userRating.localeCompare("delete") == 0) {console.log("aaa")
                     this.userRating = '';
                 } else {
-                    this.userComment = '';
+                    this.userComment = ''; console.log('borrare')
                     this.postComment = false;
                 }
 
             } else {
-                if (userRating) {
-                    this.userRating = userRating; console.log("aaa")
+                console.log('guardar')
+                if (userRating !== '' || userRating !== null) {
+                    this.userRating = userRating; console.log("aaae")
                 } else {
-                    this.userComment = userComment;
+                    this.userComment = userComment;console.log("eeeee")
                     this.postComment = true;
                 }
             }
 
+            console.log(this.event.id, this.userRating, this.userComment)
             return ApiCalls.editUserAssistanceEvent(this.event.id, this.userRating, this.userComment).then((response) =>{});
         } else {
             this.errorValoration = true;
@@ -192,6 +194,10 @@ methods: {
         this.timer = window.setInterval(() => {
             this.updateContent();
         }, 5000)
+    },
+
+    goToProfile(userID){
+        router.push({name: 'user', params: {id: userID}});
     }
 }
 
@@ -270,15 +276,15 @@ methods: {
         <div class="helper_box">
             <div class="event_resenas_header">
                 <div class="titulo"><h2>Reseñas del Evento</h2></div>
-                <button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter"></button-icon>
+                <!--<button-icon><img class="icon" src="../assets/images/icons/up-down.png" alt="filter"></button-icon>-->
             </div>
 
             <div v-if="!totalComents"><h5>No hay comentarios.</h5></div>
             <div v-else>
                 <table>
                     <tr v-for="assistance in assistances" :key="assistance.id"><div clas="resena" v-if="assistance.puntuation !== null || assistance.comentary !== null">
-                        <router-link to="/perfil" id="button"><div class="resena_persona">
-                            <img class="profile_pic_message" src="../assets/images/profilepic.webp" alt="Foto de perfil">
+                        <div class="resena_persona" v-on:click="goToProfile(assistance.id)">
+                            <img class="profile_pic_message" src="../assets/images/icons/verified.png" alt="Foto de perfil">
                             <div class="resena_info">
                                 <div class="texto"><h5>{{assistance.name}} {{assistance.last_name}}</h5></div>
                                 <div class="punctuation" v-if="assistance.puntuation !== null">
@@ -292,7 +298,7 @@ methods: {
                                     <h5>{{assistance.puntuation}}</h5>
                                 </div>
                             </div>
-                        </div></router-link>
+                        </div>
                         <div class="texto" v-if="assistance.comentary !== null"><h5>{{assistance.comentary}}</h5></div>
                     </div></tr>
                 </table>
