@@ -94,7 +94,8 @@ export default{
 
         goBack(){
             router.push({name: 'user', params: { id: this.id }});
-        }
+        },
+        
     },
 
 }

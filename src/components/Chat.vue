@@ -87,6 +87,9 @@ export default{
                 this.updateMessages();
             }, 5000)
         }, 
+        setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+        }, 
     },
 
 }
@@ -99,7 +102,7 @@ export default{
                 <img class="icon" src="../assets/images/icons/dots.png" alt="Más opciones">
             </div>
         <article class="flex_row_wrap">
-            <img class="small_profilePic" :src="user.image" alt="Foto de perfil">
+            <img class="small_profilePic" :src="user.image" alt="Foto de perfil" @error="setAltImg">
             <div class="column">
                 <h4>{{user.name + " " + user.last_name}}</h4>
                 <h5 class="yellow">Ocupado</h5>

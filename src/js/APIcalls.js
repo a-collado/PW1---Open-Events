@@ -4,12 +4,6 @@ export default class ApiCalls{
         const CORRECT = 201;
     }
 
-    setup(){
-        const defaultImageURL = new URL('../images/default_registered_profilePic.jpg', import.meta.url)
-
-        return { defaultImageURL };
-    }
-
     static getCORRECT(){
         return this.CORRECT;
     }
@@ -92,9 +86,7 @@ export default class ApiCalls{
     //----------------------------------POST USERS (LOGIN-REGISTER)---------------------------------------------------
     static async registerUser(name, lastName, email, password) {
     
-        const imageUrl = new URL('../assets/images/default_registered_profilePic.jpg', import.meta.url);
-
-        const user = {name:name, last_name:lastName, email:email, password:password, image:imageUrl};
+        const user = {name:name, last_name:lastName, email:email, password:password, image:import.meta.env.VITE_DEFAULT_PROFILE_PIC};
 
         return this.fetchPost('http://puigmal.salle.url.edu/api/v2/users', user)
         .then((response) =>{    

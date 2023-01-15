@@ -9,10 +9,6 @@ export default{
     data() {
       return {}
     },
-    mounted(){
-
-    },
-
     methods: {
 
         acceptFriendRequest(id){
@@ -24,7 +20,10 @@ export default{
           ApiCalls.rejectFriendRequest(id).then((output) =>{
             this.$router.go()
           });      
-        }
+        },
+        setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+        } 
     },
 
 }

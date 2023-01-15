@@ -15,6 +15,9 @@ export default{
           router.push({name: 'user', params: { id: userID }});
           this.$emit("goToProfile");
         },
+        setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+        }, 
     }
 }
 
@@ -31,7 +34,7 @@ export default{
                 <article  class="flex_row_wrap" v-on:click="goToUserAccount(user.id)">     <!-- Persona --> 
                     
                     <div class="profile_pic_message">
-                        <img :src="user.image" alt="Foto de perfil">
+                        <img :src="user.image" alt="Foto de perfil" @error="setAltImg">
                     </div>
                     
                     <div class="centered_vertical">

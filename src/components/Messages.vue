@@ -71,6 +71,9 @@ export default{
 
             });
         },
+        setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+        }, 
 
     },
 
@@ -97,7 +100,7 @@ export default{
 
         <article class="flex_row_wrap" v-for="(user, index) in users" :key="user.id">     <!-- Persona -->
             <div class="profile_pic_message">
-                <router-link :to="{ name: 'user' , params: {id: user.id}}"> <img class="small_profilePic" :src="user.image" alt="Foto de perfil"> </router-link>
+                <router-link :to="{ name: 'user' , params: {id: user.id}}"> <img class="small_profilePic" :src="user.image" alt="Foto de perfil" @error="setAltImg"> </router-link>
                 <ellipse class="green"></ellipse>
             </div>
             <div class="centered_vertical" v-on:click="this.enterChat(user.id)">

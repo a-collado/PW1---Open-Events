@@ -189,7 +189,11 @@ export default{
     changeShowingEventStatistics(value){
       //console.log(value);
       this.showEvents = value;
-    }
+    },
+
+    setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+    } 
 
   } //methods
 } //export default
@@ -201,7 +205,7 @@ export default{
   
     <div class="profile_header">
       <img class="landscape" src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile">
-      <img class="profilePic" :src="user.image" alt="Avatar">
+      <img class="profilePic" :src="user.image" alt="Avatar" @error="setAltImg">
       
       <div class="profileButtons">
         <button class="button_blues_small" v-on:click.prevent="goToFriendList">{{ this.friends.length }} Amigos</button>
@@ -236,19 +240,8 @@ export default{
           <h1>{{user.name + " " + user.last_name}}</h1>
           <p class="grey_normal">{{user.email}}</p> 
         </article>
-         <!--<div class="flex_row_wrap">
-          <p class="pink_normal">Barcelona, España</p>
-          <div class="punctuation">
-            <img class="stars" src="../../assets/images/icons/star_b.png" alt="1 estrella">
-            <img class="stars" src="../../assets/images/icons/star_b.png" alt="2 estrellas">
-            <img class="stars" src="../../assets/images/icons/star_b.png" alt="3 estrellas">
-            <img class="stars" src="../../assets/images/icons/star_b.png" alt="4 estrellas">
-            <img class="stars" src="../../assets/images/icons/star_b.png" alt="5 estrellas">
-            <h5>5</h5>
-          </div>
-        </div>
 
-        <p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
+        <!--<p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
         --> 
         <div v-if="this.ownProfile" class="button_flex">
           <router-link to="/editarPerfil"><button class="button_pink_normal">Editar perfil</button></router-link>
@@ -266,9 +259,6 @@ export default{
     <UsersEvents :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-if="showEvents" />
     <UsersStatistics :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-else/> 
   </main>
-
-    <!--<UsersEvents v-on:add="changeShowingEventStatistics" v-if="showEvents" />
-    <UsersStatistics v-on:add="changeShowingEventStatistics" v-else/> -->
 
   </div>  
   <div v-else class="empty"></div>

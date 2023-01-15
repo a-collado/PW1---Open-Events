@@ -10,10 +10,15 @@
             
             }
         },
+        mounted() {
+        },
         methods: {
             goToEvent(eventID){
-            router.push({name: 'event', params: { id: eventID }});
+            router.push({name: 'Event', params: { id: eventID }});
             this.$emit("goToEvent");
+            },
+            setAltImg(event) { 
+              event.target.src = import.meta.env.VITE_DEFAULT_EVENT_PIC;
             },
         }
     }
@@ -27,7 +32,7 @@
     <div class="event_group" v-for ="event in results" :key="event.id">
         <figure class="basic_event" v-on:click="goToEvent(event.id)">
           
-            <img class="event_img" :src="event.image" @error="this.$root.replaceImgEventByDefault" alt="image of the event">
+            <img class="event_img" :src="event.image" @error="setAltImg" alt="image of the event">
             
             <div class="footer_basicEvent"> 
               <h2 class="blue_big">{{event.name}}</h2>

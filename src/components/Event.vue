@@ -194,7 +194,11 @@ methods: {
 
     goToProfile(userID){
         router.push({name: 'user', params: {id: userID}});
-    }
+    },
+
+    setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_EVENT_PIC;
+    } 
 }
 
 }
@@ -208,7 +212,7 @@ methods: {
 
     <div class="general_box">
         <div class="header_event_box">
-            <img class="event_img" :src="event.image" alt="image of the event">
+            <img class="event_img" :src="event.image" alt="image of the event" @error="setAltImg">
             <div class="footer_basicEvent"><div class="titulo; flex_row_spaceBetween"><h2>{{event.name}} </h2><h5> - ({{eventCreator}})</h5></div></div>
         </div>
 

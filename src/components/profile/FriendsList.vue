@@ -19,7 +19,10 @@ export default{
         goToProfileR(id){
 
         this.$emit("goToProfileR", id)
-        }
+        },
+        setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+        } 
     },
 
 }
@@ -36,7 +39,7 @@ export default{
                 <article class="flex_row_wrap">     <!-- Persona --> 
                     
                     <div class="profile_pic_message">
-                        <img :src="friend.image" alt="Foto de perfil">
+                        <img :src="friend.image" alt="Foto de perfil" @error="setAltImg">
                     </div>
                     
                     <div class="centered_vertical" v-on:click="goToProfileR(friend.id)">

@@ -76,13 +76,13 @@ export default{
         },
         async search(){
           if(!this.search_bar_text.length == 0 && ApiCalls.hasLoggedIn())
-          return await ApiCalls.searchUser(this.search_bar_text).then((output) =>{
+          await ApiCalls.searchUser(this.search_bar_text).then((output) =>{
             this.search_result_user = output;
             this.showResultsUser(true);
             this.show_results = true;
             
           });
-          return await ApiCalls.searchEventsKeyword(this.search_bar_text).then((output) => {
+          await ApiCalls.searchEventsKeyword(this.search_bar_text).then((output) => {
             this.search_result_event = output;
             this.show_results = true;
 
@@ -98,12 +98,15 @@ export default{
         showResultsUser(visibility){
           this.show_results_user = visibility;
         },
-        replaceImgEventByDefault(e){
+        setAltImg(event) { 
+          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+        }, 
+        /*replaceImgEventByDefault(e){
             e.target.src = this.defaultEventPic;
         },
         replaceImgUserByDefault(e) {
             e.target.src = this.defaultProfilePic;
-        }
+        }*/
     }
 }
 
@@ -121,7 +124,7 @@ export default{
   
     <div>
       <button v-on:click="goToMessages()"><img :src="chatIconUrl" style="width:50px; height:50px"></button>
-      <button v-on:click="goToUserAccount()"><img class="small_profilePic" v-bind:src = imgUrl_profile></button>
+      <button v-on:click="goToUserAccount()"><img class="small_profilePic" v-bind:src = imgUrl_profile @error="setAltImg"></button>
       <!--<router-link :to="{name: 'Perfil', params: { id: 15 }}"> <button><img class="small_profilePic" v-bind:src = imgUrl_profile></button> </router-link>-->
     </div>
   </div>

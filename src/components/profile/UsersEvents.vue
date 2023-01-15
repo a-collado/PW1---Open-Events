@@ -52,70 +52,6 @@ export default{
   
   methods: {
 
-      
-    //METHODS API__________________________________________________________
-    /*async getEventsAll(userID){
-
-      return await ApiCalls.getCreatedEventsFromUser(userID)
-      .then((createdEvents) => {
-        //this.createdEvents = createdEvents;
-        //console.log(createdEvents);
-        createdEvents = createdEvents.map( createdEvent => {
-          createdEvent.created = true;
-          createdEvent.assisted = false;
-          return createdEvent;
-        });
-
-        //console.log(createdEvents);
-
-        createdEvents.forEach(this.updateInfoEvent);
-
-        this.events = createdEvents;
-        return;
-      })
-      .then((vacio) => { 
-        return ApiCalls.getAssitedEventsFromUser(userID)
-        .then((assitedEvents) => {
-          //this.assitedEvents = assitedEvents;
-
-          assitedEvents = assitedEvents.map( assitedEvent => {
-            assitedEvent.created = false;
-            assitedEvent.assisted = true;
-            return assitedEvent;
-          });
-
-          assitedEvents.forEach(this.updateInfoEvent);
-          this.events = this.events.concat(assitedEvents);
-          this.eventsFinished = true;
-          console.log(this.events);
-          return;
-        });
-
-      });
-
-    },
-    
-      //METHODS USED IN METHODS API___________________________________________
-      updateInfoEvent(event){
-      
-      if(event.location.indexOf("(") >= 0){
-        event.province = event.location.substring(event.location.indexOf("(") + 1, event.location.length - 1);
-
-      }else{
-        event.province = event.location;
-      }
-
-      if(event.eventStart_date == null){
-        event.eventStart_date = event.date
-      }
-
-      if(event.eventEnd_date == null){
-        event.eventStart_date = event.date
-      }
-
-    },*/
-
-
       //______________________________________________________________________
       goToEvent(eventID){
         router.push({name: 'Event', params: {id: eventID}});
@@ -164,9 +100,13 @@ export default{
           this.showSortFilter = false;
         }else{ this.showSortFilter = true;}
       }
+      ,
 
-  } //methods
-} //Export default data
+      setAltImg(event) { 
+          event.target.src = "https://i.ibb.co/gV3wfX7/default-Event1.webp" ;
+    } 
+  } 
+} 
 
 </script> 
 
@@ -205,7 +145,7 @@ export default{
     <div class="event_group">
 
       <figure class="basic_event" v-on:click="goToEvent(event.id)" v-if="showCreados" v-for = "event in this.events" :key="event.id">
-        <img class="event_img" v-bind:src=event.image alt="image of the event">
+        <img class="event_img" v-bind:src=event.image alt="image of the event" @error="setAltImg">
         <div class="extraInfo_basicEvent">
           <p style="background-color: #C772BA;" v-if="event.created">creado</p>
           <p style="background-color: #FFA74A;" v-if="event.assisted">Inscrito</p>
