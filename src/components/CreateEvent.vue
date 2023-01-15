@@ -186,6 +186,7 @@ export default{
     <option value="Zaragoza"></option>
 </datalist>
 
+    <form>
         <div class="centered_column_width">
             
             <div class="generic_inputLabel">
@@ -284,6 +285,7 @@ export default{
 
            
         </div>
+    </form>
     
 </template>
 

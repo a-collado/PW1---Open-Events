@@ -262,10 +262,10 @@ export default{
         <hr>
 
       </div>
-    </main>
-
+   
     <UsersEvents :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-if="showEvents" />
     <UsersStatistics :events="this.userEvents" v-on:add="changeShowingEventStatistics" v-else/> 
+  </main>
 
     <!--<UsersEvents v-on:add="changeShowingEventStatistics" v-if="showEvents" />
     <UsersStatistics v-on:add="changeShowingEventStatistics" v-else/> -->
