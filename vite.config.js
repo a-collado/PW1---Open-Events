@@ -6,8 +6,10 @@ export default defineConfig({
   plugins: [vue({
     template: {
       compilerOptions: {
+        //isCustomElement: tag => tag === 'plastic-button'
         isCustomElement: (tag) => ['button-icon'].includes(tag),
-      }
+        //isCustomElement: (tag) => ['FriendsList'].includes(tag),
+      },
     }
   })
   ]

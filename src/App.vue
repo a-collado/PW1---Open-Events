@@ -22,10 +22,9 @@ export default{
           search_bar_text:"",
           search_result_user: [],
           search_result_event: [],
-          show_results_event: false,
           show_results_user: false,
           show_results: false,
-
+          hasLoggedIn: false,
         }
     },
     setup(){
@@ -35,10 +34,12 @@ export default{
       const instagramIconUrl = new URL('../images/icons/instagram.png', import.meta.url)
       const twitterIconUrl = new URL('../images/icons/twitter.png', import.meta.url)
       const defaultProfilePic = new URL('../images/userDefault_profilePic.jpg', import.meta.url)
-      return { logoUrl, chatIconUrl, youtubeIconUrl, instagramIconUrl, twitterIconUrl, defaultProfilePic};
+      const defaultEventPic = new URL('../images/events/defaultEvent1.webp', import.meta.url)
+      return { logoUrl, chatIconUrl, youtubeIconUrl, instagramIconUrl, twitterIconUrl, defaultProfilePic, defaultEventPic};
     },
 
     mounted(){
+      this.hasLoggedIn = ApiCalls.hasLoggedIn();
       this.goToWelcome();
       this.showProfilePic();
     },
@@ -73,20 +74,16 @@ export default{
             this.imgUrl_profile = this.defaultProfilePic;
           }
         },
-        search(){
-          //console.log(this.search_bar_text);
+        async search(){
           if(!this.search_bar_text.length == 0 && ApiCalls.hasLoggedIn())
-          this.search_result_user = ApiCalls.searchUser(this.search_bar_text).then((output) =>{
+          return await ApiCalls.searchUser(this.search_bar_text).then((output) =>{
             this.search_result_user = output;
-            console.log(output)
-            this.showResultsUser();
+            this.showResultsUser(true);
             this.show_results = true;
-
+            
           });
-          this.search_result_event = ApiCalls.searchEventsKeyword(this.search_bar_text).then((output) => {
+          return await ApiCalls.searchEventsKeyword(this.search_bar_text).then((output) => {
             this.search_result_event = output;
-            console.log(output)
-            this.showResultsEvents();
             this.show_results = true;
 
           })
@@ -98,26 +95,11 @@ export default{
         hideSearchResults(){
             this.show_results = false;
         },
-        showResultsUser(){
-          this.show_results_user = true;
-        },
-        showResultsEvents(){
-          this.show_results_event = true;
-        },
-        hideSearchResultsEvent(){
-          this.show_results_event = false;
-        },
-        hideSearchResultsUser(){
-          this.show_results_user = false;
-        },
-        toggleHideUsers() {
-            this.show_results_user = !this.show_results_user;
-        },
-        toggleHideEvents() {
-            this.show_results_event = !this.show_results_event;
+        showResultsUser(visibility){
+          this.show_results_user = visibility;
         },
         replaceImgEventByDefault(e){
-            e.target.src = "../src/assets/images/events/defaultEvent1.webp";
+            e.target.src = this.defaultEventPic;
         },
         replaceImgUserByDefault(e) {
             e.target.src = this.defaultProfilePic;
@@ -127,11 +109,15 @@ export default{
 
 </script>
 
+
+
 <template>
 
   <div id="header">
-    <router-link :to="{ name: 'Home' }" v-on:click="goToWelcome"><img class=logo_header :src="logoUrl"></router-link>
-    <input v-on:keyup.enter="search" class="searchbar" type="text" v-model="search_bar_text" placeholder="Busca un evento o una persona">
+    <router-link :to="{ name: 'Home' }" v-on:click="goToWelcome" v-if="hasLoggedIn"><img class=logo_header :src="logoUrl"></router-link>
+    <router-link :to="{ name: 'Welcome' }" v-else><img class=logo_header :src="logoUrl"></router-link>
+    <input v-on:keyup.enter="search" class="searchbar" type="text" v-model="search_bar_text" placeholder="Busca un evento o una persona" v-if="hasLoggedIn">
+    <input class="searchbar" type="text" v-model="search_bar_text" placeholder="Busca un evento o una persona" v-else>
   
     <div>
       <button v-on:click="goToMessages()"><img :src="chatIconUrl" style="width:50px; height:50px"></button>
@@ -143,11 +129,12 @@ export default{
   <router-view v-if="!this.show_results"></router-view>
   <div v-else>
     <div style="display:flex; justify-content: center; margin: 10px;">
-        <button v-on:click="this.toggleHideUsers()">Users</button>
-        <button  v-on:click="this.toggleHideEvents()">Events</button>
+        <button v-on:click="this.showResultsUser(true)">Users</button>
+        <button  v-on:click="this.showResultsUser(false)">Events</button>
     </div>
+
     <SearchUsers v-if="this.show_results_user" :results = "this.search_result_user" @goToProfile="hideSearchResults"></SearchUsers>
-    <SearchEvents v-if="this.show_results_event" :results = "this.search_result_event" @goToEvent="hideSearchResults"></SearchEvents>
+    <SearchEvents v-else :results = "this.search_result_event" @goToEvent="hideSearchResults"></SearchEvents>
 
   </div>
   

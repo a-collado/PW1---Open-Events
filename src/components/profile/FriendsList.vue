@@ -6,6 +6,9 @@ export default{
     props: {
         friends: Array
     },
+    emits: {
+        goToProfileR: null,
+    },
     data() {
       return {
       };

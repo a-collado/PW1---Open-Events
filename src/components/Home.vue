@@ -18,6 +18,7 @@ export default{
             events: [],
             recomendedEvent: "",
             showAll: false,
+            show: false,
             categoryDescubrir: true,
             categoryTuZona: false,
             categoryAmigos: false
@@ -32,7 +33,7 @@ export default{
         watch(
         () => ROUTE.params.id,
         async newId => {
-            window.location.reload()
+            this.$router.go()
         },
         () => { 
             ID.value = ROUTE.params.id; 
@@ -43,35 +44,9 @@ export default{
     },
     methods: {
 
-        shakeElement(el) {
-            //el.classList.add('rotateable');
-            el.style.marginLeft = '20px';
-            console.log("Shake shake");
-
-            setTimeout(function() {
-                el.style.marginLeft = '-20px';
-                setTimeout(function() {
-                el.style.marginLeft = '0px';
-                }, 100);
-            }, 100);
-
-        },
-        getUser(){
-
-          ApiCalls.getAllUsers().then((output) =>{
-            if(output == ApiCalls.getCORRECT()) {
-               
-            }else{
-                
-            }
-            
-           } );
-           
-        },
-
         createEvent(){
           if(ApiCalls.hasLoggedIn()){
-            window.location.replace("/create_event");
+            router.push({name: 'Create Event'});
           }else{
             alert("No se puede crear un evento si no se inicia sessión");
           }
@@ -79,13 +54,14 @@ export default{
         toggleFilter() {
             this.isFilterShown = !this.isFilterShown;
         },
-        getAllEvents() {
-          ApiCalls.GetAllEvents()
+        async getAllEvents() {
+          return ApiCalls.GetAllEvents()
           .then((allEvents) => {
             this.events = allEvents;
             this.events.forEach(event => {
               event.isShown = true;
             });
+            this.show = true;
             return;
           }).catch((error)=>{
             console.error(error, " happened");
@@ -150,14 +126,12 @@ export default{
                     if (dir === "do"){
                       this.events.reverse();
                     }
-                  });
-                console.log("Sorting by rating");
-                
+                  });                
 
                 break;
 
               default:
-                console.log("Sorting gone wrong: " + type + " - " + dir);
+
                 break;
             }
           }
@@ -246,8 +220,6 @@ export default{
                 }
             });   
 
-            console.log(this.events);
-
         },applyFilterAmigos() {
 
             this.events.forEach(event => {
@@ -260,7 +232,6 @@ export default{
 
 
             var friendsEvent = ApiCalls.getFriendsEvents().then((friendsEvent)=>{
-                console.log(friendsEvent, friendsEvent[0]);
 
                 for (let i = 0; i < friendsEvent.length; i++) {
                     let event = friendsEvent[i];
@@ -270,7 +241,6 @@ export default{
                         }else{
                             event.isShown = false;
                         }
-                        console.log("event: ", event, " === friend: ",friendEvent);
                     });
                 }
                        
@@ -278,7 +248,6 @@ export default{
         }
         
       },created() {
-        console.log("Loading events");
         this.loadRecomendedEvent();
         this.getAllEvents();  
       }
@@ -319,12 +288,13 @@ export default{
 
   <Filter/>
     
-  <div class="events">
+  <div class="events" v-if="show">
     <div class="event_group" v-for ="event in events" :key="event.id">
         <figure class="basic_event" v-on:click="goToEvent(event.id)"  v-if="event.isShown">
           
-            <img class="event_img" :src="event.image" @error="this.$root.replaceImgEventByDefault()" alt="image of the event">
-            
+            <!-- <img class="event_img" :src="event.image" @error="this.$root.replaceImgEventByDefault()" alt="image of the event"> --> 
+            <img class="event_img" :src="event.image" alt="image of the event">
+
             <div class="footer_basicEvent"> 
               <h2 class="blue_big">{{event.name}}</h2>
 

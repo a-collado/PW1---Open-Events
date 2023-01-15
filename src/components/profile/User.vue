@@ -111,7 +111,6 @@ export default{
         assitedEvents.forEach(this.updateInfoEvent);
         this.userEvents = this.userEvents.concat(assitedEvents);
         this.eventsFinished = true;
-        console.log(this.userEvents);
         return;
       });
 
@@ -215,15 +214,18 @@ export default{
 
       <h1 v-on:click.prevent="goToFriendList">Amigos ({{ this.friends.length }})</h1>
       <!-- Hay que hacer que las lineas horizontales entre amigos se muestren bien -->
-      <div class="flex_row_wrap" v-on:click="goToProfileR(friend.id)" v-for="friend in friends" :key="friend.id">
+      <div class="flex_row_wrap friend" v-on:click="goToProfileR(friend.id)" v-for="friend in friends.slice(0, 4)" :key="friend.id">
           <img :src="friend.image" alt="profile pic">
           <div class="column">
             <h2>{{ friend.name }}</h2>
-          </div>  
-        </div>
-      
-      <hr>
+          </div>
+          <hr>
+      </div>
 
+      <div class="column" v-if="this.friends.length > 4">
+        <h2 v-on:click.prevent="goToFriendList">Ver más</h2>
+      </div>
+   
       
     </div> <!--tanquem profile friends-->
 
@@ -273,12 +275,14 @@ export default{
 
 </template>
 
+
 <style scoped>
 
-.empty{
+.flex_row_wrap friend{
     display: inline-block;
     margin: 0; 
     text-align: center;
+    justify-content: center;
     height: 1000px;
 }
 

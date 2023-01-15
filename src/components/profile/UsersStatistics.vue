@@ -128,16 +128,11 @@ export default{
     },      
   
     showEventsOfMonth(num_month){
-
-      console.log("showEventsOfMonh, " + num_month);
       
       if(this.timeline[num_month-1].showEvents == true){
-        console.log(true);
         this.timeline[num_month-1].showEvents = false;
-        console.log(this.timeline[num_month-1]);
 
       }else{
-        console.log("else");
         this.timeline.forEach(function(item){
           item.showEvents = false; //inicialitzem totes a false
         });

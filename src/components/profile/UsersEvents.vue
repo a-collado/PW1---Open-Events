@@ -46,7 +46,9 @@ export default{
     //this.getEventsAll(this.ID);
   },
 
-  mounted(){console.log(this.events);},
+  mounted(){
+    
+  },
   
   methods: {
 

@@ -106,27 +106,25 @@ methods: {
     },
 
     async addEventValoration(userRating, userComment){
-        console.log(userRating, userComment)
+
         if (this.participate === true) {
-            console.log(userRating, userComment)
 
             if (userRating == 0) {
                 this.userRating = null;
             } else if (userRating !== null) {
-                this.userRating = userRating; console.log("aaae")
+                this.userRating = userRating;
             }
 
             if (userComment !== null) {
                 if (userComment.localeCompare("delete") == 0) {
-                    this.userComment = null; console.log('borrare')
+                    this.userComment = null;
                     this.postComment = false;
                 } else {
-                    this.userComment = userComment;console.log("eeeee")
+                    this.userComment = userComment;
                     this.postComment = true;
                 }
             }
 
-            console.log(this.event.id, this.userRating, this.userComment)
             return ApiCalls.editUserAssistanceEvent(this.event.id, this.userRating, this.userComment).then((response) =>{});
         } else {
             this.errorValoration = true;

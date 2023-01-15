@@ -26,6 +26,7 @@ export default{
             eventType:"",
 
             isHidden:true,
+            errorIsHidden: false,
             error:"",
             displayError:true
         }  

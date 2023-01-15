@@ -82,7 +82,7 @@ export default{
 
 <template>
 
-<div v-if="!showChat">    
+<div>    
 
 <article class="centered_vertical">
     <div class="flex_row_wrap">

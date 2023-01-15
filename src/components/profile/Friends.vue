@@ -1,6 +1,6 @@
 <script>
 import ApiCalls from "../../js/APIcalls.js";
-import FriendList from "./FriendsList.vue"
+import FriendsList from "./FriendsList.vue"
 import Requests from "./Requests.vue";
 import { useRoute } from 'vue-router';
 import { watch, ref } from 'vue'
@@ -34,8 +34,8 @@ export default{
         return { id };
     },
     components:{
-      FriendList: FriendList,
-      Requests: Requests
+      FriendsList: FriendsList,
+      Requests: Requests,    
     },
     data() {
       return {
@@ -126,7 +126,7 @@ export default{
         <FriendsList :friends = "this.friends"></FriendsList>
     </div>
 
-    <FriendList v-if="showFriends" :friends = "this.friends" @goToProfileR="goToProfileR($event)"></FriendList>
+    <FriendsList v-if="showFriends" :friends = "this.friends" @goToProfileR="goToProfileR($event)"></FriendsList>
     <Requests v-else :requests = "this.requests"></Requests>
 
 </template>

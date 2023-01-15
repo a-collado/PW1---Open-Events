@@ -363,7 +363,7 @@ div .button_flex {
     right: 0px;
     top: 445px;
     flex-wrap: wrap;
-    align-content: space-around;
+    align-content: center;
     align-items: flex-start;
   }
 
@@ -935,7 +935,7 @@ h1{
 }
 
 .profile_friends hr {
-  width: 80%;
+  width: 100%;
 }
 
 #OpenEvents{

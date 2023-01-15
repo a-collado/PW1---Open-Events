@@ -15,17 +15,9 @@ export default{
     },
     methods: {
       setRating(rating){
-        console.log("clicked on star " + rating);
+        
       },
       applyFilter(){
-        console.log("filter applied");
-        console.log(this.location + ", " 
-        + this.date_start + ", "
-        + this.date_end + ", " 
-        + this.rating + ", " 
-        + this.category + ", " 
-        + this.num_assistents + ", "
-        + this.sort_option);
 
         if (this.rating !== ""){
           this.sort_option = "rati_up"
@@ -34,11 +26,8 @@ export default{
         //Filter events
         var filters = [this.location, this.date_start, this.date_end, this.rating, this.category, this.num_assistents, this.sort_option];
 
-        console.log(filters);
         this.$parent.applyFilter(filters);
         
-      
-
       },
       resetFilter(){
         this.location = "";

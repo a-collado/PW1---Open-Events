@@ -16,7 +16,6 @@ export default{
         shakeElement(el) {
             //el.classList.add('rotateable');
             el.style.marginLeft = '20px';
-            console.log("Shake shake");
 
             setTimeout(function() {
                 el.style.marginLeft = '-20px';

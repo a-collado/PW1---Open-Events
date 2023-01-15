@@ -124,7 +124,6 @@ export default class ApiCalls{
         return this.fetchPost('http://puigmal.salle.url.edu/api/v2/users/login', user)
         .then(response => response.json())
         .then((body) =>{
-            //console.log(this.CORRECT); //! OJO, QUE SURT QUE ÉS UNDEFINED - CAL MIRAR 
             if (typeof body.Error === 'undefined'){ 
                 window.localStorage.setItem("accessToken", body.accessToken);
 
@@ -195,11 +194,9 @@ export default class ApiCalls{
 
         return this.fetchGetBearerToken('http://puigmal.salle.url.edu/api/v2/users')
         .then((response) =>{
-            console.log(response);
             return response.json();
         })
         .then((body) =>{  
-            console.log(body);          
             return body;
 
         })
@@ -325,7 +322,6 @@ export default class ApiCalls{
                 futureFriendsEvents.push(...await this.getUserIdFutureEvents(friend.id));
             });
   
-            console.log(futureFriendsEvents);
             return futureFriendsEvents;
 
         })
@@ -417,14 +413,11 @@ export default class ApiCalls{
      static async createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, /*eventLatitude, eventAltitud,*/ eventType){
 
         const event = {name:eventName, image:imgEvent_URL, location:eventAdress, description:eventDescription, latitude:"0", longitude:"0", eventStart_date:initialDateTime, eventEnd_date:finalDateTime, n_participators:eventMaxAssistents, type:eventType};
-        console.log(event);
         return this.fetchPostBearerToken("http://puigmal.salle.url.edu/api/v2/events", event)
         .then((response) =>{ 
-            console.log(response);
             if(response.ok == true) return this.CORRECT;
             return response.json();})
         .then((body) =>{
-            console.log(body);
             if(body == this.CORRECT) return this.CORRECT;
             if (typeof body.Error === 'undefined') return body.details[0].message;
             return "An error has occurred, try again"
