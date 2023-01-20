@@ -146,7 +146,7 @@ export default class ApiCalls{
     }
 
     static hasLoggedIn(){
-        if (typeof window.localStorage.getItem("accessToken") === 'undefined' || window.localStorage.getItem("accessToken") == "")
+        if (typeof window.localStorage.getItem("accessToken") === 'undefined' || window.localStorage.getItem("accessToken") == "" || window.localStorage.getItem("accessToken") == null )
             return false;
         
         return true;  
