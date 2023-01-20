@@ -1,5 +1,7 @@
 <script>
 
+import { ref, nextTick } from 'vue';
+
 // Corregir error al recibir mensajes muy largos
 
 export default{
@@ -9,15 +11,18 @@ export default{
     },
     data() {
       return {
-        timer: ""
+        
       };
     },
     watch: { 
         messages: function(newVal, oldVal) {
-        if (newVal.length != oldVal.length){
-            this.$forceUpdate();
-            this.scrollToEnd();
-        }
+            if (newVal.length != oldVal.length){
+                
+                
+                this.scrollToEnd();
+                //this.$forceUpdate();
+                
+            }
         }
     },
     mounted() {
@@ -28,20 +33,14 @@ export default{
         messageSended(sender_id) {
             return sender_id == localStorage.getItem("loggedUser");
         },
-        scrollToEnd() {
+        async scrollToEnd() {
+            await nextTick();
 			var container = document.querySelector(".prechat");
 			var scrollHeight = container.scrollHeight;
 			container.scrollTop = scrollHeight;
-		},
-        /*forceUpdateChat() {
-            this.timer = window.setInterval(() => {
-                this.$parent.updateMessages();
-                this.$forceUpdate();
-            }, 5000)
-        }, */
-    },
-    unmounted() {
-        clearInterval(this.timer)
+            
+            
+		}
     },
 
 }
@@ -81,7 +80,8 @@ export default{
 
 .prechat{
     margin: 25px;
-    height: 60vw auto;
+    min-height: 40vh;
+    height: 100%;
     max-height: 50vh;
     overflow: auto;
 }

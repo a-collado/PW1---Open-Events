@@ -1,7 +1,6 @@
 <script>
 import ApiCalls from "../js/APIcalls.js"
 import ChatWindow from "./ChatWindow.vue"
-import router from "../router/index.js";
 import { useRoute } from 'vue-router';
 import { watch, ref } from 'vue'
 
@@ -71,11 +70,12 @@ export default{
             });
         },
         sendMessage(){
-            ApiCalls.sendMessage(this.user.id, this.typingText).then((output) =>{
-                this.updateMessages()
-                this.typingText = ""
-                //window.location.reload()
-          })
+            if (this.typingText != ""){
+                ApiCalls.sendMessage(this.user.id, this.typingText).then((output) =>{
+                    this.updateMessages()
+                    this.typingText = ""
+                })
+            }
         },
         updateMessages(){
             this.getMessages(this.id).then(message => {
@@ -90,6 +90,10 @@ export default{
         setAltImg(event) { 
           event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
         }, 
+        unmounted() {
+            clearInterval(this.timer)
+        },
+
     },
 
 }
@@ -143,10 +147,11 @@ export default{
 }
 
 footer.flex_row_wrap{
+    flex-wrap: nowrap;
     position: relative;
     justify-content: space-evenly;
     padding-top: 20px;
-    padding-bottom: 25px;
+    padding-bottom: 25px; 
     padding-left: 5%;
     bottom: -50px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.03) 68.23%, rgba(0, 0, 0, 0.11) 100%);
