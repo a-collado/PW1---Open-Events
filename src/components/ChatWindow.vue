@@ -2,8 +2,6 @@
 
 import { ref, nextTick } from 'vue';
 
-// Corregir error al recibir mensajes muy largos
-
 export default{
     
     props: {

@@ -4,9 +4,6 @@ import ChatWindow from "./ChatWindow.vue"
 import { useRoute } from 'vue-router';
 import { watch, ref } from 'vue'
 
-// Corregir error al recibir mensajes muy largos
-// Hacer que no puedas empezar un chat contigo mismo
-
 export default{
     components: {
         ChatWindow: ChatWindow,
@@ -17,7 +14,8 @@ export default{
         messages: [],
         typingText: "",
         show: false,
-        scrollTrigger: false
+        scrollTrigger: false,
+        messageError: false
       };
     },
     setup(){
@@ -69,12 +67,18 @@ export default{
                  });
             });
         },
-        sendMessage(){
+        async sendMessage(){
             if (this.typingText != ""){
-                ApiCalls.sendMessage(this.user.id, this.typingText).then((output) =>{
+                this.messageError = await ApiCalls.sendMessage(this.user.id, this.typingText).then((output) =>{
                     this.updateMessages()
                     this.typingText = ""
+                    if (output.content == undefined){
+                        return true;
+                    }
+                    return false;
                 })
+
+                console.log(this.messageError)
             }
         },
         updateMessages(){
@@ -114,7 +118,11 @@ export default{
         </article>
         <ChatWindow :messages="this.messages"></ChatWindow>
         <footer class="flex_row_wrap">
+            <div>
             <input v-on:keyup.enter="sendMessage" class="searchbar" type="text" placeholder="Escribe aqui..." v-model="typingText">
+            <p class= "error" v-if="this.messageError">Ha habido un error enviando el último mensaje. El mensaje no se ha enviado.</p>
+
+            </div>
             <ellipse>
                 <img v-on:click="sendMessage" class="icon" src="../assets/images/icons/send.png" alt="leido">
             </ellipse>
@@ -239,12 +247,19 @@ h5.red{
     color: #FF265A;
 }
 
+p.error{
+    font-size: 14px;
+    color: #FF265A;
+}
+
 .empty{
     display: inline-block;
     margin: 0; 
     text-align: center;
     height: 1000px;
 }
+
+
 
 @font-face {
   font-family: inter;
