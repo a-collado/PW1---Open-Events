@@ -88,6 +88,8 @@ export default{
         justify-items:center;
         align-items: stretch;
         justify-content: left;
+        margin-left: 10vw;
+
     }
     .searchbar{
         background: rgba(0, 0, 0, 0.07);
@@ -182,6 +184,7 @@ export default{
 
     .column .flex_row_wrap{
         width: 50vw;
+        margin-left: 0vw;
         /*justify-content: center;*/
     }
     .searchbar{    
@@ -193,6 +196,10 @@ export default{
 
     .column hr{
         width: 55vw;
+    }
+    
+    .column {
+        width: 100vw;
     }
 
     h2 {
