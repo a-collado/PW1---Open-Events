@@ -46,6 +46,12 @@ export default{
         logedUser: true
       };
     },
+    mounted(){
+        if (this.id != localStorage.getItem("loggedUser")){
+            this.showFriends = false;
+        }
+        //this.showFriends
+    },
     created(){
       //this.getUserFriends(this.id);
         this.getData(this.id)
@@ -119,8 +125,8 @@ export default{
     </div>
     <div v-else>
         <article class="centered_vertical" id="cv">
-            <div class="flex_row_wrap" id="f">
-                <img class="icon" v-on:click.prevent="goBack" src="../../assets/images/icons/return.png" alt="Pagina anterior">
+            <div class="friend_row_wrap" id="f">
+                <img class="iconf" v-on:click.prevent="goBack" src="../../assets/images/icons/return.png" alt="Pagina anterior">
                 <h2>Amigos( {{ friends.length }} )</h2>
             </div>
             </article>
@@ -140,6 +146,16 @@ export default{
         flex-wrap: nowrap;
         justify-content: space-between;
         margin-top: 20px;
+    }
+
+    .friend_row_wrap{
+        display: flex;
+        width: 90%;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        justify-content: flex-start;
+        margin-top: 20px;
+        margin-left: 40vw;
     }
 
     .centered_vertical{
@@ -246,9 +262,21 @@ export default{
 
     }
 
+    .iconf{
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+        margin: 2px;
+        margin-right: 15vw;
+    }
+
     
 @media (min-width: 768px) {
     
+    .flex_row_wrap{
+        width: 30%;
+    }
+
 
     .flex_row_wrap{
         width: 50%;
@@ -258,6 +286,7 @@ export default{
         width: 50vw;
         /*justify-content: center;*/
     }
+    
     .searchbar{    
         width: 30%;  
     }

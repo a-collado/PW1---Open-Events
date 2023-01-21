@@ -191,7 +191,7 @@ export default{
         },loadRecomendedEvent() {
              ApiCalls.sortByRating()
                 .then((sortedEvents) => {
-                  this.recomendedEvent = sortedEvents[2];
+                  this.recomendedEvent = sortedEvents[1];
                   this.showAll = true;
                 })
 
