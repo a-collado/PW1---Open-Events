@@ -1,7 +1,7 @@
 <script>
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
-import { defineComponent, getTransitionRawChildren } from "vue";
+import router from "../router/index.js";
 import Map from "./Map.vue";
 
 
@@ -56,7 +56,7 @@ export default{
                     ApiCalls.createEvent(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType)
                     .then((output) =>{
                         if(output == ApiCalls.getCORRECT()) {
-                            window.location.replace("/");
+                            router.push({name:'Home'});
                         }else{
                             //document.getElementById("error_createEvent").innerHTML = output;
                             //document.getElementById("error_createEvent").style.display = "flex";
@@ -192,16 +192,16 @@ export default{
             <div class="generic_inputLabel">
                 <label><p class="darkblue_normal_bold">Imagen del Evento</p></label>
                 <div id="background_image_box" v-bind:style="{backgroundImage: imgEventURLStyle}">
-                    <div class="centered_horitzontal"><button v-on:click="showDefaultEventImages()"><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
+                    <div class="centered_horitzontal"><button v-on:click.prevent="showDefaultEventImages()"><img id="editIcon" src="../assets/images/icons/editar.png" alt="edit image"></button></div>
                 </div>
-                <input class="general_input" type="text" placeholder="URL imagen para el evento" v-model="imgEvent_URL" v-on:change="changeImageEvent">
+                <input class="general_input" type="text" placeholder="URL imagen para el evento" v-model="imgEvent_URL" v-on:change="changeImageEvent()">
             </div>
 
             <div class="generic_inputLabel" v-bind:class="{hidden: isHidden}">
                 <div class="generci_spaceBetween">
-                    <button class="defaultImgButton" v-on:click="defaultImg1"><img class="defaultImg" src="../assets/images/events/defaultEvent1.webp"></button>
-                    <button class="defaultImgButton" v-on:click="defaultImg2"><img class="defaultImg" src="../assets/images/events/defaultEvent2.webp"></button>
-                    <button class="defaultImgButton" v-on:click="defaultImg3"><img class="defaultImg" src="../assets/images/events/defaultEvent3.jpg"></button>
+                    <button class="defaultImgButton" v-on:click.prevent="defaultImg1"><img class="defaultImg" src="../assets/images/events/defaultEvent1.webp"></button>
+                    <button class="defaultImgButton" v-on:click.prevent="defaultImg2"><img class="defaultImg" src="../assets/images/events/defaultEvent2.webp"></button>
+                    <button class="defaultImgButton" v-on:click.prevent="defaultImg3"><img class="defaultImg" src="../assets/images/events/defaultEvent3.jpg"></button>
                 </div>
             </div>
 
@@ -246,12 +246,12 @@ export default{
                 <div class="spaceBetween">
                     <div>
                         <label><p class="darkblue_normal_bold">Fecha y hora del inicio evento</p></label>
-                        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="initialDateTime">
+                        <input type="datetime-local" class="input_timeHour" v-model="initialDateTime">
                     </div>
 
                     <div>
                         <label><p class="darkblue_normal_bold">Fecha y hora del final evento</p></label>
-                        <input type="datetime-local" id="start" name="trip-start" class="input_timeHour" v-model="finalDateTime">
+                        <input type="datetime-local" class="input_timeHour" v-model="finalDateTime">
                     </div>
                 </div>
                 
@@ -267,7 +267,7 @@ export default{
 
                     <div>
                         <label><p class="darkblue_normal_bold">Provincia</p></label>
-                        <input class="input_timeHour"  list="provincias" name="provincia" v-model="provincia"/>
+                        <input class="input_timeHour"  list="provincias" v-model="provincia"/>
                     </div>
                 </div>
             </div>
@@ -281,7 +281,7 @@ export default{
             <br>
             <p class="Error_Input " v-bind:style="{display: errorIsHidden}">{{ error }}</p>
             <br>
-            <button class="button_pink_normal" v-on:click="createEvent()">Crear Evento</button>
+            <button class="button_pink_normal" v-on:click.prevent="createEvent()">Crear Evento</button>
 
            
         </div>
