@@ -144,31 +144,36 @@ export default{
 
     <div class="event_group">
 
-      <figure class="basic_event" v-on:click="goToEvent(event.id)" v-if="showCreados" v-for = "event in this.events" :key="event.id">
-        <img class="event_img" v-bind:src=event.image alt="image of the event" @error="setAltImg">
-        <div class="extraInfo_basicEvent">
-          <p style="background-color: #C772BA;" v-if="event.created">creado</p>
-          <p style="background-color: #FFA74A;" v-if="event.assisted">Inscrito</p>
-          <p v-if="Date.now() > new Date(event.eventEnd_date)" style="background-color: #235F65;">finalizado</p>
-        </div>
-        
-        <div class="footer_basicEvent"> 
-          <h2 class="blue_big">{{event.name}}</h2>
+      <li v-for = "event in this.events" :key="event.id">
 
-          <div class="column"> 
-            <div class="flex_row_wrap">
-              <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
-              <p class="blue_small_bold">{{event.eventStart_date.substring(0,10)}}<br>{{event.eventStart_date.substring(11,16)}}</p>
-            </div>
+      <figure class="basic_event" v-on:click="goToEvent(event.id)"   v-if="(showCreados && event.created) || (showAssistidos && event.assisted)">
 
-            <div class="flex_row_wrap">
-              <img class="icon" src="../../assets/images/icons/maps.png" alt="icon">
-              <p class="blue_small_bold">{{event.province}}</p>
-            </div>
+          <img class="event_img" v-bind:src=event.image alt="image of the event" @error="setAltImg">
+          <div class="extraInfo_basicEvent">
+            <p style="background-color: #C772BA;" v-if="event.created">creado</p>
+            <p style="background-color: #FFA74A;" v-if="event.assisted">Inscrito</p>
+            <p v-if="Date.now() > new Date(event.eventEnd_date)" style="background-color: #235F65;">finalizado</p>
           </div>
+          
+          <div class="footer_basicEvent"> 
+            <h2 class="blue_big">{{event.name}}</h2>
 
-        </div><!--Footer del event-->
+            <div class="column"> 
+              <div class="flex_row_wrap">
+                <img class="icon" src="../../assets/images/icons/schedule.png" alt="icon">
+                <p class="blue_small_bold">{{event.eventStart_date.substring(0,10)}}<br>{{event.eventStart_date.substring(11,16)}}</p>
+              </div>
+
+              <div class="flex_row_wrap">
+                <img class="icon" src="../../assets/images/icons/maps.png" alt="icon">
+                <p class="blue_small_bold">{{event.province}}</p>
+              </div>
+            </div>
+
+          </div><!--Footer del event-->
       </figure> <!--Tanquem figure del event-->
+
+    </li>
 
     </div> <!--Event group-->
 
@@ -176,3 +181,10 @@ export default{
   </div> <!--Tanquem div gran dels events i estadístiques AMB botons-->
 
 </template>
+
+<style scoped>
+
+  li{
+    list-style-type: none;
+  }
+</style>
