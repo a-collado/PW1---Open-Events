@@ -52,7 +52,7 @@ export default{
   },
 
   mounted(){
-    console.log(this.events);
+    //console.log(this.events);
   },
   
   methods: {

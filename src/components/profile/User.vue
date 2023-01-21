@@ -192,7 +192,7 @@ export default{
     },
 
     setAltImg(event) { 
-          event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
+      event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
     } 
 
   } //methods
