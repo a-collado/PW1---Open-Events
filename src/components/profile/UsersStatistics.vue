@@ -21,15 +21,12 @@ export default{
                 {"month":"Noviembre", "num_month":11, "events":[], "showEvents": false}, {"month":"Diciembre", "num_month":12, "events":[], "showEvents": false}],
              
 
-      inputYear: new Date().getFullYear(),
+      inputYear: new Date().getFullYear(), //At the start, will be  the current year
 
+      //API statistics
       avgScore: 0,
       numComents: 0,
       percentageComentersBelow: 0,
-
-      statisticsFinished: false
-
-
 
     }
   },
@@ -52,27 +49,25 @@ export default{
   },
   
   created(){
-    //console.log(this.timeline);
     this.getEventsByMonths();
     this.getStatistics();
-      
   },
 
   
   methods: {
 
+    //From all the events of the parent, we divide them into months for the timeline
+    //we get just the ones of the year selected. Each time we change the year, this method will be called
     getEventsByMonths(){
-      //console.log(this.events);
-      //console.log(this.timeline);
       let trobat;
 
-      //Esborrem per cada mes, els events que hi havien abans
+      //We delete for each month the previus events
       this.timeline.forEach(function(item){
         item.events = [];
         item.showEvents = false;
       });
 
-      //Per cada evento del usuari mirem si l'hem de ficar al timeline
+  
       for(let i=0; i < this.events.length; i++){
 
         let date = new Date(this.events[i].eventStart_date);
@@ -82,11 +77,7 @@ export default{
 
           for(let j=0; j < this.timeline.length && !trobat; j++){
 
-            //console.log(this.timeline[j].num_month + " - " + date.getMonth());
             if (this.timeline[j].num_month == date.getMonth()+1){
-              //console.log("iguals");
-              //console.log(this.events[i]);
-              //console.log( this.timeline[j].events);
               this.timeline[j].events.push(this.events[i]);
               trobat = true;
             }
@@ -98,6 +89,7 @@ export default{
 
     },
 
+    //Get the statistics from the API 
     getStatistics(){
       ApiCalls.getUserStatistics(this.ID)
       .then((statistics) => {
@@ -119,14 +111,14 @@ export default{
       });
 
     },
-  
 
-
-    //______________________________________________________________________
+    //Go to event selected
     goToEvent(eventID){
       router.push({name: 'Event', params: {id: eventID}});
     },      
   
+    //In the timeline, you can select the moth that has events and it will appear below, that events
+    //So, we must not show the ones of the other months and show that month
     showEventsOfMonth(num_month){
       
       if(this.timeline[num_month-1].showEvents == true){

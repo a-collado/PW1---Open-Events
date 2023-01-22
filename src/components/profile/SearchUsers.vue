@@ -3,7 +3,7 @@ import router from "../../router/index.js";
 
 export default{
     props: {
-        results: Array
+        results: Array          // Array de resultados de la busqueda
     },
     data() {
         return {
@@ -11,10 +11,13 @@ export default{
         }
     },
     methods: {
+        // Ir al perfil del usuario con la id determinada.
         goToUserAccount(userID){
           router.push({name: 'user', params: { id: userID }});
           this.$emit("goToProfile");
         },
+        
+        // Cuando no se puede cargar la imagen de un evento la sustiuye por una foto por defecto. 
         setAltImg(event) { 
           event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
         }, 
