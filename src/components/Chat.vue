@@ -19,7 +19,7 @@ export default{
     },
     setup(){
 
-        // Guardamos la ruta id de la ruta actual.
+        // Guardamos la id de la ruta actual.
         const route = useRoute();
         const id = ref();
         id.value = route.params.id;

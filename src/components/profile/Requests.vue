@@ -4,23 +4,28 @@ import ApiCalls from "../../js/APIcalls.js"
 //TODO: Hay que hacer que se actualicen las request cuando aceptas o rechazas una
 export default{
     props: {
-        requests: Array
+        requests: Array             // Array con todas las solicitudes de amistad del usuario
     },
     data() {
       return {}
     },
     methods: {
 
+        // Aceptamos la solicitud de amistad del usuario con la id correspondiente y recargamos la pagina.
         acceptFriendRequest(id){
           ApiCalls.AcceptFriendRequest(id).then((output) =>{
             this.$router.go()
           });
         },
+
+        // Rechazamos la solicitud de amistad del usuario con la id correspondiente y recargamos la pagina.
         rejectFriendRequest(id){
           ApiCalls.rejectFriendRequest(id).then((output) =>{
             this.$router.go()
           });      
         },
+        
+        // Si no se encuentra la imagen de perfil de un usuario se sustituye por una imagen por defecto. 
         setAltImg(event) { 
           event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
         } 

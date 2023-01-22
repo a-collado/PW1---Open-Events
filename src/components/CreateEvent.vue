@@ -2,14 +2,9 @@
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
 import router from "../router/index.js";
-import Map from "./Map.vue";
-
 
 export default{
 
-    components: {
-        Map: Map
-    },
     data() {
         return {
             imgEvent_URL: "",
@@ -39,10 +34,6 @@ export default{
     },
     methods: {
 
-        /*initializeMap(){
-            
-            var map = new google.maps.Map(document.getElementById("map"), mapInit);    
-        },*/
 
         createEvent(){
             //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
@@ -271,12 +262,6 @@ export default{
                     </div>
                 </div>
             </div>
-            <!--<Map></Map>-->
-
-            <!-- <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="10">
-                <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
-                <InfoWindow :options="{ position: { lat: center.lat, lng: 150.8 } }"> Content passed through slot </InfoWindow>
-            </GoogleMap> -->
             
             <br>
             <p class="Error_Input " v-bind:style="{display: errorIsHidden}">{{ error }}</p>

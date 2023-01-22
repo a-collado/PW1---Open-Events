@@ -7,21 +7,26 @@ import router from "../../router/index.js";
 export default{
     data() {
         return {
-            user: [],
-            imageUrl: "",
-            name: "",
-            last_name: "",
-            email: "",
+            user: [],                               // Informacion del usuario a editar              
+            imageUrl: "",                           // Url de la imagen de perfil del usuario
+            name: "",                               // Nombre del usuario
+            last_name: "",                          // Apellidos del usuario
+            email: "",                              // Email del usuario
 
-            imageUrlStyle: "",
+            imageUrlStyle: "",                      // Estilo CSS de la imagen de perfil
 
-            error:"",
+            error:"",                               // Mensaje de error
+
+            defaultProfilePic: import.meta.env.VITE_DEFAULT_PROFILE_PIC,    // Imagen de perfil predeterminada
+
         }
     },
     mounted(){
         this.getProfileInfo()
     },
     methods: {
+
+        // Obtenemos toda la informacion del perfil del usuario logeado y la guardamos en variables
         getProfileInfo(){
           this.user = ApiCalls.getInfoLoggedUser().then((user) =>{
             return user[0];
@@ -34,6 +39,8 @@ export default{
             this.imageUrlStyle = "background-image: url(" + this.imageUrl + ")";
         });
          },
+
+         // Actualizamos la informacion del usuario con la nueva informacion que nos ha proporcionado.
          updateProfileInfo(){
             // Habria que comprobar que esta todo bien
             ApiCalls.updateUser(this.name,  this.last_name, this.email, this.imageUrl).then((result) =>{
@@ -44,17 +51,20 @@ export default{
             }
           });
          },
+
+         // Borramos al usuario que esta logeado
          deleteUser(){
             ApiCalls.deleteUser().then( 
                 router.push({name: 'Welcome'})
             );
             
          },
+
+         // Cambiamos previsualizacion de la imagen de perfil del usuario.
          changeImage(){
             
             this.imageUrlStyle = "background-image: url(" + this.imageUrl + ")";
-            console.log(this.imageUrlStyle)
-            console.log(this.imageUrl)
+
         },
     }
 }
@@ -131,7 +141,7 @@ export default{
     }
 
     #profilePic_button{
-        background-image: url("../../assets/images/profilepic.jpg");
+        background-image: v-bind(defaultProfilePic);
         background-size: cover;
         width: 160px;
         height: 160px;
