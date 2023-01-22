@@ -111,18 +111,17 @@ methods: {
 
             if (userRating == 0) {
                 this.userRating = null;
-                console.log("aaa", this.userComment);
             } else if (userRating !== null) {
-                this.userRating = userRating;console.log("eee", this.userComment);
+                this.userRating = userRating;
             }
             
             if (userComment !== null) {
                 if (userComment.localeCompare("delete") == 0) {
                     this.userComment = null;
-                    this.postComment = false;console.log("ooo", this.userComment);
+                    this.postComment = false;
                 } else {
                     this.userComment = userComment;
-                    this.postComment = true;console.log("iii", this.userComment);
+                    this.postComment = true;
                 }
             }
 
