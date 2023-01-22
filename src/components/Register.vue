@@ -15,6 +15,8 @@ export default{
         }
     },
     methods: {
+
+        //If the user get wrong
         shakeElement(el) {
             //el.classList.add('rotateable');
             el.style.marginLeft = '20px';
@@ -28,24 +30,24 @@ export default{
 
         },
 
+        //Register and put it in the API
         register(){
             ApiCalls.registerUser(this.name, this.lastName, this.email, this.password).then((output) =>{
 
-            if(output == ApiCalls.getCORRECT()) {
-                ApiCalls.loginUser(this.email, this.password).then((outputLogin) =>{
-                    if(outputLogin == ApiCalls.getCORRECT()) {
-                        window.location.replace("/");
-                        return outputLogin;
-                    }
-                })
-            }else{
-                this.error = output;
-                this.displayError="flex";
-                this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
+                if(output == ApiCalls.getCORRECT()) {
+                    ApiCalls.loginUser(this.email, this.password).then((outputLogin) =>{
+                        if(outputLogin == ApiCalls.getCORRECT()) {
+                            window.location.replace("/");
+                            return outputLogin;
+                        }
+                    })
+                }else{
+                    this.error = output;
+                    this.displayError="flex";
+                    this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
 
-            }
-            
-           } );
+                }
+            } );
            
         }
     }

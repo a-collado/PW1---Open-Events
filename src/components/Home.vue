@@ -45,6 +45,7 @@ export default{
     },
     methods: {
 
+        //redirects to the create event page
         createEvent(){
           if(ApiCalls.hasLoggedIn()){
             router.push({name: 'Create Event'});
@@ -52,9 +53,12 @@ export default{
             alert("No se puede crear un evento si no se inicia sessión");
           }
         },
+
         toggleFilter() {
             this.isFilterShown = !this.isFilterShown;
         },
+
+        //Get events from the api
         async getAllEvents() {
           return ApiCalls.GetAllEvents()
           .then((allEvents) => {
@@ -71,6 +75,7 @@ export default{
         goToEvent(eventID){
           router.push({name: 'Event', params: {id: eventID}});
         },
+
         //Filters and sorters
         async applyFilter(filters){
 
@@ -189,7 +194,9 @@ export default{
             this.categoryTuZona = false;
             this.categoryDescubrir = true;
 
-        },loadRecomendedEvent() {
+        },
+        
+        loadRecomendedEvent() {
              ApiCalls.sortByRating()
                 .then((sortedEvents) => {
                   this.recomendedEvent = sortedEvents[0];
@@ -206,7 +213,9 @@ export default{
 
             this.resetFilter();
 
-        },applyFilterZona() {
+        },
+        
+        applyFilterZona() {
             this.events.forEach(event => {
                 event.isShown = true;
             });
@@ -223,7 +232,9 @@ export default{
                 }
             });   
 
-        },applyFilterAmigos() {
+        },
+        
+        applyFilterAmigos() {
 
             this.events.forEach(event => {
                 event.isShown = true;
@@ -248,6 +259,7 @@ export default{
                 console.log(friendsEvent);     
             });
         },
+        
         setAltImg(event) { //Reemplazar imagen no cargada por imagen por defecto
           event.target.src = import.meta.env.VITE_DEFAULT_EVENT_PIC; 
         } 

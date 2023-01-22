@@ -13,6 +13,7 @@ export default{
     },
     methods: {
 
+        //If the user get incorrect
         shakeElement(el) {
             //el.classList.add('rotateable');
             el.style.marginLeft = '20px';
@@ -25,16 +26,18 @@ export default{
             }, 100);
 
         },
+
+        //Try to login in the API
         login(){
 
             ApiCalls.loginUser(this.email, this.password).then((output) =>{
-            if(output === ApiCalls.getCORRECT()) {
-                window.location.replace("/");
-            }else{
-                this.error = output;
-                this.displayError="flex";
-                this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
-            }
+                if(output === ApiCalls.getCORRECT()) {
+                    window.location.replace("/");
+                }else{
+                    this.error = output;
+                    this.displayError="flex";
+                    this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
+                }
             
            } );
            
