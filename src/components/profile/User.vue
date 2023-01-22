@@ -78,39 +78,44 @@ export default{
 
   },
 
+  //Methos to get all the events of the user
   async getEventsAll(userID){
 
-    return await ApiCalls.getCreatedEventsFromUser(userID)
+    /*We get the events that the user has created, and we modify each element of the 
+    array by saying that is a created events and not an assisted event.
+      |
+      |--> Thanks to this, in the child component, it will be easier to implement
+           the filter of showing all of them, just the created ones or the assisted ones
+
+      Also, we modify each element of the array with the updateInfoEvent, explained below
+    */
+    return ApiCalls.getCreatedEventsFromUser(userID)
     .then((createdEvents) => {
-      //this.createdEvents = createdEvents;
-      //console.log(createdEvents);
       createdEvents = createdEvents.map( createdEvent => {
         createdEvent.created = true;
         createdEvent.assisted = false;
         return createdEvent;
       });
 
-      //console.log(createdEvents);
-
       createdEvents.forEach(this.updateInfoEvent);
-
       this.userEvents = createdEvents;
+
       return;
-    })
+    }) //Once we have finished, we do the same but for the assited events
     .then((vacio) => { 
       return ApiCalls.getAssitedEventsFromUser(userID)
       .then((assitedEvents) => {
-        //this.assitedEvents = assitedEvents;
-
         assitedEvents = assitedEvents.map( assitedEvent => {
           assitedEvent.created = false;
           assitedEvent.assisted = true;
           return assitedEvent;
         });
 
+        //We put all the events in the same array
         assitedEvents.forEach(this.updateInfoEvent);
         this.userEvents = this.userEvents.concat(assitedEvents);
         this.eventsFinished = true;
+
         return;
       });
 
@@ -139,6 +144,14 @@ export default{
       });
     },
 
+
+    /*Method used in getEventsAll()
+      In our project, we decided to have the province and show it in the events in little
+      So, in this method, we prepare all the information to the child components
+      
+      We create a variable named province and, if there is not an startdate and enddate, we put 
+      the one generated when was created
+    */
     updateInfoEvent(event){
       
       if(event.location.indexOf("(") >= 0){
@@ -184,10 +197,8 @@ export default{
       router.push({ name: 'Chat' , params: {id: this.ID}});
     },
 
-        
-
+    //Method that changes is we want to see the events component or the statistics one
     changeShowingEventStatistics(value){
-      //console.log(value);
       this.showEvents = value;
     },
 
@@ -241,8 +252,6 @@ export default{
           <p class="grey_normal">{{user.email}}</p> 
         </article>
 
-        <!--<p class="grey_normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit facilisis erat eu pulvinar. Nam in tincidunt dolor. Fusce non rhoncus ligula. Proin gravida ex a nisi mollis, venenatis gravida sapien aliquet. Nam sed lectus magna.</p>
-        --> 
         <div v-if="this.ownProfile" class="button_flex">
           <router-link to="/editarPerfil"><button class="button_pink_normal">Editar perfil</button></router-link>
           <button-icon v-on:click = "logOut()"><img class="icon" src="../../assets/images/icons/logout.png" alt="profile configuration"></button-icon>
