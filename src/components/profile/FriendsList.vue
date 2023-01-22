@@ -4,10 +4,10 @@ import { registerRuntimeCompiler } from "vue";
 export default{
     
     props: {
-        friends: Array
+        friends: Array                              // Array con todos los amigos del usuario
     },
     emits: {
-        goToProfileR: null,
+        goToProfileR: null,                         // Emit para hacer que la clase padre cambie la vista hacia el perfil de un usuario determinado
     },
     data() {
       return {
@@ -16,10 +16,14 @@ export default{
     mounted() {
     },
     methods: {
+
+        // Ir al perfil de un usario con la id determinada
         goToProfileR(id){
 
         this.$emit("goToProfileR", id)
         },
+
+        // Si no se encuentra la imagen de perfil de un usuario se sustituye por una imagen por defecto. 
         setAltImg(event) { 
           event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
         } 

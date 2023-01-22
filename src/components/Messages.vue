@@ -12,24 +12,27 @@ export default{
     },
     data() {
         return {
-            users: [],
-            chatUser: [],
-            messages:[],
-            lastMessageContent: [],
-            lastMessageHour: [],
-            chatKey: 0
+            users: [],                  // Lista de todos los usuarios que tienen un chat con el usuario logeado
+            lastMessageContent: [],     // Ultimo mensaje enviado en cada conversacion
+            lastMessageHour: [],        // Hora del ultimo mensaje enviado en cada conversacion
         }
     },
     created(){
         this.getPreviewMessages();
     },
     methods: {
+
+
+
+
+        // Obtenemos todos los usuarios que tienen chats con el usuario logeado
         async getUserMessages(){
             return await ApiCalls.getMessageUsers().then((output) =>{
             this.users = output;
             return output;
           });
         },
+        // Obtenemos todos los mensajes entre el usuario logeado y el usuario con correspondiente con la id
         getMessages(id){
             
             return ApiCalls.getMessages(id).then((output) =>{
@@ -37,26 +40,20 @@ export default{
             ;
          });
         },
+        // Obtenemos el ultimo mensaje de cada uno de los chats del usuario registrado
         getLastMessage(id){
             return this.getMessages(id).then((output) =>{
 
             return output[output.length-1];
         });
         },
+
+        // Entramos a el chat con el usuario correspondiente con la id
         enterChat(userID){
             router.push({ name: 'Chat' , params: {id: userID}})
         },
 
-        forceRerenderChat() {
-            this.chatKey += 1;
-        },
-
-        updateMessages(id){
-            this.getMessages(id).then(message => {
-                this.messages = message;
-            });
-        },
-
+        // Mostramos en cada chat el ultimo mensaje y la hora a la que se ha enviado
         getPreviewMessages(){
             this.getUserMessages().then((users)=>{
             this.lastMessage = new Array();
@@ -71,6 +68,8 @@ export default{
 
             });
         },
+
+        // Cuando no se puede cargar la imagen de perfil de un usario la sustiuye por una foto por defecto. 
         setAltImg(event) { 
           event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
         }, 
@@ -117,8 +116,7 @@ export default{
 </main>
 
 </div>
-<!-- <div v-else class="empty"></div> -->
-<!-- <Chat v-else :messages="this.messages" :user="chatUser" :key="this.chatKey"></Chat> --> 
+
 </template>
 
 

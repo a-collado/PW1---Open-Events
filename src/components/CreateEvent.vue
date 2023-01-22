@@ -2,14 +2,9 @@
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
 import router from "../router/index.js";
-import Map from "./Map.vue";
-
 
 export default{
 
-    components: {
-        Map: Map
-    },
     data() {
         return {
             //Data to send to the API to do the post

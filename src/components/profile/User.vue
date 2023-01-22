@@ -13,28 +13,29 @@ export default{
   },
   data() {
     return {
-      user: [],
-      friends: [],
-      userEvents:[], //user events i user statistics
+      user: [],                     // Informacion del usuario correspondiente al perfil
+      friends: [],                  // Lista de amigos del usuario
+      userEvents:[],                // User events i user statistics
 
-      ownProfile: false,
-      profile: false, //mira si de la API ja ha agafat la info
-      isFriend: false,
-      showingFriends: false,
+      ownProfile: false,            // Boolean que indica si estamos viendo el perfil del usuario logeado o el de cualquier otro usuario
+      profile: false,               // Boolean que indica si la promise de la API para obtener la informacion del usuario ya esta completada
+      isFriend: false,              // Boolean que indica si el usuario que estamos viendo es amigo del usario logeado
+      showingFriends: false,        // Boolean que indica si se muestra o no la lista de amigos a la derecha del perfil
 
-      profileKey:0,
-
-      showEvents:true, //canvi vista entre user events i user statistics
-      eventsFinished: false, //mira si de la API ja ha agafat la info
+      showEvents:true,              // Boolean que indica si se debe mostrar el componente de eventos o el de estadisticas.
+      eventsFinished: false,        // Boolean que indica si la promise de la API para obtener la informacion sobre los eventos del usuario ya esta completada
 
     }
   },
 
   setup(){
+
+    // Obtenemos la id de la ruta actual
     const ROUTE = useRoute();
     const ID = ref();
     ID.value = ROUTE.params.id;
 
+    // Si la ruta cambia actualizamos la pagina
     watch(
     () => ROUTE.params.id,
     async newId => {
@@ -57,6 +58,7 @@ export default{
 
   methods: {
     
+    // Obtenemos toda la informacion del usuario con una id determinada y la guardamos en variables
     async getUserInfo(userID){
         
     return this.getUserByID(userID)
@@ -78,7 +80,7 @@ export default{
 
   },
 
-  //Methos to get all the events of the user
+  // Obtenemos toda la informacion sobre eventos relacionada al usuario y la guardamos en variables.
   async getEventsAll(userID){
 
     /*We get the events that the user has created, and we modify each element of the 
@@ -123,13 +125,14 @@ export default{
 
   },
 
-    //METHODS API__________________________________________________________
+    // Obtenemos el usuario con la id determinada
     async getUserByID(userID){
       return ApiCalls.getInfoInfoUserByID(userID).then((user) =>{
         return user[0];
       });
     },
     
+    // Obtenemos los amigos del usuario con la id determinada
     async getFriendsByID(userID){
       return ApiCalls.getFriendsByID(userID)
       .then(body => {
@@ -138,20 +141,14 @@ export default{
       });
     },
 
+    // Enviamos una solicitud de amistad al usuario correspondiente al perfil que estemos viendo
     sendFriendRequest(){
       return ApiCalls.sendFriendRequest(this.ID).then((respone) =>{
         return Response;
       });
     },
 
-
-    /*Method used in getEventsAll()
-      In our project, we decided to have the province and show it in the events in little
-      So, in this method, we prepare all the information to the child components
-      
-      We create a variable named province and, if there is not an startdate and enddate, we put 
-      the one generated when was created
-    */
+    // Actualizamos la informacoin sobre los eventos relacionados con el usuario
     updateInfoEvent(event){
       
       if(event.location.indexOf("(") >= 0){
@@ -171,48 +168,56 @@ export default{
 
     },
 
-    //METHODS USED IN METHODS API___________________________________________
+    // Comprovamos si el usuario que estamos viendo es amigo del usuario logeado
     checkIfFriend(friend){
         if (friend.id == localStorage.getItem("loggedUser")) {
         this.isFriend = true;
         }
     },
 
-    //______________________________________________________________________
+    // Setter para cambiar el valor de la variable "profile"
     showingProfile(boolean){
         this.profile = boolean;
     },
+
+    // Ir a el perfil del usuario con la id determinada
     goToProfileR(friendID){
       router.push({name: 'user', params: { id: friendID }});
     },
+
+    // Cerrar la sesion del usuario logeado
     logOut() {
         window.localStorage.setItem("accessToken", "");
         window.localStorage.setItem("loggedUser", "");
         window.location.replace("/sign_in");
     },
+    // Ir a la lista de amigos del usuario que estemos viendo
     goToFriendList(){
       router.push({name: 'Friends'});
     },
+
+    // Abrir una ventana de chat con el usuario que estemos viendo
     openChat(){
       router.push({ name: 'Chat' , params: {id: this.ID}});
     },
 
-    //Method that changes is we want to see the events component or the statistics one
+    // Setter para cambiar el valor de la variable "showEvents"
     changeShowingEventStatistics(value){
       this.showEvents = value;
     },
 
+    // Si no se encuentra la imagen de perfil de un usuario se sustituye por una imagen por defecto. 
     setAltImg(event) { 
       event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
     } 
 
-  } //methods
-} //export default
+  } 
+} 
 
 </script>
 
   <template>
-  <div v-if="profile"><!--<div v-if="profile && eventsFinished">-->
+  <div v-if="profile">
   
     <div class="profile_header">
       <img class="landscape" src="https://cnnespanol.cnn.com/wp-content/uploads/2022/08/220731233929-hyperion-tree-full-169.jpg?quality=100&strip=info" alt="Profile">
@@ -228,7 +233,6 @@ export default{
     <div class="profile_friends">
 
       <h1 v-on:click.prevent="goToFriendList">Amigos ({{ this.friends.length }})</h1>
-      <!-- Hay que hacer que las lineas horizontales entre amigos se muestren bien -->
       <div class="flex_row_wrap friend" v-on:click="goToProfileR(friend.id)" v-for="friend in friends.slice(0, 4)" :key="friend.id">
           <img :src="friend.image" alt="profile pic">
           <div class="column">

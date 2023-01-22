@@ -12,6 +12,8 @@ export default{
         
       };
     },
+
+    // Este watch detecta cuando la clase padre actualiza la lista de mensajes y scroll hasta el final de la lista
     watch: { 
         messages: function(newVal, oldVal) {
             if (newVal.length != oldVal.length){
@@ -28,9 +30,11 @@ export default{
         //this.forceUpdateChat();
 	},
     methods: {
+        // Detecta si un mensaje es enviado o recibido por el usuario
         messageSended(sender_id) {
             return sender_id == localStorage.getItem("loggedUser");
         },
+        // Hace scroll hasta el final del chat
         async scrollToEnd() {
             await nextTick();
 			var container = document.querySelector(".prechat");
