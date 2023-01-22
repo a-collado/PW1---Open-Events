@@ -90,9 +90,7 @@ export default{
 <article class="centered_vertical">
     <div class="flex_row_wrap">
         <h1>Mensajes</h1>
-        <img class="icon" src="../assets/images/icons/edit.png" alt="Escribir mensaje">
     </div>
-    <input class="searchbar" type="text" placeholder="Buscar">
 </article>
 
 <main>
@@ -269,7 +267,8 @@ export default{
         margin: 0; 
         text-align: center;
         height: 1000px;
-    }   
+    }
+       
 
 
     @media (min-width: 768px) {
