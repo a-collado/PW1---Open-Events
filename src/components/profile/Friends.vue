@@ -46,7 +46,12 @@ export default{
         // Obtenemos todos los amigos del usuario con una id determinada
         async getFriendsByID(userID){
           return ApiCalls.getFriendsByID(userID).then((friends) =>{
-            return friends
+            var friendList = new Array;
+            friends.forEach(friend => {
+                if(friend.id != null)
+                friendList.push(friend);
+            });
+            return friendList
           })
         },
         // Obtenemos todas las solicitudes de amistad del usuario con una id determinada.

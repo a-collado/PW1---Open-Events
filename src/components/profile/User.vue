@@ -134,11 +134,14 @@ export default{
     
     // Obtenemos los amigos del usuario con la id determinada
     async getFriendsByID(userID){
-      return ApiCalls.getFriendsByID(userID)
-      .then(body => {
-        body.forEach(this.checkIfFriend);
-        return body;
-      });
+          return ApiCalls.getFriendsByID(userID).then((friends) =>{
+            var friendList = new Array;
+            friends.forEach(friend => {
+                if(friend.id != null)
+                friendList.push(friend);
+            });
+            return friendList
+          })
     },
 
     // Enviamos una solicitud de amistad al usuario correspondiente al perfil que estemos viendo

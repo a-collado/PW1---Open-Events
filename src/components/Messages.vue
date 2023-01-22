@@ -32,7 +32,12 @@ export default{
         // Obtenemos todos los usuarios que tienen chats con el usuario logeado
         async getUserMessages(){
             return await ApiCalls.getMessageUsers().then((output) =>{
-            this.users = output;
+            var users = new Array();
+            output.forEach(user => {
+                if(user.id != null)
+                users.push(user);
+            });    
+            this.users = users;
             return output;
           });
         },
