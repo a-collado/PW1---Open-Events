@@ -13,11 +13,15 @@ export default{
     data() {
         return {
             users: [],                  // Lista de todos los usuarios que tienen un chat con el usuario logeado
-            lastMessageContent: [],     // Ultimo mensaje enviado en cada conversacion
-            lastMessageHour: [],        // Hora del ultimo mensaje enviado en cada conversacion
+            lastMessageHour: [],        // Hashmap con la hora del ultimo mensaje enviado en cada conversacion
+            lastMessageMap: [],         // Hashmap con el contenido del ultimo mensaje enviado en cada conversacion
+
+            messagesLoaded: false       // Boolean que indica si la promise de carga los ultimos mensajes de cada usuario ya ha acabado.
         }
     },
     created(){
+        this.lastMessageMap = new Map();
+        this.lastMessageHour = new Map();
         this.getPreviewMessages();
     },
     methods: {
@@ -41,9 +45,8 @@ export default{
          });
         },
         // Obtenemos el ultimo mensaje de cada uno de los chats del usuario registrado
-        getLastMessage(id){
+        async getLastMessage(id){
             return this.getMessages(id).then((output) =>{
-
             return output[output.length-1];
         });
         },
@@ -53,20 +56,32 @@ export default{
             router.push({ name: 'Chat' , params: {id: userID}})
         },
 
-        // Mostramos en cada chat el ultimo mensaje y la hora a la que se ha enviado
-        getPreviewMessages(){
-            this.getUserMessages().then((users)=>{
-            this.lastMessage = new Array();
-
+        async getPreviewMessages(){
+            this.messagesLoaded = this.getUserMessages().then((users)=>{            
+            
             users.forEach(user => {
                 this.getLastMessage(user.id).then((message)=>{
-                    this.lastMessageContent.push(message.content)  
-                    this.lastMessageHour.push(message.timeStamp.substr(11,5))                  
+                    this.lastMessageMap.set(user.id, message.content);  
+                    this.lastMessageHour.set(user.id, message.timeStamp.substr(11,5));
+                          
                 });
                 
             });
-
+            return true;
+            
             });
+        },
+
+        // Devolvemos la hora del ulitmo mensaje de la conversacion el usuario correspondiente a la ID
+        getLastMessageHour(id){
+            
+            return this.lastMessageHour.get(id);;
+
+        },
+
+        // Devolvemos el contenido del ulitmo mensaje de la conversacion el usuario correspondiente a la ID
+        getLastMessageContent(id){
+            return this.lastMessageMap.get(id);
         },
 
         // Cuando no se puede cargar la imagen de perfil de un usario la sustiuye por una foto por defecto. 
@@ -93,7 +108,7 @@ export default{
 </article>
 
 <main>
-    <div class="column">
+    <div class="column" v-if="messagesLoaded">
 
         <article class="flex_row_wrap" v-for="(user, index) in users" :key="user.id">     <!-- Persona -->
             <div class="profile_pic_message">
@@ -104,11 +119,11 @@ export default{
                     <h4>{{user.name + " " + user.last_name}}</h4>
                     <div>
                         <img class = "message_icon" src="../assets/images/icons/read_g.png" align="left" />
-                        <p>{{ this.lastMessageContent[index] }}</p>
+                        <p>{{ this.getLastMessageContent(user.id) }}</p>
                     </div>
             </div>
             <div>
-                <h6>{{lastMessageHour[index]}}</h6>
+                <h6>{{this.getLastMessageHour(user.id)}}</h6>
             </div>
         </article>
 
