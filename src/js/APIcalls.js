@@ -294,11 +294,7 @@ export default class ApiCalls{
     static async editUserAssistanceEvent(event_id, newPuntuation, newComment){
         const event = {puntuation:newPuntuation, comentary:newComment};
         
-        return this.fetchPutBearerToken("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances", event)
-        .then((response) =>{ return response.json();})
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        return this.fetchPutBearerToken("http://puigmal.salle.url.edu/api/v2/events/" + event_id + "/assistances", event);
     }
 
     // Eliminamos la informacion existente en la API sobre la asistencia del usuario logeado al evento con la id determinada

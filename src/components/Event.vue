@@ -124,8 +124,8 @@ methods: {
                     this.postComment = true;
                 }
             }
-            
-            return ApiCalls.editUserAssistanceEvent(this.event.id, this.userRating, this.userComment).then((response) =>{});
+
+            return ApiCalls.editUserAssistanceEvent(this.event.id, this.userRating, this.userComment);
 
         } else {
             this.errorValoration = true;
@@ -283,7 +283,7 @@ methods: {
             <div v-if="!totalComents"><h5>No hay comentarios.</h5></div>
             <div v-else>
                 <table>
-                    <tr v-for="assistance in assistances" :key="assistance.id"><div class="resena" v-if="assistance.puntuation !== null || assistance.comentary !== null">
+                    <tr v-for="assistance in assistances" :key="assistance.id"><div class="resena" v-if="(assistance.puntuation !== null || assistance.comentary !== null)">
                         <div class="resena_persona" v-on:click="goToProfile(assistance.id)">
                             <img class="profile_pic_message" src="../assets/images/icons/verified.png" alt="Foto de perfil">
                             <div class="resena_info">
