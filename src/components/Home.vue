@@ -14,11 +14,12 @@ export default{
         return {
             email: "",
             password: "",
-            isFilterShown:true,
+            isFilterShown:true, 
             events: [],
-            recomendedEvent: "",
+            recomendedEvent: "", //Evento mostrado en la pagina principal en grande
             showAll: false,
             show: false,
+            //Categorias
             categoryDescubrir: true,
             categoryTuZona: false,
             categoryAmigos: false
@@ -135,20 +136,17 @@ export default{
                 break;
             }
           }
-          
-          //reset shown events
-          
-          /*this.events.forEach(event => {
-            event.isShown = true;
-          });*/
+
 
           //filter them
           this.events.forEach(event => {
             
+              //filtro por location
               if (event.location !== filters[0] && filters[0]!=="") {
                 event.isShown = false;
               }
               
+              //Filtro Data
               if (filters[1]!=="") {
                 var d1 = new Date(event.eventStart_date);
                 var d2 = new Date(filters[2]);
@@ -156,6 +154,7 @@ export default{
                   event.isShown = false;
                 }
               }
+              //Filtro Data
               if (filters[2]!=="") {
                 var d1 = new Date(event.eventEnd_date);
                 var d2 = new Date(filters[2]);
@@ -163,6 +162,7 @@ export default{
                   event.isShown = false;
                 }
               }
+              //Filtro puntuacion
               if (filters[3]!==""){
                   if (event.avg_score < parseInt(filters[3])*2) {
                     event.isShown = false;
@@ -172,6 +172,7 @@ export default{
               if (event.type !== filters[4] && filters[4]!=="") {
                 event.isShown = false;
               }
+              //Filtro participante
               if (event.n_participators < filters[5] && filters[5]!=="") {
                 event.isShown = false;
               }
@@ -191,11 +192,13 @@ export default{
         },loadRecomendedEvent() {
              ApiCalls.sortByRating()
                 .then((sortedEvents) => {
-                  this.recomendedEvent = sortedEvents[1];
+                  this.recomendedEvent = sortedEvents[0];
                   this.showAll = true;
                 })
 
-        },applyFilterDescubrir() {
+        },
+        //Selection Categories
+        applyFilterDescubrir() {
             this.categoryAmigos = false;
             this.categoryTuZona = false;
             this.categoryDescubrir = true;
@@ -230,9 +233,8 @@ export default{
             this.categoryTuZona = false;
             this.categoryDescubrir = false;
 
-
             var friendsEvent = ApiCalls.getFriendsEvents().then((friendsEvent)=>{
-
+                
                 for (let i = 0; i < friendsEvent.length; i++) {
                     let event = friendsEvent[i];
                     this.events.forEach(event => {
@@ -243,11 +245,11 @@ export default{
                         }
                     });
                 }
-                       
+                console.log(friendsEvent);     
             });
         },
-        setAltImg(event) { 
-          event.target.src = import.meta.env.VITE_DEFAULT_EVENT_PIC;
+        setAltImg(event) { //Reemplazar imagen no cargada por imagen por defecto
+          event.target.src = import.meta.env.VITE_DEFAULT_EVENT_PIC; 
         } 
         
       },created() {
