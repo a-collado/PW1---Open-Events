@@ -4,3 +4,4 @@ Integrantes del proyecto: Anna Ferrer, Laura Pascual, Guillem Rosello, Alex Coll
 
 Link Figma: https://www.figma.com/team_invite/redeem/skO1wenpBs9sdG61m4Lz5y
 
+Link gitHub: https://github.com/a-collado/PW1---Open-Events
