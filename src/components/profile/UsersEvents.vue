@@ -12,19 +12,18 @@ export default{
     
   data() {
     return {
+      //vars for the filters
       showCreados:true,
       showAssistidos:true,
       showFinished:true,
+      showSortFilter:false,
 
+      //vars for the local events
+      /* We have a filter that must order the events. As we can't change the prop, we will use the 
+      var "local_events". Now it is initialized with a reference, but after, we will just copy the content
+      */
       local_events: this.events,
-      orderFirtsTime: false,
-
-
-
-      /*events:{},
-      eventsFinished:false,*/
-
-      showSortFilter:false
+      orderFirtsTime: false
 
     }
   },
@@ -48,36 +47,49 @@ export default{
   },
   
   created(){
-    //this.getEventsAll(this.ID);
   },
 
   mounted(){
-    //console.log(this.events);
+    /*Here we wanted to copy the information of the events (prop), but, we have seen that, when we arrive here,
+    sometimes, the array of the parent is already empty. So, we are going to change it to local events when we need
+    to sort
+    */
   },
   
   methods: {
 
-      //______________________________________________________________________
+      //Go to the event selected
       goToEvent(eventID){
         router.push({name: 'Event', params: {id: eventID}});
       },
 
+      //From the filters, make all the events visible
       showAllEvents(){
         this.showCreados = true;
         this.showAssistidos = true;
       },
 
+      //just show the created events
       showCreadosMethod(){
         this.showAssistidos = false;
         this.showCreados = true;
       },
 
+      //just show the assisted events
       showAssistidosMethod(){
         this.showCreados = false;
         this.showAssistidos = true;
       },
 
+      //Sort the events by name or date
       sortEvents(value){
+
+        /*When we arrive here, we now for sure that this.events (prop) is not empty. So, to don't
+        have problems, we copy the values of the events in the localEvents, so we will be able the sort 
+        without affecting to the parent variable.
+
+        the var "orderFirtsTime" is to just make it one time and to show in html the v-for with the copied 
+        events and not the original ones*/
 
         if(!this.orderFirtsTime){
           this.orderFirtsTime = true;
@@ -101,11 +113,10 @@ export default{
           break;
 
         }
-        
-        
 
       }, 
 
+      //Show and hide the sorting filter
       showSortFilterMethod(){
         if(this.showSortFilter){
           this.showSortFilter = false;
@@ -114,7 +125,7 @@ export default{
       ,
 
       setAltImg(event) { 
-          event.target.src = "https://i.ibb.co/gV3wfX7/default-Event1.webp" ;
+        event.target.src = "https://i.ibb.co/gV3wfX7/default-Event1.webp" ;
     } 
   } 
 } 

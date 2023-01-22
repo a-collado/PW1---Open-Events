@@ -2,16 +2,12 @@
 import { stringifyStyle } from "@vue/shared";
 import ApiCalls from "../js/APIcalls.js";
 import router from "../router/index.js";
-import Map from "./Map.vue";
-
 
 export default{
 
-    components: {
-        Map: Map
-    },
     data() {
         return {
+            //Data to send to the API to do the post
             imgEvent_URL: "",
             imgEventURLStyle: "",
             eventName: "",
@@ -25,6 +21,7 @@ export default{
             eventLongitude: "",
             eventType:"",
 
+            //Other variables to help the code
             isHidden:true,
             errorIsHidden: false,
             error:"",
@@ -32,6 +29,7 @@ export default{
         }  
     },
     setup(){
+      //Default images that the user can choose for his event. Just when he/she don't want to search one
       const defaultImg1 = new URL('../images/events/defaultEvent1.webp', import.meta.url)
       const defaultImg2 = new URL('../images/events/defaultEvent2.webp', import.meta.url)
       const defaultImg3 = new URL('../images/events/defaultEvent3.jpg', import.meta.url)
@@ -39,66 +37,60 @@ export default{
     },
     methods: {
 
-        /*initializeMap(){
-            
-            var map = new google.maps.Map(document.getElementById("map"), mapInit);    
-        },*/
-
+        //Method called everytime the user press to create the event. 
         createEvent(){
-            //console.log(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
-            //console.log(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType);            
+
+            /*We have decided to have the address with 2 parts. The address and the province.
+            The format will be: address (province)
+            
+                As the address may be too long for our little representation of the events (in user profile, home...)
+                we have added the province (just from spain)
+                
+                The little events, in out profile, will just show the province
+                
+            So, we use a datalist, that is helpful for the users to select the province. But, it has the problem that
+            they can write whatever they want. So, this firts 2 lines, check if what they have written is in the datalist,
+            if not, we will show an error
+            */
             var obj = document.querySelector("#provincias" + " option[value='" + this.provincia + "']");
 
             if(obj != null && this.eventAdress.localeCompare("") != 0){
 
+                /*This conditional is because the api don't check if there is a date. 
+                The API just puts the current datetime, to prevent this, we have made mandatory
+                putting the start date and the final date, if not, we will show an error*/
                 if(this.initialDateTime.localeCompare("") != 0 && this.finalDateTime.localeCompare("") != 0){
 
+                    //We call the API and post the information. 
                     ApiCalls.createEvent(this.imgEvent_URL, this.eventName, this.eventDescription, this.eventMaxAssistents, this.initialDateTime, this.finalDateTime, this.eventAdress+"("+this.provincia+")", this.eventType)
                     .then((output) =>{
-                        if(output == ApiCalls.getCORRECT()) {
+                        if(output == ApiCalls.getCORRECT()) { //If the post is successfull, we return to home
                             router.push({name:'Home'});
-                        }else{
-                            //document.getElementById("error_createEvent").innerHTML = output;
-                            //document.getElementById("error_createEvent").style.display = "flex";
+                        }else{ //If not, we will show the error
                             this.error = output;
                             this.displayError = "flex";
-                            //this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
                         }
                     });
 
                 }else{
-                    //document.getElementById("error_createEvent").innerHTML = "You must select an Start date/hour and a Final date/hour for the event";
-                    //document.getElementById("error_createEvent").style.display = "flex";
                     this.error = "You must select an Start date/hour and a Final date/hour for the event";
                     this.displayError = "flex";
-
                 }
 
             }
             else{
-                //document.getElementById("error_createEvent").innerHTML = "Province or address not valid";
-                //document.getElementById("error_createEvent").style.display = "flex";
-                console.log("Error");
                 this.error = "Province or address not valid";
                 this.displayError = "flex";
-                console.log(this.error);
-
-                //this.shakeElement(document.getElementsByClassName("Sign_in_box")[0]);
-
             }
-            //ApiCalls.createEvent(imgEvent_URL, eventName, eventDescription, eventMaxAssistents, initialDateTime, finalDateTime, eventAdress, eventLatitude, eventAltitud, eventType);
-            //window.location.replace("/");
+
         },
         
+        //Method to change dinamically the background image of the div (v-bind)
         changeImageEvent(){
-            //console.log(this.imgEvent_URL);
-            //let component = document.getElementById("background_image_box");
             this.imgEventURLStyle = "url('"+ this.imgEvent_URL +"')"
-            //console.log(component);
-            //component.style.backgroundImage = "url('"+ this.imgEvent_URL +"')";
-            
         },
 
+        //Method to show or not the default images for the event (v-bind)
         showDefaultEventImages(){
             if (this.isHidden === false) {
                 this.isHidden = true;
@@ -107,6 +99,8 @@ export default{
             }
         },
 
+
+        //Methods to apply to the image of the event, one of the default images
         defaultImg1(){
             this.imgEvent_URL = "../src/assets/images/events/defaultEvent1.webp";
             this.changeImageEvent();
@@ -271,12 +265,6 @@ export default{
                     </div>
                 </div>
             </div>
-            <!--<Map></Map>-->
-
-            <!-- <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="10">
-                <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
-                <InfoWindow :options="{ position: { lat: center.lat, lng: 150.8 } }"> Content passed through slot </InfoWindow>
-            </GoogleMap> -->
             
             <br>
             <p class="Error_Input " v-bind:style="{display: errorIsHidden}">{{ error }}</p>

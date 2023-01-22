@@ -10,28 +10,19 @@ export default{
     },
     data() {
       return {
-        user: [],
-        messages: [],
-        typingText: "",
-        show: false,
-        scrollTrigger: false,
-        messageError: false
+        user: [],                   // Usuario con el que estas chateando
+        messages: [],               // Todos los mensajes de la conversacion
+        typingText: "",             // Texto que la barra de escritura inferior
+        show: false,                // boolean que indica si muestra o no el chat
+        messageError: false         // boolean que indica si ha habido un error al enviar el ultimo mensaje
       };
     },
     setup(){
+
+        // Guardamos la id de la ruta actual.
         const route = useRoute();
         const id = ref();
         id.value = route.params.id;
-
-        /*watch(
-        () => route.params.id,
-        async newId => {
-            window.location.reload()
-        },
-        () => { 
-            id.value = route.params.id; 
-        }
-        )*/
 
         return { id };
     },
@@ -44,17 +35,20 @@ export default{
     },
     methods: {
 
+        // Obtener todos los mensajes entre el usuario logeado y el usuario con la id correspondiente
         async getMessages(id){
             
             return ApiCalls.getMessages(id).then((output) =>{
                 return output;
          });
         },
+        // Obtenemos todos los datos del usuario con la id correspondiente
         async getUserByID(userID){
             return ApiCalls.getInfoInfoUserByID(userID).then((user) =>{
             return user[0];
           });
         },
+        // Obtenemos y nos guardamos en variables la informacion y todos los mensajes con el usuario correspondiente.
         async getChatInfo(userID){
             return await this.getMessages(userID).then((messages) =>{
                  
@@ -67,6 +61,7 @@ export default{
                  });
             });
         },
+        // Enviamos un mensaje con el texto guardado en la variable "typingText" al usuario con la id correspondiente
         async sendMessage(){
             if (this.typingText != ""){
                 this.messageError = await ApiCalls.sendMessage(this.user.id, this.typingText).then((output) =>{
@@ -78,22 +73,25 @@ export default{
                     return false;
                 })
 
-                console.log(this.messageError)
             }
         },
+        // Actualizamos la lista de mensajes con la lista que nos devuelve la API.
         updateMessages(){
             this.getMessages(this.id).then(message => {
                 this.messages = message;
             });
         },
+        // Iniciamos un contador que actualice la lista de mensajes cada 5 segundos.
         forceUpdateChat() {
             this.timer = window.setInterval(() => {
                 this.updateMessages();
             }, 5000)
-        }, 
+        },
+        // Si no se encuentra la imagen de perfil de un usuario se sustituye por una imagen por defecto. 
         setAltImg(event) { 
           event.target.src = import.meta.env.VITE_DEFAULT_PROFILE_PIC;
         }, 
+        // Cuando la pagina deje de estar cargada, se desactiva el contador.
         unmounted() {
             clearInterval(this.timer)
         },

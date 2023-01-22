@@ -10,75 +10,59 @@ import router from "../../router/index.js";
 
 
 export default{
-    /*props: {
-        friends: Array,
-        logedUser: Boolean
-    },*/
+
     setup(){
+
+        // Guardamos la id de la ruta actual.
         const route = useRoute();
         const id = ref();
         
         id.value = route.params.id;
 
-       /* watch(
-        () => route.params.id,
-        async newId => {
-            window.location.reload()
-        },
-        () => { 
-            id.value = route.params.id; 
-        }
-        )
-        */
-
         return { id };
     },
     components:{
-      FriendsList: FriendsList,
-      Requests: Requests,    
+      FriendsList: FriendsList,         // Componente que muestra la lista de amigos
+      Requests: Requests,               // Componente que muestra la lista de solicitudes de amistad
     },
     data() {
       return {
-        friends: [],
-        requests : [],
-        showFriends : true,
-        show : false,
-        logedUser: true
+        friends: [],                    // Array con todos los amigos del perfil que estemos mirando
+        requests : [],                  // Array con todos las solcitudes de amistad del perfil que estemos mirando
+        showFriends : true,             // Boolean que indica si debemos mostrar la lista de amigos o de solicitudes
+        logedUser: true                 // Boolean que indica si estamos mirando los amigos del usuario logeado o de cualquier otro usuario.
       };
     },
     mounted(){
         if (this.id != localStorage.getItem("loggedUser")){
             this.showFriends = false;
         }
-        //this.showFriends
     },
     created(){
-      //this.getUserFriends(this.id);
         this.getData(this.id)
 
-      //this.getFriendsRequests()
     },
     methods: {
-
+        // Obtenemos todos los amigos del usuario con una id determinada
         async getFriendsByID(userID){
           return ApiCalls.getFriendsByID(userID).then((friends) =>{
             return friends
           })
         },
-
+        // Obtenemos todas las solicitudes de amistad del usuario con una id determinada.
         async getFriendsRequestsByID(){
           return ApiCalls.showFriendsRequests().then((output) =>{
             return output
           });
         },
 
+        // Guardamos en variables toda la informacion, amigos y solicitudes de un usuario con una id determinada.
         async getData(userID){
             return await this.getFriendsByID(userID).then((user) =>{
                  
                  return this.getFriendsRequestsByID(userID).then(request =>{
                      this.friends = user;
                      this.requests = request;
-                     this.show = true;
 
                      if (userID != localStorage.getItem("loggedUser")){
                         this.logedUser = false;
@@ -90,14 +74,17 @@ export default{
             });
         },
 
+        // Funcion para cambiar el valor del boolean "showfriends"
         showfriends(show){
             this.showFriends = show;
         },
 
+        // Ir al perfil del usuario con la id determinada
         goToProfileR(userID){
             router.push({name: 'user', params: { id: userID }});
         },
 
+        // Volver al perfil del usuario registrado
         goBack(){
             router.push({name: 'user', params: { id: this.id }});
         },
