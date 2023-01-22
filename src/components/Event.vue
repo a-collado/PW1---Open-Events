@@ -88,6 +88,9 @@ methods: {
         } else {
             if (this.participate === true) {
                 this.participate = false;
+                this.userComment = null;
+                this.userRating = null;
+                this.postComment = false;
                 return ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{
                 });
 
