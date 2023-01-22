@@ -19,7 +19,6 @@ data() {
         totalComents:"",
         userComment:"",
         userRating:"",
-        userValoration: false,
 
         participate: false,
         postComment: false,
@@ -75,9 +74,6 @@ methods: {
                     if (this.userComment) {
                         this.postComment = true;
                     }
-                    if (this.userComment !== null || this.userRating !== null) {
-                        this.userValoration = true;
-                    }
                 }
             }
         });
@@ -128,19 +124,9 @@ methods: {
                     this.postComment = true;
                 }
             }
-
-            if (!this.userValoration) {
-                this.userValoration = true;
-                ApiCalls.createUserAssistanceEvent(this.event.id).then((response) =>{});
-            }
-
-            if (this.userComment !== null || this.userRating !== null) {
-                return ApiCalls.editUserAssistanceEvent(this.event.id, this.userRating, this.userComment).then((response) =>{});
-            } else {
-                this.userValoration = false;
-                ApiCalls.deleteUserAssistanceEvent(this.event.id).then((response) =>{});
-            }
             
+            return ApiCalls.editUserAssistanceEvent(this.event.id, this.userRating, this.userComment).then((response) =>{});
+
         } else {
             this.errorValoration = true;
         }  
